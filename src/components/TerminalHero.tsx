@@ -12,7 +12,7 @@ const PAGES: Record<string, { description: string; url?: string }> = {
     url: '/projects/actora',
   },
   'chat': {
-    description: 'talk to coda',
+    description: 'talk to the chat bot',
     url: '/chat',
   },
 };

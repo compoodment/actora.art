@@ -7,12 +7,22 @@ interface Message {
 
 const CHAT_API = '/api/chat';
 
+function formatResetTime(resetAt: number): string {
+  const ms = resetAt - Date.now();
+  if (ms <= 0) return 'resets soon';
+  const hours = Math.floor(ms / 3600000);
+  const minutes = Math.floor((ms % 3600000) / 60000);
+  if (hours > 0) return `resets in ${hours}h ${minutes}m`;
+  return `resets in ${minutes}m`;
+}
+
 export default function ChatIsland() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [remaining, setRemaining] = useState<number | null>(null);
+  const [resetAt, setResetAt] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -47,7 +57,9 @@ export default function ChatIsland() {
 
       if (!res.ok) {
         if (data.error === 'rate_limit') {
-          setError('daily message limit reached — come back tomorrow');
+          setError(`daily limit reached — ${formatResetTime(data.resetAt)}`);
+          setRemaining(0);
+          setResetAt(data.resetAt);
         } else {
           setError(data.message || 'something went wrong');
         }
@@ -57,6 +69,7 @@ export default function ChatIsland() {
 
       setSessionId(data.sessionId);
       setRemaining(data.remaining);
+      setResetAt(data.resetAt);
       setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
     } catch {
       setError('connection failed');
@@ -75,9 +88,9 @@ export default function ChatIsland() {
   return (
     <div class="chat-container">
       <div class="chat-header">
-        <span class="chat-title">coda</span>
-        {remaining !== null && (
-          <span class="chat-remaining">{remaining} left today</span>
+        <span class="chat-title">chat bot</span>
+        {remaining !== null && resetAt !== null && (
+          <span class="chat-meta">{remaining} left — {formatResetTime(resetAt)}</span>
         )}
       </div>
 
@@ -87,13 +100,13 @@ export default function ChatIsland() {
         )}
         {messages.map((msg, i) => (
           <div key={i} class={`chat-msg chat-${msg.role}`}>
-            <span class="chat-msg-label">{msg.role === 'user' ? 'you' : 'coda'}</span>
+            <span class="chat-msg-label">{msg.role === 'user' ? 'you' : 'bot'}</span>
             <span class="chat-msg-text">{msg.content}</span>
           </div>
         ))}
         {loading && (
           <div class="chat-msg chat-assistant">
-            <span class="chat-msg-label">coda</span>
+            <span class="chat-msg-label">bot</span>
             <span class="chat-msg-text chat-typing">...</span>
           </div>
         )}
