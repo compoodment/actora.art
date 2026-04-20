@@ -46,7 +46,7 @@ export default function TerminalHero() {
         add('  ls        list pages');
         add('  cd <page>  go to a page');
         add('  cat <page> read about a page');
-        add('  whoami     who runs this');
+        add('  whoareu    who runs this');
         add('  clear      clear terminal');
         add('  neofetch   system info');
         break;
@@ -112,7 +112,7 @@ export default function TerminalHero() {
         break;
       }
 
-      case 'whoami':
+      case 'whoareu':
         add('computment');
         break;
 
