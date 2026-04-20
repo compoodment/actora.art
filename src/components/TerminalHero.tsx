@@ -16,6 +16,11 @@ const PAGES: Record<string, { description: string; url?: string }> = {
 // Easter eggs — hidden commands that don't show in help
 const EASTER_EGGS: Record<string, string> = {
   'faggot': 'no u',
+  'meow': 'meow :3',
+  'hi': 'hi :)',
+  'hey': 'hey :)',
+  'hello': 'hello :)',
+  '42': 'the answer to life, the universe, and everything',
 };
 
 export default function TerminalHero() {
