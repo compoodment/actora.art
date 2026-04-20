@@ -1,6 +1,6 @@
 # actora.art — production
 actora.art, www.actora.art {
-	root * /home/compadmin/actora.art/dist
+	root * /home/compadmin/sites/actora.art/repo/dist
 	file_server
 
 	# security headers
@@ -21,7 +21,7 @@ actora.art, www.actora.art {
 
 # draft.actora.art — preview / draft builds
 draft.actora.art {
-	root * /home/compadmin/actora.art/dist-draft
+	root * /home/compadmin/sites/actora.art/draft/dist
 	file_server
 
 	header {
