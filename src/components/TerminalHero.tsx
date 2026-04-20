@@ -122,7 +122,7 @@ export default function TerminalHero() {
 
       case 'neofetch':
         add('  ╭────────────╮', 'system');
-        add('  │  actora.art│', 'system');
+        add('  │ actora.art │', 'system');
         add('  ╰────────────╯', 'system');
         add('  os:      actoraOS v1.0.0', 'system');
         add('  host:    actora.art', 'system');
