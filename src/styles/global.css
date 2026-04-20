@@ -53,6 +53,60 @@ body {
   cursor: crosshair;
 }
 
+.particle-hud {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle-back {
+  color: var(--color-text-dim);
+  font-size: 0.7rem;
+  text-decoration: none;
+  pointer-events: auto;
+  letter-spacing: 0.03em;
+}
+
+.particle-back:hover {
+  color: var(--color-text);
+}
+
+.particle-score-wrap {
+  text-align: right;
+}
+
+.particle-score {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.particle-score-label {
+  font-size: 0.65rem;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.15rem;
+}
+
+.particle-combo {
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #ffb840;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
 .particle-hint {
   position: absolute;
   bottom: 1.5rem;
