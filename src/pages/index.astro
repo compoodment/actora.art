@@ -5,135 +5,16 @@ import TerminalHero from '../components/TerminalHero.tsx';
 
 <Base title="actora.art" description="projects, experiments, and things worth keeping">
   <main class="index">
-    <header class="index-header">
-      <TerminalHero client:load />
-    </header>
-
-    <section class="index-section">
-      <h2>projects</h2>
-      <ul class="index-list">
-        <li>
-          <a href="/projects/actora">actora</a>
-          <span class="index-note">— ongoing</span>
-        </li>
-      </ul>
-    </section>
-
-    <section class="index-section">
-      <h2>lab</h2>
-      <ul class="index-list">
-        <li class="index-dim">nothing here yet</li>
-      </ul>
-    </section>
-
-    <section class="index-section">
-      <h2>links</h2>
-      <ul class="index-list">
-        <li>
-          <a href="https://github.com/compoodment" target="_blank" rel="noopener">github</a>
-        </li>
-      </ul>
-    </section>
+    <TerminalHero client:load />
   </main>
 </Base>
 
 <style>
-  .index-header {
-    margin-bottom: var(--spacing-xl);
-  }
-
-  /* Terminal Widget Styles */
-  .terminal-widget {
-    background-color: #111;
-    border: 1px solid #333;
-    border-radius: 4px;
-    padding: var(--spacing-md);
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    min-height: 200px;
-    max-height: 300px;
-    overflow-y: auto;
-    cursor: text;
-  }
-
-  .terminal-history {
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .terminal-line {
-    color: var(--color-text-dim);
-  }
-
-  .terminal-input-line {
-    display: flex;
-    align-items: center;
-  }
-
-  .prompt {
-    color: var(--color-accent);
-    margin-right: var(--spacing-sm);
-  }
-
-  .terminal-output {
-    color: var(--color-text);
-    margin-bottom: var(--spacing-xs);
-    white-space: pre-wrap;
-    padding-left: 1.5rem;
-  }
-
-  .terminal-input {
-    background: transparent;
-    border: none;
-    color: var(--color-text);
-    font-family: inherit;
-    font-size: inherit;
-    flex-grow: 1;
-    outline: none;
-  }
-
-  /* hide scrollbar for cleaner look but keep functionality */
-  .terminal-widget::-webkit-scrollbar {
-    width: 6px;
-  }
-  .terminal-widget::-webkit-scrollbar-track {
-    background: #111;
-  }
-  .terminal-widget::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 3px;
-  }
-
-  .index-section {
-    margin-bottom: var(--spacing-lg);
-  }
-
-  .index-section h2 {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: var(--color-text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .index-list {
-    list-style: none;
+  .index {
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-
-  .index-list li {
-    font-size: 0.9rem;
-  }
-
-  .index-note {
-    color: var(--color-text-dim);
-    font-size: 0.8rem;
-  }
-
-  .index-dim {
-    color: var(--color-text-dim);
-    font-style: italic;
+    padding: 0;
+    margin: 0;
   }
 </style>

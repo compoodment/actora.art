@@ -1,0 +1,57 @@
+.terminal {
+  height: 100vh;
+  width: 100%;
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  overflow-y: auto;
+  cursor: text;
+}
+
+.terminal-entries {
+  margin-bottom: 0.5rem;
+}
+
+.terminal-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+.terminal-system {
+  color: var(--color-text-dim);
+}
+
+.terminal-output {
+  color: var(--color-text);
+}
+
+.terminal-input {
+  color: var(--color-accent);
+}
+
+.terminal-prompt {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.prompt-cwd {
+  color: var(--color-accent);
+}
+
+.prompt-symbol {
+  color: var(--color-text-dim);
+  margin-right: 0.5rem;
+}
+
+.terminal-prompt input {
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: inherit;
+  flex-grow: 1;
+  outline: none;
+  caret-color: var(--color-text);
+}
