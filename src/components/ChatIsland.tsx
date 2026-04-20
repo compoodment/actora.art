@@ -27,10 +27,14 @@ export default function ChatIsland() {
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Keep input focused on mount and after loading finishes
   useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
+    if (!loading) {
+      inputRef.current?.focus();
+    }
+  }, [loading]);
 
+  // Scroll to bottom on new messages
   useEffect(() => {
     if (messagesRef.current) {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
@@ -45,7 +49,6 @@ export default function ChatIsland() {
     setError(null);
     setMessages(prev => [...prev, { role: 'user', content: text }]);
     setLoading(true);
-    inputRef.current?.focus();
 
     try {
       const res = await fetch(CHAT_API, {
@@ -77,7 +80,6 @@ export default function ChatIsland() {
     }
 
     setLoading(false);
-    inputRef.current?.focus();
   }, [input, loading, sessionId]);
 
   const handleKey = (e: KeyboardEvent) => {
@@ -88,7 +90,7 @@ export default function ChatIsland() {
   };
 
   return (
-    <div class="chat-container">
+    <div class="chat-container" onClick={() => inputRef.current?.focus()}>
       <div class="chat-header">
         <span class="chat-title">chat bot</span>
         {remaining !== null && resetAt !== null && (
@@ -125,7 +127,7 @@ export default function ChatIsland() {
           onInput={(e) => setInput((e.target as HTMLInputElement).value)}
           onKeyDown={handleKey}
           placeholder={loading ? '...' : 'type a message'}
-          disabled={loading}
+          readOnly={loading}
           spellCheck={false}
           autoComplete="off"
           class="chat-input"
