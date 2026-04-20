@@ -8,6 +8,11 @@ actora.art, www.actora.art {
 		reverse_proxy 127.0.0.1:4322
 	}
 
+	# admin stats proxy
+	handle /admin/stats {
+		reverse_proxy 127.0.0.1:4322
+	}
+
 	# security headers
 	header {
 		X-Content-Type-Options nosniff
@@ -37,6 +42,11 @@ draft.actora.art {
 
 	# chat API proxy
 	handle /api/chat* {
+		reverse_proxy 127.0.0.1:4322
+	}
+
+	# admin stats proxy
+	handle /admin/stats {
 		reverse_proxy 127.0.0.1:4322
 	}
 
