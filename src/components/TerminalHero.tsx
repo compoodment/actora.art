@@ -113,7 +113,7 @@ export default function TerminalHero() {
       }
 
       case 'whoami':
-        add('computment. making systems and things worth keeping.');
+        add('computment');
         break;
 
       case 'clear':
