@@ -92,6 +92,7 @@ export default function ChatIsland() {
   return (
     <div class="chat-container" onClick={() => inputRef.current?.focus()}>
       <div class="chat-header">
+        <a href="/" class="chat-back">↳ back</a>
         <span class="chat-title">chat bot</span>
         {remaining !== null && resetAt !== null && (
           <span class="chat-meta">{remaining} left — {formatResetTime(resetAt)}</span>
