@@ -28,37 +28,3 @@ actora.art, www.actora.art {
 	@html path *.html /
 	header @html Cache-Control "public, max-age=0, must-revalidate"
 }
-
-# draft.actora.art — password protected (home network and VPS bypass auth)
-draft.actora.art {
-	@blocked not remote_ip 86.81.102.155/32 2a09:bac2:4d90:14f0::/64 85.190.246.95/32
-
-	basicauth @blocked {
-		draft $2a$14$.vMKjlsaz/qFxomfVUTae.WFZFmaWm9eVUccrF06P03j8J7mouPLK
-	}
-
-	root * /home/compadmin/sites/actora.art/draft/dist
-	file_server
-
-	# chat API proxy
-	handle /api/chat* {
-		reverse_proxy 127.0.0.1:4322
-	}
-
-	# admin stats proxy
-	handle /admin/stats {
-		reverse_proxy 127.0.0.1:4322
-	}
-
-	header {
-		X-Content-Type-Options nosniff
-		X-Frame-Options DENY
-		Referrer-Policy no-referrer-when-downgrade
-	}
-
-	@static path *.css *.js *.svg *.png *.jpg *.ico *.woff2
-	header @static Cache-Control "public, max-age=31536000, immutable"
-
-	@html path *.html /
-	header @html Cache-Control "public, max-age=0, must-revalidate"
-}
