@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="lab — actora.art" description="experiments and unfinished things">
+  <main class="lab">
+    <header class="lab-header">
+      <h1>lab</h1>
+    </header>
+
+    <section class="lab-section">
+      <p class="lab-dim">experiments and unfinished things.</p>
+      <p class="lab-dim">nothing here yet — check back.</p>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .lab-header h1 {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .lab-section {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .lab-dim {
+    color: var(--color-text-dim);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+</style>
