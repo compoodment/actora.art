@@ -3,6 +3,11 @@ actora.art, www.actora.art {
 	root * /home/compadmin/sites/actora.art/production/dist
 	file_server
 
+	# chat API proxy
+	handle /api/chat* {
+		reverse_proxy 127.0.0.1:4322
+	}
+
 	# security headers
 	header {
 		X-Content-Type-Options nosniff
@@ -19,10 +24,21 @@ actora.art, www.actora.art {
 	header @html Cache-Control "public, max-age=0, must-revalidate"
 }
 
-# draft.actora.art — preview / draft builds
+# draft.actora.art — password protected, whitelisted IPs bypass
 draft.actora.art {
+	@blocked not remote_ip 86.81.102.155/32 85.190.246.95/32
+
+	basicauth @blocked {
+		draft $2a$14$.vMKjlsaz/qFxomfVUTae.WFZFmaWm9eVUccrF06P03j8J7mouPLK
+	}
+
 	root * /home/compadmin/sites/actora.art/draft/dist
 	file_server
+
+	# chat API proxy
+	handle /api/chat* {
+		reverse_proxy 127.0.0.1:4322
+	}
 
 	header {
 		X-Content-Type-Options nosniff

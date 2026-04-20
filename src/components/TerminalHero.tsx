@@ -11,6 +11,10 @@ const PAGES: Record<string, { description: string; url?: string }> = {
     description: 'a game',
     url: '/projects/actora',
   },
+  'chat': {
+    description: 'talk to coda',
+    url: '/chat',
+  },
 };
 
 // Easter eggs — hidden commands that don't show in help
@@ -73,6 +77,8 @@ export default function TerminalHero() {
         add('  cat <page>  read about a page');
         add('  whoareu     who runs this');
         add('  clear       clear terminal');
+        add('', 'system');
+        add('pages: actora/  chat/', 'system');
         break;
 
       case 'ls': {
