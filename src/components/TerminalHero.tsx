@@ -5,13 +5,20 @@ interface Entry {
   text: string;
 }
 
+// Pages that can be navigated to
+const PAGES: Record<string, { description: string; url?: string }> = {
+  'actora': {
+    description: 'a game',
+    url: '/projects/actora',
+  },
+};
+
 export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>([
     { type: 'system', text: 'actoraOS v1.0.0' },
     { type: 'system', text: 'type `help` to get started' },
   ]);
   const [input, setInput] = useState('');
-  const [cwd, setCwd] = useState('~');
   const inputRef = useRef<HTMLInputElement>(null);
   const termRef = useRef<HTMLDivElement>(null);
 
@@ -29,13 +36,12 @@ export default function TerminalHero() {
     const parts = cmd.trim().split(/\s+/);
     const command = parts[0];
     const args = parts.slice(1);
-    const newEntries: Entry[] = [{ type: 'input', text: `${cwd} ❯ ${cmd}` }];
+    const newEntries: Entry[] = [{ type: 'input', text: `~ ❯ ${cmd}` }];
     const add = (text: string, type: 'output' | 'system' = 'output') => {
       newEntries.push({ type, text });
     };
 
     if (!command) {
-      // empty enter, just show prompt
       setEntries(prev => [...prev, ...newEntries]);
       return;
     }
@@ -48,18 +54,14 @@ export default function TerminalHero() {
         add('  cat <page> read about a page');
         add('  whoareu    who runs this');
         add('  clear      clear terminal');
-        add('  neofetch   system info');
         break;
 
       case 'ls': {
-        if (cwd === '~') {
-          add('projects/  lab/');
-        } else if (cwd === '~/projects') {
-          add('actora/');
-        } else if (cwd === '~/lab') {
-          add('(empty — experiments coming soon)');
+        const names = Object.keys(PAGES);
+        if (names.length === 0) {
+          add('(nothing here yet)');
         } else {
-          add('(empty)');
+          add(names.map(n => `${n}/`).join('  '));
         }
         break;
       }
@@ -67,28 +69,21 @@ export default function TerminalHero() {
       case 'cd': {
         const target = args[0];
         if (!target) {
-          setCwd('~');
-          add('', 'system');
+          add('usage: cd <page>');
           break;
         }
-        if (target === '..' || target === '~') {
-          setCwd('~');
-          add('', 'system');
-          break;
-        }
-        if (cwd === '~' && (target === 'projects' || target === 'lab')) {
-          setCwd(`~/${target}`);
-          add('', 'system');
-          break;
-        }
-        if (cwd === '~/projects' && target === 'actora') {
-          // navigate to actora project page
-          add('navigating to actora...', 'system');
+        const page = PAGES[target];
+        if (page && page.url) {
+          add(`navigating to ${target}...`, 'system');
           setEntries(prev => [...prev, ...newEntries]);
-          setTimeout(() => { window.location.href = '/projects/actora'; }, 400);
+          setTimeout(() => { window.location.href = page.url!; }, 400);
           return;
         }
-        add(`cd: no such directory: ${target}`);
+        if (page) {
+          add(`${target}: can't navigate there yet`);
+        } else {
+          add(`cd: no such page: ${target}`);
+        }
         break;
       }
 
@@ -98,14 +93,11 @@ export default function TerminalHero() {
           add('usage: cat <page>');
           break;
         }
-        if (target === 'readme' || target === 'README') {
+        const page = PAGES[target];
+        if (page) {
+          add(page.description);
+        } else if (target === 'readme' || target === 'README') {
           add('actora.art — projects, experiments, and things worth keeping.');
-        } else if (cwd === '~' && target === 'projects') {
-          add('projects/ — things built outside this site');
-        } else if (cwd === '~' && target === 'lab') {
-          add('lab/ — interactive experiments that live here');
-        } else if (cwd === '~/projects' && target === 'actora') {
-          add('actora — a game. more info at /projects/actora');
         } else {
           add(`cat: ${target}: not found`);
         }
@@ -120,24 +112,13 @@ export default function TerminalHero() {
         setEntries([]);
         return;
 
-      case 'neofetch':
-        add('  actora.art', 'system');
-        add('  ─────────────', 'system');
-        add('  os:      actoraOS v1.0.0', 'system');
-        add('  host:    actora.art', 'system');
-        add('  stack:   astro + preact', 'system');
-        add('  theme:   dark', 'system');
-        add('  shell:   actora-sh', 'system');
-        add('  pages:   3', 'system');
-        break;
-
       default:
         add(`command not found: ${command}`);
         break;
     }
 
     setEntries(prev => [...prev, ...newEntries]);
-  }, [cwd]);
+  }, []);
 
   const handleKey = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -156,7 +137,7 @@ export default function TerminalHero() {
         ))}
       </div>
       <div class="terminal-prompt">
-        <span class="prompt-cwd">{cwd}</span>
+        <span class="prompt-cwd">~</span>
         <span class="prompt-symbol"> ❯</span>
         <input
           ref={inputRef}
