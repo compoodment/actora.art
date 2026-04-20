@@ -55,7 +55,7 @@ A chat page at `/chat` where visitors talk to an AI bot powered by Google Gemini
 **Starting the server:**
 ```bash
 GEMINI_API_KEY=<key> GEMINI_MODEL=gemini-2.5-flash CHAT_PORT=4322 MAX_MESSAGES=75 \
-  ALLOWED_ORIGINS=https://actora.art,https://draft.actora.art \
+  ALLOWED_ORIGINS=https://actora.art \
   nohup node /home/compadmin/sites/actora.art/chat/server.mjs \
   > /home/compadmin/sites/actora.art/chat/server.log 2>&1 &
 ```
@@ -72,19 +72,16 @@ npm run build  # production build to dist/
 
 ## Workflow
 
-1. Work on the `draft` branch
-2. Push to draft to preview: `git push deploy draft` → builds to [draft.actora.art](https://draft.actora.art)
-3. When happy, promote to production:
-   - `git checkout main && git merge draft`
-   - `git push deploy main` → builds to [actora.art](https://actora.art)
+1. Work on `main` branch
+2. Push to deploy: `git push deploy main` → builds to [actora.art](https://actora.art)
+3. Push to GitHub for backup: `git push origin main`
 
 ## Deploy
 
 | Command | What it does |
 |---|---|
 | `git push deploy main` | Builds production → `actora.art` |
-| `git push deploy draft` | Builds draft → `draft.actora.art` |
-| `git push origin <branch>` | Push to GitHub (backup) |
+| `git push origin main` | Push to GitHub (backup) |
 | `~/sites/actora.art/repo/deploy-caddy.sh` | Copy Caddyfile to `/etc/caddy/` and reload |
 
 The deploy hook lives in `deploy.git/hooks/post-receive`. It clones the branch, runs `npm install && npm run build`, and copies the output to the right directory.
@@ -105,15 +102,12 @@ The deploy hook lives in `deploy.git/hooks/post-receive`. It clones the branch, 
 | `sites/actora.art/repo` | Working repo |
 | `sites/actora.art/deploy.git` | Bare git repo (deploy target) |
 | `sites/actora.art/production` | Production build output |
-| `sites/actora.art/draft` | Draft build output |
 | `sites/actora.art/chat` | Chat API server |
 | `sites/actora.art/repo/Caddyfile` | Caddy config (deploy with `deploy-caddy.sh`) |
 
 ## Caddy config
 
 - `actora.art` → static files from `production/dist`, proxies `/api/chat` and `/admin/stats` to `127.0.0.1:4322`
-- `draft.actora.art` → static files from `draft/dist`, same proxies, password-protected (username: `draft`, password: `p4ssw0rd`)
-- Home IP (`86.81.102.155`) and VPS IP bypass draft auth
 
 ## Design
 
