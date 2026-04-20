@@ -89,8 +89,6 @@ export default function TerminalHero() {
         add('  cat <page>  read about a page');
         add('  whoareu     who runs this');
         add('  clear       clear terminal');
-        add('', 'system');
-        add('pages: actora/  chat/  stats/', 'system');
         break;
 
       case 'ls': {
