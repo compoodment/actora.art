@@ -29,11 +29,9 @@ actora.art, www.actora.art {
 	header @html Cache-Control "public, max-age=0, must-revalidate"
 }
 
-# draft.actora.art — password protected, whitelisted IPs bypass
+# draft.actora.art — password protected (always requires auth)
 draft.actora.art {
-	@blocked not remote_ip 86.81.102.155/32 85.190.246.95/32
-
-	basicauth @blocked {
+	basicauth {
 		draft $2a$14$.vMKjlsaz/qFxomfVUTae.WFZFmaWm9eVUccrF06P03j8J7mouPLK
 	}
 
