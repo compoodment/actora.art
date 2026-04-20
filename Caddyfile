@@ -29,12 +29,8 @@ actora.art, www.actora.art {
 	header @html Cache-Control "public, max-age=0, must-revalidate"
 }
 
-# draft.actora.art — password protected (always requires auth)
+# draft.actora.art — no auth (Safari breaks with basicauth on navigation)
 draft.actora.art {
-	basicauth {
-		draft $2a$14$.vMKjlsaz/qFxomfVUTae.WFZFmaWm9eVUccrF06P03j8J7mouPLK
-	}
-
 	root * /home/compadmin/sites/actora.art/draft/dist
 	file_server
 
