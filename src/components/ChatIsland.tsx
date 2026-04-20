@@ -17,13 +17,34 @@ export default function ChatIsland() {
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Fetch balance on mount
-  useEffect(() => {
-    fetch('/api/balance')
-      .then(r => r.json())
-      .then(d => setBalance(d.balance))
-      .catch(() => {});
+  const refreshBalance = useCallback(async () => {
+    try {
+      const res = await fetch('/api/balance', { cache: 'no-store' });
+      const data = await res.json();
+      setBalance(data.balance ?? 0);
+    } catch {
+      // ignore
+    }
   }, []);
+
+  useEffect(() => {
+    refreshBalance();
+
+    const onFocus = () => refreshBalance();
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        refreshBalance();
+      }
+    };
+
+    window.addEventListener('focus', onFocus);
+    document.addEventListener('visibilitychange', onVisibility);
+
+    return () => {
+      window.removeEventListener('focus', onFocus);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [refreshBalance]);
 
   // Keep input focused on mount and after loading finishes
   useEffect(() => {
@@ -106,7 +127,7 @@ export default function ChatIsland() {
       <div class="chat-messages" ref={messagesRef}>
         {messages.length === 0 && (
           <div class="chat-empty">
-            {balance === 0
+            {balance !== null && balance <= 0
               ? <span>no messages — <a href="/lab/particles">play particles</a> to earn some</span>
               : 'say something'
             }

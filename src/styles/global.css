@@ -119,6 +119,11 @@ body {
   z-index: 10;
 }
 
+.particle-overlay-subtle {
+  background: rgba(10, 10, 10, 0.35);
+  z-index: 12;
+}
+
 .particle-overlay-inner {
   text-align: center;
   max-width: 20rem;

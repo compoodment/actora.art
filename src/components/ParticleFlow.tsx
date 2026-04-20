@@ -9,7 +9,6 @@ interface Particle {
   maxLife: number;
   size: number;
   special: boolean;
-  popped: boolean;
 }
 
 interface Bomb {
@@ -19,24 +18,24 @@ interface Bomb {
   vy: number;
   size: number;
   trackingSpeed: number;
+  maxSpeed: number;
 }
 
-const ROUND_DURATION = 90; // seconds
-const BASE_PARTICLES = 100;
-const SPECIAL_CHANCE = 0.07;
-const COLLECT_RADIUS = 28;
-const BOMB_RADIUS = 20;
-const INFLUENCE_RADIUS = 120;
-const FRICTION = 0.97;
-const BASE_SPEED = 0.4;
-const POINTS_PER_SPECIAL = 1;
-const LEVEL_UP_THRESHOLD = 50; // total earned points per level
+const ROUND_DURATION = 90;
+const BASE_PARTICLES = 68;
+const SPECIAL_CHANCE = 0.03;
+const COLLECT_RADIUS = 24;
+const BOMB_RADIUS = 18;
+const INFLUENCE_RADIUS = 115;
+const FRICTION = 0.972;
+const BASE_SPEED = 0.32;
+const COMBO_WINDOW_MS = 850;
+const MAX_COMBO = 6;
+const LEVEL_UP_THRESHOLD = 120;
 
-// Messages earned per round scales with level
 function messagesForScore(score: number, level: number): number {
-  const baseRate = 0.6; // ~0.6 messages per point at level 1
-  const levelBonus = 1 + (level - 1) * 0.15; // +15% per level
-  return Math.round(score * baseRate * levelBonus);
+  const levelBonus = 1 + (level - 1) * 0.08;
+  return Math.max(0, Math.round(score * 0.32 * levelBonus));
 }
 
 function getLevel(totalEarned: number): number {
@@ -55,7 +54,6 @@ export default function ParticleFlow() {
     score: 0,
     combo: 0,
     lastPop: 0,
-    dead: false,
   });
 
   const [state, setState] = useState<'idle' | 'playing' | 'dead' | 'won'>('idle');
@@ -63,47 +61,60 @@ export default function ParticleFlow() {
   const [timeLeft, setTimeLeft] = useState(ROUND_DURATION);
   const [combo, setCombo] = useState(0);
   const [messagesEarned, setMessagesEarned] = useState(0);
-
   const [level, setLevel] = useState(1);
   const [totalEarned, setTotalEarned] = useState(0);
   const [bankBalance, setBankBalance] = useState(0);
-  const scoreRef = useRef<HTMLDivElement>(null);
+  const [settling, setSettling] = useState(false);
+  const totalEarnedRef = useRef(0);
+  const bankBalanceRef = useRef(0);
 
-  // Load level and bank on mount
   useEffect(() => {
     const stored = localStorage.getItem('particles_totalEarned');
     if (stored) {
-      const val = parseInt(stored, 10);
-      setTotalEarned(val);
-      setLevel(getLevel(val));
+      const value = parseInt(stored, 10);
+      if (!Number.isNaN(value)) {
+        setTotalEarned(value);
+        setLevel(getLevel(value));
+      }
     }
 
+    refreshBalance();
+  }, []);
+
+  useEffect(() => {
+    totalEarnedRef.current = totalEarned;
+  }, [totalEarned]);
+
+  useEffect(() => {
+    bankBalanceRef.current = bankBalance;
+  }, [bankBalance]);
+
+  function refreshBalance() {
     fetch('/api/balance')
       .then(r => r.json())
       .then(d => setBankBalance(d.balance || 0))
       .catch(() => {});
-  }, []);
+  }
 
-  function submitScore(points: number) {
-    const lvl = getLevel(totalEarned + points);
-    const msgs = messagesForScore(points, lvl);
+  async function submitScore(points: number) {
+    const requestedMessages = messagesForScore(points, level);
 
-    fetch('/api/earn', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ points: msgs }),
-    })
-      .then(r => r.json())
-      .then(d => {
-        setBankBalance(d.balance || 0);
-      })
-      .catch(() => {});
+    try {
+      const res = await fetch('/api/earn', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ points: requestedMessages }),
+      });
 
-    const newTotal = totalEarned + points;
-    setTotalEarned(newTotal);
-    setLevel(getLevel(newTotal));
-    localStorage.setItem('particles_totalEarned', String(newTotal));
-    return msgs;
+      const data = await res.json();
+      const credited = res.ok ? (data.earned || 0) : 0;
+      const newBalance = res.ok ? (data.balance || 0) : bankBalanceRef.current;
+
+      setBankBalance(newBalance);
+      return credited;
+    } catch {
+      return 0;
+    }
   }
 
   useEffect(() => {
@@ -112,75 +123,100 @@ export default function ParticleFlow() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d')!;
-    let w = 0;
-    let h = 0;
-    let lastTime = Date.now();
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    const lvl = level;
+    let width = 0;
+    let height = 0;
+    const levelAtRoundStart = level;
 
     function resize() {
-      w = canvas!.parentElement!.clientWidth;
-      h = canvas!.parentElement!.clientHeight;
-      canvas!.width = w * devicePixelRatio;
-      canvas!.height = h * devicePixelRatio;
-      canvas!.style.width = w + 'px';
-      canvas!.style.height = h + 'px';
+      width = canvas.parentElement?.clientWidth || window.innerWidth;
+      height = canvas.parentElement?.clientHeight || window.innerHeight;
+      canvas.width = width * devicePixelRatio;
+      canvas.height = height * devicePixelRatio;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
       ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
     }
 
     function createParticle(x?: number, y?: number): Particle {
-      const px = x ?? Math.random() * w;
-      const py = y ?? Math.random() * h;
       const angle = Math.random() * Math.PI * 2;
-      const speed = BASE_SPEED + Math.random() * 0.3;
-      const isSpecial = Math.random() < (SPECIAL_CHANCE + lvl * 0.005);
-      const maxLife = 0.6 + Math.random() * 0.4;
+      const speed = BASE_SPEED + Math.random() * 0.25;
+      const specialChance = Math.min(SPECIAL_CHANCE + levelAtRoundStart * 0.0025, 0.05);
+      const special = Math.random() < specialChance;
+      const maxLife = 0.7 + Math.random() * 0.5;
+
       return {
-        x: px, y: py,
+        x: x ?? Math.random() * width,
+        y: y ?? Math.random() * height,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        life: maxLife, maxLife,
-        size: isSpecial ? (2.5 + Math.random() * 1.5) : (1 + Math.random() * 1.5),
-        special: isSpecial,
-        popped: false,
+        life: maxLife,
+        maxLife,
+        size: special ? 2.6 + Math.random() * 1.2 : 1 + Math.random() * 1.4,
+        special,
       };
     }
 
     function createBomb(): Bomb {
       const side = Math.floor(Math.random() * 4);
-      let x: number, y: number;
-      if (side === 0) { x = -10; y = Math.random() * h; }
-      else if (side === 1) { x = w + 10; y = Math.random() * h; }
-      else if (side === 2) { x = Math.random() * w; y = -10; }
-      else { x = Math.random() * w; y = h + 10; }
+      let x = 0;
+      let y = 0;
 
-      const tracking = 0.1 + lvl * 0.06; // level 1: 0.16, level 10: 0.7
+      if (side === 0) {
+        x = -20;
+        y = Math.random() * height;
+      } else if (side === 1) {
+        x = width + 20;
+        y = Math.random() * height;
+      } else if (side === 2) {
+        x = Math.random() * width;
+        y = -20;
+      } else {
+        x = Math.random() * width;
+        y = height + 20;
+      }
 
       return {
-        x, y,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: 6 + Math.random() * 4,
-        trackingSpeed: tracking,
+        x,
+        y,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        size: 7 + Math.random() * 3,
+        trackingSpeed: 0.05 + levelAtRoundStart * 0.015,
+        maxSpeed: 1.15 + levelAtRoundStart * 0.14,
       };
     }
 
-    function init() {
+    function resetRound() {
       resize();
-      particlesRef.current = [];
+      particlesRef.current = Array.from({ length: BASE_PARTICLES }, () => createParticle());
       bombsRef.current = [];
-      for (let i = 0; i < BASE_PARTICLES; i++) {
-        particlesRef.current.push(createParticle());
-      }
       gameRef.current = {
         running: true,
         timeLeft: ROUND_DURATION,
         score: 0,
         combo: 0,
         lastPop: 0,
-        dead: false,
       };
+    }
+
+    async function finishRound() {
+      const roundScore = gameRef.current.score;
+      const nextTotal = totalEarnedRef.current + roundScore;
+
+      gameRef.current.running = false;
+      setSettling(true);
+
+      const credited = await submitScore(roundScore);
+
+      setMessagesEarned(credited);
+      setTotalEarned(nextTotal);
+      setLevel(getLevel(nextTotal));
+      localStorage.setItem('particles_totalEarned', String(nextTotal));
+      setSettling(false);
+      setState('won');
     }
 
     function update(dt: number) {
@@ -191,182 +227,141 @@ export default function ParticleFlow() {
       const particles = particlesRef.current;
       const bombs = bombsRef.current;
 
-      // Timer
       game.timeLeft -= dt;
       setTimeLeft(Math.max(0, Math.ceil(game.timeLeft)));
 
       if (game.timeLeft <= 0) {
-        game.running = false;
-        const msgs = submitScore(game.score);
-        setMessagesEarned(msgs);
-        setState('won');
+        finishRound();
         return;
       }
 
-      // Spawn bombs over time (more at higher levels)
-      const bombInterval = Math.max(3, 8 - lvl * 0.5); // seconds between bombs
-      if (Math.random() < dt / bombInterval) {
+      const maxBombs = Math.min(2 + Math.floor((levelAtRoundStart - 1) / 2), 5);
+      const bombInterval = Math.max(7 - levelAtRoundStart * 0.25, 4);
+      if (bombs.length < maxBombs && Math.random() < dt / bombInterval) {
         bombs.push(createBomb());
       }
 
-      // Update particles
-      for (const p of particles) {
-        if (p.popped) continue;
-
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+      for (const particle of particles) {
+        const dx = mouse.x - particle.x;
+        const dy = mouse.y - particle.y;
+        const dist = Math.hypot(dx, dy);
 
         if (dist < INFLUENCE_RADIUS && dist > 1) {
-          const force = (1 - dist / INFLUENCE_RADIUS) * 0.5;
-          p.vx += (-dy / dist) * force * 0.35;
-          p.vy += (dx / dist) * force * 0.35;
-          p.vx += (dx / dist) * force * 0.06;
-          p.vy += (dy / dist) * force * 0.06;
+          const force = (1 - dist / INFLUENCE_RADIUS) * 0.42;
+          particle.vx += (-dy / dist) * force * 0.22;
+          particle.vy += (dx / dist) * force * 0.22;
+          particle.vx += (dx / dist) * force * 0.03;
+          particle.vy += (dy / dist) * force * 0.03;
         }
 
-        // Collect specials
-        if (p.special && dist < COLLECT_RADIUS) {
+        if (particle.special && dist < COLLECT_RADIUS) {
           const now = Date.now();
-          if (now - game.lastPop < 1500) {
-            game.combo++;
+          if (now - game.lastPop < COMBO_WINDOW_MS) {
+            game.combo = Math.min(game.combo + 1, MAX_COMBO);
           } else {
             game.combo = 1;
           }
           game.lastPop = now;
-          game.score += POINTS_PER_SPECIAL * game.combo;
+          game.score += game.combo;
           setScore(game.score);
           setCombo(game.combo);
-          p.popped = true;
 
-          // Mini burst
-          for (let i = 0; i < 4; i++) {
-            const a = Math.random() * Math.PI * 2;
-            const s = 1 + Math.random() * 2;
-            particles.push({
-              x: p.x, y: p.y,
-              vx: Math.cos(a) * s, vy: Math.sin(a) * s,
-              life: 0.3, maxLife: 0.4,
-              size: 1, special: false, popped: false,
-            });
-          }
+          Object.assign(particle, createParticle());
           continue;
         }
 
-        p.vx += (Math.random() - 0.5) * 0.03;
-        p.vy += (Math.random() - 0.5) * 0.03;
-        p.vx *= FRICTION;
-        p.vy *= FRICTION;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life -= 0.0008;
+        particle.vx += (Math.random() - 0.5) * 0.02;
+        particle.vy += (Math.random() - 0.5) * 0.02;
+        particle.vx *= FRICTION;
+        particle.vy *= FRICTION;
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.life -= 0.0012;
 
-        if (p.life <= 0 || p.x < -40 || p.x > w + 40 || p.y < -40 || p.y > h + 40) {
-          const a = Math.random() * Math.PI * 2;
-          const s = BASE_SPEED + Math.random() * 0.3;
-          p.x = Math.random() * w;
-          p.y = Math.random() * h;
-          p.vx = Math.cos(a) * s;
-          p.vy = Math.sin(a) * s;
-          p.life = p.maxLife;
-          p.size = 1 + Math.random() * 1.5;
-          p.special = Math.random() < (SPECIAL_CHANCE + lvl * 0.005);
-          p.popped = false;
+        if (
+          particle.life <= 0 ||
+          particle.x < -30 ||
+          particle.x > width + 30 ||
+          particle.y < -30 ||
+          particle.y > height + 30
+        ) {
+          Object.assign(particle, createParticle());
         }
       }
 
-      // Remove popped
-      particlesRef.current = particles.filter(p => !p.popped);
-      while (particlesRef.current.length < BASE_PARTICLES) {
-        particlesRef.current.push(createParticle());
-      }
+      for (const bomb of bombs) {
+        const dx = mouse.x - bomb.x;
+        const dy = mouse.y - bomb.y;
+        const dist = Math.hypot(dx, dy);
 
-      // Update bombs
-      for (const b of bombs) {
-        // Track cursor
-        const dx = mouse.x - b.x;
-        const dy = mouse.y - b.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist > 1) {
-          b.vx += (dx / dist) * b.trackingSpeed * dt;
-          b.vy += (dy / dist) * b.trackingSpeed * dt;
+          bomb.vx += (dx / dist) * bomb.trackingSpeed * dt * 60;
+          bomb.vy += (dy / dist) * bomb.trackingSpeed * dt * 60;
         }
 
-        // Dampen
-        b.vx *= 0.99;
-        b.vy *= 0.99;
-        b.x += b.vx;
-        b.y += b.vy;
+        const speed = Math.hypot(bomb.vx, bomb.vy);
+        if (speed > bomb.maxSpeed) {
+          bomb.vx = (bomb.vx / speed) * bomb.maxSpeed;
+          bomb.vy = (bomb.vy / speed) * bomb.maxSpeed;
+        }
 
-        // Check collision with cursor
+        bomb.vx *= 0.985;
+        bomb.vy *= 0.985;
+        bomb.x += bomb.vx;
+        bomb.y += bomb.vy;
+
         if (dist < BOMB_RADIUS) {
           game.running = false;
-          game.dead = true;
           setState('dead');
           return;
         }
       }
 
-      // Remove off-screen bombs
-      bombsRef.current = bombs.filter(b =>
-        b.x > -100 && b.x < w + 100 && b.y > -100 && b.y < h + 100
+      bombsRef.current = bombs.filter(bomb =>
+        bomb.x > -120 && bomb.x < width + 120 && bomb.y > -120 && bomb.y < height + 120
       );
     }
 
     function draw() {
-      ctx.fillStyle = 'rgba(10, 10, 10, 0.15)';
-      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = 'rgba(10, 10, 10, 0.16)';
+      ctx.fillRect(0, 0, width, height);
 
-      const particles = particlesRef.current;
-      const bombs = bombsRef.current;
-      const mouse = mouseRef.current;
+      for (const particle of particlesRef.current) {
+        const alpha = Math.min(particle.life / particle.maxLife, 1);
 
-      // Draw particles
-      for (const p of particles) {
-        if (p.popped) continue;
-        const alpha = Math.min(p.life / p.maxLife, 1);
-        const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-
-        if (p.special) {
-          const glow = alpha * 0.25 * (0.7 + Math.sin(Date.now() * 0.005) * 0.3);
-          ctx.fillStyle = `rgba(255, 180, 60, ${glow})`;
+        if (particle.special) {
+          const pulse = 0.72 + Math.sin(Date.now() * 0.004) * 0.28;
+          ctx.fillStyle = `rgba(255, 180, 60, ${0.18 * pulse})`;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+          ctx.arc(particle.x, particle.y, particle.size * 2.6, 0, Math.PI * 2);
           ctx.fill();
+
           ctx.fillStyle = `rgba(255, 200, 80, ${alpha})`;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
           ctx.fill();
         } else {
-          const hue = 200 + speed * 30;
-          ctx.fillStyle = `hsla(${hue}, 60%, 70%, ${alpha * 0.8})`;
+          ctx.fillStyle = `rgba(135, 176, 216, ${alpha * 0.75})`;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
           ctx.fill();
         }
       }
 
-      // Draw bombs
-      for (const b of bombs) {
-        const pulse = 0.7 + Math.sin(Date.now() * 0.008) * 0.3;
-        // Glow
-        ctx.fillStyle = `rgba(220, 50, 50, ${0.15 * pulse})`;
+      for (const bomb of bombsRef.current) {
+        const pulse = 0.7 + Math.sin(Date.now() * 0.01) * 0.3;
+
+        ctx.fillStyle = `rgba(220, 50, 50, ${0.14 * pulse})`;
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.size * 2.5, 0, Math.PI * 2);
+        ctx.arc(bomb.x, bomb.y, bomb.size * 2.6, 0, Math.PI * 2);
         ctx.fill();
-        // Core
-        ctx.fillStyle = `rgba(220, 60, 60, ${0.9 * pulse})`;
+
+        ctx.fillStyle = `rgba(220, 60, 60, ${0.92 * pulse})`;
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
-        ctx.fill();
-        // Inner
-        ctx.fillStyle = `rgba(255, 120, 100, ${0.6 * pulse})`;
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, b.size * 0.5, 0, Math.PI * 2);
+        ctx.arc(bomb.x, bomb.y, bomb.size, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // Collect radius hint
       if (mouse.x > 0 && mouse.y > 0) {
         ctx.strokeStyle = 'rgba(255, 200, 80, 0.06)';
         ctx.lineWidth = 1;
@@ -378,29 +373,30 @@ export default function ParticleFlow() {
 
     let lastFrame = performance.now();
     function loop(now: number) {
-      const dt = Math.min((now - lastFrame) / 1000, 0.1); // seconds, capped
+      const dt = Math.min((now - lastFrame) / 1000, 0.1);
       lastFrame = now;
       update(dt);
       draw();
       animRef.current = requestAnimationFrame(loop);
     }
 
-    init();
-    lastFrame = performance.now();
-    animRef.current = requestAnimationFrame(loop);
-
     function onMouseMove(e: MouseEvent) {
-      const rect = canvas!.getBoundingClientRect();
+      const rect = canvas.getBoundingClientRect();
       mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     }
+
     function onTouchMove(e: TouchEvent) {
-      const rect = canvas!.getBoundingClientRect();
-      const t = e.touches[0];
-      mouseRef.current = { x: t.clientX - rect.left, y: t.clientY - rect.top };
+      const rect = canvas.getBoundingClientRect();
+      const touch = e.touches[0];
+      mouseRef.current = { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
     }
+
     function onMouseLeave() {
       mouseRef.current = { x: -1000, y: -1000 };
     }
+
+    resetRound();
+    animRef.current = requestAnimationFrame(loop);
 
     canvas.addEventListener('mousemove', onMouseMove);
     canvas.addEventListener('touchmove', onTouchMove);
@@ -422,6 +418,7 @@ export default function ParticleFlow() {
     setCombo(0);
     setTimeLeft(ROUND_DURATION);
     setMessagesEarned(0);
+    setSettling(false);
     setState('playing');
   }
 
@@ -446,7 +443,7 @@ export default function ParticleFlow() {
             </div>
             <button onClick={startRound} class="particle-start-btn">start round</button>
             <div class="particle-rules">
-              collect the gold ones · avoid the red ones · 90 seconds
+              collect gold · avoid red · 90 seconds · combos cap at x{MAX_COMBO}
             </div>
           </div>
         </div>
@@ -459,8 +456,8 @@ export default function ParticleFlow() {
             <span class="particle-timer">{timeLeft}s</span>
           </div>
           <div class="particle-score-wrap">
-            <div ref={scoreRef} class="particle-score">{score}</div>
-            <div class="particle-score-label">score</div>
+            <div class="particle-score">{score}</div>
+            <div class="particle-score-label">score{combo > 1 ? ` · combo x${combo}` : ''}</div>
           </div>
         </div>
       )}
@@ -490,7 +487,15 @@ export default function ParticleFlow() {
       )}
 
       {state === 'playing' && (
-        <div class="particle-hint">collect gold · avoid red</div>
+        <div class="particle-hint">collect gold · avoid red · level {level}</div>
+      )}
+
+      {settling && (
+        <div class="particle-overlay particle-overlay-subtle">
+          <div class="particle-overlay-inner">
+            <p class="particle-result-text dim">crediting score...</p>
+          </div>
+        </div>
       )}
     </div>
   );
