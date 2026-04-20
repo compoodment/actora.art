@@ -29,8 +29,14 @@ actora.art, www.actora.art {
 	header @html Cache-Control "public, max-age=0, must-revalidate"
 }
 
-# draft.actora.art — no auth (Safari breaks with basicauth on navigation)
+# draft.actora.art — password protected (home network and VPS bypass auth)
 draft.actora.art {
+	@blocked not remote_ip 86.81.102.155/32 2a09:bac2:4d90:14f0::/64 85.190.246.95/32
+
+	basicauth @blocked {
+		draft $2a$14$.vMKjlsaz/qFxomfVUTae.WFZFmaWm9eVUccrF06P03j8J7mouPLK
+	}
+
 	root * /home/compadmin/sites/actora.art/draft/dist
 	file_server
 
