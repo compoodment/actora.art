@@ -40,6 +40,31 @@ body {
   overflow: hidden;
 }
 
+/* particle experiment */
+.particle-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.particle-canvas {
+  display: block;
+  cursor: crosshair;
+}
+
+.particle-hint {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  color: var(--color-text-dim);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 a {
   color: var(--color-link);
   text-decoration: none;

@@ -19,6 +19,14 @@ const PAGES: Record<string, { description: string; url?: string }> = {
     description: 'chat bot admin stats',
     url: '/admin/stats',
   },
+  'particles': {
+    description: 'particle flow experiment',
+    url: '/lab/particles',
+  },
+  'lab': {
+    description: 'experiments and unfinished things',
+    url: '/lab',
+  },
 };
 
 // Easter eggs — hidden commands that don't show in help
