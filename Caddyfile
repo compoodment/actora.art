@@ -1,6 +1,6 @@
 # actora.art — production
 actora.art, www.actora.art {
-	root * /home/compadmin/sites/actora.art/repo/dist
+	root * /home/compadmin/sites/actora.art/production/dist
 	file_server
 
 	# security headers

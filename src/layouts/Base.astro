@@ -1,12 +1,14 @@
 ---
 import '../styles/global.css';
+import '../styles/terminal.css';
 
 interface Props {
   title: string;
   description?: string;
+  noWrapper?: boolean;
 }
 
-const { title, description = 'actora.art' } = Astro.props;
+const { title, description = 'actora.art', noWrapper = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,11 +25,15 @@ const { title, description = 'actora.art' } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <div class="page">
+    {noWrapper ? (
       <slot />
-      <footer class="page-footer">
-        <a href="/">↳ back</a>
-      </footer>
-    </div>
+    ) : (
+      <div class="page">
+        <slot />
+        <footer class="page-footer">
+          <a href="/">↳ back</a>
+        </footer>
+      </div>
+    )}
   </body>
 </html>

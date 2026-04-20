@@ -6,17 +6,30 @@ The site. Projects, experiments, and things worth keeping.
 
 ```
 src/
+├── components/
+│   └── TerminalHero.tsx   # interactive terminal (homepage island)
 ├── layouts/
-│   └── Base.astro        # shared layout (head, footer, fonts)
+│   └── Base.astro         # shared layout (head, fonts)
 ├── pages/
-│   ├── index.astro        # homepage — index of everything
+│   ├── index.astro        # homepage — interactive terminal
 │   ├── projects/           # external projects (Actora, games, apps)
 │   └── lab/                # interactive on-site experiments
 └── styles/
-    └── global.css          # design tokens + base styles
+    ├── global.css          # design tokens + base styles
+    └── terminal.css        # terminal component styles
 ```
 
 `dist/` is gitignored and rebuilt on every deploy push.
+
+## Homepage
+
+The homepage is an interactive terminal. Visitors can type commands to navigate the site. It's built as a Preact island (`client:load`) inside Astro's static output.
+
+**Visible commands:** `help`, `ls`, `cd <page>`, `cat <page>`, `whoareu`, `clear`
+
+**Easter eggs:** Hidden commands that don't show in help. Add new ones to the `EASTER_EGGS` object in `TerminalHero.tsx`.
+
+**Adding pages:** Add entries to the `PAGES` object in `TerminalHero.tsx` to make them appear in `ls` and navigable via `cd`.
 
 ## Local dev
 
@@ -47,6 +60,7 @@ The deploy hook lives in `deploy.git/hooks/post-receive`. It clones the branch, 
 ## Stack
 
 - [Astro](https://astro.build) — framework (islands architecture)
+- [Preact](https://preactjs.com) — interactive components (terminal)
 - Caddy — web server (auto-HTTPS, HTTP/2)
 - Plain CSS + custom properties
 
@@ -56,5 +70,6 @@ The deploy hook lives in `deploy.git/hooks/post-receive`. It clones the branch, 
 |---|---|
 | `sites/actora.art/repo` | Working repo |
 | `sites/actora.art/deploy.git` | Bare git repo (deploy target) |
+| `sites/actora.art/production` | Production build output |
 | `sites/actora.art/draft` | Draft build output |
 | `sites/actora.art/repo/Caddyfile` | Caddy config (copy to `/etc/caddy/Caddyfile` on changes) |
