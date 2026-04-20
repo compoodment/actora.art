@@ -3,18 +3,6 @@ import Base from '../layouts/Base.astro';
 import TerminalHero from '../components/TerminalHero.tsx';
 ---
 
-<Base title="actora.art" description="projects, experiments, and things worth keeping">
-  <main class="index">
-    <TerminalHero client:load />
-  </main>
+<Base title="actora.art" description="projects, experiments, and things worth keeping" noWrapper>
+  <TerminalHero client:load />
 </Base>
-
-<style>
-  .index {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-  }
-</style>
