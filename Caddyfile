@@ -4,7 +4,7 @@ actora.art, www.actora.art {
 	file_server
 
 	# chat API proxy
-	handle /api/chat* {
+	handle /api/* {
 		reverse_proxy 127.0.0.1:4322
 	}
 

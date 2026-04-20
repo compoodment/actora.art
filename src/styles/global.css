@@ -53,6 +53,7 @@ body {
   cursor: crosshair;
 }
 
+/* HUD during gameplay */
 .particle-hud {
   position: absolute;
   top: 1rem;
@@ -62,7 +63,18 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
+}
+
+.particle-hud-center {
+  flex: 1;
+  text-align: center;
+}
+
+.particle-timer {
+  font-size: 1rem;
+  color: var(--color-text-dim);
+  font-weight: 500;
 }
 
 .particle-back {
@@ -96,15 +108,113 @@ body {
   margin-top: 0.15rem;
 }
 
-.particle-combo {
+/* Overlay screens (idle, dead, won) */
+.particle-overlay {
   position: absolute;
-  top: 2.5rem;
-  right: 0;
-  font-size: 0.8rem;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.85);
+  z-index: 10;
+}
+
+.particle-overlay-inner {
+  text-align: center;
+  max-width: 20rem;
+}
+
+.particle-back-link {
+  margin-bottom: 1.5rem;
+}
+
+.particle-back-link a {
+  color: var(--color-text-dim);
+  font-size: 0.7rem;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.particle-back-link a:hover {
+  color: var(--color-text);
+}
+
+.particle-title {
+  font-size: 1.3rem;
   font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+.particle-title.dead {
+  color: #dc3c3c;
+}
+
+.particle-title.won {
   color: #ffb840;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+}
+
+.particle-stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.particle-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.particle-stat-value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.particle-stat-label {
+  font-size: 0.65rem;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.particle-start-btn {
+  background: transparent;
+  border: 1px solid var(--color-text-dim);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.particle-start-btn:hover {
+  border-color: var(--color-text);
+  color: #fff;
+}
+
+.particle-rules {
+  color: var(--color-text-dim);
+  font-size: 0.7rem;
+}
+
+.particle-result-text {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.particle-result-text.dim {
+  color: var(--color-text-dim);
+}
+
+.particle-result-text.earned {
+  color: #ffb840;
+  font-weight: 500;
 }
 
 .particle-hint {
@@ -117,6 +227,7 @@ body {
   text-transform: uppercase;
   pointer-events: none;
   opacity: 0.5;
+  z-index: 1;
 }
 
 a {
