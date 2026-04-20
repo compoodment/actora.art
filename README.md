@@ -7,29 +7,60 @@ The site. Projects, experiments, and things worth keeping.
 ```
 src/
 ├── components/
-│   └── TerminalHero.tsx   # interactive terminal (homepage island)
+│   ├── TerminalHero.tsx    # interactive terminal (homepage island)
+│   └── ChatIsland.tsx      # chat bot interface (chat page island)
 ├── layouts/
-│   └── Base.astro         # shared layout (head, fonts)
+│   └── Base.astro          # shared layout (head, fonts, back link)
 ├── pages/
-│   ├── index.astro        # homepage — interactive terminal
-│   ├── projects/           # external projects (Actora, games, apps)
-│   └── lab/                # interactive on-site experiments
+│   ├── index.astro         # homepage — interactive terminal
+│   ├── chat/index.astro    # chat bot page
+│   ├── projects/            # external projects (Actora, games, apps)
+│   └── lab/                  # interactive on-site experiments
 └── styles/
-    ├── global.css          # design tokens + base styles
-    └── terminal.css        # terminal component styles
+    ├── global.css           # design tokens + base styles
+    ├── terminal.css         # terminal component styles
+    └── chat.css             # chat page styles
+
+chat/                         # chat API server (separate from Astro)
+├── server.mjs               # Node.js API — Gemini proxy, rate limiting, admin stats
+├── package.json
+└── actora-chat.service       # systemd service template
 ```
 
 `dist/` is gitignored and rebuilt on every deploy push.
 
 ## Homepage
 
-The homepage is an interactive terminal. Visitors can type commands to navigate the site. It's built as a Preact island (`client:load`) inside Astro's static output.
+The homepage is an interactive terminal. Visitors type commands to navigate the site. Built as a Preact island (`client:load`) inside Astro's static output.
 
 **Visible commands:** `help`, `ls`, `cd <page>`, `cat <page>`, `whoareu`, `clear`
 
+**Pages:** `actora/` (game), `chat/` (chat bot), `stats/` (admin)
+
 **Easter eggs:** Hidden commands that don't show in help. Add new ones to the `EASTER_EGGS` object in `TerminalHero.tsx`.
 
-**Adding pages:** Add entries to the `PAGES` object in `TerminalHero.tsx` to make them appear in `ls` and navigable via `cd`.
+**Adding pages:** Add entries to the `PAGES` object in `TerminalHero.tsx`.
+
+## Chat Bot
+
+A chat page at `/chat` where visitors talk to an AI bot powered by Google Gemini 2.5 Flash. The backend is a lightweight Node.js server that proxies to the Gemini API with per-IP rate limiting.
+
+- **75 messages per IP per day**, with a visible countdown and reset timer
+- Conversation history kept per session (in-memory, cleared on server restart)
+- Last 20 messages used as context window
+- Admin stats at `/admin/stats` — shows total messages, token usage, estimated cost in EUR, per-IP usage and reset times
+
+**Chat server:** `sites/actora.art/chat/server.mjs` (runs on port 4322, localhost only)
+
+**Starting the server:**
+```bash
+GEMINI_API_KEY=<key> GEMINI_MODEL=gemini-2.5-flash CHAT_PORT=4322 MAX_MESSAGES=75 \
+  ALLOWED_ORIGINS=https://actora.art,https://draft.actora.art \
+  nohup node /home/compadmin/sites/actora.art/chat/server.mjs \
+  > /home/compadmin/sites/actora.art/chat/server.log 2>&1 &
+```
+
+**Admin credentials:** username `admin`, password `actora2026admin` (not needed from whitelisted IPs)
 
 ## Local dev
 
@@ -54,14 +85,17 @@ npm run build  # production build to dist/
 | `git push deploy main` | Builds production → `actora.art` |
 | `git push deploy draft` | Builds draft → `draft.actora.art` |
 | `git push origin <branch>` | Push to GitHub (backup) |
+| `~/sites/actora.art/repo/deploy-caddy.sh` | Copy Caddyfile to `/etc/caddy/` and reload |
 
 The deploy hook lives in `deploy.git/hooks/post-receive`. It clones the branch, runs `npm install && npm run build`, and copies the output to the right directory.
 
 ## Stack
 
 - [Astro](https://astro.build) — framework (islands architecture)
-- [Preact](https://preactjs.com) — interactive components (terminal)
-- Caddy — web server (auto-HTTPS, HTTP/2)
+- [Preact](https://preactjs.com) — interactive components (terminal, chat)
+- Node.js — chat API server
+- Google Gemini 2.5 Flash — chat bot AI model
+- Caddy — web server (auto-HTTPS, HTTP/2, reverse proxy)
 - Plain CSS + custom properties
 
 ## VPS paths
@@ -72,4 +106,18 @@ The deploy hook lives in `deploy.git/hooks/post-receive`. It clones the branch, 
 | `sites/actora.art/deploy.git` | Bare git repo (deploy target) |
 | `sites/actora.art/production` | Production build output |
 | `sites/actora.art/draft` | Draft build output |
-| `sites/actora.art/repo/Caddyfile` | Caddy config (copy to `/etc/caddy/Caddyfile` on changes) |
+| `sites/actora.art/chat` | Chat API server |
+| `sites/actora.art/repo/Caddyfile` | Caddy config (deploy with `deploy-caddy.sh`) |
+
+## Caddy config
+
+- `actora.art` → static files from `production/dist`, proxies `/api/chat` and `/admin/stats` to `127.0.0.1:4322`
+- `draft.actora.art` → static files from `draft/dist`, same proxies, password-protected (username: `draft`, password: `p4ssw0rd`)
+- Home IP (`86.81.102.155`) and VPS IP bypass draft auth
+
+## Design
+
+- Dark mode (`#0a0a0a` background, `#e0e0e0` text)
+- JetBrains Mono font
+- Monospace terminal aesthetic
+- Interactive elements pop against minimal static base
