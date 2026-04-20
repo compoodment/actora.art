@@ -121,13 +121,15 @@ export default function TerminalHero() {
         return;
 
       case 'neofetch':
-        add('       ╭──────────╮', 'system');
-        add('       │ ◆ actora │  os:      actoraOS v1.0.0', 'system');
-        add('       │   .art   │  host:    actora.art', 'system');
-        add('       ╰──────────╯  stack:   astro + preact', 'system');
-        add('                     theme:   dark', 'system');
-        add('                     shell:   actora-sh', 'system');
-        add('                     pages:   3', 'system');
+        add('  ╭────────────╮', 'system');
+        add('  │  actora.art│', 'system');
+        add('  ╰────────────╯', 'system');
+        add('  os:      actoraOS v1.0.0', 'system');
+        add('  host:    actora.art', 'system');
+        add('  stack:   astro + preact', 'system');
+        add('  theme:   dark', 'system');
+        add('  shell:   actora-sh', 'system');
+        add('  pages:   3', 'system');
         break;
 
       default:
