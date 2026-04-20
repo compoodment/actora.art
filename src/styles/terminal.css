@@ -1,7 +1,7 @@
 .terminal {
   height: 100vh;
   width: 100%;
-  max-width: 48rem;
+  max-width: 36rem;
   margin: 0 auto;
   padding: 1.5rem;
   font-family: var(--font-mono);
