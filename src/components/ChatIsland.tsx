@@ -45,6 +45,7 @@ export default function ChatIsland() {
     setError(null);
     setMessages(prev => [...prev, { role: 'user', content: text }]);
     setLoading(true);
+    inputRef.current?.focus();
 
     try {
       const res = await fetch(CHAT_API, {
@@ -76,6 +77,7 @@ export default function ChatIsland() {
     }
 
     setLoading(false);
+    inputRef.current?.focus();
   }, [input, loading, sessionId]);
 
   const handleKey = (e: KeyboardEvent) => {
