@@ -1,33 +1,28 @@
 # Privacy
 
-This is a plain-English summary, not a legal document.
+actora.art collects the minimum data needed to keep the site usable.
 
-## What the site may collect operationally
+## What we use
 
-To keep public interactive features usable, the site may process limited technical data such as:
-- IP-based request information
-- rate-limit state
-- temporary session state for interactive features
-- moderation-related operational records when needed to respond to abuse
+The site uses limited IP-based data for:
+- rate limiting (preventing spam and abuse)
+- operating interactive features (like the wall and chat)
+- basic site security
 
-## Why
+We do not:
+- track you across visits
+- build identity profiles
+- sell or share data
+- use analytics or tracking scripts
 
-This is used to:
-- keep public features functional
-- reduce spam and abuse
-- moderate harmful behavior
-- preserve the usability of shared experiments
+## What happens with your data
 
-## What this is not for
+IP-based operational data is short-lived. It exists to keep the site running smoothly and is not stored beyond what is needed for that purpose. Chat session context is kept in memory only and is lost on server restart.
 
-This is not intended as personal profiling or advertising tracking.
+## Changes to this note
 
-## Admin and moderation
+If what we collect changes, this note will be updated. Significant changes will be reflected on the site where they are visible.
 
-The site may use limited operational data to keep interactive systems working and to respond to abuse.
+## Questions
 
-## Documentation boundary
-
-This public note intentionally stays high-level.
-
-Detailed operational handling, retention strategy, moderation procedures, and other sensitive implementation details are documented privately.
+If you have questions about data handling, reach out through the site.

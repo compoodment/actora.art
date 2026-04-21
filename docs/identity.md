@@ -1,23 +1,18 @@
 # Identity
 
-actora.art is a personal site for projects, experiments, and things worth keeping.
+actora.art is a personal site. It should feel like a place, not a portfolio.
 
-It should feel:
+## What it is
+
+A small site with a terminal homepage, a few public pages, and some interactive experiments. It's built around the idea that a personal site should have personality — not just list links, but feel like somewhere you arrived.
+
+## What it should feel like
+
 - direct
 - a little strange
 - intentional
 - alive without being noisy
-- personal without turning into a generic portfolio
-
-## Core shape
-
-The site is not meant to feel like a conventional corporate homepage.
-
-The terminal landing page gives the site its voice. From there, visitors can move into more specific spaces:
-- projects
-- experiments
-- interactive pages
-- small public systems worth playing with
+- personal without turning into a generic landing page
 
 ## What belongs on actora.art
 
@@ -29,16 +24,10 @@ Good fits:
 
 Bad fits:
 - filler pages
-- generic content made just to look complete
+- generic content made to look complete
 - features with no reason to exist beyond novelty
 - noisy additions that weaken the site's identity
 
 ## Design attitude
 
-The site should stay cohesive across pages, even when pages serve very different purposes.
-
-That means:
-- shared visual language
-- consistent tone
-- practical pages should still feel like they belong here
-- playful pages should still feel deliberate
+The site should stay cohesive across pages, even when pages serve very different purposes. Practical pages should still feel like they belong here. Playful pages should still feel deliberate.
