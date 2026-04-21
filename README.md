@@ -18,14 +18,15 @@ src/
 │   ├── projects/            # external projects (Actora, games, apps)
 │   └── lab/                 # interactive on-site experiments
 │       ├── index.astro     # lab landing page
-│       └── particles.astro # particle flow experiment
+│       ├── particles.astro # particle flow experiment
+│       └── wall.astro       # collaborative graffiti wall
 └── styles/
-    ├── global.css           # design tokens + base styles + particle styles
+    ├── global.css           # design tokens + base styles + particle + wall styles
     ├── terminal.css         # terminal component styles
     └── chat.css             # chat page styles
 
 chat/                         # chat API server (separate from Astro)
-├── server.mjs               # Node.js API — Gemini proxy, rate limiting, admin stats
+├── server.mjs               # Node.js API — Gemini proxy, wall API, rate limiting, admin stats
 ├── package.json
 └── actora-chat.service       # systemd user service template
 ```
@@ -49,6 +50,7 @@ The homepage is an interactive terminal. Visitors type commands to navigate the 
 The lab is for interactive on-site experiments. Currently home to:
 
 - **Particles** (`/lab/particles`) — a cursor-reactive particle flow visualization. Accessible only from the lab page, not from the terminal.
+- **Wall** (`/lab/wall`) — a collaborative graffiti wall. A persistent 80×24 text grid anyone can draw on. Characters fade after 7 days and expire after 14. The janitor wipes the oldest cells when the wall exceeds 75% full. 50 chars/day base budget, +5 per consecutive day visited (max 80).
 
 ## Chat Bot
 
