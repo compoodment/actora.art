@@ -20,13 +20,14 @@ This is the public codebase for the site frontend. It contains the Astro site, i
 
 ## Docs
 
-| | |
-|---|---|
-| [guide](docs/guide.md) | start here |
-| [identity](docs/identity.md) | what actora.art is trying to be |
-| [codebase](docs/codebase.md) | map of the public codebase |
-| [experiments](docs/experiments.md) | chat, wall, and lab at a product level |
-| [privacy](docs/privacy.md) | plain-English privacy note |
+Read these in order if you want the clearest map of the public side of actora.art:
+
+1. [identity](docs/identity.md) — what actora.art is trying to be
+2. [codebase](docs/codebase.md) — how the public codebase is organized
+3. [experiments](docs/experiments.md) — what visitors can do
+4. [privacy](docs/privacy.md) — the site's public privacy stance
+
+Public docs explain product intent, frontend structure, and visitor-facing behavior. They do not explain deployment internals, admin behavior, moderation mechanics, or secrets handling.
 
 ## Changelog
 

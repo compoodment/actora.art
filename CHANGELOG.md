@@ -2,6 +2,11 @@
 
 Product-level changes visible to visitors and developers.
 
+## Unreleased
+
+- Docs: public `README.md` now owns the docs reading order and public-doc scope note
+- Docs: removed redundant `docs/guide.md`
+
 ## 0.1.6 — 2026-04-21
 
 - Security: wall clients no longer receive raw IP addresses from the public wall API
