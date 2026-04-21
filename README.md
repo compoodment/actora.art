@@ -27,6 +27,10 @@ This is the public codebase for the site frontend. It contains the Astro site, i
 | [experiments](docs/experiments.md) | chat, wall, and lab at a product level |
 | [privacy](docs/privacy.md) | plain-English privacy note |
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for product-level release notes.
+
 ## Local development
 
 ```bash

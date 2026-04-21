@@ -40,7 +40,7 @@ const HIDDEN_PAGES: Record<string, { description: string; url?: string }> = {
 
 export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>([
-    { type: 'system', text: 'actoraOS v1.0.0' },
+    { type: 'system', text: 'actoraOS v0.1.0' },
     { type: 'system', text: 'type `help` to get started' },
   ]);
   const [input, setInput] = useState('');
@@ -144,7 +144,7 @@ export default function TerminalHero() {
 
       case 'clear':
         setEntries([
-          { type: 'system', text: 'actoraOS v1.0.0' },
+          { type: 'system', text: 'actoraOS v0.1.0' },
           { type: 'system', text: 'type `help` to get started' },
         ]);
         return;
