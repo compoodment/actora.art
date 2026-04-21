@@ -9,7 +9,7 @@ interface Cell {
 
 interface Budget {
   remaining: number;
-  erasesLeft: number;
+  refundsLeft: number;
   maxDaily: number;
   nextResetAt: number;
 }
@@ -83,10 +83,10 @@ export default function Wall() {
         setBudget(prev => prev ? {
           ...prev,
           remaining: data.remaining ?? prev.remaining,
-          erasesLeft: data.erasesLeft ?? prev.erasesLeft,
+          refundsLeft: data.refundsLeft ?? prev.refundsLeft,
         } : null);
       } else if (res.status === 429) {
-        setErrorMsg(data.error === 'erase_limit_reached' ? 'no erases left' : 'no chars left — come back tomorrow');
+        setErrorMsg(data.error === 'refund_limit_reached' ? 'no refunds left' : 'no chars left — come back tomorrow');
         setTimeout(() => setErrorMsg(''), 3000);
       }
       fetchWall();
@@ -118,7 +118,7 @@ export default function Wall() {
     } else {
       const cell = grid[y]?.[x];
       if (!cell || cell.ip !== myIp) return; // only erase own cells
-      if (!budget || budget.erasesLeft - pendingRef.current.length <= 0) return;
+      if (!budget || budget.refundsLeft - pendingRef.current.length <= 0) return;
       pendingRef.current.push({ x, y });
       setGrid(prev => {
         const next = prev.map(r => [...r]);
@@ -210,7 +210,7 @@ export default function Wall() {
             <div class="wall-info-title">the wall</div>
             <p>a collaborative graffiti wall. place characters to draw, write, leave marks.</p>
             <p><strong>budget:</strong> you get 100 characters per day. resets at midnight UTC.</p>
-            <p><strong>erasing:</strong> switch to erase mode to remove cells you placed. you get 300 erases per day. erased characters are refunded to your budget.</p>
+            <p><strong>erasing:</strong> switch to erase mode to remove cells you placed. each erase refunds 1 character to your budget. you can get up to 200 refunds per day (2x your budget) — so you can rearrange, but not infinitely.</p>
             <p><strong>decay:</strong> cells fade after 1 day and disappear after 3 days.</p>
             <p><strong>controls:</strong> click/drag to place. press E to toggle erase mode. type any key to pick a character.</p>
             <button class="wall-info-close" onClick={() => setShowInfo(false)}>got it</button>
@@ -219,7 +219,7 @@ export default function Wall() {
       )}
       <div class="wall-hud">
         {budget && <span class="wall-budget">{budget.remaining} chars</span>}
-        {budget && <span class="wall-erases">{budget.erasesLeft} erases</span>}
+        {budget && <span class="wall-erases">{budget.refundsLeft} refunds</span>}}
       </div>
       {errorMsg && <div class="wall-error">{errorMsg}</div>}
       <div class="wall-grid-wrapper">
