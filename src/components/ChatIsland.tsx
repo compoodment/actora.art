@@ -7,44 +7,25 @@ interface Message {
 
 const CHAT_API = '/api/chat';
 
+function formatResetTime(resetAt: number): string {
+  const ms = resetAt - Date.now();
+  if (ms <= 0) return 'resets soon';
+  const hours = Math.floor(ms / 3600000);
+  const minutes = Math.floor((ms % 3600000) / 60000);
+  if (hours > 0) return `resets in ${hours}h ${minutes}m`;
+  return `resets in ${minutes}m`;
+}
+
 export default function ChatIsland() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const [balance, setBalance] = useState<number | null>(null);
+  const [remaining, setRemaining] = useState<number | null>(null);
+  const [resetAt, setResetAt] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const refreshBalance = useCallback(async () => {
-    try {
-      const res = await fetch('/api/balance', { cache: 'no-store' });
-      const data = await res.json();
-      setBalance(data.balance ?? 0);
-    } catch {
-      // ignore
-    }
-  }, []);
-
-  useEffect(() => {
-    refreshBalance();
-
-    const onFocus = () => refreshBalance();
-    const onVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        refreshBalance();
-      }
-    };
-
-    window.addEventListener('focus', onFocus);
-    document.addEventListener('visibilitychange', onVisibility);
-
-    return () => {
-      window.removeEventListener('focus', onFocus);
-      document.removeEventListener('visibilitychange', onVisibility);
-    };
-  }, [refreshBalance]);
 
   // Keep input focused on mount and after loading finishes
   useEffect(() => {
@@ -79,9 +60,10 @@ export default function ChatIsland() {
       const data = await res.json();
 
       if (!res.ok) {
-        if (data.error === 'no_balance') {
-          setError('no messages left — earn more by playing the particle game');
-          setBalance(0);
+        if (data.error === 'rate_limit') {
+          setError(`daily limit reached — ${formatResetTime(data.resetAt)}`);
+          setRemaining(0);
+          setResetAt(data.resetAt);
         } else {
           setError(data.message || 'something went wrong');
         }
@@ -90,7 +72,8 @@ export default function ChatIsland() {
       }
 
       setSessionId(data.sessionId);
-      setBalance(data.balance);
+      setRemaining(data.remaining);
+      setResetAt(data.resetAt);
       setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
     } catch {
       setError('connection failed');
@@ -106,32 +89,19 @@ export default function ChatIsland() {
     }
   };
 
-  const isEmpty = balance !== null && balance <= 0;
-
   return (
     <div class="chat-container" onClick={() => inputRef.current?.focus()}>
       <div class="chat-header">
         <a href="/" class="chat-back">↳ back</a>
         <span class="chat-title">chat bot</span>
-        {balance !== null && (
-          <span class="chat-meta">
-            {isEmpty ? (
-              <a href="/lab/particles" class="chat-earn-link">0 messages — earn more</a>
-            ) : (
-              `${balance} message${balance !== 1 ? 's' : ''}`
-            )}
-          </span>
+        {remaining !== null && resetAt !== null && (
+          <span class="chat-meta">{remaining} left — {formatResetTime(resetAt)}</span>
         )}
       </div>
 
       <div class="chat-messages" ref={messagesRef}>
         {messages.length === 0 && (
-          <div class="chat-empty">
-            {balance !== null && balance <= 0
-              ? <span>no messages — <a href="/lab/particles">play particles</a> to earn some</span>
-              : 'say something'
-            }
-          </div>
+          <div class="chat-empty">say something</div>
         )}
         {messages.map((msg, i) => (
           <div key={i} class={`chat-msg chat-${msg.role}`}>
@@ -157,13 +127,13 @@ export default function ChatIsland() {
           value={input}
           onInput={(e) => setInput((e.target as HTMLInputElement).value)}
           onKeyDown={handleKey}
-          placeholder={loading ? '...' : isEmpty ? 'no messages left' : 'type a message'}
-          readOnly={loading || isEmpty}
+          placeholder={loading ? '...' : 'type a message'}
+          readOnly={loading}
           spellCheck={false}
           autoComplete="off"
           class="chat-input"
         />
-        <button onClick={send} disabled={loading || !input.trim() || isEmpty} class="chat-send">↵</button>
+        <button onClick={send} disabled={loading || !input.trim()} class="chat-send">↵</button>
       </div>
     </div>
   );

@@ -19,10 +19,6 @@ const PAGES: Record<string, { description: string; url?: string }> = {
     description: 'chat bot admin stats',
     url: '/admin/stats',
   },
-  'particles': {
-    description: 'particle flow experiment',
-    url: '/lab/particles',
-  },
   'lab': {
     description: 'experiments and unfinished things',
     url: '/lab',
@@ -89,6 +85,8 @@ export default function TerminalHero() {
         add('  cat <page>  read about a page');
         add('  whoareu     who runs this');
         add('  clear       clear terminal');
+        add('', 'system');
+        add('pages: actora/  chat/  stats/', 'system');
         break;
 
       case 'ls': {

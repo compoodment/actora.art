@@ -8,23 +8,26 @@ The site. Projects, experiments, and things worth keeping.
 src/
 ├── components/
 │   ├── TerminalHero.tsx    # interactive terminal (homepage island)
-│   └── ChatIsland.tsx      # chat bot interface (chat page island)
+│   ├── ChatIsland.tsx      # chat bot interface (chat page island)
+│   └── ParticleFlow.tsx    # particle flow experiment (lab island)
 ├── layouts/
 │   └── Base.astro          # shared layout (head, fonts, back link)
 ├── pages/
 │   ├── index.astro         # homepage — interactive terminal
 │   ├── chat/index.astro    # chat bot page
 │   ├── projects/            # external projects (Actora, games, apps)
-│   └── lab/                  # interactive on-site experiments
+│   └── lab/                 # interactive on-site experiments
+│       ├── index.astro     # lab landing page
+│       └── particles.astro # particle flow experiment
 └── styles/
-    ├── global.css           # design tokens + base styles
+    ├── global.css           # design tokens + base styles + particle styles
     ├── terminal.css         # terminal component styles
     └── chat.css             # chat page styles
 
 chat/                         # chat API server (separate from Astro)
 ├── server.mjs               # Node.js API — Gemini proxy, rate limiting, admin stats
 ├── package.json
-└── actora-chat.service       # systemd service template
+└── actora-chat.service       # systemd user service template
 ```
 
 `dist/` is gitignored and rebuilt on every deploy push.
@@ -35,11 +38,17 @@ The homepage is an interactive terminal. Visitors type commands to navigate the 
 
 **Visible commands:** `help`, `ls`, `cd <page>`, `cat <page>`, `whoareu`, `clear`
 
-**Pages:** `actora/` (game), `chat/` (chat bot), `stats/` (admin)
+**Pages:** `chat/` (chat bot), `lab/` (experiments), `stats/` (admin)
 
 **Easter eggs:** Hidden commands that don't show in help. Add new ones to the `EASTER_EGGS` object in `TerminalHero.tsx`.
 
-**Adding pages:** Add entries to the `PAGES` object in `TerminalHero.tsx`.
+**Adding pages:** Add entries to the `PAGES` object in `TerminalHero.tsx`. Commands are case-insensitive.
+
+## Lab
+
+The lab is for interactive on-site experiments. Currently home to:
+
+- **Particles** (`/lab/particles`) — a cursor-reactive particle flow visualization. Accessible only from the lab page, not from the terminal.
 
 ## Chat Bot
 
@@ -54,13 +63,18 @@ A chat page at `/chat` where visitors talk to an AI bot powered by Google Gemini
 
 **Starting the server:**
 ```bash
-GEMINI_API_KEY=<key> GEMINI_MODEL=gemini-2.5-flash CHAT_PORT=4322 MAX_MESSAGES=75 \
+GEMINI_API_KEY=<key> GEMINI_MODEL=gemini-2.5-flash CHAT_PORT=4322 MAX_MESSAGES_PER_DAY=75 \
   ALLOWED_ORIGINS=https://actora.art \
   nohup node /home/compadmin/sites/actora.art/chat/server.mjs \
   > /home/compadmin/sites/actora.art/chat/server.log 2>&1 &
 ```
 
-**Admin credentials:** username `admin`, password `actora2026admin` (not needed from whitelisted IPs)
+**Or use systemd:**
+```bash
+systemctl --user start actora-chat.service
+```
+
+**Admin credentials:** username `admin`, password set via `ADMIN_PASSWORD` env var (required, no fallback)
 
 ## Local dev
 
@@ -89,7 +103,7 @@ The deploy hook lives in `deploy.git/hooks/post-receive`. It clones the branch, 
 ## Stack
 
 - [Astro](https://astro.build) — framework (islands architecture)
-- [Preact](https://preactjs.com) — interactive components (terminal, chat)
+- [Preact](https://preactjs.com) — interactive components (terminal, chat, particles)
 - Node.js — chat API server
 - Google Gemini 2.5 Flash — chat bot AI model
 - Caddy — web server (auto-HTTPS, HTTP/2, reverse proxy)
