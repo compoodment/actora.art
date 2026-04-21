@@ -1,8 +1,10 @@
+import { useEffect, useRef, useState } from 'preact/hooks';
+
 interface Cell {
   char: string;
   color: string;
   placedAt: number;
-  ip?: string; // Added IP to cell for erase functionality
+  ip?: string;
 }
 
 interface Budget {
@@ -13,7 +15,6 @@ interface Budget {
 }
 
 const PALETTE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?.,:;-+=/\\|_@#*█▓░▒─│╔╗╚╝═║';
-const ERASE_CHAR = ' '; // Character for erasing
 const COLORS: Record<string, string> = {
   red: '#ff6b6b',
   green: '#51cf66',
@@ -27,41 +28,29 @@ const COLORS: Record<string, string> = {
 const COLS = 80;
 const ROWS = 24;
 const POLL_MS = 5000;
-const FADE_MS = 1 * 24 * 60 * 60 * 1000;   // 1 day → fade
-const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;  // 3 days → gone
+const FADE_MS = 1 * 24 * 60 * 60 * 1000;
+const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
 
 export default function Wall() {
   const [grid, setGrid] = useState<(Cell | null)[][]>([]);
   const [budget, setBudget] = useState<Budget | null>(null);
   const [selectedChar, setSelectedChar] = useState('█');
   const [selectedColor, setSelectedColor] = useState('white');
-  const [mode, setMode] = useState<'paint' | 'erase' | 'select'>('paint'); // Added modes
-  const [erasing, setErasing] = useState(false);
-  const [painting, setPainting] = useState(false);
+  const [mode, setMode] = useState<'paint' | 'erase'>('paint');
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
   const gridRef = useRef<HTMLPreElement>(null);
-  const isActionActiveRef = useRef(false); // Ref for paint/erase activity
-  const myIpRef = useRef<string | null>(null); // To store current user's IP
+  const dragging = useRef(false);
+  const pendingRef = useRef<{ x: number; y: number; char?: string; color?: string }[]>([]);
 
-  // Fetch wall state
   const fetchWall = async () => {
     try {
       const res = await fetch('/api/wall');
       const data = await res.json();
       if (data.grid) setGrid(data.grid);
-      // Also try to get user IP if not already set
-      if (!myIpRef.current) {
-        const ipRes = await fetch('/api/my-ip'); // Assuming an endpoint to get client IP
-        if (ipRes.ok) {
-          const ipData = await ipRes.json();
-          myIpRef.current = ipData.ip;
-        }
-      }
     } catch {}
   };
 
-  // Fetch budget
   const fetchBudget = async () => {
     try {
       const res = await fetch('/api/wall/budget');
@@ -77,10 +66,9 @@ export default function Wall() {
     return () => clearInterval(interval);
   }, []);
 
-  // Paint cells
-  const commitAction = async (cells: { x: number; y: number; char?: string; color?: string }[]) => {
+  const commitCells = async (cells: { x: number; y: number; char?: string; color?: string }[]) => {
     if (cells.length === 0) return;
-    const endpoint = mode === 'paint' ? '/api/wall/paint' : '/api/wall/erase';
+    const endpoint = mode === 'erase' ? '/api/wall/erase' : '/api/wall/paint';
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -89,21 +77,20 @@ export default function Wall() {
       });
       const data = await res.json();
       if (res.ok) {
-        setBudget(prev => prev ? { ...prev, remaining: data.remaining, erasesLeft: data.erasesLeft } : null);
+        setBudget(prev => prev ? { ...prev, remaining: data.remaining ?? prev.remaining, erasesLeft: data.erasesLeft ?? prev.erasesLeft } : null);
       } else if (res.status === 429) {
         if (data.error === 'budget_exhausted') {
           setErrorMsg('no chars left — come back tomorrow');
         } else if (data.error === 'erase_limit_reached') {
-          setErrorMsg('no erases left — limit 300');
+          setErrorMsg('no erases left');
+        } else {
+          setErrorMsg('limit reached');
         }
         setTimeout(() => setErrorMsg(''), 3000);
       }
-      fetchWall(); // Re-fetch to get accurate state after action
+      fetchWall();
     } catch {}
   };
-
-  // Cell interaction
-  const pendingActions = useRef<{ x: number; y: number; char?: string; color?: string }[]>([]);
 
   const getCellFromEvent = (e: MouseEvent | Touch): { x: number; y: number } | null => {
     if (!gridRef.current) return null;
@@ -116,94 +103,76 @@ export default function Wall() {
     return { x, y };
   };
 
-  const handlePointerDown = (e: MouseEvent | TouchEvent) => {
-    const touch = 'touches' in e ? e.touches[0] : e;
-    const pos = getCellFromEvent(touch);
-    if (!pos) return;
-    e.preventDefault();
-
-    if (mode === 'erase' || (e instanceof MouseEvent && e.button === 2)) {
-      setErasing(true);
-    } else {
-      setPainting(true);
-    }
-    isActionActiveRef.current = true;
-    pendingActions.current = [];
-    addToPendingAction(pos.x, pos.y);
-  };
-
-  const handlePointerMove = (e: MouseEvent | TouchEvent) => {
-    const touch = 'touches' in e ? e.touches[0] : e;
-    const pos = getCellFromEvent(touch);
-    setHoverPos(pos);
-    if (!isActionActiveRef.current || !pos) return;
-    e.preventDefault();
-    addToPendingAction(pos.x, pos.y);
-  };
-
-  const handlePointerUp = (e: MouseEvent) => {
-    if (!isActionActiveRef.current) return;
-    e.preventDefault(); // Prevent right-click context menu
-    isActionActiveRef.current = false;
-    setPainting(false);
-    setErasing(false);
-    flushActions();
-  };
-
-  const addToPendingAction = (x: number, y: number) => {
-    // Dedupe
-    if (pendingActions.current.some(c => c.x === x && c.y === y)) return;
+  const addToPending = (x: number, y: number) => {
+    if (pendingRef.current.some(c => c.x === x && c.y === y)) return;
 
     if (mode === 'paint') {
-      if (!budget || budget.remaining - pendingActions.current.length <= 0) return;
-      pendingActions.current.push({ x, y, char: selectedChar, color: selectedColor });
-      // Optimistic local update
+      if (!budget || budget.remaining - pendingRef.current.length <= 0) return;
+      pendingRef.current.push({ x, y, char: selectedChar, color: selectedColor });
       setGrid(prev => {
         const next = prev.map(r => [...r]);
         if (!next[y]) return prev;
         next[y] = [...next[y]];
-        next[y][x] = { char: selectedChar, color: selectedColor, placedAt: Date.now(), ip: myIpRef.current || undefined };
+        next[y][x] = { char: selectedChar, color: selectedColor, placedAt: Date.now() };
         return next;
       });
-    } else if (mode === 'erase') {
-      if (!budget || budget.erasesLeft - pendingActions.current.length <= 0) return;
-      const targetCell = grid[y]?.[x];
-      if (targetCell && targetCell.ip === myIpRef.current) { // Only erase your own cells
-        pendingActions.current.push({ x, y });
-        // Optimistic local update
-        setGrid(prev => {
-          const next = prev.map(r => [...r]);
-          if (!next[y]) return prev;
-          next[y] = [...next[y]];
-          next[y][x] = null;
-          return next;
-        });
-      }
+    } else {
+      // erase mode — erase whatever's there (server validates ownership)
+      if (!budget || budget.erasesLeft - pendingRef.current.length <= 0) return;
+      if (!grid[y]?.[x]) return; // nothing to erase
+      pendingRef.current.push({ x, y });
+      setGrid(prev => {
+        const next = prev.map(r => [...r]);
+        next[y] = [...next[y]];
+        next[y][x] = null;
+        return next;
+      });
     }
   };
 
-  const flushActions = () => {
-    const cellsToCommit = [...pendingActions.current];
-    pendingActions.current = [];
-    if (cellsToCommit.length > 0) commitAction(cellsToCommit);
+  const flush = () => {
+    const cells = [...pendingRef.current];
+    pendingRef.current = [];
+    if (cells.length > 0) commitCells(cells);
   };
 
-  const handleMouseLeave = () => {
+  const handleDown = (e: MouseEvent | TouchEvent) => {
+    const touch = 'touches' in e ? e.touches[0] : e;
+    const pos = getCellFromEvent(touch);
+    if (!pos) return;
+    e.preventDefault();
+    dragging.current = true;
+    pendingRef.current = [];
+    addToPending(pos.x, pos.y);
+  };
+
+  const handleMove = (e: MouseEvent | TouchEvent) => {
+    const touch = 'touches' in e ? e.touches[0] : e;
+    const pos = getCellFromEvent(touch);
+    setHoverPos(pos);
+    if (!dragging.current || !pos) return;
+    e.preventDefault();
+    addToPending(pos.x, pos.y);
+  };
+
+  const handleUp = () => {
+    if (!dragging.current) return;
+    dragging.current = false;
+    flush();
+  };
+
+  const handleLeave = () => {
     setHoverPos(null);
-    if (isActionActiveRef.current) {
-      isActionActiveRef.current = false;
-      setPainting(false);
-      setErasing(false);
-      flushActions();
+    if (dragging.current) {
+      dragging.current = false;
+      flush();
     }
   };
 
-  // Keyboard char/mode selection
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === 'e' && !e.ctrlKey && !e.metaKey) {
-        setMode(prev => (prev === 'erase' ? 'paint' : 'erase'));
-        setSelectedChar(ERASE_CHAR); // Auto-select erase char
+        setMode(prev => prev === 'erase' ? 'paint' : 'erase');
         e.preventDefault();
       } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
         setMode('paint');
@@ -213,27 +182,16 @@ export default function Wall() {
       }
     };
     window.addEventListener('keydown', onKey);
-    // Disable context menu on right-click for erase functionality
-    const onContextMenu = (e: MouseEvent) => {
-      if (e.button === 2) e.preventDefault();
-    };
-    window.addEventListener('contextmenu', onContextMenu);
-
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      window.removeEventListener('contextmenu', onContextMenu);
-    };
+    return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // Render helpers
   const getCellColor = (cell: Cell): string => {
     const age = Date.now() - cell.placedAt;
     const base = COLORS[cell.color] || COLORS.white;
     if (age > FADE_MS) {
-      // Fade from 0.8 opacity down to 0.2 over the remaining EXPIRE_MS - FADE_MS duration
       const fadeDuration = EXPIRE_MS - FADE_MS;
       const fadeProgress = Math.min((age - FADE_MS) / fadeDuration, 1);
-      const opacity = 0.8 - fadeProgress * 0.6; // From 0.8 to 0.2
+      const opacity = 0.8 - fadeProgress * 0.6;
       return base + Math.round(opacity * 255).toString(16).padStart(2, '0');
     }
     return base;
@@ -252,7 +210,7 @@ export default function Wall() {
             {budget.remaining} chars
           </span>
         )}
-        {budget && budget.erasesLeft !== undefined && (
+        {budget && (
           <span class="wall-erases">{budget.erasesLeft} erases</span>
         )}
       </div>
@@ -261,26 +219,23 @@ export default function Wall() {
         <pre
           ref={gridRef}
           class="wall-grid"
-          onMouseDown={handlePointerDown}
-          onMouseMove={handlePointerMove}
-          onMouseUp={handlePointerUp}
-          onMouseLeave={handleMouseLeave}
-          onTouchStart={handlePointerDown}
-          onTouchMove={handlePointerMove}
-          onTouchEnd={handlePointerUp}
-          onContextMenu={(e) => e.preventDefault()} // Prevent default context menu
+          onMouseDown={handleDown}
+          onMouseMove={handleMove}
+          onMouseUp={handleUp}
+          onMouseLeave={handleLeave}
+          onTouchStart={handleDown}
+          onTouchMove={handleMove}
+          onTouchEnd={handleUp}
+          onContextMenu={(e) => e.preventDefault()}
         >
           {grid.map((row, y) =>
             row.map((cell, x) => {
               const isHover = hoverPos?.x === x && hoverPos?.y === y;
-              const isMyCell = cell && cell.ip === myIpRef.current;
-              const isActiveAction = isActionActiveRef.current && isHover;
-
               if (cell) {
                 return (
                   <span
                     key={`${x}-${y}`}
-                    class={`wall-cell ${isMyCell ? 'wall-my-cell' : ''}`}
+                    class="wall-cell"
                     style={{ color: getCellColor(cell) }}
                   >
                     {cell.char}
@@ -301,36 +256,46 @@ export default function Wall() {
         </pre>
       </div>
       <div class="wall-palette">
-        <div class="wall-chars">
-          {PALETTE_CHARS.split('').map(ch => (
-            <button
-              key={ch}
-              class={`wall-char-btn${ch === selectedChar && mode === 'paint' ? ' wall-char-active' : ''}`}
-              onClick={() => { setSelectedChar(ch); setMode('paint'); }}
-              disabled={mode === 'erase'}
-            >
-              {ch}
-            </button>
-          ))}
+        <div class="wall-toolbar">
+          <button
+            class={`wall-mode-btn${mode === 'paint' ? ' wall-mode-active' : ''}`}
+            onClick={() => setMode('paint')}
+          >paint</button>
+          <button
+            class={`wall-mode-btn${mode === 'erase' ? ' wall-mode-active' : ''}`}
+            onClick={() => setMode('erase')}
+          >erase</button>
+          <span class="wall-mode-hint">press E to toggle</span>
         </div>
-        <div class="wall-colors">
-          {Object.entries(COLORS).map(([name, hex]) => (
-            <button
-              key={name}
-              class={`wall-color-btn${name === selectedColor && mode === 'paint' ? ' wall-color-active' : ''}`}
-              style={{ backgroundColor: hex }}
-              onClick={() => { setSelectedColor(name); setMode('paint'); }}
-              title={name}
-              disabled={mode === 'erase'}
-            />
-          ))}
-        </div>
-        <button
-          class={`wall-mode-toggle${mode === 'erase' ? ' wall-mode-active' : ''}`}
-          onClick={() => setMode(prev => (prev === 'erase' ? 'paint' : 'erase'))}
-        >
-          {mode === 'erase' ? 'Paint' : 'Erase'}
-        </button>
+        {mode === 'paint' && (
+          <>
+            <div class="wall-chars">
+              {PALETTE_CHARS.split('').map(ch => (
+                <button
+                  key={ch}
+                  class={`wall-char-btn${ch === selectedChar ? ' wall-char-active' : ''}`}
+                  onClick={() => setSelectedChar(ch)}
+                >
+                  {ch}
+                </button>
+              ))}
+            </div>
+            <div class="wall-colors">
+              {Object.entries(COLORS).map(([name, hex]) => (
+                <button
+                  key={name}
+                  class={`wall-color-btn${name === selectedColor ? ' wall-color-active' : ''}`}
+                  style={{ backgroundColor: hex }}
+                  onClick={() => setSelectedColor(name)}
+                  title={name}
+                />
+              ))}
+            </div>
+          </>
+        )}
+        {mode === 'erase' && (
+          <div class="wall-erase-hint">click or drag on cells you placed to erase them</div>
+        )}
       </div>
     </div>
   );
