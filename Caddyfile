@@ -3,13 +3,13 @@ actora.art, www.actora.art {
 	root * /home/compadmin/sites/actora.art/production/dist
 	file_server
 
-	# chat API proxy
-	handle /api/* {
+	# admin proxy
+	handle /admin* {
 		reverse_proxy 127.0.0.1:4322
 	}
 
-	# admin stats proxy
-	handle /admin/stats {
+	# chat API proxy
+	handle /api/* {
 		reverse_proxy 127.0.0.1:4322
 	}
 

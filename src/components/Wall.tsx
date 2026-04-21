@@ -40,7 +40,10 @@ export default function Wall() {
   const [mode, setMode] = useState<'paint' | 'erase'>('paint');
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
-  const [showInfo, setShowInfo] = useState(false);
+  const [showInfo, setShowInfo] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return !localStorage.getItem('wall-info-seen');
+  });
   const gridRef = useRef<HTMLPreElement>(null);
   const dragging = useRef(false);
   const pendingRef = useRef<{ x: number; y: number; char?: string; color?: string }[]>([]);
@@ -202,7 +205,7 @@ export default function Wall() {
       <a href="/lab" class="wall-back">↳ back</a>
       <button class="wall-info-btn" onClick={() => setShowInfo(true)} title="how it works">?</button>
       {showInfo && (
-        <div class="wall-info-overlay" onClick={() => setShowInfo(false)}>
+        <div class="wall-info-overlay" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>
           <div class="wall-info-popup" onClick={(e) => e.stopPropagation()}>
             <div class="wall-info-title">the wall</div>
             <p>a collaborative graffiti wall. place characters to draw, write, leave marks.</p>
@@ -210,7 +213,7 @@ export default function Wall() {
             <p><strong>erasing:</strong> switch to erase mode to remove cells you placed. each erase refunds 1 character to your budget. you can get up to 200 refunds per day (2x your budget) — so you can rearrange, but not infinitely.</p>
             <p><strong>decay:</strong> cells fade after 1 day and disappear after 3 days.</p>
             <p><strong>controls:</strong> click/drag to place. type any key to pick a character. click paint or erase to switch modes.</p>
-            <button class="wall-info-close" onClick={() => setShowInfo(false)}>got it</button>
+            <button class="wall-info-close" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>got it</button>
           </div>
         </div>
       )}

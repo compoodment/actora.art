@@ -15,10 +15,6 @@ const PAGES: Record<string, { description: string; url?: string }> = {
     description: 'talk to the chat bot',
     url: '/chat',
   },
-  'stats': {
-    description: 'chat bot admin stats',
-    url: '/admin/stats',
-  },
   'lab': {
     description: 'experiments and unfinished things',
     url: '/lab',
@@ -33,6 +29,13 @@ const EASTER_EGGS: Record<string, string> = {
   'hey': 'hey :)',
   'hello': 'hello :)',
   '42': 'the answer to life, the universe, and everything',
+};
+
+const HIDDEN_PAGES: Record<string, { description: string; url?: string }> = {
+  'admin': {
+    description: 'admin dashboard',
+    url: '/admin',
+  },
 };
 
 export default function TerminalHero() {
@@ -103,7 +106,7 @@ export default function TerminalHero() {
           add('usage: cd <page>');
           break;
         }
-        const page = PAGES[target];
+        const page = PAGES[target] || HIDDEN_PAGES[target];
         if (page && page.url) {
           add(`navigating to ${target}...`, 'system');
           setEntries(prev => [...prev, ...newEntries]);
@@ -124,7 +127,7 @@ export default function TerminalHero() {
           add('usage: cat <page>');
           break;
         }
-        const page = PAGES[target];
+        const page = PAGES[target] || HIDDEN_PAGES[target];
         if (page) {
           add(page.description);
         } else if (target === 'readme' || target === 'README') {
