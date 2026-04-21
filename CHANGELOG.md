@@ -2,6 +2,13 @@
 
 Product-level changes visible to visitors and developers.
 
+## 0.1.1 — 2026-04-21
+
+- Projects index page at `/projects/`
+- Terminal: `projects` page added, `cd projects/` works (trailing slash stripped)
+- actoraOS version synced to changelog version
+- Removed duplicate back button from projects page
+
 ## 0.1.0 — 2026-04-21
 
 - Terminal homepage with actoraOS branding
