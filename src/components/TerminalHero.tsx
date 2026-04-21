@@ -84,7 +84,7 @@ export default function TerminalHero() {
     switch (command) {
       case 'help':
         add('commands:', 'system');
-        add('  ls         list pages');
+        add('  ls          list pages');
         add('  cd <page>   go to a page');
         add('  cat <page>  read about a page');
         add('  whoareu     who runs this');
