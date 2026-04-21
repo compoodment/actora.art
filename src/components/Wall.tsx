@@ -170,10 +170,7 @@ export default function Wall() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === 'e' && !e.ctrlKey && !e.metaKey) {
-        setMode(prev => prev === 'erase' ? 'paint' : 'erase');
-        e.preventDefault();
-      } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
+      if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
         setMode('paint');
         const idx = PALETTE_CHARS.indexOf(e.key.toUpperCase());
         setSelectedChar(idx >= 0 ? PALETTE_CHARS[idx] : e.key);
@@ -212,7 +209,7 @@ export default function Wall() {
             <p><strong>budget:</strong> you get 100 characters per day. resets at midnight UTC.</p>
             <p><strong>erasing:</strong> switch to erase mode to remove cells you placed. each erase refunds 1 character to your budget. you can get up to 200 refunds per day (2x your budget) — so you can rearrange, but not infinitely.</p>
             <p><strong>decay:</strong> cells fade after 1 day and disappear after 3 days.</p>
-            <p><strong>controls:</strong> click/drag to place. press E to toggle erase mode. type any key to pick a character.</p>
+            <p><strong>controls:</strong> click/drag to place. type any key to pick a character. click paint or erase to switch modes.</p>
             <button class="wall-info-close" onClick={() => setShowInfo(false)}>got it</button>
           </div>
         </div>
@@ -305,7 +302,7 @@ export default function Wall() {
             class={`wall-mode-btn${mode === 'erase' ? ' wall-mode-active' : ''}`}
             onClick={() => setMode('erase')}
           >erase</button>
-          <span class="wall-mode-hint">press E to switch</span>
+          <span class="wall-mode-hint">click a mode</span>
         </div>
         <div class="wall-tools" style={`min-height: 3.5rem;`}>
           {mode === 'paint' ? (
