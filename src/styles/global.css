@@ -40,6 +40,30 @@ body {
   overflow: hidden;
 }
 
+/* Dark scrollbar — applies globally to all pages */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #0a0a0a;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
 /* particle experiment */
 .particle-container {
   width: 100%;
