@@ -57,7 +57,7 @@ export default function TerminalHero() {
   const processCommand = useCallback((cmd: string) => {
     const raw = cmd.trim();
     const parts = raw.split(/\s+/);
-    const command = parts[0];
+    const command = parts[0].toLowerCase();
     const args = parts.slice(1);
     const newEntries: Entry[] = [{ type: 'input', text: `~ ❯ ${raw}` }];
     const add = (text: string, type: 'output' | 'system' = 'output') => {
@@ -98,7 +98,7 @@ export default function TerminalHero() {
       }
 
       case 'cd': {
-        const target = (args[0] || '').replace(/\/+$/, '');
+        const target = (args[0] || '').replace(/\/+$/, '').toLowerCase();
         if (!target) {
           add('usage: cd <page>');
           break;
@@ -119,7 +119,7 @@ export default function TerminalHero() {
       }
 
       case 'cat': {
-        const target = args[0];
+        const target = args[0] ? args[0].toLowerCase() : '';
         if (!target) {
           add('usage: cat <page>');
           break;
