@@ -173,6 +173,39 @@ a:hover {
   color: #fcc419;
 }
 
+.wall-erases {
+  color: var(--color-text-dim);
+  font-size: 0.7rem;
+}
+
+.wall-my-cell {
+  border: 1px dotted #444; /* Dotted border for owned cells */
+  margin: -1px; /* Adjust to not expand layout */
+}
+
+.wall-mode-toggle {
+  background: #222;
+  color: var(--color-text);
+  border: 1px solid #444;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-radius: 3px;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.wall-mode-toggle:hover {
+  background: #333;
+}
+
+.wall-mode-active {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+}
+
 .wall-error {
   position: absolute;
   top: 2.5rem;
