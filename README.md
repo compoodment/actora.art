@@ -50,7 +50,7 @@ The homepage is an interactive terminal. Visitors type commands to navigate the 
 The lab is for interactive on-site experiments. Currently home to:
 
 - **Particles** (`/lab/particles`) — a cursor-reactive particle flow visualization. Accessible only from the lab page, not from the terminal.
-- **Wall** (`/lab/wall`) — a collaborative graffiti wall. A persistent 80×24 text grid anyone can draw on. Characters fade after 7 days and expire after 14. The janitor wipes the oldest cells when the wall exceeds 75% full. 50 chars/day base budget, +5 per consecutive day visited (max 80).
+- **Wall** (`/lab/wall`) — a collaborative graffiti wall. A persistent 80×24 text grid anyone can draw on. Characters fade after 1 day and expire after 3 days. The janitor wipes the oldest cells when the wall exceeds 75% full. 100 chars/day budget, 200 refunds/day (each erase refunds 1 char, capped at 2x daily budget).
 
 ## Chat Bot
 
@@ -59,6 +59,7 @@ A chat page at `/chat` where visitors talk to an AI bot powered by Google Gemini
 - **75 messages per IP per day**, with a visible countdown and reset timer
 - Conversation history kept per session (in-memory, cleared on server restart)
 - Last 20 messages used as context window
+- Wall API: `/api/wall` (GET grid), `/api/wall/budget` (GET budget), `/api/wall/paint` (POST), `/api/wall/erase` (POST)
 - Admin stats at `/admin/stats` — shows total messages, token usage, estimated cost in EUR, per-IP usage and reset times
 
 **Chat server:** `sites/actora.art/chat/server.mjs` (runs on port 4322, localhost only)
