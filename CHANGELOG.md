@@ -2,6 +2,15 @@
 
 Product-level changes visible to visitors and developers.
 
+## 0.1.3 — 2026-04-21
+
+- Chat: system prompt restructured into sections (personality, site, about computment), leaner wording
+- Chat: bot can now talk about Cities: Skylines 2
+- Terminal: added `bitch` easter egg (→ no u)
+- Terminal: all commands and page targets are case-insensitive
+- Terminal: `ls` no longer shows sub-pages, only top-level pages
+- Terminal: `help` output alignment fixed
+
 ## 0.1.2 — 2026-04-21
 
 - Chat: per-minute rate limit (10 messages/minute per IP)
