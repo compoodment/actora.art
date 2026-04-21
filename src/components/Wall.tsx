@@ -4,7 +4,7 @@ interface Cell {
   char: string;
   color: string;
   placedAt: number;
-  ip?: string;
+  isMine?: boolean;
 }
 
 interface Budget {
@@ -34,7 +34,6 @@ const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
 export default function Wall() {
   const [grid, setGrid] = useState<(Cell | null)[][]>([]);
   const [budget, setBudget] = useState<Budget | null>(null);
-  const [myIp, setMyIp] = useState<string | null>(null);
   const [selectedChar, setSelectedChar] = useState('█');
   const [selectedColor, setSelectedColor] = useState('white');
   const [mode, setMode] = useState<'paint' | 'erase'>('paint');
@@ -53,7 +52,6 @@ export default function Wall() {
       const res = await fetch('/api/wall');
       const data = await res.json();
       if (data.grid) setGrid(data.grid);
-      if (data.yourIp) setMyIp(data.yourIp);
     } catch {}
   };
 
@@ -120,7 +118,7 @@ export default function Wall() {
       });
     } else {
       const cell = grid[y]?.[x];
-      if (!cell || cell.ip !== myIp) return; // only erase own cells
+      if (!cell || !cell.isMine) return; // only erase own cells
       if (!budget || budget.refundsLeft - pendingRef.current.length <= 0) return;
       pendingRef.current.push({ x, y });
       setGrid(prev => {
@@ -198,7 +196,7 @@ export default function Wall() {
     return <div class="wall-loading">loading wall…</div>;
   }
 
-  const isMine = (cell: Cell | null) => cell && myIp && cell.ip === myIp;
+  const isMine = (cell: Cell | null) => !!cell?.isMine;
 
   return (
     <div class="wall-container">

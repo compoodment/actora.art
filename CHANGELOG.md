@@ -2,6 +2,13 @@
 
 Product-level changes visible to visitors and developers.
 
+## 0.1.6 — 2026-04-21
+
+- Security: wall clients no longer receive raw IP addresses from the public wall API
+- Security: oversized API request bodies are now rejected
+- Security: stricter security headers added (CSP + HSTS)
+- Site: HTML page cache-control now consistently applies to directory routes like `/chat/` and `/lab/`
+
 ## 0.1.5 — 2026-04-21
 
 - Site: normalized header and title spacing across `/projects`, `/projects/actora`, and `/lab`
