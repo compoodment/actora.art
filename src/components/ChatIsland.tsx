@@ -60,10 +60,13 @@ export default function ChatIsland() {
       const data = await res.json();
 
       if (!res.ok) {
-        if (data.error === 'rate_limit') {
-          setError(`daily limit reached — ${formatResetTime(data.resetAt)}`);
+        if (data.error === 'daily_limit_reached') {
+          setError(data.message || 'daily limit reached');
           setRemaining(0);
           setResetAt(data.resetAt);
+        } else if (data.error === 'minute_limit_reached' || data.error === 'api_rate_limited') {
+          setError(data.message);
+          if (data.detail) setError(`${data.message}\n${data.detail}`);
         } else {
           setError(data.message || 'something went wrong');
         }

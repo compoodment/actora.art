@@ -29,9 +29,6 @@ const PAGES: Record<string, { description: string; url?: string }> = {
 const EASTER_EGGS: Record<string, string> = {
   'faggot': 'no u',
   'meow': 'meow :3',
-  'hi': 'hi :)',
-  'hey': 'hey :)',
-  'hello': 'hello :)',
   '42': 'the answer to life, the universe, and everything',
 };
 
@@ -44,7 +41,7 @@ const HIDDEN_PAGES: Record<string, { description: string; url?: string }> = {
 
 export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>([
-    { type: 'system', text: 'actoraOS v0.1.1' },
+    { type: 'system', text: 'actoraOS v0.1.2' },
     { type: 'system', text: 'type `help` to get started' },
   ]);
   const [input, setInput] = useState('');
@@ -148,7 +145,7 @@ export default function TerminalHero() {
 
       case 'clear':
         setEntries([
-          { type: 'system', text: 'actoraOS v0.1.1' },
+          { type: 'system', text: 'actoraOS v0.1.2' },
           { type: 'system', text: 'type `help` to get started' },
         ]);
         return;

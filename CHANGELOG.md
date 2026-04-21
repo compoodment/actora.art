@@ -2,6 +2,14 @@
 
 Product-level changes visible to visitors and developers.
 
+## 0.1.2 — 2026-04-21
+
+- Chat: per-minute rate limit (10 messages/minute per IP)
+- Chat: Gemini API rate limit errors now show a friendly message instead of a generic error
+- Chat: 429 responses include `detail` field with explanation
+- Terminal: removed greeting easter eggs (hi, hey, hello) to avoid confusion with chat
+- Admin dashboard: shows max per minute stat alongside max per day
+
 ## 0.1.1 — 2026-04-21
 
 - Projects index page at `/projects/`
