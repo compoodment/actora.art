@@ -34,6 +34,7 @@ const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
 export default function Wall() {
   const [grid, setGrid] = useState<(Cell | null)[][]>([]);
   const [budget, setBudget] = useState<Budget | null>(null);
+  const [myIp, setMyIp] = useState<string | null>(null);
   const [selectedChar, setSelectedChar] = useState('█');
   const [selectedColor, setSelectedColor] = useState('white');
   const [mode, setMode] = useState<'paint' | 'erase'>('paint');
@@ -48,6 +49,7 @@ export default function Wall() {
       const res = await fetch('/api/wall');
       const data = await res.json();
       if (data.grid) setGrid(data.grid);
+      if (data.yourIp) setMyIp(data.yourIp);
     } catch {}
   };
 
@@ -68,24 +70,22 @@ export default function Wall() {
 
   const commitCells = async (cells: { x: number; y: number; char?: string; color?: string }[]) => {
     if (cells.length === 0) return;
-    const endpoint = mode === 'erase' ? '/api/wall/erase' : '/api/wall/paint';
+    const isErase = mode === 'erase';
     try {
-      const res = await fetch(endpoint, {
+      const res = await fetch(isErase ? '/api/wall/erase' : '/api/wall/paint', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cells }),
       });
       const data = await res.json();
       if (res.ok) {
-        setBudget(prev => prev ? { ...prev, remaining: data.remaining ?? prev.remaining, erasesLeft: data.erasesLeft ?? prev.erasesLeft } : null);
+        setBudget(prev => prev ? {
+          ...prev,
+          remaining: data.remaining ?? prev.remaining,
+          erasesLeft: data.erasesLeft ?? prev.erasesLeft,
+        } : null);
       } else if (res.status === 429) {
-        if (data.error === 'budget_exhausted') {
-          setErrorMsg('no chars left — come back tomorrow');
-        } else if (data.error === 'erase_limit_reached') {
-          setErrorMsg('no erases left');
-        } else {
-          setErrorMsg('limit reached');
-        }
+        setErrorMsg(data.error === 'erase_limit_reached' ? 'no erases left' : 'no chars left — come back tomorrow');
         setTimeout(() => setErrorMsg(''), 3000);
       }
       fetchWall();
@@ -95,10 +95,8 @@ export default function Wall() {
   const getCellFromEvent = (e: MouseEvent | Touch): { x: number; y: number } | null => {
     if (!gridRef.current) return null;
     const rect = gridRef.current.getBoundingClientRect();
-    const charW = rect.width / COLS;
-    const charH = rect.height / ROWS;
-    const x = Math.floor((e.clientX - rect.left) / charW);
-    const y = Math.floor((e.clientY - rect.top) / charH);
+    const x = Math.floor((e.clientX - rect.left) / (rect.width / COLS));
+    const y = Math.floor((e.clientY - rect.top) / (rect.height / ROWS));
     if (x < 0 || x >= COLS || y < 0 || y >= ROWS) return null;
     return { x, y };
   };
@@ -117,9 +115,9 @@ export default function Wall() {
         return next;
       });
     } else {
-      // erase mode — erase whatever's there (server validates ownership)
+      const cell = grid[y]?.[x];
+      if (!cell || cell.ip !== myIp) return; // only erase own cells
       if (!budget || budget.erasesLeft - pendingRef.current.length <= 0) return;
-      if (!grid[y]?.[x]) return; // nothing to erase
       pendingRef.current.push({ x, y });
       setGrid(prev => {
         const next = prev.map(r => [...r]);
@@ -177,8 +175,7 @@ export default function Wall() {
       } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
         setMode('paint');
         const idx = PALETTE_CHARS.indexOf(e.key.toUpperCase());
-        if (idx >= 0) setSelectedChar(e.key.toUpperCase());
-        else setSelectedChar(e.key);
+        setSelectedChar(idx >= 0 ? PALETTE_CHARS[idx] : e.key);
       }
     };
     window.addEventListener('keydown', onKey);
@@ -189,8 +186,7 @@ export default function Wall() {
     const age = Date.now() - cell.placedAt;
     const base = COLORS[cell.color] || COLORS.white;
     if (age > FADE_MS) {
-      const fadeDuration = EXPIRE_MS - FADE_MS;
-      const fadeProgress = Math.min((age - FADE_MS) / fadeDuration, 1);
+      const fadeProgress = Math.min((age - FADE_MS) / (EXPIRE_MS - FADE_MS), 1);
       const opacity = 0.8 - fadeProgress * 0.6;
       return base + Math.round(opacity * 255).toString(16).padStart(2, '0');
     }
@@ -201,18 +197,14 @@ export default function Wall() {
     return <div class="wall-loading">loading wall…</div>;
   }
 
+  const isMine = (cell: Cell | null) => cell && myIp && cell.ip === myIp;
+
   return (
     <div class="wall-container">
       <a href="/lab" class="wall-back">↳ back</a>
       <div class="wall-hud">
-        {budget && (
-          <span class="wall-budget">
-            {budget.remaining} chars
-          </span>
-        )}
-        {budget && (
-          <span class="wall-erases">{budget.erasesLeft} erases</span>
-        )}
+        {budget && <span class="wall-budget">{budget.remaining} chars</span>}
+        {budget && <span class="wall-erases">{budget.erasesLeft} erases</span>}
       </div>
       {errorMsg && <div class="wall-error">{errorMsg}</div>}
       <div class="wall-grid-wrapper">
@@ -231,6 +223,39 @@ export default function Wall() {
           {grid.map((row, y) =>
             row.map((cell, x) => {
               const isHover = hoverPos?.x === x && hoverPos?.y === y;
+              const mine = isMine(cell);
+
+              // In erase mode: dim other people's cells, hide empty cells, highlight own cells
+              if (mode === 'erase') {
+                if (cell) {
+                  if (mine) {
+                    return (
+                      <span
+                        key={`${x}-${y}`}
+                        class={`wall-cell wall-erasable${isHover ? ' wall-hover-erase' : ''}`}
+                        style={{ color: getCellColor(cell) }}
+                      >
+                        {cell.char}
+                      </span>
+                    );
+                  }
+                  // Someone else's cell — dim it
+                  return (
+                    <span
+                      key={`${x}-${y}`}
+                      class="wall-cell wall-dimmed"
+                      style={{ color: getCellColor(cell) }}
+                    >
+                      {cell.char}
+                    </span>
+                  );
+                }
+                return (
+                  <span key={`${x}-${y}`} class="wall-cell wall-empty-erase"> </span>
+                );
+              }
+
+              // Paint mode
               if (cell) {
                 return (
                   <span
@@ -246,9 +271,9 @@ export default function Wall() {
                 <span
                   key={`${x}-${y}`}
                   class={`wall-cell wall-empty${isHover ? ' wall-hover' : ''}`}
-                  style={isHover && mode === 'paint' ? { color: COLORS[selectedColor] + '66' } : undefined}
+                  style={isHover ? { color: COLORS[selectedColor] + '66' } : undefined}
                 >
-                  {isHover && mode === 'paint' ? selectedChar : '·'}
+                  {isHover ? selectedChar : '·'}
                 </span>
               );
             }).concat([<span key={`nl-${y}`} class="wall-nl">{'\n'}</span>])
@@ -265,37 +290,38 @@ export default function Wall() {
             class={`wall-mode-btn${mode === 'erase' ? ' wall-mode-active' : ''}`}
             onClick={() => setMode('erase')}
           >erase</button>
-          <span class="wall-mode-hint">press E to toggle</span>
+          <span class="wall-mode-hint">E to toggle</span>
         </div>
-        {mode === 'paint' && (
-          <>
-            <div class="wall-chars">
-              {PALETTE_CHARS.split('').map(ch => (
-                <button
-                  key={ch}
-                  class={`wall-char-btn${ch === selectedChar ? ' wall-char-active' : ''}`}
-                  onClick={() => setSelectedChar(ch)}
-                >
-                  {ch}
-                </button>
-              ))}
-            </div>
-            <div class="wall-colors">
-              {Object.entries(COLORS).map(([name, hex]) => (
-                <button
-                  key={name}
-                  class={`wall-color-btn${name === selectedColor ? ' wall-color-active' : ''}`}
-                  style={{ backgroundColor: hex }}
-                  onClick={() => setSelectedColor(name)}
-                  title={name}
-                />
-              ))}
-            </div>
-          </>
-        )}
-        {mode === 'erase' && (
-          <div class="wall-erase-hint">click or drag on cells you placed to erase them</div>
-        )}
+        <div class="wall-tools" style={`min-height: 3.5rem;`}>
+          {mode === 'paint' ? (
+            <>
+              <div class="wall-chars">
+                {PALETTE_CHARS.split('').map(ch => (
+                  <button
+                    key={ch}
+                    class={`wall-char-btn${ch === selectedChar ? ' wall-char-active' : ''}`}
+                    onClick={() => setSelectedChar(ch)}
+                  >
+                    {ch}
+                  </button>
+                ))}
+              </div>
+              <div class="wall-colors">
+                {Object.entries(COLORS).map(([name, hex]) => (
+                  <button
+                    key={name}
+                    class={`wall-color-btn${name === selectedColor ? ' wall-color-active' : ''}`}
+                    style={{ backgroundColor: hex }}
+                    onClick={() => setSelectedColor(name)}
+                    title={name}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            <div class="wall-erase-hint">click your own cells to erase them</div>
+          )}
+        </div>
       </div>
     </div>
   );
