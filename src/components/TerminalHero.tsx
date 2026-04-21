@@ -26,6 +26,7 @@ const EASTER_EGGS: Record<string, string> = {
   'faggot': 'no u',
   'meow': 'meow :3',
   '42': 'the answer to life, the universe, and everything',
+  'bitch': 'no u',
 };
 
 const HIDDEN_PAGES: Record<string, { description: string; url?: string }> = {
