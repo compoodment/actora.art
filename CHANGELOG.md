@@ -8,6 +8,9 @@ Product-level changes visible to visitors and developers.
 - Chat: Gemini API rate limit errors now show a friendly message instead of a generic error
 - Chat: 429 responses include `detail` field with explanation
 - Terminal: removed greeting easter eggs (hi, hey, hello) to avoid confusion with chat
+- Terminal: all commands and page targets are now case-insensitive
+- Terminal: `ls` no longer shows sub-pages — only top-level pages (projects, chat, lab)
+- Terminal: `help` output alignment fixed
 - Admin dashboard: shows max per minute stat alongside max per day
 
 ## 0.1.1 — 2026-04-21
