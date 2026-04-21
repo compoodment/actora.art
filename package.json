@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "smoke": "bash ./scripts/smoke-check.sh",
     "astro": "astro"
   },
   "dependencies": {

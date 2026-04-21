@@ -4,6 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+- Ops: added `npm run smoke` for one-command checks of the main actora.art routes and APIs
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`
 
