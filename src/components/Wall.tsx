@@ -40,6 +40,7 @@ export default function Wall() {
   const [mode, setMode] = useState<'paint' | 'erase'>('paint');
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
+  const [showInfo, setShowInfo] = useState(false);
   const gridRef = useRef<HTMLPreElement>(null);
   const dragging = useRef(false);
   const pendingRef = useRef<{ x: number; y: number; char?: string; color?: string }[]>([]);
@@ -202,6 +203,20 @@ export default function Wall() {
   return (
     <div class="wall-container">
       <a href="/lab" class="wall-back">↳ back</a>
+      <button class="wall-info-btn" onClick={() => setShowInfo(true)} title="how it works">?</button>
+      {showInfo && (
+        <div class="wall-info-overlay" onClick={() => setShowInfo(false)}>
+          <div class="wall-info-popup" onClick={(e) => e.stopPropagation()}>
+            <div class="wall-info-title">the wall</div>
+            <p>a collaborative graffiti wall. place characters to draw, write, leave marks.</p>
+            <p><strong>budget:</strong> you get 100 characters per day. resets at midnight UTC.</p>
+            <p><strong>erasing:</strong> switch to erase mode to remove cells you placed. you get 300 erases per day. erased characters are refunded to your budget.</p>
+            <p><strong>decay:</strong> cells fade after 1 day and disappear after 3 days.</p>
+            <p><strong>controls:</strong> click/drag to place. press E to toggle erase mode. type any key to pick a character.</p>
+            <button class="wall-info-close" onClick={() => setShowInfo(false)}>got it</button>
+          </div>
+        </div>
+      )}
       <div class="wall-hud">
         {budget && <span class="wall-budget">{budget.remaining} chars</span>}
         {budget && <span class="wall-erases">{budget.erasesLeft} erases</span>}

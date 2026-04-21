@@ -85,8 +85,6 @@ export default function TerminalHero() {
         add('  cat <page>  read about a page');
         add('  whoareu     who runs this');
         add('  clear       clear terminal');
-        add('', 'system');
-        add('pages: actora/  chat/  stats/', 'system');
         break;
 
       case 'ls': {
@@ -142,7 +140,10 @@ export default function TerminalHero() {
         break;
 
       case 'clear':
-        setEntries([]);
+        setEntries([
+          { type: 'system', text: 'actoraOS v1.0.0' },
+          { type: 'system', text: 'type `help` to get started' },
+        ]);
         return;
 
       default:
