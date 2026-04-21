@@ -305,7 +305,7 @@ export default function Wall() {
             class={`wall-mode-btn${mode === 'erase' ? ' wall-mode-active' : ''}`}
             onClick={() => setMode('erase')}
           >erase</button>
-          <span class="wall-mode-hint">E to toggle</span>
+          <span class="wall-mode-hint">press E to switch</span>
         </div>
         <div class="wall-tools" style={`min-height: 3.5rem;`}>
           {mode === 'paint' ? (
