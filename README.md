@@ -8,6 +8,7 @@ The homepage is a terminal. From there you can browse pages, talk to the chat bo
 
 - **homepage** — a terminal-style landing page with hidden routes and easter eggs
 - **projects** — links to external projects
+  - **actora** — a long-form systems project
 - **chat** — a public chat bot page
 - **lab** — experiments and unfinished things
   - **wall** — a collaborative text-based graffiti wall with daily budgets, fading, and erase mechanics

@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="projects — actora.art" description="External projects.">
+  <main class="projects">
+    <header class="projects-header">
+      <h1>projects</h1>
+    </header>
+
+    <section class="projects-list">
+      <a href="/projects/actora" class="project-link">
+        <span class="project-name">actora</span>
+        <span class="project-status">ongoing</span>
+      </a>
+    </section>
+
+    <section class="back">
+      <a href="/">← back</a>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .projects-header h1 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .project-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .project-link:hover {
+    color: var(--color-accent);
+  }
+
+  .project-name {
+    font-weight: 500;
+  }
+
+  .project-status {
+    color: var(--color-text-dim);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .back a {
+    color: var(--color-text-dim);
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+
+  .back a:hover {
+    color: var(--color-accent);
+  }
+</style>

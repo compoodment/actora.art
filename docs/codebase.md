@@ -34,7 +34,8 @@ src/
 | Lab index | `src/pages/lab/index.astro` |
 | Wall | `src/pages/lab/wall.astro` |
 | Particles | `src/pages/lab/particles.astro` |
-| Projects | `src/pages/projects/...` |
+| Projects | `src/pages/projects/index.astro` |
+| Actora project | `src/pages/projects/actora.astro` |
 
 ## Styles
 

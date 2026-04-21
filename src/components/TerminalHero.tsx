@@ -7,6 +7,10 @@ interface Entry {
 
 // Pages that can be navigated to
 const PAGES: Record<string, { description: string; url?: string }> = {
+  'projects': {
+    description: 'external projects',
+    url: '/projects',
+  },
   'actora': {
     description: 'a game',
     url: '/projects/actora',
