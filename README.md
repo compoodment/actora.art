@@ -1,134 +1,65 @@
 # actora.art
 
-The site. Projects, experiments, and things worth keeping.
+Projects, experiments, and things worth keeping.
 
-## Structure
+actora.art is a small personal site built around a terminal-like homepage, a few public pages, and an expanding set of interactive experiments.
 
-```
-src/
-├── components/
-│   ├── TerminalHero.tsx    # interactive terminal (homepage island)
-│   ├── ChatIsland.tsx      # chat bot interface (chat page island)
-│   └── ParticleFlow.tsx    # particle flow experiment (lab island)
-├── layouts/
-│   └── Base.astro          # shared layout (head, fonts, back link)
-├── pages/
-│   ├── index.astro         # homepage — interactive terminal
-│   ├── chat/index.astro    # chat bot page
-│   ├── projects/            # external projects (Actora, games, apps)
-│   └── lab/                 # interactive on-site experiments
-│       ├── index.astro     # lab landing page
-│       ├── particles.astro # particle flow experiment
-│       └── wall.astro       # collaborative graffiti wall
-└── styles/
-    ├── global.css           # design tokens + base styles + particle + wall styles
-    ├── terminal.css         # terminal component styles
-    └── chat.css             # chat page styles
+## What this repo is
 
-chat/                         # chat API server (separate from Astro)
-├── server.mjs               # Node.js API — Gemini proxy, wall API, rate limiting, admin stats
-├── package.json
-└── actora-chat.service       # systemd user service template
-```
+This is the public codebase for the site frontend and its public-facing structure.
 
-`dist/` is gitignored and rebuilt on every deploy push.
+It contains:
+- the Astro site
+- interactive frontend components
+- public documentation
+- project structure and product intent
 
-## Homepage
+It does not try to document private operations, moderation tooling, deployment internals, or sensitive infrastructure details.
 
-The homepage is an interactive terminal. Visitors type commands to navigate the site. Built as a Preact island (`client:load`) inside Astro's static output.
+## Current site areas
 
-**Visible commands:** `help`, `ls`, `cd <page>`, `cat <page>`, `whoareu`, `clear`
+- **homepage** , a terminal-style landing page
+- **projects** , links to external projects
+- **chat** , a public chat bot page
+- **lab** , experiments and unfinished things
+- **wall** , a collaborative text-based graffiti wall in the lab
 
-**Pages:** `chat/` (chat bot), `lab/` (experiments), `stats/` (admin)
+## Docs
 
-**Easter eggs:** Hidden commands that don't show in help. Add new ones to the `EASTER_EGGS` object in `TerminalHero.tsx`.
+Start with [`docs/guide.md`](docs/guide.md).
 
-**Adding pages:** Add entries to the `PAGES` object in `TerminalHero.tsx`. Commands are case-insensitive.
-
-## Lab
-
-The lab is for interactive on-site experiments. Currently home to:
-
-- **Particles** (`/lab/particles`) — a cursor-reactive particle flow visualization. Accessible only from the lab page, not from the terminal.
-- **Wall** (`/lab/wall`) — a collaborative graffiti wall. A persistent 80×24 text grid anyone can draw on. Characters fade after 1 day and expire after 3 days. The janitor wipes the oldest cells when the wall exceeds 75% full. 100 chars/day budget, 200 refunds/day (each erase refunds 1 char, capped at 2x daily budget).
-
-## Chat Bot
-
-A chat page at `/chat` where visitors talk to an AI bot powered by Google Gemini 2.5 Flash. The backend is a lightweight Node.js server that proxies to the Gemini API with per-IP rate limiting.
-
-- **75 messages per IP per day**, with a visible countdown and reset timer
-- Conversation history kept per session (in-memory, cleared on server restart)
-- Last 20 messages used as context window
-- Wall API: `/api/wall` (GET grid), `/api/wall/budget` (GET budget), `/api/wall/paint` (POST), `/api/wall/erase` (POST)
-- Admin stats at `/admin/stats` — shows total messages, token usage, estimated cost in EUR, per-IP usage and reset times
-
-**Chat server:** `sites/actora.art/chat/server.mjs` (runs on port 4322, localhost only)
-
-**Starting the server:**
-```bash
-GEMINI_API_KEY=<key> GEMINI_MODEL=gemini-2.5-flash CHAT_PORT=4322 MAX_MESSAGES_PER_DAY=75 \
-  ALLOWED_ORIGINS=https://actora.art \
-  nohup node /home/compadmin/sites/actora.art/chat/server.mjs \
-  > /home/compadmin/sites/actora.art/chat/server.log 2>&1 &
-```
-
-**Or use systemd:**
-```bash
-systemctl --user start actora-chat.service
-```
-
-**Admin credentials:** username `admin`, password set via `ADMIN_PASSWORD` env var (required, no fallback)
-
-## Local dev
-
-```bash
-cd /home/compadmin/sites/actora.art/repo
-npm run dev    # hot-reload dev server at localhost:4321
-npm run build  # production build to dist/
-```
-
-## Workflow
-
-1. Work on `main` branch
-2. Push to deploy: `git push deploy main` → builds to [actora.art](https://actora.art)
-3. Push to GitHub for backup: `git push origin main`
-
-## Deploy
-
-| Command | What it does |
+| | |
 |---|---|
-| `git push deploy main` | Builds production → `actora.art` |
-| `git push origin main` | Push to GitHub (backup) |
-| `~/sites/actora.art/repo/deploy-caddy.sh` | Copy Caddyfile to `/etc/caddy/` and reload |
+| [`docs/identity.md`](docs/identity.md) | what actora.art is trying to be |
+| [`docs/codebase.md`](docs/codebase.md) | safe map of the public codebase |
+| [`docs/experiments.md`](docs/experiments.md) | user-facing overview of chat, lab, and wall |
+| [`docs/privacy.md`](docs/privacy.md) | plain-English privacy note |
+| [`docs/contributing.md`](docs/contributing.md) | lightweight contribution and editing guidance |
 
-The deploy hook lives in `deploy.git/hooks/post-receive`. It clones the branch, runs `npm install && npm run build`, and copies the output to the right directory.
+## Local development
+
+If you want to run the public site locally:
+
+```bash
+npm install
+npm run dev
+```
+
+Build a production bundle locally with:
+
+```bash
+npm run build
+```
 
 ## Stack
 
-- [Astro](https://astro.build) — framework (islands architecture)
-- [Preact](https://preactjs.com) — interactive components (terminal, chat, particles)
-- Node.js — chat API server
-- Google Gemini 2.5 Flash — chat bot AI model
-- Caddy — web server (auto-HTTPS, HTTP/2, reverse proxy)
-- Plain CSS + custom properties
+- [Astro](https://astro.build)
+- [Preact](https://preactjs.com)
+- plain CSS
+- a separate Node.js backend for interactive features
 
-## VPS paths
+## Note on documentation
 
-| Path | What |
-|---|---|
-| `sites/actora.art/repo` | Working repo |
-| `sites/actora.art/deploy.git` | Bare git repo (deploy target) |
-| `sites/actora.art/production` | Production build output |
-| `sites/actora.art/chat` | Chat API server |
-| `sites/actora.art/repo/Caddyfile` | Caddy config (deploy with `deploy-caddy.sh`) |
+This repo intentionally keeps public documentation focused on the project, the codebase, and user-facing behavior.
 
-## Caddy config
-
-- `actora.art` → static files from `production/dist`, proxies `/api/chat` and `/admin/stats` to `127.0.0.1:4322`
-
-## Design
-
-- Dark mode (`#0a0a0a` background, `#e0e0e0` text)
-- JetBrains Mono font
-- Monospace terminal aesthetic
-- Interactive elements pop against minimal static base
+Operational details, moderation processes, infrastructure specifics, and other sensitive documentation belong in private docs, not here.
