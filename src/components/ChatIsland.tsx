@@ -65,8 +65,8 @@ export default function ChatIsland() {
           setRemaining(0);
           setResetAt(data.resetAt);
         } else if (data.error === 'minute_limit_reached' || data.error === 'api_rate_limited') {
-          setError(data.message);
-          if (data.detail) setError(`${data.message}\n${data.detail}`);
+          setError(data.detail ? `${data.message}
+${data.detail}` : data.message);
         } else {
           setError(data.message || 'something went wrong');
         }
