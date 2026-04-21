@@ -120,7 +120,42 @@ a:hover {
 }
 
 .page-header {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.page-title {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+.page-title-section {
+  font-size: 1.5rem;
+}
+
+.page-title-subpage {
+  font-size: 1rem;
+}
+
+.page-subtitle,
+.page-meta {
+  margin-top: var(--spacing-xs);
+  color: var(--color-text-dim);
+  font-size: 0.8rem;
+}
+
+.page-meta {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.page-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.page-section:last-child {
+  margin-bottom: 0;
 }
 
 .page-footer {

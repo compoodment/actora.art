@@ -2,6 +2,18 @@
 
 Product-level changes visible to visitors and developers.
 
+## 0.1.5 — 2026-04-21
+
+- Site: normalized header and title spacing across `/projects`, `/projects/actora`, and `/lab`
+- Site: `/lab` index subtitle removed for a simpler section page
+- Site: section index titles (`/projects`, `/lab`) are now larger than child-page titles
+- Docs: codebase docs now note the shared `Base.astro` shell and normal footer back link
+
+## 0.1.4 — 2026-04-21
+
+- Admin: removed `cd admin` from the homepage terminal
+- Admin: basic auth now rate-limited to 3 failed attempts per IP per 60 minutes
+
 ## 0.1.3 — 2026-04-21
 
 - Chat: system prompt restructured into sections (personality, site, about computment), leaner wording

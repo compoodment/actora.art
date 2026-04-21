@@ -4,39 +4,28 @@ import Base from '../../layouts/Base.astro';
 
 <Base title="actora — actora.art" description="A long-form systems project. Early, real, not ready to overexplain.">
   <main class="project">
-    <header class="project-header">
-      <h1>actora</h1>
-      <p class="project-status">ongoing</p>
+    <header class="page-header">
+      <h1 class="page-title page-title-subpage">actora</h1>
+      <p class="page-meta project-status">ongoing</p>
     </header>
 
-    <section class="project-section">
+    <section class="page-section project-section">
       <p>A long-form systems project.</p>
       <p>Early, real, not ready to overexplain.</p>
     </section>
 
-    <section class="project-section">
+    <section class="page-section project-section">
       <a href="https://github.com/compoodment/Actora" target="_blank" rel="noopener">github →</a>
     </section>
   </main>
 </Base>
 
 <style>
-  .project-header h1 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin-bottom: var(--spacing-xs);
-  }
-
   .project-status {
-    color: var(--color-text-dim);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: var(--spacing-lg);
+    margin-top: 0;
   }
 
   .project-section {
-    margin-bottom: var(--spacing-lg);
     line-height: 1.7;
   }
 </style>

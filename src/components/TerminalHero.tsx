@@ -29,16 +29,9 @@ const EASTER_EGGS: Record<string, string> = {
   'bitch': 'no u',
 };
 
-const HIDDEN_PAGES: Record<string, { description: string; url?: string }> = {
-  'admin': {
-    description: 'admin dashboard',
-    url: '/admin',
-  },
-};
-
 export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>([
-    { type: 'system', text: 'actoraOS v0.1.3' },
+    { type: 'system', text: 'actoraOS v0.1.5' },
     { type: 'system', text: 'type `help` to get started' },
   ]);
   const [input, setInput] = useState('');
@@ -104,7 +97,7 @@ export default function TerminalHero() {
           add('usage: cd <page>');
           break;
         }
-        const page = PAGES[target] || HIDDEN_PAGES[target];
+        const page = PAGES[target];
         if (page && page.url) {
           add(`navigating to ${target}...`, 'system');
           setEntries(prev => [...prev, ...newEntries]);
@@ -125,7 +118,7 @@ export default function TerminalHero() {
           add('usage: cat <page>');
           break;
         }
-        const page = PAGES[target] || HIDDEN_PAGES[target];
+        const page = PAGES[target];
         if (page) {
           add(page.description);
         } else if (target === 'readme' || target === 'README') {
@@ -142,7 +135,7 @@ export default function TerminalHero() {
 
       case 'clear':
         setEntries([
-          { type: 'system', text: 'actoraOS v0.1.3' },
+          { type: 'system', text: 'actoraOS v0.1.5' },
           { type: 'system', text: 'type `help` to get started' },
         ]);
         return;

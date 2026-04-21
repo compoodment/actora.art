@@ -4,12 +4,11 @@ import Base from '../../layouts/Base.astro';
 
 <Base title="lab — actora.art" description="experiments and unfinished things">
   <main class="lab">
-    <header class="lab-header">
-      <h1>lab</h1>
-      <p class="lab-dim">experiments and unfinished things.</p>
+    <header class="page-header">
+      <h1 class="page-title page-title-section">lab</h1>
     </header>
 
-    <section class="lab-list">
+    <section class="lab-list page-section">
       <a href="/lab/particles" class="lab-item">
         <span class="lab-item-name">particles</span>
         <span class="lab-item-desc">particle flow — move your cursor</span>
@@ -23,30 +22,17 @@ import Base from '../../layouts/Base.astro';
 </Base>
 
 <style>
-  .lab-header h1 {
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .lab-dim {
-    color: var(--color-text-dim);
-    font-size: 0.85rem;
-    margin-bottom: var(--spacing-xl);
-  }
-
   .lab-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--spacing-sm);
   }
 
   .lab-item {
     display: flex;
     flex-direction: column;
     padding: 0.75rem 0;
-    border-bottom: 1px solid #1a1a1a;
+    border-bottom: 1px solid var(--color-border);
     text-decoration: none;
     color: var(--color-text);
     transition: border-color 0.2s;
@@ -58,7 +44,6 @@ import Base from '../../layouts/Base.astro';
 
   .lab-item-name {
     font-weight: 500;
-    font-size: 0.9rem;
   }
 
   .lab-item-desc {
