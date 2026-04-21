@@ -11,10 +11,6 @@ const PAGES: Record<string, { description: string; url?: string }> = {
     description: 'external projects',
     url: '/projects',
   },
-  'actora': {
-    description: 'a game',
-    url: '/projects/actora',
-  },
   'chat': {
     description: 'talk to the chat bot',
     url: '/chat',
