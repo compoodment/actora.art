@@ -172,6 +172,8 @@ export default function TerminalHero() {
 
   const handleKey = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
+      const raw = input.trim();
+      if (!raw) return;
       processCommand(input);
       setInput('');
     }
