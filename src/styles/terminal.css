@@ -24,10 +24,12 @@
   color: var(--color-text-dim);
 }
 
-.terminal-note {
-  font-size: 0.55em;
-  color: #cbbf7a;
+.terminal-construction-note {
+  margin-top: 0.35rem;
+  font-size: 0.55rem;
+  color: #8a845e;
   letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 
 .terminal-output {

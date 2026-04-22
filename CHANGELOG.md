@@ -4,7 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
-- Site: made the homepage active-construction note smaller and warmer so it reads as a quiet status line
+- Site: moved the homepage active-construction note below the terminal prompt and darkened it so it reads as a quiet status line
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`
 
