@@ -5,6 +5,12 @@ interface Entry {
   text: string;
 }
 
+const TERMINAL_STORAGE_KEY = 'actora-terminal-state';
+const INITIAL_ENTRIES: Entry[] = [
+  { type: 'system', text: 'actoraOS v0.1.10' },
+  { type: 'system', text: 'type `help` to get started' },
+];
+
 // Pages that can be navigated to
 const PAGES: Record<string, { description: string; url?: string }> = {
   'projects': {
@@ -34,11 +40,28 @@ const EASTER_EGGS: Record<string, string> = {
 };
 
 export default function TerminalHero() {
-  const [entries, setEntries] = useState<Entry[]>([
-    { type: 'system', text: 'actoraOS v0.1.10' },
-    { type: 'system', text: 'type `help` to get started' },
-  ]);
-  const [input, setInput] = useState('');
+  const [entries, setEntries] = useState<Entry[]>(() => {
+    if (typeof window === 'undefined') return INITIAL_ENTRIES;
+    try {
+      const raw = window.sessionStorage.getItem(TERMINAL_STORAGE_KEY);
+      if (!raw) return INITIAL_ENTRIES;
+      const parsed = JSON.parse(raw) as { entries?: Entry[] };
+      return Array.isArray(parsed.entries) && parsed.entries.length > 0 ? parsed.entries : INITIAL_ENTRIES;
+    } catch {
+      return INITIAL_ENTRIES;
+    }
+  });
+  const [input, setInput] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    try {
+      const raw = window.sessionStorage.getItem(TERMINAL_STORAGE_KEY);
+      if (!raw) return '';
+      const parsed = JSON.parse(raw) as { input?: string };
+      return typeof parsed.input === 'string' ? parsed.input : '';
+    } catch {
+      return '';
+    }
+  });
   const inputRef = useRef<HTMLInputElement>(null);
   const termRef = useRef<HTMLDivElement>(null);
 
@@ -49,6 +72,11 @@ export default function TerminalHero() {
   useEffect(() => {
     if (termRef.current) termRef.current.scrollTop = termRef.current.scrollHeight;
   }, [entries]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.sessionStorage.setItem(TERMINAL_STORAGE_KEY, JSON.stringify({ entries, input }));
+  }, [entries, input]);
 
   const focus = () => inputRef.current?.focus();
 
@@ -138,10 +166,8 @@ export default function TerminalHero() {
         break;
 
       case 'clear':
-        setEntries([
-          { type: 'system', text: 'actoraOS v0.1.10' },
-          { type: 'system', text: 'type `help` to get started' },
-        ]);
+        setEntries(INITIAL_ENTRIES);
+        setInput('');
         return;
 
       default:

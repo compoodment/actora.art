@@ -4,6 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+- Site: terminal state now survives leaving the homepage and coming back, so back navigation keeps prior commands and input
 - Site: stacked the `/projects/actora` status under the project name and kept it lowercased to match the rest of the site
 - Site: removed the `/info` link from the projects page, since it should stay a quieter destination
 - Site: added checkmark feedback to the `/info` Discord copy button and tightened the row layout
