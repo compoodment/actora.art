@@ -4,6 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+- Site: updated `cat lab` in the terminal to say `experiments and games`
 - Site: updated `cat info` in the terminal to say `links and contact`
 - Site: removed the chat input focus outline so the chat box matches the terminal’s quieter style
 - Site: terminal state now survives back-forward navigation, while refresh starts the homepage terminal fresh
