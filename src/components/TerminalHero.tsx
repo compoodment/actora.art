@@ -31,8 +31,9 @@ const EASTER_EGGS: Record<string, string> = {
 
 export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>([
-    { type: 'system', text: 'actoraOS v0.1.9' },
+    { type: 'system', text: 'actoraOS v0.1.10' },
     { type: 'system', text: 'type `help` to get started' },
+    { type: 'system', text: 'this site is under active construction. changes may occur live.' },
   ]);
   const [input, setInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -135,8 +136,9 @@ export default function TerminalHero() {
 
       case 'clear':
         setEntries([
-          { type: 'system', text: 'actoraOS v0.1.9' },
+          { type: 'system', text: 'actoraOS v0.1.10' },
           { type: 'system', text: 'type `help` to get started' },
+          { type: 'system', text: 'this site is under active construction. changes may occur live.' },
         ]);
         return;
 

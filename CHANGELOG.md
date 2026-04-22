@@ -4,9 +4,13 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
-- Site: added a period to the `visual particle simulator` label for consistency with the rest of the lab descriptions
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`
+
+## 0.1.10 — 2026-04-22
+
+- Site: added an active-construction notice to the homepage terminal
+- Terminal: actoraOS bumped to `v0.1.10` in the boot text and `clear` reset
 
 ## 0.1.9 — 2026-04-22
 
