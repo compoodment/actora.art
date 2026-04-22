@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, useCallback } from 'preact/hooks';
 interface Entry {
   type: 'input' | 'output' | 'system';
   text: string;
+  tone?: 'normal' | 'notice';
 }
 
 // Pages that can be navigated to
@@ -33,7 +34,7 @@ export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>([
     { type: 'system', text: 'actoraOS v0.1.10' },
     { type: 'system', text: 'type `help` to get started' },
-    { type: 'system', text: 'this site is under active construction. changes may occur live.' },
+    { type: 'system', text: 'this site is under active construction. changes may occur live.', tone: 'notice' },
   ]);
   const [input, setInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -138,7 +139,7 @@ export default function TerminalHero() {
         setEntries([
           { type: 'system', text: 'actoraOS v0.1.10' },
           { type: 'system', text: 'type `help` to get started' },
-          { type: 'system', text: 'this site is under active construction. changes may occur live.' },
+          { type: 'system', text: 'this site is under active construction. changes may occur live.', tone: 'notice' },
         ]);
         return;
 
@@ -162,7 +163,7 @@ export default function TerminalHero() {
       <div id="terminal-help" class="sr-only">Type help to list available commands in the actora.art terminal.</div>
       <div class="terminal-entries">
         {entries.map((entry, i) => (
-          <div key={i} class={`terminal-line terminal-${entry.type}`}>
+          <div key={i} class={`terminal-line terminal-${entry.type}${entry.tone === 'notice' ? ' terminal-note' : ''}`}>
             {entry.text}
           </div>
         ))}

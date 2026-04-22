@@ -24,6 +24,12 @@
   color: var(--color-text-dim);
 }
 
+.terminal-note {
+  font-size: 0.55em;
+  color: #cbbf7a;
+  letter-spacing: 0.02em;
+}
+
 .terminal-output {
   color: var(--color-text);
 }
