@@ -4,9 +4,14 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
-- Ops: added `npm run smoke` for one-command checks of the main actora.art routes and APIs
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`
+
+## 0.1.9 — 2026-04-22
+
+- Site: renamed the lab page labels to "visual particle simulator" and "the wall"
+- Site: `the wall` now shows as the page title instead of just `wall`
+- Terminal: actoraOS bumped to `v0.1.9` in the boot text and `clear` reset
 
 ## 0.1.8 — 2026-04-22
 
