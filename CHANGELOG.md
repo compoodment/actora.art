@@ -4,7 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
-- Site: renamed the public links page to `/info`, added a copy button for the Discord username, and linked it from the homepage terminal and projects index
+- Site: tightened the `/info` page layout, shortened the GitHub label, and kept the Discord copy button
 - Site: moved the homepage active-construction note below the terminal prompt and darkened it so it reads as a quiet status line
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`
