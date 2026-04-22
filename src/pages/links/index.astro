@@ -2,54 +2,12 @@
 import Base from '../../layouts/Base.astro';
 ---
 
-<Base title="links — actora.art" description="Public links and references.">
-  <main class="links">
-    <header class="page-header">
-      <h1 class="page-title page-title-section">links</h1>
-    </header>
-
-    <section class="links-list page-section">
-      <a
-        href="https://github.com/compoodment/actora.art"
-        target="_blank"
-        rel="noopener"
-        class="link-item"
-      >
-        <span class="link-name">github</span>
-        <span class="link-desc">public site repo.</span>
-      </a>
-    </section>
+<Base title="info — actora.art" description="Public links and contact." noWrapper>
+  <main class="page">
+    <p>go to <a href="/info">/info</a>.</p>
   </main>
+
+  <script>
+    window.location.replace('/info');
+  </script>
 </Base>
-
-<style>
-  .links-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  .link-item {
-    display: flex;
-    flex-direction: column;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-border);
-    text-decoration: none;
-    color: var(--color-text);
-    transition: border-color 0.2s;
-  }
-
-  .link-item:hover {
-    border-color: #444;
-  }
-
-  .link-name {
-    font-weight: 500;
-  }
-
-  .link-desc {
-    color: var(--color-text-dim);
-    font-size: 0.75rem;
-    margin-top: 0.15rem;
-  }
-</style>

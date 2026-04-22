@@ -4,7 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
-- Site: added a public `/links` page with the actora.art GitHub repo and linked it from the homepage terminal and projects index
+- Site: renamed the public links page to `/info`, added a copy button for the Discord username, and linked it from the homepage terminal and projects index
 - Site: moved the homepage active-construction note below the terminal prompt and darkened it so it reads as a quiet status line
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`

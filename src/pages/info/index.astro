@@ -1,0 +1,117 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="info — actora.art" description="Public links and contact.">
+  <main class="info">
+    <header class="page-header">
+      <h1 class="page-title page-title-section">info</h1>
+    </header>
+
+    <section class="info-list page-section">
+      <a
+        href="https://github.com/compoodment/actora.art"
+        target="_blank"
+        rel="noopener"
+        class="info-item"
+      >
+        <span class="info-name">github</span>
+        <span class="info-desc">public site repo.</span>
+      </a>
+
+      <div class="info-item info-copy">
+        <span class="info-name">discord</span>
+        <span class="info-value">computment</span>
+        <button class="copy-button" type="button" data-copy="computment" aria-label="Copy Discord username" title="Copy Discord username">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M5 1.75A1.75 1.75 0 0 0 3.25 3.5v7A1.75 1.75 0 0 0 5 12.25h1.25v-1.5H5a.25.25 0 0 1-.25-.25v-7A.25.25 0 0 1 5 3.25h7a.25.25 0 0 1 .25.25v1.25h1.5V3.5A1.75 1.75 0 0 0 12 1.75H5Z" />
+            <path d="M8.5 4.75A1.75 1.75 0 0 0 6.75 6.5v7A1.75 1.75 0 0 0 8.5 15.25h4A1.75 1.75 0 0 0 14.25 13.5v-7a1.75 1.75 0 0 0-1.75-1.75h-4Zm0 1.5h4a.25.25 0 0 1 .25.25v7a.25.25 0 0 1-.25.25h-4a.25.25 0 0 1-.25-.25v-7a.25.25 0 0 1 .25-.25Z" />
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<script>
+  const buttons = document.querySelectorAll('[data-copy]');
+  buttons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const value = button.getAttribute('data-copy');
+      if (!value || !navigator.clipboard?.writeText) return;
+      try {
+        await navigator.clipboard.writeText(value);
+        button.setAttribute('data-copied', 'true');
+        window.setTimeout(() => button.removeAttribute('data-copied'), 1200);
+      } catch {
+        // ignore clipboard failures quietly
+      }
+    });
+  });
+</script>
+
+<style>
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .info-item:hover {
+    color: var(--color-accent);
+  }
+
+  .info-name {
+    font-weight: 500;
+  }
+
+  .info-desc,
+  .info-value {
+    color: var(--color-text-dim);
+    font-size: 0.75rem;
+  }
+
+  .info-copy {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .copy-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.35rem;
+    background: transparent;
+    color: var(--color-text-dim);
+    padding: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+
+  .copy-button:hover,
+  .copy-button[data-copied='true'] {
+    color: var(--color-text);
+    border-color: #444;
+  }
+
+  .copy-button svg {
+    width: 0.8rem;
+    height: 0.8rem;
+    fill: currentColor;
+  }
+</style>
