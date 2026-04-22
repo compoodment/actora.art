@@ -8,6 +8,12 @@ Product-level changes visible to visitors and developers.
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`
 
+## 0.1.8 — 2026-04-22
+
+- Site: `projects` and `projects/actora` now describe actora more clearly as the game project
+- Terminal: `projects` now resolves to the actora game project description in `cat`
+- Terminal: actoraOS bumped to `v0.1.8` in the boot text and `clear` reset
+
 ## 0.1.7 — 2026-04-22
 
 - SEO: added canonical URLs, Open Graph/Twitter metadata, and sitemap/robots support
