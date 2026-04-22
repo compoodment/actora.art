@@ -11,7 +11,6 @@ Product-level changes visible to visitors and developers.
 ## 0.1.8 — 2026-04-22
 
 - Site: `projects` and `projects/actora` now describe actora more clearly as the game project
-- Site: `/lab` now has a short intro line so the section page is a little less bare
 - Terminal: `projects` now resolves to the actora game project description in `cat`
 - Terminal: actoraOS bumped to `v0.1.8` in the boot text and `clear` reset
 
