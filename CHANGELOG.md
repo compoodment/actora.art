@@ -4,6 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+- Site: removed the chat input focus outline so the chat box matches the terminal’s quieter style
 - Site: terminal state now survives back-forward navigation, while refresh starts the homepage terminal fresh
 - Site: stacked the `/projects/actora` status under the project name and kept it lowercased to match the rest of the site
 - Site: removed the `/info` link from the projects page, since it should stay a quieter destination
