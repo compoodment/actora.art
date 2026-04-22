@@ -51,17 +51,7 @@ export default function TerminalHero() {
       return INITIAL_ENTRIES;
     }
   });
-  const [input, setInput] = useState(() => {
-    if (typeof window === 'undefined') return '';
-    try {
-      const raw = window.sessionStorage.getItem(TERMINAL_STORAGE_KEY);
-      if (!raw) return '';
-      const parsed = JSON.parse(raw) as { input?: string };
-      return typeof parsed.input === 'string' ? parsed.input : '';
-    } catch {
-      return '';
-    }
-  });
+  const [input, setInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const termRef = useRef<HTMLDivElement>(null);
 
@@ -75,7 +65,7 @@ export default function TerminalHero() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    window.sessionStorage.setItem(TERMINAL_STORAGE_KEY, JSON.stringify({ entries, input }));
+    window.sessionStorage.setItem(TERMINAL_STORAGE_KEY, JSON.stringify({ entries }));
   }, [entries, input]);
 
   const focus = () => inputRef.current?.focus();
