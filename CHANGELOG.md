@@ -4,6 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+- Site: removed the `/info` link from the projects page, since it should stay a quieter destination
 - Site: added checkmark feedback to the `/info` Discord copy button and tightened the row layout
 - Site: moved the homepage active-construction note below the terminal prompt and darkened it so it reads as a quiet status line
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
