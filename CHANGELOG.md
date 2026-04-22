@@ -8,6 +8,10 @@ Product-level changes visible to visitors and developers.
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`
 
+## 0.1.8 — 2026-04-22
+
+- Site: removed the terminal input focus outline, since the caret already shows focus
+
 ## 0.1.7 — 2026-04-22
 
 - SEO: added canonical URLs, Open Graph/Twitter metadata, and sitemap/robots support

@@ -58,8 +58,3 @@
   caret-color: var(--color-text);
 }
 
-.terminal-prompt input:focus-visible {
-  outline: 2px solid var(--color-text);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
