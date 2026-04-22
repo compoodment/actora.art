@@ -42,6 +42,8 @@ const EASTER_EGGS: Record<string, string> = {
 export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>(() => {
     if (typeof window === 'undefined') return INITIAL_ENTRIES;
+    const navType = window.performance.getEntriesByType('navigation')[0]?.type;
+    if (navType === 'reload') return INITIAL_ENTRIES;
     try {
       const raw = window.sessionStorage.getItem(TERMINAL_STORAGE_KEY);
       if (!raw) return INITIAL_ENTRIES;
@@ -66,7 +68,7 @@ export default function TerminalHero() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     window.sessionStorage.setItem(TERMINAL_STORAGE_KEY, JSON.stringify({ entries }));
-  }, [entries, input]);
+  }, [entries]);
 
   const focus = () => inputRef.current?.focus();
 
