@@ -18,7 +18,7 @@ const PAGES: Record<string, { description: string; url?: string }> = {
     url: '/projects',
   },
   'info': {
-    description: 'public links and contact',
+    description: 'links and contact',
     url: '/info',
   },
   'chat': {
