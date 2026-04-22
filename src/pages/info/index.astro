@@ -24,9 +24,12 @@ import Base from '../../layouts/Base.astro';
         <div class="info-copy-row">
           <span class="info-value">computment</span>
           <button class="copy-button" type="button" data-copy="computment" aria-label="Copy Discord username" title="Copy Discord username">
-            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <svg class="copy-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
               <path d="M5 1.75A1.75 1.75 0 0 0 3.25 3.5v7A1.75 1.75 0 0 0 5 12.25h1.25v-1.5H5a.25.25 0 0 1-.25-.25v-7A.25.25 0 0 1 5 3.25h7a.25.25 0 0 1 .25.25v1.25h1.5V3.5A1.75 1.75 0 0 0 12 1.75H5Z" />
               <path d="M8.5 4.75A1.75 1.75 0 0 0 6.75 6.5v7A1.75 1.75 0 0 0 8.5 15.25h4A1.75 1.75 0 0 0 14.25 13.5v-7a1.75 1.75 0 0 0-1.75-1.75h-4Zm0 1.5h4a.25.25 0 0 1 .25.25v7a.25.25 0 0 1-.25.25h-4a.25.25 0 0 1-.25-.25v-7a.25.25 0 0 1 .25-.25Z" />
+            </svg>
+            <svg class="copy-check" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <path d="M6.5 11.3 3.85 8.65l-1.06 1.06L6.5 13.4l6.7-6.7-1.06-1.06-5.64 5.66Z" />
             </svg>
           </button>
         </div>
@@ -44,7 +47,13 @@ import Base from '../../layouts/Base.astro';
       try {
         await navigator.clipboard.writeText(value);
         button.setAttribute('data-copied', 'true');
-        window.setTimeout(() => button.removeAttribute('data-copied'), 1200);
+        button.setAttribute('aria-label', 'Copied');
+        button.setAttribute('title', 'Copied');
+        window.setTimeout(() => {
+          button.removeAttribute('data-copied');
+          button.setAttribute('aria-label', 'Copy Discord username');
+          button.setAttribute('title', 'Copy Discord username');
+        }, 1200);
       } catch {
         // ignore clipboard failures quietly
       }
@@ -118,5 +127,17 @@ import Base from '../../layouts/Base.astro';
     width: 0.8rem;
     height: 0.8rem;
     fill: currentColor;
+  }
+
+  .copy-check {
+    display: none;
+  }
+
+  .copy-button[data-copied='true'] .copy-icon {
+    display: none;
+  }
+
+  .copy-button[data-copied='true'] .copy-check {
+    display: block;
   }
 </style>
