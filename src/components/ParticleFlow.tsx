@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 
 interface Particle {
   x: number;
@@ -20,23 +20,28 @@ export default function ParticleFlow() {
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const particlesRef = useRef<Particle[]>([]);
   const animRef = useRef<number>(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d')!;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let w = 0;
     let h = 0;
+    let reducedMotion = mediaQuery.matches;
+
+    setPrefersReducedMotion(reducedMotion);
 
     function resize() {
-      w = canvas!.parentElement!.clientWidth;
-      h = canvas!.parentElement!.clientHeight;
-      canvas!.width = w * devicePixelRatio;
-      canvas!.height = h * devicePixelRatio;
-      canvas!.style.width = w + 'px';
-      canvas!.style.height = h + 'px';
-      ctx.scale(devicePixelRatio, devicePixelRatio);
+      w = canvas.parentElement!.clientWidth;
+      h = canvas.parentElement!.clientHeight;
+      canvas.width = w * devicePixelRatio;
+      canvas.height = h * devicePixelRatio;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
     }
 
     function createParticle(): Particle {
@@ -63,22 +68,18 @@ export default function ParticleFlow() {
       const particles = particlesRef.current;
 
       for (const p of particles) {
-        // Mouse influence — orbit around cursor
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < INFLUENCE_RADIUS && dist > 1) {
           const force = (1 - dist / INFLUENCE_RADIUS) * 0.8;
-          // Perpendicular orbit force
           p.vx += (-dy / dist) * force * 0.5;
           p.vy += (dx / dist) * force * 0.5;
-          // Slight attraction
           p.vx += (dx / dist) * force * 0.1;
           p.vy += (dy / dist) * force * 0.1;
         }
 
-        // Gentle drift
         p.vx += (Math.random() - 0.5) * 0.05;
         p.vy += (Math.random() - 0.5) * 0.05;
 
@@ -90,7 +91,6 @@ export default function ParticleFlow() {
 
         p.life -= 0.002;
 
-        // Respawn if dead or off-screen
         if (p.life <= 0 || p.x < -20 || p.x > w + 20 || p.y < -20 || p.y > h + 20) {
           const angle = Math.random() * Math.PI * 2;
           const speed = BASE_SPEED + Math.random() * 0.5;
@@ -111,7 +111,6 @@ export default function ParticleFlow() {
       for (const p of particles) {
         const alpha = Math.min(p.life / p.maxLife, 1) * 0.7;
         const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-        // Color shifts with speed: slow = cool blue, fast = warm
         const hue = 200 + speed * 30;
         ctx.fillStyle = `hsla(${hue}, 60%, 70%, ${alpha})`;
         ctx.beginPath();
@@ -127,12 +126,12 @@ export default function ParticleFlow() {
     }
 
     function onMouseMove(e: MouseEvent) {
-      const rect = canvas!.getBoundingClientRect();
+      const rect = canvas.getBoundingClientRect();
       mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     }
 
     function onTouchMove(e: TouchEvent) {
-      const rect = canvas!.getBoundingClientRect();
+      const rect = canvas.getBoundingClientRect();
       const t = e.touches[0];
       mouseRef.current = { x: t.clientX - rect.left, y: t.clientY - rect.top };
     }
@@ -141,29 +140,58 @@ export default function ParticleFlow() {
       mouseRef.current = { x: -1000, y: -1000 };
     }
 
-    init();
-    loop();
-
-    canvas.addEventListener('mousemove', onMouseMove);
-    canvas.addEventListener('touchmove', onTouchMove);
-    canvas.addEventListener('mouseleave', onMouseLeave);
-    window.addEventListener('resize', () => {
+    function onResize() {
       resize();
-    });
+      if (reducedMotion) draw();
+    }
+
+    function onReducedMotionChange(event: MediaQueryListEvent) {
+      reducedMotion = event.matches;
+      setPrefersReducedMotion(event.matches);
+
+      if (reducedMotion) {
+        canvas.removeEventListener('mousemove', onMouseMove);
+        canvas.removeEventListener('touchmove', onTouchMove);
+        canvas.removeEventListener('mouseleave', onMouseLeave);
+        cancelAnimationFrame(animRef.current);
+        draw();
+      } else {
+        canvas.addEventListener('mousemove', onMouseMove);
+        canvas.addEventListener('touchmove', onTouchMove);
+        canvas.addEventListener('mouseleave', onMouseLeave);
+        cancelAnimationFrame(animRef.current);
+        loop();
+      }
+    }
+
+    init();
+    draw();
+
+    if (!reducedMotion) {
+      loop();
+      canvas.addEventListener('mousemove', onMouseMove);
+      canvas.addEventListener('touchmove', onTouchMove);
+      canvas.addEventListener('mouseleave', onMouseLeave);
+    }
+
+    mediaQuery.addEventListener('change', onReducedMotionChange);
+    window.addEventListener('resize', onResize);
 
     return () => {
       cancelAnimationFrame(animRef.current);
       canvas.removeEventListener('mousemove', onMouseMove);
       canvas.removeEventListener('touchmove', onTouchMove);
       canvas.removeEventListener('mouseleave', onMouseLeave);
+      mediaQuery.removeEventListener('change', onReducedMotionChange);
+      window.removeEventListener('resize', onResize);
     };
   }, []);
 
   return (
     <div class="particle-container">
       <a href="/lab" class="particle-back">↳ back</a>
-      <canvas ref={canvasRef} class="particle-canvas" />
-      <div class="particle-hint">move your cursor</div>
+      <canvas ref={canvasRef} class="particle-canvas" aria-hidden="true" />
+      <div class="particle-hint">{prefersReducedMotion ? 'motion reduced' : 'move your cursor'}</div>
     </div>
   );
 }

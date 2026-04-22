@@ -10,6 +10,9 @@ interface Props {
 }
 
 const { title, description = 'actora.art', noWrapper = false } = Astro.props;
+const site = Astro.site;
+const canonical = site ? new URL(Astro.url.pathname, site) : undefined;
+const sitemap = site ? new URL('/sitemap-index.xml', site) : undefined;
 ---
 
 <!doctype html>
@@ -18,6 +21,17 @@ const { title, description = 'actora.art', noWrapper = false } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0a0a" />
+    {canonical && <link rel="canonical" href={canonical.toString()} />}
+    {sitemap && <link rel="sitemap" href={sitemap.toString()} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="actora.art" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical.toString()} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

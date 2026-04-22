@@ -201,23 +201,23 @@ export default function Wall() {
   return (
     <div class="wall-container">
       <a href="/lab" class="wall-back">↳ back</a>
-      <button class="wall-info-btn" onClick={() => setShowInfo(true)} title="how it works">?</button>
+      <button type="button" class="wall-info-btn" onClick={() => setShowInfo(true)} title="how it works" aria-label="How the wall works">?</button>
       {showInfo && (
         <div class="wall-info-overlay" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>
-          <div class="wall-info-popup" onClick={(e) => e.stopPropagation()}>
-            <div class="wall-info-title">the wall</div>
+          <div class="wall-info-popup" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="wall-info-title">
+            <div class="wall-info-title" id="wall-info-title">the wall</div>
             <p>a collaborative graffiti wall. place characters to draw, write, leave marks.</p>
             <p><strong>budget:</strong> you get 100 characters per day. resets at midnight UTC.</p>
             <p><strong>erasing:</strong> switch to erase mode to remove cells you placed. each erase refunds 1 character to your budget. you can get up to 200 refunds per day (2x your budget) — so you can rearrange, but not infinitely.</p>
             <p><strong>decay:</strong> cells fade after 1 day and disappear after 3 days.</p>
             <p><strong>controls:</strong> click/drag to place. type any key to pick a character. click paint or erase to switch modes.</p>
-            <button class="wall-info-close" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>got it</button>
+            <button type="button" class="wall-info-close" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>got it</button>
           </div>
         </div>
       )}
       <div class="wall-hud">
         {budget && <span class="wall-budget">{budget.remaining} chars</span>}
-        {budget && <span class="wall-erases">{budget.refundsLeft} refunds</span>}}
+        {budget && <span class="wall-erases">{budget.refundsLeft} refunds</span>}
       </div>
       {errorMsg && <div class="wall-error">{errorMsg}</div>}
       <div class="wall-grid-wrapper">
@@ -296,12 +296,16 @@ export default function Wall() {
       <div class="wall-palette">
         <div class="wall-toolbar">
           <button
+            type="button"
             class={`wall-mode-btn${mode === 'paint' ? ' wall-mode-active' : ''}`}
             onClick={() => setMode('paint')}
+            aria-pressed={mode === 'paint'}
           >paint</button>
           <button
+            type="button"
             class={`wall-mode-btn${mode === 'erase' ? ' wall-mode-active' : ''}`}
             onClick={() => setMode('erase')}
+            aria-pressed={mode === 'erase'}
           >erase</button>
           <span class="wall-mode-hint">click a mode</span>
         </div>
@@ -311,9 +315,12 @@ export default function Wall() {
               <div class="wall-chars">
                 {PALETTE_CHARS.split('').map(ch => (
                   <button
+                    type="button"
                     key={ch}
                     class={`wall-char-btn${ch === selectedChar ? ' wall-char-active' : ''}`}
                     onClick={() => setSelectedChar(ch)}
+                    aria-pressed={ch === selectedChar}
+                    aria-label={`Select character ${ch}`}
                   >
                     {ch}
                   </button>
@@ -322,11 +329,14 @@ export default function Wall() {
               <div class="wall-colors">
                 {Object.entries(COLORS).map(([name, hex]) => (
                   <button
+                    type="button"
                     key={name}
                     class={`wall-color-btn${name === selectedColor ? ' wall-color-active' : ''}`}
                     style={{ backgroundColor: hex }}
                     onClick={() => setSelectedColor(name)}
                     title={name}
+                    aria-label={`Select ${name} color`}
+                    aria-pressed={name === selectedColor}
                   />
                 ))}
               </div>

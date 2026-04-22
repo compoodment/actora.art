@@ -102,7 +102,7 @@ ${data.detail}` : data.message);
         )}
       </div>
 
-      <div class="chat-messages" ref={messagesRef}>
+      <div class="chat-messages" ref={messagesRef} role="log" aria-live="polite" aria-relevant="additions text" aria-busy={loading}>
         {messages.length === 0 && (
           <div class="chat-empty">say something</div>
         )}
@@ -119,7 +119,7 @@ ${data.detail}` : data.message);
           </div>
         )}
         {error && (
-          <div class="chat-error">{error}</div>
+          <div class="chat-error" role="alert">{error}</div>
         )}
       </div>
 
@@ -135,8 +135,9 @@ ${data.detail}` : data.message);
           spellCheck={false}
           autoComplete="off"
           class="chat-input"
+          aria-label="Message"
         />
-        <button onClick={send} disabled={loading || !input.trim()} class="chat-send">↵</button>
+        <button type="button" onClick={send} disabled={loading || !input.trim()} class="chat-send" aria-label="Send message">↵</button>
       </div>
     </div>
   );

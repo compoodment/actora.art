@@ -23,7 +23,7 @@ src/
 
 ## Layouts
 
-`Base.astro` is the shared page shell — document head, fonts, common framing, and the normal footer back link. Fullscreen experiences can opt out when they need their own layout.
+`Base.astro` is the shared page shell — document head, canonical/social metadata, fonts, common framing, and the normal footer back link. Fullscreen experiences can opt out when they need their own layout.
 
 ## Pages
 
@@ -36,6 +36,7 @@ src/
 | Particles | `src/pages/lab/particles.astro` |
 | Projects | `src/pages/projects/index.astro` |
 | Actora project | `src/pages/projects/actora.astro` |
+| Robots directives | `src/pages/robots.txt.ts` |
 
 ## Styles
 

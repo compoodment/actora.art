@@ -8,6 +8,12 @@ Product-level changes visible to visitors and developers.
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`
 
+## 0.1.7 — 2026-04-22
+
+- SEO: added canonical URLs, Open Graph/Twitter metadata, and sitemap/robots support
+- Accessibility: improved focus visibility, input/button labelling, and live-region semantics on interactive pages
+- Accessibility: particles now respects reduced-motion preferences and the site no longer blocks normal page scrolling globally
+
 ## 0.1.6 — 2026-04-21
 
 - Security: wall clients no longer receive raw IP addresses from the public wall API

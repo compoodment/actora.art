@@ -31,7 +31,7 @@ const EASTER_EGGS: Record<string, string> = {
 
 export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>([
-    { type: 'system', text: 'actoraOS v0.1.6' },
+    { type: 'system', text: 'actoraOS v0.1.7' },
     { type: 'system', text: 'type `help` to get started' },
   ]);
   const [input, setInput] = useState('');
@@ -135,7 +135,7 @@ export default function TerminalHero() {
 
       case 'clear':
         setEntries([
-          { type: 'system', text: 'actoraOS v0.1.6' },
+          { type: 'system', text: 'actoraOS v0.1.7' },
           { type: 'system', text: 'type `help` to get started' },
         ]);
         return;
@@ -156,7 +156,8 @@ export default function TerminalHero() {
   };
 
   return (
-    <div class="terminal" onClick={focus} ref={termRef}>
+    <div class="terminal" onClick={focus} ref={termRef} role="region" aria-label="actoraOS terminal">
+      <div id="terminal-help" class="sr-only">Type help to list available commands in the actora.art terminal.</div>
       <div class="terminal-entries">
         {entries.map((entry, i) => (
           <div key={i} class={`terminal-line terminal-${entry.type}`}>
@@ -177,6 +178,8 @@ export default function TerminalHero() {
           autoFocus
           spellCheck={false}
           autoComplete="off"
+          aria-label="Terminal command"
+          aria-describedby="terminal-help"
         />
       </div>
     </div>

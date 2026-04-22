@@ -172,3 +172,9 @@
   opacity: 0.3;
   cursor: default;
 }
+
+.chat-input:focus-visible,
+.chat-send:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
