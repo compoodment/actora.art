@@ -4,6 +4,9 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.11 — 2026-04-22
+
+- Chat: reopening `/chat` now restores your recent conversation in the same browser/device
 - Terminal: pressing Enter on an empty homepage prompt no longer adds blank prompt lines
 - Site: updated `cat lab` in the terminal to say `experiments and web games`
 - Site: updated `cat info` in the terminal to say `links and contact`
@@ -15,6 +18,7 @@ Product-level changes visible to visitors and developers.
 - Site: moved the homepage active-construction note below the terminal prompt and darkened it so it reads as a quiet status line
 - Docs: public `README.md` now owns the docs reading order and public-doc scope note
 - Docs: removed redundant `docs/guide.md`
+- Terminal: actoraOS bumped to `v0.1.11` in the boot text and `clear` reset
 
 ## 0.1.10 — 2026-04-22
 

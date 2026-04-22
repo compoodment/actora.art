@@ -4,7 +4,7 @@ The lab is where actora.art can be unfinished in public.
 
 ## Chat
 
-The chat page lets visitors talk to the site's chat bot. It's a conversational interface with message limits and temporary session context. The chat bot is part of the site, but it is not the same thing as the assistant that helps maintain the site.
+The chat page lets visitors talk to the site's chat bot. It's a conversational interface with message limits and a restorable recent thread in the same browser/device. The chat bot is part of the site, but it is not the same thing as the assistant that helps maintain the site.
 
 ## Wall
 

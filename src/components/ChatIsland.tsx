@@ -6,6 +6,34 @@ interface Message {
 }
 
 const CHAT_API = '/api/chat';
+const GUEST_CHAT_HANDLE_STORAGE_KEY = 'actora.chat.guestThread';
+
+interface ChatPayload {
+  messages?: Message[];
+  reply?: string;
+  sessionId?: string | null;
+  signedIn?: boolean;
+  remaining?: number;
+  resetAt?: number;
+  error?: string;
+  message?: string;
+  detail?: string;
+}
+
+function readStoredGuestHandle(): string | null {
+  if (typeof window === 'undefined') return null;
+  return window.localStorage.getItem(GUEST_CHAT_HANDLE_STORAGE_KEY);
+}
+
+function normalizeMessages(value: unknown): Message[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter((message): message is Message => (
+    !!message &&
+    typeof message === 'object' &&
+    ((message as Message).role === 'user' || (message as Message).role === 'assistant') &&
+    typeof (message as Message).content === 'string'
+  ));
+}
 
 function formatResetTime(resetAt: number): string {
   const ms = resetAt - Date.now();
@@ -20,12 +48,14 @@ export default function ChatIsland() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [sessionId, setSessionId] = useState<string | null>(() => readStoredGuestHandle());
+  const [bootstrapped, setBootstrapped] = useState(false);
   const [remaining, setRemaining] = useState<number | null>(null);
   const [resetAt, setResetAt] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const loadRef = useRef<Promise<void> | null>(null);
 
   // Keep input focused on mount and after loading finishes
   useEffect(() => {
@@ -41,9 +71,72 @@ export default function ChatIsland() {
     }
   }, [messages, loading]);
 
+  const syncGuestHandle = useCallback((nextSessionId: string | null, signedIn: boolean) => {
+    if (typeof window === 'undefined') return;
+    if (!nextSessionId || signedIn || !nextSessionId.startsWith('guest:')) {
+      window.localStorage.removeItem(GUEST_CHAT_HANDLE_STORAGE_KEY);
+      return;
+    }
+    window.localStorage.setItem(GUEST_CHAT_HANDLE_STORAGE_KEY, nextSessionId);
+  }, []);
+
+  const loadThread = useCallback(async () => {
+    if (loadRef.current) return loadRef.current;
+
+    const request = (async () => {
+      try {
+        const res = await fetch(CHAT_API);
+        const data = await res.json() as ChatPayload;
+
+        if (!res.ok) {
+          setError(data.message || 'something went wrong');
+          return;
+        }
+
+        setMessages(normalizeMessages(data.messages));
+        setSessionId(data.sessionId ?? null);
+        syncGuestHandle(data.sessionId ?? null, data.signedIn === true);
+        setError(null);
+      } catch {
+        // Keep local state as-is if bootstrap fails.
+      } finally {
+        setBootstrapped(true);
+        loadRef.current = null;
+      }
+    })();
+
+    loadRef.current = request;
+    return request;
+  }, [syncGuestHandle]);
+
+  useEffect(() => {
+    void loadThread();
+  }, [loadThread]);
+
+  useEffect(() => {
+    const handleFocus = () => {
+      if (loading) return;
+      void loadThread();
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState !== 'visible' || loading) return;
+      void loadThread();
+    };
+
+    window.addEventListener('focus', handleFocus);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, [loadThread, loading]);
+
   const send = useCallback(async () => {
     const text = input.trim();
     if (!text || loading) return;
+    if (!bootstrapped) {
+      await loadThread();
+    }
 
     setInput('');
     setError(null);
@@ -57,16 +150,17 @@ export default function ChatIsland() {
         body: JSON.stringify({ sessionId, message: text }),
       });
 
-      const data = await res.json();
+      const data = await res.json() as ChatPayload;
 
       if (!res.ok) {
         if (data.error === 'daily_limit_reached') {
           setError(data.message || 'daily limit reached');
           setRemaining(0);
-          setResetAt(data.resetAt);
+          setResetAt(typeof data.resetAt === 'number' ? data.resetAt : null);
         } else if (data.error === 'minute_limit_reached' || data.error === 'api_rate_limited') {
-          setError(data.detail ? `${data.message}
-${data.detail}` : data.message);
+          const message = data.message || 'something went wrong';
+          setError(data.detail ? `${message}
+${data.detail}` : message);
         } else {
           setError(data.message || 'something went wrong');
         }
@@ -74,16 +168,17 @@ ${data.detail}` : data.message);
         return;
       }
 
-      setSessionId(data.sessionId);
-      setRemaining(data.remaining);
-      setResetAt(data.resetAt);
-      setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
+      setSessionId(data.sessionId ?? null);
+      syncGuestHandle(data.sessionId ?? null, data.signedIn === true);
+      setRemaining(typeof data.remaining === 'number' ? data.remaining : null);
+      setResetAt(typeof data.resetAt === 'number' ? data.resetAt : null);
+      setMessages(prev => [...prev, { role: 'assistant', content: typeof data.reply === 'string' ? data.reply : '...' }]);
     } catch {
       setError('connection failed');
     }
 
     setLoading(false);
-  }, [input, loading, sessionId]);
+  }, [bootstrapped, input, loadThread, loading, sessionId, syncGuestHandle]);
 
   const handleKey = (e: KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {

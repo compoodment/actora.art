@@ -4,20 +4,21 @@ actora.art collects the minimum data needed to keep the site usable.
 
 ## What we use
 
-The site uses limited IP-based data for:
+The site uses limited operational data for:
 - rate limiting (preventing spam and abuse)
 - operating interactive features (like the wall and chat)
+- restoring feature state in the same browser/device when needed
 - basic site security
 
 We do not:
-- track you across visits
+- track you across other sites
 - build identity profiles
 - sell or share data
 - use analytics or tracking scripts
 
 ## What happens with your data
 
-IP-based operational data is short-lived. It exists to keep the site running smoothly and is not stored beyond what is needed for that purpose. Chat session context is kept in memory only and is lost on server restart.
+Operational data is kept only as long as the site needs it to stay usable and safe. Some interactive features may keep enough state to restore chat or ownership in the same browser/device, but that is not used for analytics, advertising, or cross-site tracking.
 
 ## Changes to this note
 
