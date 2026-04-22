@@ -26,7 +26,7 @@ const PAGES: Record<string, { description: string; url?: string }> = {
     url: '/chat',
   },
   'lab': {
-    description: 'experiments and games',
+    description: 'experiments and web games',
     url: '/lab',
   },
 };
