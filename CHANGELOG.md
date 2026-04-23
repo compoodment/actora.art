@@ -4,6 +4,11 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.17 — 2026-04-23
+
+- UI: footer navigation now uses `back` and `forward` on the left, with `terminal` and identity on the right
+- UI: footer navigation buttons now stay visible-but-disabled instead of disappearing when browser history is unavailable
+
 ## 0.1.16 — 2026-04-23
 
 - UI: immersive pages now reserve space for the persistent footer so bottom-edge controls are not blocked
