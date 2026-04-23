@@ -314,24 +314,10 @@ a:hover {
   overflow: hidden;
 }
 
-.wall-back {
-  position: absolute;
-  top: 0.75rem;
-  left: 1rem;
-  color: var(--color-text-dim);
-  text-decoration: none;
-  font-size: 0.7rem;
-  z-index: 10;
-}
-
-.wall-back:hover {
-  color: var(--color-text);
-}
-
 .wall-info-btn {
   position: absolute;
   top: 0.7rem;
-  left: 4rem;
+  left: 1rem;
   z-index: 10;
   background: transparent;
   border: 1px solid #333;

@@ -200,7 +200,6 @@ export default function Wall() {
 
   return (
     <div class="wall-container">
-      <a href="/lab" class="wall-back">↳ back</a>
       <button type="button" class="wall-info-btn" onClick={() => setShowInfo(true)} title="how it works" aria-label="How the wall works">?</button>
       {showInfo && (
         <div class="wall-info-overlay" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>

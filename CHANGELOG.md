@@ -4,6 +4,10 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.18 — 2026-04-23
+
+- Wall: removed the stale in-page back button so `/lab/wall` now relies on the shared footer navigation only
+
 ## 0.1.17 — 2026-04-23
 
 - UI: footer navigation now uses `back` and `forward` on the left, with `terminal` and identity on the right
