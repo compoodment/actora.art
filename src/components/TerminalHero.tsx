@@ -160,7 +160,7 @@ export default function TerminalHero() {
     }
 
     setBusy(true);
-    appendEntries([{ type: 'system', text: '> Waiting for security key / biometric approval...' }]);
+    appendEntries([{ type: 'system', text: '> waiting for security key / biometric approval...' }]);
 
     try {
       requireWebAuthnSupport();
@@ -191,16 +191,16 @@ export default function TerminalHero() {
         {
           type: 'system',
           text: nextSession.signedIn && nextSession.username
-            ? `> Logged in as @${nextSession.username}.`
-            : '> Login complete.',
+            ? `> logged in as @${nextSession.username}.`
+            : '> login complete.',
         },
       ]);
     } catch (error) {
-      const msg = getErrorMessage(error, 'Try again.');
+      const msg = getErrorMessage(error, 'try again.');
       // Simplify the gnarly W3C browser error when a user cancels the passkey prompt
       const cleanMsg = msg.includes('timed out or was not allowed') || msg.includes('privacy-considerations-client')
-        ? 'Cancelled.'
-        : `Login failed. ${msg}`;
+        ? 'cancelled.'
+        : `login failed. ${msg.toLowerCase()}`;
         
       appendEntries([
         {
@@ -220,7 +220,7 @@ export default function TerminalHero() {
     }
 
     setBusy(true);
-    appendEntries([{ type: 'system', text: '> Waiting for security key...' }]);
+    appendEntries([{ type: 'system', text: '> waiting for security key / biometric approval...' }]);
 
     try {
       requireWebAuthnSupport();
@@ -254,15 +254,15 @@ export default function TerminalHero() {
         {
           type: 'system',
           text: nextSession.signedIn && nextSession.username
-            ? `> Registered and signed in as @${nextSession.username}.`
-            : '> Registration complete.',
+            ? `> registered and signed in as @${nextSession.username}.`
+            : '> registration complete.',
         },
       ]);
     } catch (error) {
-      const msg = getErrorMessage(error, 'Try again.');
+      const msg = getErrorMessage(error, 'try again.');
       const cleanMsg = msg.includes('timed out or was not allowed') || msg.includes('privacy-considerations-client')
-        ? 'Cancelled.'
-        : `Register failed. ${msg}`;
+        ? 'cancelled.'
+        : `register failed. ${msg.toLowerCase()}`;
 
       appendEntries([
         {
@@ -327,7 +327,7 @@ export default function TerminalHero() {
           setAuthSession(session);
           emitAuthChange(session);
           if (!session.signedIn) {
-            add("Access denied. Please type 'login' or 'register' first.");
+            add("access denied. please type 'login' or 'register' first.");
             break;
           }
           add('navigating to account...', 'system');
@@ -375,7 +375,7 @@ export default function TerminalHero() {
         return;
 
       case 'register':
-        add('Enter username:', 'system');
+        add('enter username:', 'system');
         appendEntries(newEntries);
         setPromptState({ kind: 'register-username' });
         return;
@@ -404,22 +404,22 @@ export default function TerminalHero() {
 
     if (promptState?.kind === 'register-username') {
       if (!value) {
-        nextEntries.push({ type: 'output', text: 'Username cannot be empty.' });
-        nextEntries.push({ type: 'system', text: 'Enter username:' });
+        nextEntries.push({ type: 'output', text: 'username cannot be empty.' });
+        nextEntries.push({ type: 'system', text: 'enter username:' });
         appendEntries(nextEntries);
         return;
       }
 
       appendEntries(nextEntries);
       setPromptState({ kind: 'register-display-name', username: value });
-      appendEntries([{ type: 'system', text: 'Enter display name:' }]);
+      appendEntries([{ type: 'system', text: 'enter display name:' }]);
       return;
     }
 
     if (promptState?.kind === 'register-display-name') {
       if (!value) {
-        nextEntries.push({ type: 'output', text: 'Display name cannot be empty.' });
-        nextEntries.push({ type: 'system', text: 'Enter display name:' });
+        nextEntries.push({ type: 'output', text: 'display name cannot be empty.' });
+        nextEntries.push({ type: 'system', text: 'enter display name:' });
         appendEntries(nextEntries);
         return;
       }
