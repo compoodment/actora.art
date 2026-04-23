@@ -266,14 +266,17 @@ type PostAuthLogoutResponse = {
 
 ### `POST /api/auth/passkey/register/start`
 
-Starts passkey registration for a new account.
+Starts passkey registration.
+
+- Signed-out visitors use this to create a new account.
+- Signed-in users can call the same route with no body (or `{}`) to add another passkey to the current account.
 
 Request:
 
 ```ts
 type RegisterStartRequest = {
-  username: string; // lowercase a-z, 0-9, _ or -, length 3-24
-  displayName: string; // trimmed display name, max length 40
+  username?: string; // required when signed out, lowercase a-z, 0-9, _ or -, length 3-24
+  displayName?: string; // required when signed out, trimmed display name, max length 40
 };
 ```
 
@@ -290,7 +293,6 @@ The frontend expects `options` directly at the top level. It does not accept alt
 Current error responses:
 
 ```ts
-{ error: 'already_signed_in' }
 { error: 'invalid_username' }
 { error: 'invalid_display_name' }
 { error: 'username_taken' }
@@ -301,7 +303,10 @@ Current error responses:
 
 ### `POST /api/auth/passkey/register/finish`
 
-Completes passkey registration and signs the new user in.
+Completes passkey registration.
+
+- On the new-account path, it creates the user and signs them in.
+- On the signed-in path, it attaches the credential to the current account and keeps the current session active.
 
 Request:
 
@@ -321,11 +326,11 @@ type RegisterFinishResponse = {
 Current error responses:
 
 ```ts
-{ error: 'already_signed_in' }
 { error: 'registration_not_started' }
 { error: 'invalid_credential' }
 { error: 'username_taken' }
 { error: 'credential_exists' }
+{ error: 'registration_state_mismatch' }
 { error: 'registration_verification_failed' }
 { error: 'body_too_large' }
 { error: 'bad_request' }

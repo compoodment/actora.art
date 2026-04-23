@@ -85,8 +85,8 @@ export interface WallEraseResponse extends WallBudgetResponse {
 }
 
 export interface PasskeyRegisterStartRequest {
-  username: string;
-  displayName: string;
+  username?: string;
+  displayName?: string;
 }
 
 export interface PasskeyStartResponse<T> {
@@ -150,7 +150,7 @@ export function postAuthLogout(): Promise<JsonApiResponse<AuthLogoutResponse>> {
 }
 
 export function startPasskeyRegister(
-  body: PasskeyRegisterStartRequest,
+  body?: PasskeyRegisterStartRequest,
 ): Promise<JsonApiResponse<PasskeyStartResponse<PublicKeyCredentialCreationOptionsJSON>>> {
   return postJson<PasskeyStartResponse<PublicKeyCredentialCreationOptionsJSON>>('/api/auth/passkey/register/start', body);
 }

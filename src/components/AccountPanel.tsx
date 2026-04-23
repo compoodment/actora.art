@@ -1,6 +1,22 @@
 import { useEffect, useState } from 'preact/hooks';
-import { AUTH_CHANGE_EVENT, emitAuthChange, fetchAuthSession, type AuthSession } from '../lib/auth';
-import { postAuthLogout } from '../lib/api';
+import {
+  AUTH_CHANGE_EVENT,
+  authSessionFromAuthSuccess,
+  emitAuthChange,
+  fetchAuthSession,
+  type AuthSession,
+} from '../lib/auth';
+import {
+  finishPasskeyRegister,
+  getApiErrorMessage,
+  postAuthLogout,
+  startPasskeyRegister,
+} from '../lib/api';
+import {
+  getErrorMessage,
+  normalizeCreationOptions,
+  serializeCredential,
+} from '../lib/webauthn';
 
 const GUEST_SESSION: AuthSession = {
   signedIn: false,
@@ -8,9 +24,33 @@ const GUEST_SESSION: AuthSession = {
   displayName: null,
 };
 
+function requireWebAuthnSupport(): void {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    throw new Error('Passkeys are only available in the browser.');
+  }
+  if (!window.PublicKeyCredential || !navigator.credentials) {
+    throw new Error('This browser does not support passkeys.');
+  }
+}
+
+function cleanPasskeyError(error: unknown): string {
+  const msg = getErrorMessage(error, 'try again.');
+  const lowerMsg = msg.toLowerCase();
+  if (
+    lowerMsg.includes('cancelled') ||
+    lowerMsg.includes('timed out or was not allowed') ||
+    lowerMsg.includes('privacy-considerations-client')
+  ) {
+    return 'passkey setup cancelled.';
+  }
+  return `passkey setup failed. ${lowerMsg}`;
+}
+
 export default function AccountPanel() {
   const [session, setSession] = useState<AuthSession | null>(null);
   const [loggingOut, setLoggingOut] = useState(false);
+  const [addingPasskey, setAddingPasskey] = useState(false);
+  const [passkeyStatus, setPasskeyStatus] = useState('ready to add another passkey.');
 
   useEffect(() => {
     let active = true;
@@ -50,6 +90,40 @@ export default function AccountPanel() {
     }
   };
 
+  const addPasskey = async () => {
+    if (addingPasskey || loggingOut) return;
+    setAddingPasskey(true);
+    setPasskeyStatus('waiting for security key / biometric approval...');
+
+    try {
+      requireWebAuthnSupport();
+
+      const { response, data } = await startPasskeyRegister();
+      if (!response.ok) {
+        throw new Error(getApiErrorMessage(data, 'Unable to start passkey setup.'));
+      }
+
+      const credential = await navigator.credentials.create(normalizeCreationOptions(data));
+      if (!(credential instanceof PublicKeyCredential)) {
+        throw new Error('Passkey setup was cancelled.');
+      }
+
+      const finish = await finishPasskeyRegister(serializeCredential(credential));
+      if (!finish.response.ok) {
+        throw new Error(getApiErrorMessage(finish.data, 'Unable to finish passkey setup.'));
+      }
+
+      const nextSession = authSessionFromAuthSuccess(finish.data);
+      setSession(nextSession);
+      emitAuthChange(nextSession);
+      setPasskeyStatus('passkey added.');
+    } catch (error) {
+      setPasskeyStatus(cleanPasskeyError(error));
+    } finally {
+      setAddingPasskey(false);
+    }
+  };
+
   if (session === null) {
     return (
       <section class="account-card" aria-busy="true">
@@ -86,13 +160,15 @@ export default function AccountPanel() {
       </dl>
 
       <div class="account-actions">
-        <button type="button" class="account-button" onClick={() => window.alert('coming soon')}>
-          add another passkey
+        <button type="button" class="account-button" onClick={addPasskey} disabled={addingPasskey || loggingOut}>
+          {addingPasskey ? 'adding passkey...' : 'add another passkey'}
         </button>
-        <button type="button" class="account-button account-button-danger" onClick={logout} disabled={loggingOut}>
+        <button type="button" class="account-button account-button-danger" onClick={logout} disabled={loggingOut || addingPasskey}>
           {loggingOut ? 'logging out...' : 'log out'}
         </button>
       </div>
+
+      <p class="account-meta" aria-live="polite">{passkeyStatus}</p>
     </section>
   );
 }

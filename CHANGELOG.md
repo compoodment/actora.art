@@ -4,6 +4,13 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.26 — 2026-04-23
+
+- Auth: account page `add another passkey` now starts the signed-in passkey registration flow instead of showing a placeholder alert
+- Auth: account page now shows lightweight passkey setup status, cancellation, and success feedback
+- Docs: public auth API docs now note that the existing register start/finish endpoints also handle signed-in add-passkey registration
+- Terminal: actoraOS bumped to `v0.1.26` in the boot text and `clear` reset
+
 ## 0.1.25 — 2026-04-23
 
 - Terminal: homepage description copy now says `projects, experiments, computment's site`, and the terminal `cat readme` fallback matches that wording
