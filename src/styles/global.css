@@ -16,6 +16,8 @@
   --spacing-xl: 4rem;
   --max-width: 48rem;
   --site-footer-height: 3.5rem;
+  --site-footer-safe-area: env(safe-area-inset-bottom, 0px);
+  --site-footer-overlay-offset: calc(var(--site-footer-height) + 1.7rem + var(--site-footer-safe-area));
 }
 
 *,
@@ -450,6 +452,7 @@ a:hover {
   line-height: 1.4;
   letter-spacing: 0.05em;
   cursor: crosshair;
+  touch-action: none;
   user-select: none;
   white-space: pre;
   margin: 0;
@@ -625,6 +628,35 @@ a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--color-text);
   outline-offset: 2px;
+}
+
+body.immersive-page {
+  overflow: hidden;
+}
+
+body.immersive-page .wall-container,
+body.immersive-page .particle-container,
+body.immersive-page .wall-loading {
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+}
+
+body.immersive-page-wall .wall-container {
+  padding-bottom: var(--site-footer-overlay-offset);
+}
+
+body.immersive-page-wall .wall-grid-wrapper {
+  padding-bottom: 0.75rem;
+}
+
+body.immersive-page-wall .wall-palette {
+  padding-bottom: calc(0.75rem + var(--site-footer-safe-area));
+}
+
+body.immersive-page-particles .particle-hint {
+  bottom: calc(1.5rem + var(--site-footer-overlay-offset));
 }
 
 @media (prefers-reduced-motion: reduce) {

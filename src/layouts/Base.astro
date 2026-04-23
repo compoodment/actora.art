@@ -8,9 +8,10 @@ interface Props {
   title: string;
   description?: string;
   noWrapper?: boolean;
+  bodyClass?: string;
 }
 
-const { title, description = 'actora.art', noWrapper = false } = Astro.props;
+const { title, description = 'actora.art', noWrapper = false, bodyClass = '' } = Astro.props;
 const site = Astro.site;
 const canonical = site ? new URL(Astro.url.pathname, site) : undefined;
 const sitemap = site ? new URL('/sitemap-index.xml', site) : undefined;
@@ -40,7 +41,7 @@ const sitemap = site ? new URL('/sitemap-index.xml', site) : undefined;
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
-  <body>
+  <body class={bodyClass}>
     {noWrapper ? (
       <slot />
     ) : (

@@ -231,6 +231,7 @@ export default function Wall() {
           onTouchStart={handleDown}
           onTouchMove={handleMove}
           onTouchEnd={handleUp}
+          onTouchCancel={handleUp}
           onContextMenu={(e) => e.preventDefault()}
         >
           {grid.map((row, y) =>

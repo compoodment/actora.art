@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.16 — 2026-04-23
+
+- UI: immersive pages now reserve space for the persistent footer so bottom-edge controls are not blocked
+- Wall: character and color selection on `/lab/wall` no longer sits under the footer on touch devices
+- Particles: bottom hint on `/lab/particles` now clears the persistent footer
+
 ## 0.1.15 — 2026-04-23
 
 - UI: Hidden `back` and `terminal` footer links when viewing the homepage
