@@ -4,6 +4,11 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.25 — 2026-04-23
+
+- Terminal: homepage description copy now says `projects, experiments, computment's site`, and the terminal `cat readme` fallback matches that wording
+- Terminal: actoraOS bumped to `v0.1.25` in the boot text and `clear` reset
+
 ## 0.1.24 — 2026-04-23
 
 - Terminal: homepage `register` prompt cancellation now uses `Ctrl+C` only; the first press arms cancellation, the second cancels registration input, and the visible hint no longer mentions `Esc`

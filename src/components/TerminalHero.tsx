@@ -384,7 +384,7 @@ export default function TerminalHero() {
         if (page) {
           add(page.description);
         } else if (target === 'readme') {
-          add('actora.art — projects, experiments, and things worth keeping.');
+          add("actora.art — projects, experiments, computment's site.");
         } else {
           add(`cat: ${target}: not found`);
         }
