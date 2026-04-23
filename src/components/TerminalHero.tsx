@@ -7,7 +7,7 @@ interface Entry {
 
 const TERMINAL_STORAGE_KEY = 'actora-terminal-state';
 const INITIAL_ENTRIES: Entry[] = [
-  { type: 'system', text: 'actoraOS v0.1.12' },
+  { type: 'system', text: 'actoraOS v0.1.13' },
   { type: 'system', text: 'type `help` to get started' },
 ];
 

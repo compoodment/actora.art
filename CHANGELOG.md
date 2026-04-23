@@ -4,6 +4,13 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.13 — 2026-04-23
+
+- Wall: ownership and daily wall budgets now follow browser/account identity instead of shared IP
+- Wall: people on the same network no longer share wall ownership, erase rights, or wall budget state
+- Wall: the Phase 4 identity rollout intentionally reset the old wall state once instead of keeping legacy IP-owned data
+- Terminal: actoraOS bumped to `v0.1.13` in the boot text and `clear` reset
+
 ## 0.1.12 — 2026-04-23
 
 - Chat: `/chat` now uses the normal footer back link instead of a duplicate in-page back control
