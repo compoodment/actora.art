@@ -196,10 +196,16 @@ export default function TerminalHero() {
         },
       ]);
     } catch (error) {
+      const msg = getErrorMessage(error, 'Try again.');
+      // Simplify the gnarly W3C browser error when a user cancels the passkey prompt
+      const cleanMsg = msg.includes('timed out or was not allowed') || msg.includes('privacy-considerations-client')
+        ? 'Cancelled.'
+        : `Login failed. ${msg}`;
+        
       appendEntries([
         {
           type: 'output',
-          text: `Login failed. ${getErrorMessage(error, 'Try again.')}`,
+          text: cleanMsg,
         },
       ]);
     } finally {
@@ -253,10 +259,15 @@ export default function TerminalHero() {
         },
       ]);
     } catch (error) {
+      const msg = getErrorMessage(error, 'Try again.');
+      const cleanMsg = msg.includes('timed out or was not allowed') || msg.includes('privacy-considerations-client')
+        ? 'Cancelled.'
+        : `Register failed. ${msg}`;
+
       appendEntries([
         {
           type: 'output',
-          text: `Register failed. ${getErrorMessage(error, 'Try again.')}`,
+          text: cleanMsg,
         },
       ]);
     } finally {
