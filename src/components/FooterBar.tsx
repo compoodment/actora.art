@@ -67,26 +67,24 @@ export default function FooterBar() {
   return (
     <footer class="site-footer" aria-label="Site footer">
       <div class="site-footer-group">
-        {!isHomepage ? (
-          <>
-            <button
-              type="button"
-              class="site-footer-link"
-              onClick={() => window.history.back()}
-              disabled={!canGoBack}
-            >
-              back
-            </button>
-            <button
-              type="button"
-              class="site-footer-link"
-              onClick={() => window.history.forward()}
-              disabled={!canGoForward}
-            >
-              forward
-            </button>
-          </>
-        ) : null}
+        <>
+          <button
+            type="button"
+            class="site-footer-link"
+            onClick={() => window.history.back()}
+            disabled={!canGoBack}
+          >
+            back
+          </button>
+          <button
+            type="button"
+            class="site-footer-link"
+            onClick={() => window.history.forward()}
+            disabled={!canGoForward}
+          >
+            forward
+          </button>
+        </>
       </div>
       {!isHomepage ? <div class="site-footer-version">actoraOS v{ACTORA_OS_VERSION}</div> : null}
       <div class="site-footer-group">

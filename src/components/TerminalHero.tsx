@@ -9,6 +9,7 @@ import {
   finishPasskeyLogin,
   finishPasskeyRegister,
   getApiErrorMessage,
+  postAuthLogout,
   startPasskeyLogin,
   startPasskeyRegister,
   type AuthSuccessResponse,
@@ -238,6 +239,40 @@ export default function TerminalHero() {
     }
   }, [appendEntries, busy, submitCredential]);
 
+  const runLogout = useCallback(async () => {
+    if (busy) {
+      appendEntries([{ type: 'system', text: '> Authentication already in progress.' }]);
+      return;
+    }
+
+    const currentSession = await fetchAuthSession();
+    setAuthSession(currentSession);
+    emitAuthChange(currentSession);
+
+    if (!currentSession.signedIn) {
+      appendEntries([{ type: 'output', text: 'already signed out.' }]);
+      return;
+    }
+
+    setBusy(true);
+
+    try {
+      const { response, data } = await postAuthLogout();
+      if (!response.ok) {
+        throw new Error(getApiErrorMessage(data, 'Unable to log out.'));
+      }
+
+      setAuthSession(GUEST_SESSION);
+      emitAuthChange(GUEST_SESSION);
+      appendEntries([{ type: 'system', text: '> logged out.' }]);
+    } catch (error) {
+      const msg = getErrorMessage(error, 'try again.');
+      appendEntries([{ type: 'output', text: `logout failed. ${msg.toLowerCase()}` }]);
+    } finally {
+      setBusy(false);
+    }
+  }, [appendEntries, busy]);
+
   const processCommand = useCallback(async (cmd: string) => {
     const raw = cmd.trim();
     if (!raw) {
@@ -268,6 +303,7 @@ export default function TerminalHero() {
         add('  cat <page>      read about a page');
         add('  register        create an account with a passkey');
         add('  login           sign in with a passkey');
+        add('  logout          sign out of your account');
         add('  whoareu         who runs this');
         add('  clear           clear terminal');
         break;
@@ -343,6 +379,11 @@ export default function TerminalHero() {
         setPromptState({ kind: 'register-username' });
         return;
 
+      case 'logout':
+        appendEntries(newEntries);
+        await runLogout();
+        return;
+
       case 'whoareu':
         add('computment');
         break;
@@ -359,7 +400,7 @@ export default function TerminalHero() {
     }
 
     appendEntries(newEntries);
-  }, [appendEntries, authSession, runLogin]);
+  }, [appendEntries, runLogin, runLogout]);
 
   const handlePromptInput = useCallback(async (rawValue: string) => {
     const value = rawValue.trim();

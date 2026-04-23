@@ -194,7 +194,6 @@ a:hover {
   color: var(--color-text-dim);
   font: inherit;
   letter-spacing: 0.04em;
-  text-transform: lowercase;
   pointer-events: none;
   opacity: 0.85;
 }

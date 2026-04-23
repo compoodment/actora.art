@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.20 — 2026-04-23
+
+- UI: homepage footer now keeps browser-history `back` and `forward` available, so returning to the terminal does not strand history navigation
+- UI: footer version label now preserves the `actoraOS` casing instead of forcing lowercase styling
+- Terminal: added a `logout` command to the homepage terminal auth flow
+
 ## 0.1.19 — 2026-04-23
 
 - UI: non-home pages now show a dim centered `actoraOS v...` footer label for stronger terminal continuity
