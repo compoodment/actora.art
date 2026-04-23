@@ -10,13 +10,19 @@ const GUEST_SESSION: AuthSession = {
 export default function FooterBar() {
   const [session, setSession] = useState<AuthSession>(GUEST_SESSION);
   const [canGoBack, setCanGoBack] = useState(false);
+  const [isHomepage, setIsHomepage] = useState(false);
 
   useEffect(() => {
-    setCanGoBack(window.history.length > 1);
+    const syncFooterState = () => {
+      setCanGoBack(window.history.length > 1);
+      setIsHomepage(window.location.pathname === '/');
+    };
+
+    syncFooterState();
     void fetchAuthSession().then(setSession);
 
     const handlePopState = () => {
-      setCanGoBack(window.history.length > 1);
+      syncFooterState();
     };
     const handleAuthChange = (event: Event) => {
       const nextSession = (event as CustomEvent<AuthSession>).detail;
@@ -38,16 +44,18 @@ export default function FooterBar() {
   return (
     <footer class="site-footer" aria-label="Site footer">
       <div class="site-footer-group">
-        <button
-          type="button"
-          class="site-footer-link"
-          onClick={() => window.history.back()}
-          disabled={!canGoBack}
-          aria-hidden={!canGoBack}
-        >
-          back
-        </button>
-        <a class="site-footer-link" href="/">terminal</a>
+        {!isHomepage ? (
+          <button
+            type="button"
+            class="site-footer-link"
+            onClick={() => window.history.back()}
+            disabled={!canGoBack}
+            aria-hidden={!canGoBack}
+          >
+            back
+          </button>
+        ) : null}
+        {!isHomepage ? <a class="site-footer-link" href="/">terminal</a> : null}
       </div>
       <div class="site-footer-group">
         {session.signedIn && session.username ? (

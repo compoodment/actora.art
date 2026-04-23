@@ -29,7 +29,7 @@ type PromptState =
 
 const TERMINAL_STORAGE_KEY = 'actora-terminal-state';
 const INITIAL_ENTRIES: Entry[] = [
-  { type: 'system', text: 'actoraOS v0.1.14' },
+  { type: 'system', text: 'actoraOS v0.1.15' },
   { type: 'system', text: 'type `help` to get started' },
 ];
 
@@ -292,8 +292,8 @@ export default function TerminalHero() {
         add('  ls              list pages');
         add('  cd <page>       go to a page');
         add('  cat <page>      read about a page');
-        add('  login           sign in with a passkey');
         add('  register        create an account with a passkey');
+        add('  login           sign in with a passkey');
         add('  whoareu         who runs this');
         add('  clear           clear terminal');
         break;

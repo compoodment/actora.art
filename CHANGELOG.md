@@ -4,6 +4,11 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.15 — 2026-04-23
+
+- UI: Hidden `back` and `terminal` footer links when viewing the homepage
+- Terminal: Reordered `help` output so `register` appears before `login`
+
 ## 0.1.14 — 2026-04-23
 
 - UI: Added persistent global footer with navigation (`back` / `terminal`) and identity (`@guest` / `@username`)
