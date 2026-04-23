@@ -6,23 +6,16 @@ interface Message {
 }
 
 const CHAT_API = '/api/chat';
-const GUEST_CHAT_HANDLE_STORAGE_KEY = 'actora.chat.guestThread';
 
 interface ChatPayload {
   messages?: Message[];
   reply?: string;
-  sessionId?: string | null;
   signedIn?: boolean;
   remaining?: number;
   resetAt?: number;
   error?: string;
   message?: string;
   detail?: string;
-}
-
-function readStoredGuestHandle(): string | null {
-  if (typeof window === 'undefined') return null;
-  return window.localStorage.getItem(GUEST_CHAT_HANDLE_STORAGE_KEY);
 }
 
 function normalizeMessages(value: unknown): Message[] {
@@ -48,7 +41,6 @@ export default function ChatIsland() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [sessionId, setSessionId] = useState<string | null>(() => readStoredGuestHandle());
   const [bootstrapped, setBootstrapped] = useState(false);
   const [remaining, setRemaining] = useState<number | null>(null);
   const [resetAt, setResetAt] = useState<number | null>(null);
@@ -71,15 +63,6 @@ export default function ChatIsland() {
     }
   }, [messages, loading]);
 
-  const syncGuestHandle = useCallback((nextSessionId: string | null, signedIn: boolean) => {
-    if (typeof window === 'undefined') return;
-    if (!nextSessionId || signedIn || !nextSessionId.startsWith('guest:')) {
-      window.localStorage.removeItem(GUEST_CHAT_HANDLE_STORAGE_KEY);
-      return;
-    }
-    window.localStorage.setItem(GUEST_CHAT_HANDLE_STORAGE_KEY, nextSessionId);
-  }, []);
-
   const loadThread = useCallback(async () => {
     if (loadRef.current) return loadRef.current;
 
@@ -94,8 +77,6 @@ export default function ChatIsland() {
         }
 
         setMessages(normalizeMessages(data.messages));
-        setSessionId(data.sessionId ?? null);
-        syncGuestHandle(data.sessionId ?? null, data.signedIn === true);
         setError(null);
       } catch {
         // Keep local state as-is if bootstrap fails.
@@ -107,7 +88,7 @@ export default function ChatIsland() {
 
     loadRef.current = request;
     return request;
-  }, [syncGuestHandle]);
+  }, []);
 
   useEffect(() => {
     void loadThread();
@@ -147,7 +128,7 @@ export default function ChatIsland() {
       const res = await fetch(CHAT_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId, message: text }),
+        body: JSON.stringify({ message: text }),
       });
 
       const data = await res.json() as ChatPayload;
@@ -168,8 +149,6 @@ ${data.detail}` : message);
         return;
       }
 
-      setSessionId(data.sessionId ?? null);
-      syncGuestHandle(data.sessionId ?? null, data.signedIn === true);
       setRemaining(typeof data.remaining === 'number' ? data.remaining : null);
       setResetAt(typeof data.resetAt === 'number' ? data.resetAt : null);
       setMessages(prev => [...prev, { role: 'assistant', content: typeof data.reply === 'string' ? data.reply : '...' }]);
@@ -178,7 +157,7 @@ ${data.detail}` : message);
     }
 
     setLoading(false);
-  }, [bootstrapped, input, loadThread, loading, sessionId, syncGuestHandle]);
+  }, [bootstrapped, input, loadThread, loading]);
 
   const handleKey = (e: KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -190,7 +169,6 @@ ${data.detail}` : message);
   return (
     <div class="chat-container" onClick={() => inputRef.current?.focus()}>
       <div class="chat-header">
-        <a href="/" class="chat-back">↳ back</a>
         <span class="chat-title">chat bot</span>
         {remaining !== null && resetAt !== null && (
           <span class="chat-meta">{remaining} left — {formatResetTime(resetAt)}</span>

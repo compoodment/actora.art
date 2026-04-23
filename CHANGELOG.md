@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.12 — 2026-04-23
+
+- Chat: `/chat` now uses the normal footer back link instead of a duplicate in-page back control
+- Chat: recent-thread restore no longer depends on stale client-side thread-handle state
+- Terminal: actoraOS bumped to `v0.1.12` in the boot text and `clear` reset
+
 ## 0.1.11 — 2026-04-22
 
 - Chat: reopening `/chat` now restores your recent conversation in the same browser/device
