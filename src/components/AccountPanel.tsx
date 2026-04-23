@@ -55,7 +55,7 @@ export default function AccountPanel() {
   if (session === null) {
     return (
       <section class="account-card" aria-busy="true">
-        <p class="account-meta">Checking session...</p>
+        <p class="account-meta">checking session...</p>
       </section>
     );
   }
@@ -63,7 +63,7 @@ export default function AccountPanel() {
   if (!session.signedIn) {
     return (
       <section class="account-card">
-        <p class="account-meta">Access denied. Redirecting to terminal...</p>
+        <p class="account-meta">access denied. redirecting to terminal...</p>
       </section>
     );
   }
@@ -73,26 +73,26 @@ export default function AccountPanel() {
       <header class="account-header">
         <p class="account-kicker">account</p>
         <h1 class="account-title">@{session.username ?? 'account'}</h1>
-        <p class="account-meta">Signed in with passkey authentication.</p>
+        <p class="account-meta">signed in with passkey authentication.</p>
       </header>
 
       <dl class="account-details">
         <div class="account-detail-row">
-          <dt>Username</dt>
-          <dd>{session.username ?? 'Unknown'}</dd>
+          <dt>username</dt>
+          <dd>{session.username ?? 'unknown'}</dd>
         </div>
         <div class="account-detail-row">
-          <dt>Display Name</dt>
-          <dd>{session.displayName ?? 'Not set'}</dd>
+          <dt>display name</dt>
+          <dd>{session.displayName ?? 'not set'}</dd>
         </div>
       </dl>
 
       <div class="account-actions">
-        <button type="button" class="account-button" onClick={() => window.alert('Coming soon')}>
-          Add another passkey
+        <button type="button" class="account-button" onClick={() => window.alert('coming soon')}>
+          add another passkey
         </button>
         <button type="button" class="account-button account-button-danger" onClick={logout} disabled={loggingOut}>
-          {loggingOut ? 'Logging out...' : 'Log out'}
+          {loggingOut ? 'logging out...' : 'log out'}
         </button>
       </div>
     </section>
