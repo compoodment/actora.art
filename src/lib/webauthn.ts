@@ -10,10 +10,7 @@ export interface CredentialPayload {
 type MaybeBufferSource = string | number[] | ArrayBuffer | Uint8Array | null | undefined;
 
 interface StartResponseShape {
-  publicKey?: PublicKeyCredentialCreationOptionsJSON | PublicKeyCredentialRequestOptionsJSON;
-  options?: {
-    publicKey?: PublicKeyCredentialCreationOptionsJSON | PublicKeyCredentialRequestOptionsJSON;
-  } | PublicKeyCredentialCreationOptionsJSON | PublicKeyCredentialRequestOptionsJSON;
+  options?: PublicKeyCredentialCreationOptionsJSON | PublicKeyCredentialRequestOptionsJSON;
 }
 
 function base64UrlToBytes(value: string): Uint8Array {
@@ -42,8 +39,7 @@ function toArrayBuffer(value: MaybeBufferSource): ArrayBuffer {
 
 function withPublicKey<T>(payload: unknown): T {
   const response = (payload && typeof payload === 'object' ? payload : {}) as StartResponseShape;
-  const options = response.publicKey
-    ?? (response.options && 'publicKey' in response.options ? response.options.publicKey : response.options);
+  const options = response.options;
 
   if (!options || typeof options !== 'object') {
     throw new Error('Auth options were missing from the server response.');

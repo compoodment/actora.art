@@ -22,10 +22,13 @@ This is the public codebase for the site frontend. It contains the Astro site, i
 
 Read these in order if you want the clearest map of the public side of actora.art:
 
-1. [identity](docs/identity.md) — what actora.art is trying to be
-2. [codebase](docs/codebase.md) — how the public codebase is organized
-3. [experiments](docs/experiments.md) — what visitors can do
-4. [privacy](docs/privacy.md) — the site's public privacy stance
+1. [docs index](docs/index.md) — public-safe map of the docs set
+2. [identity](docs/identity.md) — what actora.art is trying to be
+3. [codebase](docs/codebase.md) — how the frontend is organized
+4. [api](docs/api.md) — the `/api/*` contract the frontend uses
+5. [deploy](docs/deploy.md) — how to host the static frontend with a separate API backend
+6. [experiments](docs/experiments.md) — what visitors can do
+7. [privacy](docs/privacy.md) — the site's public privacy stance
 
 Public docs explain product intent, frontend structure, and visitor-facing behavior. They do not explain deployment internals, admin behavior, moderation mechanics, or secrets handling.
 
@@ -51,7 +54,7 @@ npm run build
 - [Astro](https://astro.build)
 - [Preact](https://preactjs.com)
 - plain CSS
-- a separate Node.js backend for interactive features
+- a separate Node.js backend for interactive features, exposed to the frontend as same-origin `/api/*` routes
 
 ## Note on documentation
 

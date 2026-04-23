@@ -1,30 +1,19 @@
 import { useEffect, useRef, useState, useCallback } from 'preact/hooks';
+import {
+  fetchChatBootstrap,
+  getApiErrorMessage,
+  sendChatMessage,
+  type ChatMessage,
+  type ChatReplyResponse,
+} from '../lib/api';
 
-interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-}
-
-const CHAT_API = '/api/chat';
-
-interface ChatPayload {
-  messages?: Message[];
-  reply?: string;
-  signedIn?: boolean;
-  remaining?: number;
-  resetAt?: number;
-  error?: string;
-  message?: string;
-  detail?: string;
-}
-
-function normalizeMessages(value: unknown): Message[] {
+function normalizeMessages(value: unknown): ChatMessage[] {
   if (!Array.isArray(value)) return [];
-  return value.filter((message): message is Message => (
+  return value.filter((message): message is ChatMessage => (
     !!message &&
     typeof message === 'object' &&
-    ((message as Message).role === 'user' || (message as Message).role === 'assistant') &&
-    typeof (message as Message).content === 'string'
+    ((message as ChatMessage).role === 'user' || (message as ChatMessage).role === 'assistant') &&
+    typeof (message as ChatMessage).content === 'string'
   ));
 }
 
@@ -38,7 +27,7 @@ function formatResetTime(resetAt: number): string {
 }
 
 export default function ChatIsland() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [bootstrapped, setBootstrapped] = useState(false);
@@ -68,15 +57,15 @@ export default function ChatIsland() {
 
     const request = (async () => {
       try {
-        const res = await fetch(CHAT_API);
-        const data = await res.json() as ChatPayload;
+        const { response, data } = await fetchChatBootstrap();
 
-        if (!res.ok) {
-          setError(data.message || 'something went wrong');
+        if (!response.ok) {
+          setError(getApiErrorMessage(data, 'something went wrong'));
           return;
         }
 
-        setMessages(normalizeMessages(data.messages));
+        const payload = data as { messages?: unknown };
+        setMessages(normalizeMessages(payload.messages));
         setError(null);
       } catch {
         // Keep local state as-is if bootstrap fails.
@@ -125,33 +114,34 @@ export default function ChatIsland() {
     setLoading(true);
 
     try {
-      const res = await fetch(CHAT_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text }),
-      });
+      const { response, data } = await sendChatMessage(text);
 
-      const data = await res.json() as ChatPayload;
+      if (!response.ok) {
+        const errorBody = (data && typeof data === 'object' ? data : {}) as {
+          error?: string;
+          message?: string;
+          detail?: string;
+          resetAt?: number;
+        };
 
-      if (!res.ok) {
-        if (data.error === 'daily_limit_reached') {
-          setError(data.message || 'daily limit reached');
+        if (errorBody.error === 'daily_limit_reached') {
+          setError(getApiErrorMessage(data, 'daily limit reached'));
           setRemaining(0);
-          setResetAt(typeof data.resetAt === 'number' ? data.resetAt : null);
-        } else if (data.error === 'minute_limit_reached' || data.error === 'api_rate_limited') {
-          const message = data.message || 'something went wrong';
-          setError(data.detail ? `${message}
-${data.detail}` : message);
+          setResetAt(typeof errorBody.resetAt === 'number' ? errorBody.resetAt : null);
+        } else if (errorBody.error === 'minute_limit_reached' || errorBody.error === 'api_rate_limited') {
+          const message = errorBody.message || 'something went wrong';
+          setError(errorBody.detail ? `${message}\n${errorBody.detail}` : message);
         } else {
-          setError(data.message || 'something went wrong');
+          setError(getApiErrorMessage(data, 'something went wrong'));
         }
         setLoading(false);
         return;
       }
 
-      setRemaining(typeof data.remaining === 'number' ? data.remaining : null);
-      setResetAt(typeof data.resetAt === 'number' ? data.resetAt : null);
-      setMessages(prev => [...prev, { role: 'assistant', content: typeof data.reply === 'string' ? data.reply : '...' }]);
+      const reply = data as ChatReplyResponse;
+      setRemaining(reply.remaining);
+      setResetAt(reply.resetAt);
+      setMessages(prev => [...prev, { role: 'assistant', content: reply.reply }]);
     } catch {
       setError('connection failed');
     }

@@ -1,11 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
 import {
+  authSessionFromAuthSuccess,
   emitAuthChange,
   fetchAuthSession,
-  normalizeAuthSession,
   type AuthSession,
 } from '../lib/auth';
 import {
+  finishPasskeyLogin,
+  finishPasskeyRegister,
+  getApiErrorMessage,
+  startPasskeyLogin,
+  startPasskeyRegister,
+  type AuthSuccessResponse,
+  type JsonApiResponse,
+} from '../lib/api';
+import {
+  type CredentialPayload,
   getErrorMessage,
   normalizeCreationOptions,
   normalizeRequestOptions,
@@ -16,12 +26,6 @@ import { ACTORA_OS_VERSION } from '../lib/version';
 interface Entry {
   type: 'input' | 'output' | 'system';
   text: string;
-}
-
-interface ApiErrorShape {
-  error?: string;
-  message?: string;
-  detail?: string;
 }
 
 type PromptState =
@@ -69,22 +73,6 @@ const EASTER_EGGS: Record<string, string> = {
   '42': 'the answer to life, the universe, and everything',
   bitch: 'no u',
 };
-
-async function readJsonResponse(response: Response): Promise<unknown> {
-  const text = await response.text();
-  if (!text) return null;
-
-  try {
-    return JSON.parse(text) as unknown;
-  } catch {
-    return { message: text };
-  }
-}
-
-function getApiErrorMessage(payload: unknown, fallback: string): string {
-  const data = (payload && typeof payload === 'object' ? payload : {}) as ApiErrorShape;
-  return data.detail || data.message || data.error || fallback;
-}
 
 function requireWebAuthnSupport(): void {
   if (typeof window === 'undefined' || typeof navigator === 'undefined') {
@@ -136,22 +124,15 @@ export default function TerminalHero() {
     setEntries((previous) => [...previous, ...nextEntries]);
   }, []);
 
-  const submitCredential = useCallback(async (path: string, credential: PublicKeyCredential) => {
-    const payload = serializeCredential(credential);
-    const response = await fetch(path, {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...payload,
-        credential: payload,
-      }),
-    });
-    const data = await readJsonResponse(response);
+  const submitCredential = useCallback(async (
+    credential: PublicKeyCredential,
+    submit: (payload: CredentialPayload) => Promise<JsonApiResponse<AuthSuccessResponse>>,
+  ) => {
+    const { response, data } = await submit(serializeCredential(credential));
     if (!response.ok) {
       throw new Error(getApiErrorMessage(data, 'Authentication failed.'));
     }
-    return data;
+    return authSessionFromAuthSuccess(data);
   }, []);
 
   const runLogin = useCallback(async () => {
@@ -166,25 +147,17 @@ export default function TerminalHero() {
     try {
       requireWebAuthnSupport();
 
-      const startResponse = await fetch('/api/auth/passkey/login/start', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({}),
-      });
-      const startPayload = await readJsonResponse(startResponse);
-      if (!startResponse.ok) {
-        throw new Error(getApiErrorMessage(startPayload, 'Unable to start passkey login.'));
+      const { response, data } = await startPasskeyLogin();
+      if (!response.ok) {
+        throw new Error(getApiErrorMessage(data, 'Unable to start passkey login.'));
       }
 
-      const credential = await navigator.credentials.get(normalizeRequestOptions(startPayload));
+      const credential = await navigator.credentials.get(normalizeRequestOptions(data));
       if (!(credential instanceof PublicKeyCredential)) {
         throw new Error('Passkey login was cancelled.');
       }
 
-      const finishPayload = await submitCredential('/api/auth/passkey/login/finish', credential);
-      const session = normalizeAuthSession(finishPayload);
-      const nextSession = session.signedIn ? session : await fetchAuthSession();
+      const nextSession = await submitCredential(credential, finishPasskeyLogin);
 
       setAuthSession(nextSession);
       emitAuthChange(nextSession);
@@ -226,28 +199,17 @@ export default function TerminalHero() {
     try {
       requireWebAuthnSupport();
 
-      const startResponse = await fetch('/api/auth/passkey/register/start', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username,
-          displayName,
-        }),
-      });
-      const startPayload = await readJsonResponse(startResponse);
-      if (!startResponse.ok) {
-        throw new Error(getApiErrorMessage(startPayload, 'Unable to start passkey registration.'));
+      const { response, data } = await startPasskeyRegister({ username, displayName });
+      if (!response.ok) {
+        throw new Error(getApiErrorMessage(data, 'Unable to start passkey registration.'));
       }
 
-      const credential = await navigator.credentials.create(normalizeCreationOptions(startPayload));
+      const credential = await navigator.credentials.create(normalizeCreationOptions(data));
       if (!(credential instanceof PublicKeyCredential)) {
         throw new Error('Passkey registration was cancelled.');
       }
 
-      const finishPayload = await submitCredential('/api/auth/passkey/register/finish', credential);
-      const session = normalizeAuthSession(finishPayload);
-      const nextSession = session.signedIn ? session : await fetchAuthSession();
+      const nextSession = await submitCredential(credential, finishPasskeyRegister);
 
       setAuthSession(nextSession);
       emitAuthChange(nextSession);

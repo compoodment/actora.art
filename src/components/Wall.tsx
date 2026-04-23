@@ -1,4 +1,12 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
+import {
+  eraseWallCells,
+  fetchWallBudget,
+  fetchWallState,
+  paintWallCells,
+  type WallBudgetResponse,
+  type WallStateResponse,
+} from '../lib/api';
 
 interface Cell {
   char: string;
@@ -49,24 +57,26 @@ export default function Wall() {
 
   const fetchWall = async () => {
     try {
-      const res = await fetch('/api/wall');
-      const data = await res.json();
-      if (data.grid) setGrid(data.grid);
+      const { response, data } = await fetchWallState();
+      if (response.ok) {
+        setGrid((data as WallStateResponse).grid);
+      }
     } catch {}
   };
 
-  const fetchBudget = async () => {
+  const loadBudget = async () => {
     try {
-      const res = await fetch('/api/wall/budget');
-      const data = await res.json();
-      setBudget(data);
+      const { response, data } = await fetchWallBudget();
+      if (response.ok) {
+        setBudget(data as WallBudgetResponse);
+      }
     } catch {}
   };
 
   useEffect(() => {
     fetchWall();
-    fetchBudget();
-    const interval = setInterval(() => { fetchWall(); fetchBudget(); }, POLL_MS);
+    loadBudget();
+    const interval = setInterval(() => { fetchWall(); loadBudget(); }, POLL_MS);
     return () => clearInterval(interval);
   }, []);
 
@@ -74,20 +84,20 @@ export default function Wall() {
     if (cells.length === 0) return;
     const isErase = mode === 'erase';
     try {
-      const res = await fetch(isErase ? '/api/wall/erase' : '/api/wall/paint', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cells }),
-      });
-      const data = await res.json();
-      if (res.ok) {
+      const { response, data } = isErase
+        ? await eraseWallCells(cells.map(({ x, y }) => ({ x, y })))
+        : await paintWallCells(cells.map(({ x, y, char, color }) => ({ x, y, char: char || '█', color })));
+
+      if (response.ok) {
+        const payload = data as Partial<WallBudgetResponse>;
         setBudget(prev => prev ? {
           ...prev,
-          remaining: data.remaining ?? prev.remaining,
-          refundsLeft: data.refundsLeft ?? prev.refundsLeft,
+          remaining: payload.remaining ?? prev.remaining,
+          refundsLeft: payload.refundsLeft ?? prev.refundsLeft,
         } : null);
-      } else if (res.status === 429) {
-        setErrorMsg(data.error === 'refund_limit_reached' ? 'no refunds left' : 'no chars left — come back tomorrow');
+      } else if (response.status === 429) {
+        const errorCode = (data && typeof data === 'object' ? (data as { error?: string }).error : undefined);
+        setErrorMsg(errorCode === 'refund_limit_reached' ? 'no refunds left' : 'no chars left — come back tomorrow');
         setTimeout(() => setErrorMsg(''), 3000);
       }
       fetchWall();

@@ -7,6 +7,7 @@ A public-safe overview of how the codebase is organized.
 ```text
 src/
   components/   interactive frontend pieces
+  lib/          API client, auth helpers, and WebAuthn helpers
   layouts/      shared page layouts
   pages/        route files
   styles/       global and page-specific styles
@@ -46,6 +47,12 @@ src/
 | `global.css` | Shared tokens and global styling |
 | `chat.css` | Chat page styling |
 | `terminal.css` | Terminal-specific styling |
+
+## Frontend API boundary
+
+All frontend calls to `/api/*` are centralized in [`src/lib/api.ts`](../src/lib/api.ts). Component code should use that client layer instead of doing inline `fetch('/api/...')` calls.
+
+The public contract for those routes is documented in [api.md](api.md). Interactive behavior assumes a separate backend exposes that contract and manages cookie-backed visitor identity.
 
 ## Public vs private knowledge
 

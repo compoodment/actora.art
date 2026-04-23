@@ -1,53 +1,70 @@
+import { fetchAuthMe, type AuthMeResponse, type AuthSuccessResponse, type PublicUser } from './api';
+
 export interface AuthSession {
   signedIn: boolean;
   username: string | null;
   displayName: string | null;
 }
 
-interface AuthMeResponse {
-  signedIn?: boolean;
-  authenticated?: boolean;
-  user?: {
-    username?: string | null;
-    name?: string | null;
-    displayName?: string | null;
-  } | null;
-  username?: string | null;
-  name?: string | null;
-  displayName?: string | null;
-}
-
 export const AUTH_CHANGE_EVENT = 'actora-auth-changed';
 
-export function normalizeAuthSession(value: unknown): AuthSession {
-  const payload = (value && typeof value === 'object' ? value : {}) as AuthMeResponse;
-  const user = payload.user && typeof payload.user === 'object' ? payload.user : null;
-  const username = user?.username ?? payload.username ?? null;
-  const displayName = user?.displayName ?? user?.name ?? payload.displayName ?? payload.name ?? null;
-  const signedIn = Boolean(payload.signedIn ?? payload.authenticated ?? username);
+function toGuestSession(): AuthSession {
+  return { signedIn: false, username: null, displayName: null };
+}
+
+function isPublicUser(value: unknown): value is PublicUser {
+  if (!value || typeof value !== 'object') return false;
+  const user = value as PublicUser;
+  return (
+    typeof user.id === 'string' &&
+    typeof user.username === 'string' &&
+    typeof user.displayName === 'string'
+  );
+}
+
+export function authSessionFromResponse(value: unknown): AuthSession {
+  if (!value || typeof value !== 'object') return toGuestSession();
+
+  const payload = value as Partial<AuthMeResponse>;
+  if (payload.signedIn !== true || !isPublicUser(payload.user)) {
+    return toGuestSession();
+  }
 
   return {
-    signedIn,
-    username: typeof username === 'string' && username.trim() ? username : null,
-    displayName: typeof displayName === 'string' && displayName.trim() ? displayName : null,
+    signedIn: true,
+    username: payload.user.username,
+    displayName: payload.user.displayName,
+  };
+}
+
+export function authSessionFromAuthSuccess(value: unknown): AuthSession {
+  if (!value || typeof value !== 'object') {
+    throw new Error('Authentication succeeded but the server returned an unexpected response.');
+  }
+
+  const payload = value as Partial<AuthSuccessResponse>;
+  if (payload.ok !== true || !isPublicUser(payload.user)) {
+    throw new Error('Authentication succeeded but the server returned an unexpected response.');
+  }
+
+  return {
+    signedIn: true,
+    username: payload.user.username,
+    displayName: payload.user.displayName,
   };
 }
 
 export async function fetchAuthSession(): Promise<AuthSession> {
   try {
-    const response = await fetch('/api/auth/me', {
-      credentials: 'same-origin',
-      cache: 'no-store',
-    });
+    const { response, data } = await fetchAuthMe();
 
     if (!response.ok) {
-      return { signedIn: false, username: null, displayName: null };
+      return toGuestSession();
     }
 
-    const payload = await response.json() as unknown;
-    return normalizeAuthSession(payload);
+    return authSessionFromResponse(data);
   } catch {
-    return { signedIn: false, username: null, displayName: null };
+    return toGuestSession();
   }
 }
 

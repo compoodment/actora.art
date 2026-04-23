@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 import { AUTH_CHANGE_EVENT, emitAuthChange, fetchAuthSession, type AuthSession } from '../lib/auth';
+import { postAuthLogout } from '../lib/api';
 
 const GUEST_SESSION: AuthSession = {
   signedIn: false,
@@ -42,10 +43,7 @@ export default function AccountPanel() {
     setLoggingOut(true);
 
     try {
-      await fetch('/api/auth/logout', {
-        method: 'POST',
-        credentials: 'same-origin',
-      });
+      await postAuthLogout();
     } finally {
       emitAuthChange(GUEST_SESSION);
       window.location.assign('/');
