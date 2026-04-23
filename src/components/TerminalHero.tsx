@@ -142,10 +142,19 @@ export default function TerminalHero() {
       return;
     }
 
-    setBusy(true);
-    appendEntries([{ type: 'system', text: '> waiting for security key / biometric approval...' }]);
-
     try {
+      const currentSession = await fetchAuthSession();
+      setAuthSession(currentSession);
+      emitAuthChange(currentSession);
+
+      if (currentSession.signedIn) {
+        appendEntries([{ type: 'output', text: 'already signed in silly.' }]);
+        return;
+      }
+
+      setBusy(true);
+      appendEntries([{ type: 'system', text: '> waiting for security key / biometric approval...' }]);
+
       requireWebAuthnSupport();
 
       const { response, data } = await startPasskeyLogin();
@@ -250,7 +259,7 @@ export default function TerminalHero() {
     emitAuthChange(currentSession);
 
     if (!currentSession.signedIn) {
-      appendEntries([{ type: 'output', text: 'already signed out.' }]);
+      appendEntries([{ type: 'output', text: 'already signed out silly.' }]);
       return;
     }
 

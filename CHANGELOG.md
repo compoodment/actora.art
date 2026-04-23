@@ -4,6 +4,11 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.22 — 2026-04-23
+
+- Terminal: `login` now says `already signed in silly.` when you're already signed in, and `logout` now says `already signed out silly.` when you're already signed out
+- Terminal: actoraOS bumped to `v0.1.22` in the boot text and `clear` reset
+
 ## 0.1.21 — 2026-04-23
 
 - Particles: removed the stale in-page back button so `/lab/particles` now relies on the shared footer navigation only
