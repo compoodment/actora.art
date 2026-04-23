@@ -460,12 +460,6 @@ export default function TerminalHero() {
   }, [appendEntries, promptState, runRegister]);
 
   const handleKey = async (event: KeyboardEvent) => {
-    if (promptState && event.key === 'Escape') {
-      event.preventDefault();
-      cancelRegistrationPrompt();
-      return;
-    }
-
     if (promptState && event.key.toLowerCase() === 'c' && event.ctrlKey) {
       event.preventDefault();
       if (registerCtrlCCancelArmed) {
@@ -492,8 +486,8 @@ export default function TerminalHero() {
   };
 
   const cancelHint = registerCtrlCCancelArmed
-    ? 'press ctrl+c again to cancel registration, or esc to cancel immediately.'
-    : 'esc cancels immediately, ctrl+c twice cancels registration.';
+    ? 'press ctrl+c again to cancel registration.'
+    : 'ctrl+c twice cancels registration.';
 
   return (
     <div class="terminal" onClick={focus} ref={termRef} role="region" aria-label="actoraOS terminal">

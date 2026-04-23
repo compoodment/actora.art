@@ -4,6 +4,11 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.24 — 2026-04-23
+
+- Terminal: homepage `register` prompt cancellation now uses `Ctrl+C` only; the first press arms cancellation, the second cancels registration input, and the visible hint no longer mentions `Esc`
+- Terminal: actoraOS bumped to `v0.1.24` in the boot text and `clear` reset
+
 ## 0.1.23 — 2026-04-23
 
 - Terminal: `register` prompt flow now shows an in-terminal cancel hint, supports immediate `Esc` cancel, and requires `Ctrl+C` twice before cancelling registration input
