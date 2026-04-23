@@ -189,7 +189,6 @@ export default function ParticleFlow() {
 
   return (
     <div class="particle-container">
-      <a href="/lab" class="particle-back">↳ back</a>
       <canvas ref={canvasRef} class="particle-canvas" aria-hidden="true" />
       <div class="particle-hint">{prefersReducedMotion ? 'motion reduced' : 'move your cursor'}</div>
     </div>

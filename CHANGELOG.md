@@ -4,6 +4,10 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.21 — 2026-04-23
+
+- Particles: removed the stale in-page back button so `/lab/particles` now relies on the shared footer navigation only
+
 ## 0.1.20 — 2026-04-23
 
 - UI: homepage footer now keeps browser-history `back` and `forward` available, so returning to the terminal does not strand history navigation
