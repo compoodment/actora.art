@@ -4,6 +4,13 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.14 — 2026-04-23
+
+- UI: Added persistent global footer with navigation (`back` / `terminal`) and identity (`@guest` / `@username`)
+- Auth: Added interactive `register` and `login` commands to the Terminal
+- Auth: Added `/account` page for passkey management, accessible via `cd account`
+- Mobile: Fixed iOS Safari auto-zoom bug on terminal and chat inputs
+
 ## 0.1.13 — 2026-04-23
 
 - Wall: ownership and daily wall budgets now follow browser/account identity instead of shared IP

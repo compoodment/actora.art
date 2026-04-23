@@ -15,6 +15,7 @@
   --spacing-lg: 2rem;
   --spacing-xl: 4rem;
   --max-width: 48rem;
+  --site-footer-height: 3.5rem;
 }
 
 *,
@@ -118,6 +119,7 @@ a:hover {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--spacing-lg);
+  padding-bottom: calc(var(--spacing-xl) + var(--site-footer-height));
 }
 
 .page-header {
@@ -159,10 +161,143 @@ a:hover {
   margin-bottom: 0;
 }
 
-.page-footer {
-  margin-top: var(--spacing-xl);
-  color: var(--color-text-dim);
+.site-footer {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--site-footer-height);
+  padding: 0.85rem 1rem calc(0.85rem + env(safe-area-inset-bottom, 0));
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.88) 28%, rgba(10, 10, 10, 0.97) 100%);
+  backdrop-filter: blur(10px);
   font-size: 0.75rem;
+  pointer-events: none;
+}
+
+.site-footer-group {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  pointer-events: auto;
+}
+
+.site-footer-link,
+.site-footer-status {
+  color: var(--color-text-dim);
+  font: inherit;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+.site-footer-link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.site-footer-link:hover:not(:disabled) {
+  color: var(--color-text);
+}
+
+.site-footer-link:disabled {
+  opacity: 0;
+  cursor: default;
+}
+
+.account-card {
+  width: min(100%, 34rem);
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  border: 1px solid #262626;
+  background: rgba(18, 18, 18, 0.85);
+}
+
+.account-header {
+  margin-bottom: 1.5rem;
+}
+
+.account-kicker {
+  color: var(--color-text-dim);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.account-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.account-meta {
+  margin-top: 0.35rem;
+  color: var(--color-text-dim);
+  font-size: 0.8rem;
+}
+
+.account-details {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.account-detail-row {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.account-detail-row dt {
+  color: var(--color-text-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.account-detail-row dd {
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.account-button {
+  border: 1px solid #333;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.account-button:hover:not(:disabled) {
+  border-color: #666;
+  color: #fff;
+}
+
+.account-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.account-button-danger {
+  border-color: #5c2d2d;
+  color: #f0b5b5;
+}
+
+.account-button-danger:hover:not(:disabled) {
+  border-color: #a14a4a;
+  color: #ffd0d0;
 }
 
 /* wall */
@@ -500,5 +635,22 @@ button:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 1.25rem;
+    padding-bottom: calc(2.5rem + var(--site-footer-height));
+  }
+
+  .site-footer {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .account-card {
+    margin-top: 1rem;
+    padding: 1.1rem;
   }
 }

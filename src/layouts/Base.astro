@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/terminal.css';
 import '../styles/chat.css';
+import FooterBar from '../components/FooterBar.tsx';
 
 interface Props {
   title: string;
@@ -45,10 +46,8 @@ const sitemap = site ? new URL('/sitemap-index.xml', site) : undefined;
     ) : (
       <div class="page">
         <slot />
-        <footer class="page-footer">
-          <a href="/">↳ back</a>
-        </footer>
       </div>
     )}
+    <FooterBar client:load />
   </body>
 </html>
