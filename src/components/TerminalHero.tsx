@@ -101,6 +101,7 @@ export default function TerminalHero() {
   const [input, setInput] = useState('');
   const [authSession, setAuthSession] = useState<AuthSession>(GUEST_SESSION);
   const [promptState, setPromptState] = useState<PromptState | null>(null);
+  const [registerCtrlCCancelArmed, setRegisterCtrlCCancelArmed] = useState(false);
   const [busy, setBusy] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const termRef = useRef<HTMLDivElement>(null);
@@ -119,11 +120,24 @@ export default function TerminalHero() {
     window.sessionStorage.setItem(TERMINAL_STORAGE_KEY, JSON.stringify({ entries }));
   }, [entries]);
 
+  useEffect(() => {
+    if (!promptState) {
+      setRegisterCtrlCCancelArmed(false);
+    }
+  }, [promptState]);
+
   const focus = () => inputRef.current?.focus();
 
   const appendEntries = useCallback((nextEntries: Entry[]) => {
     setEntries((previous) => [...previous, ...nextEntries]);
   }, []);
+
+  const cancelRegistrationPrompt = useCallback(() => {
+    setPromptState(null);
+    setRegisterCtrlCCancelArmed(false);
+    setInput('');
+    appendEntries([{ type: 'output', text: 'registration cancelled.' }]);
+  }, [appendEntries]);
 
   const submitCredential = useCallback(async (
     credential: PublicKeyCredential,
@@ -385,6 +399,7 @@ export default function TerminalHero() {
       case 'register':
         add('enter username:', 'system');
         appendEntries(newEntries);
+        setRegisterCtrlCCancelArmed(false);
         setPromptState({ kind: 'register-username' });
         return;
 
@@ -400,6 +415,7 @@ export default function TerminalHero() {
       case 'clear':
         setEntries(INITIAL_ENTRIES);
         setPromptState(null);
+        setRegisterCtrlCCancelArmed(false);
         setInput('');
         return;
 
@@ -444,6 +460,22 @@ export default function TerminalHero() {
   }, [appendEntries, promptState, runRegister]);
 
   const handleKey = async (event: KeyboardEvent) => {
+    if (promptState && event.key === 'Escape') {
+      event.preventDefault();
+      cancelRegistrationPrompt();
+      return;
+    }
+
+    if (promptState && event.key.toLowerCase() === 'c' && event.ctrlKey) {
+      event.preventDefault();
+      if (registerCtrlCCancelArmed) {
+        cancelRegistrationPrompt();
+        return;
+      }
+      setRegisterCtrlCCancelArmed(true);
+      return;
+    }
+
     if (event.key !== 'Enter') return;
 
     const raw = input;
@@ -458,6 +490,10 @@ export default function TerminalHero() {
 
     await processCommand(raw);
   };
+
+  const cancelHint = registerCtrlCCancelArmed
+    ? 'press ctrl+c again to cancel registration, or esc to cancel immediately.'
+    : 'esc cancels immediately, ctrl+c twice cancels registration.';
 
   return (
     <div class="terminal" onClick={focus} ref={termRef} role="region" aria-label="actoraOS terminal">
@@ -476,7 +512,12 @@ export default function TerminalHero() {
           ref={inputRef}
           type="text"
           value={input}
-          onInput={(event) => setInput((event.target as HTMLInputElement).value)}
+          onInput={(event) => {
+            if (registerCtrlCCancelArmed) {
+              setRegisterCtrlCCancelArmed(false);
+            }
+            setInput((event.target as HTMLInputElement).value);
+          }}
           onKeyDown={handleKey}
           class="terminal-input"
           autoFocus
@@ -487,7 +528,10 @@ export default function TerminalHero() {
           disabled={busy}
         />
       </div>
-      <div class="terminal-construction-note">this site is under active construction. changes may occur live.</div>
+      <div class="terminal-notes">
+        {promptState ? <div class="terminal-cancel-hint">{cancelHint}</div> : null}
+        <div class="terminal-construction-note">this site is under active construction. changes may occur live.</div>
+      </div>
     </div>
   );
 }

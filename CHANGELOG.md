@@ -4,6 +4,11 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.23 — 2026-04-23
+
+- Terminal: `register` prompt flow now shows an in-terminal cancel hint, supports immediate `Esc` cancel, and requires `Ctrl+C` twice before cancelling registration input
+- Terminal: actoraOS bumped to `v0.1.23` in the boot text and `clear` reset
+
 ## 0.1.22 — 2026-04-23
 
 - Terminal: `login` now says `already signed in silly.` when you're already signed in, and `logout` now says `already signed out silly.` when you're already signed out
