@@ -4,6 +4,11 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.19 — 2026-04-23
+
+- UI: non-home pages now show a dim centered `actoraOS v...` footer label for stronger terminal continuity
+- UI: footer version text now shares the same source of truth as the terminal boot version
+
 ## 0.1.18 — 2026-04-23
 
 - Wall: removed the stale in-page back button so `/lab/wall` now relies on the shared footer navigation only

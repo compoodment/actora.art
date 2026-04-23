@@ -184,6 +184,19 @@ a:hover {
   align-items: center;
   gap: 0.9rem;
   pointer-events: auto;
+  min-width: 0;
+}
+
+.site-footer-version {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-text-dim);
+  font: inherit;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  pointer-events: none;
+  opacity: 0.85;
 }
 
 .site-footer-link,
@@ -666,6 +679,14 @@ body.immersive-page-particles .particle-hint {
   .site-footer {
     padding-left: 0.85rem;
     padding-right: 0.85rem;
+  }
+
+  .site-footer-version {
+    font-size: 0.7rem;
+    max-width: 9.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .account-card {

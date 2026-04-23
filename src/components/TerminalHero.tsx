@@ -11,6 +11,7 @@ import {
   normalizeRequestOptions,
   serializeCredential,
 } from '../lib/webauthn';
+import { ACTORA_OS_VERSION } from '../lib/version';
 
 interface Entry {
   type: 'input' | 'output' | 'system';
@@ -29,7 +30,7 @@ type PromptState =
 
 const TERMINAL_STORAGE_KEY = 'actora-terminal-state';
 const INITIAL_ENTRIES: Entry[] = [
-  { type: 'system', text: 'actoraOS v0.1.18' },
+  { type: 'system', text: `actoraOS v${ACTORA_OS_VERSION}` },
   { type: 'system', text: 'type `help` to get started' },
 ];
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 import { AUTH_CHANGE_EVENT, fetchAuthSession, type AuthSession } from '../lib/auth';
+import { ACTORA_OS_VERSION } from '../lib/version';
 
 const GUEST_SESSION: AuthSession = {
   signedIn: false,
@@ -87,6 +88,7 @@ export default function FooterBar() {
           </>
         ) : null}
       </div>
+      {!isHomepage ? <div class="site-footer-version">actoraOS v{ACTORA_OS_VERSION}</div> : null}
       <div class="site-footer-group">
         {!isHomepage ? <a class="site-footer-link" href="/">terminal</a> : null}
         {session.signedIn && session.username ? (
