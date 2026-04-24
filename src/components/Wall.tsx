@@ -56,6 +56,7 @@ export default function Wall() {
   const [mode, setMode] = useState<'paint' | 'erase'>('paint');
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
+  const [, setPendingDisplayRevision] = useState(0);
   const [showInfo, setShowInfo] = useState(() => {
     if (typeof window === 'undefined') return false;
     return !localStorage.getItem('wall-info-seen');
@@ -67,6 +68,7 @@ export default function Wall() {
   const recoveryIntervalRef = useRef<number | null>(null);
 
   const getCellKey = (x: number, y: number) => `${x}:${y}`;
+  const refreshPendingDisplay = () => setPendingDisplayRevision(revision => revision + 1);
   const hasPendingKey = (x: number, y: number) => pendingKeysRef.current.has(getCellKey(x, y));
   const retainPendingKey = (x: number, y: number) => {
     const key = getCellKey(x, y);
@@ -225,6 +227,7 @@ export default function Wall() {
     if (mode === 'paint') {
       if (!budget || budget.remaining - pendingRef.current.length <= 0) return;
       pendingRef.current.push({ x, y, char: selectedChar, color: selectedColor });
+      refreshPendingDisplay();
       retainPendingKey(x, y);
       setGrid(prev => {
         const next = prev.map(r => [...r]);
@@ -238,6 +241,7 @@ export default function Wall() {
       if (!cell || !cell.isMine) return; // only erase own cells
       if (!budget || budget.refundsLeft - pendingRef.current.length <= 0) return;
       pendingRef.current.push({ x, y });
+      refreshPendingDisplay();
       retainPendingKey(x, y);
       setGrid(prev => {
         const next = prev.map(r => [...r]);
@@ -251,6 +255,7 @@ export default function Wall() {
   const flush = () => {
     const cells = [...pendingRef.current];
     pendingRef.current = [];
+    refreshPendingDisplay();
     if (cells.length > 0) commitCells(cells);
   };
 
@@ -261,6 +266,7 @@ export default function Wall() {
     e.preventDefault();
     dragging.current = true;
     pendingRef.current = [];
+    refreshPendingDisplay();
     addToPending(pos.x, pos.y);
   };
 
@@ -315,6 +321,11 @@ export default function Wall() {
   }
 
   const isMine = (cell: Cell | null) => !!cell?.isMine;
+  const pendingCount = pendingRef.current.length;
+  const displayBudget = budget ? {
+    remaining: Math.max(0, mode === 'erase' ? budget.remaining + pendingCount : budget.remaining - pendingCount),
+    refundsLeft: Math.max(0, mode === 'erase' ? budget.refundsLeft - pendingCount : budget.refundsLeft),
+  } : null;
 
   return (
     <div class="wall-container">
@@ -333,8 +344,8 @@ export default function Wall() {
         </div>
       )}
       <div class="wall-hud">
-        {budget && <span class="wall-budget">{budget.remaining} chars</span>}
-        {budget && <span class="wall-erases">{budget.refundsLeft} refunds</span>}
+        {displayBudget && <span class="wall-budget">{displayBudget.remaining} chars</span>}
+        {displayBudget && <span class="wall-erases">{displayBudget.refundsLeft} refunds</span>}
       </div>
       {errorMsg && <div class="wall-error">{errorMsg}</div>}
       <div class="wall-grid-wrapper">

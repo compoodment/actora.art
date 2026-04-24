@@ -8,6 +8,11 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.34 — 2026-04-24
+
+- Wall: enlarged the desktop `/lab/wall` grid within the left-rail layout and made the HUD char/refund counts update live during drag paint/erase previews
+- Terminal: actoraOS bumped to `v0.1.34` in the boot text and footer version
+
 ## 0.1.33 — 2026-04-24
 
 - Wall: tightened the narrow/mobile layout so the grid fits the viewport better and the bottom palette scrolls instead of getting cut off

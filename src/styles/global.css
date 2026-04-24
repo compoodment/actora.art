@@ -657,7 +657,7 @@ body.immersive-page-particles .particle-hint {
   }
 
   body.immersive-page-wall .wall-grid {
-    font-size: clamp(0.5rem, 0.8vw, 0.85rem);
+    font-size: clamp(0.85rem, min(calc((100vw - 17rem) / 48), calc((100dvh - 8.5rem) / 34)), 1.15rem);
   }
 
   body.immersive-page-wall .wall-palette {
