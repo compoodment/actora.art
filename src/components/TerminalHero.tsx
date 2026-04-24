@@ -1,36 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks';
-import {
-  authSessionFromAuthSuccess,
-  emitAuthChange,
-  fetchAuthSession,
-  type AuthSession,
-} from '../lib/auth';
-import {
-  finishPasskeyLogin,
-  finishPasskeyRegister,
-  getApiErrorMessage,
-  postAuthLogout,
-  startPasskeyLogin,
-  startPasskeyRegister,
-  type AuthSuccessResponse,
-  type JsonApiResponse,
-} from '../lib/api';
-import {
-  cleanPasskeyError,
-  type CredentialPayload,
-  getErrorMessage,
-  isPublicKeyCredential,
-  normalizeCreationOptions,
-  normalizeRequestOptions,
-  requireWebAuthnSupport,
-  serializeCredential,
-} from '../lib/webauthn';
+import { emitAuthChange, fetchAuthSession, type AuthSession } from '../lib/auth';
 import { ACTORA_OS_VERSION } from '../lib/version';
-
-interface Entry {
-  type: 'input' | 'output' | 'system';
-  text: string;
-}
+import { processCommand, type Entry } from '../lib/terminal-commands';
+import { GUEST_SESSION, runLoginFlow, runLogoutFlow, runRegisterFlow } from '../lib/terminal-auth';
 
 type PromptState =
   | { kind: 'register-username' }
@@ -41,42 +13,6 @@ const INITIAL_ENTRIES: Entry[] = [
   { type: 'system', text: `actoraOS v${ACTORA_OS_VERSION}` },
   { type: 'system', text: 'type `help` to get started' },
 ];
-
-const GUEST_SESSION: AuthSession = {
-  signedIn: false,
-  username: null,
-  displayName: null,
-};
-
-const PAGES: Record<string, { description: string; url?: string }> = {
-  projects: {
-    description: 'external projects',
-    url: '/projects',
-  },
-  info: {
-    description: 'links and contact',
-    url: '/info',
-  },
-  chat: {
-    description: 'talk to the chat bot',
-    url: '/chat',
-  },
-  lab: {
-    description: 'experiments and web games',
-    url: '/lab',
-  },
-  account: {
-    description: 'account settings and passkeys',
-    url: '/account',
-  },
-};
-
-const EASTER_EGGS: Record<string, string> = {
-  faggot: 'no u',
-  meow: 'meow :3',
-  '42': 'the answer to life, the universe, and everything',
-  bitch: 'no u',
-};
 
 export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>(() => {
@@ -133,281 +69,96 @@ export default function TerminalHero() {
     appendEntries([{ type: 'output', text: 'registration cancelled.' }]);
   }, [appendEntries]);
 
-  const submitCredential = useCallback(async (
-    credential: PublicKeyCredential,
-    submit: (payload: CredentialPayload) => Promise<JsonApiResponse<AuthSuccessResponse>>,
-  ) => {
-    const { response, data } = await submit(serializeCredential(credential));
-    if (!response.ok) {
-      throw new Error(getApiErrorMessage(data, 'Authentication failed.'));
-    }
-    return authSessionFromAuthSuccess(data);
-  }, []);
+  const authCallbacks = { setBusy, appendEntries, setAuthSession };
 
   const runLogin = useCallback(async () => {
     if (busy) {
       appendEntries([{ type: 'system', text: '> Authentication already in progress.' }]);
       return;
     }
-
-    try {
-      const currentSession = await fetchAuthSession();
-      setAuthSession(currentSession);
-      emitAuthChange(currentSession);
-
-      if (currentSession.signedIn) {
-        appendEntries([{ type: 'output', text: 'already signed in silly.' }]);
-        return;
-      }
-
-      setBusy(true);
-      appendEntries([{ type: 'system', text: '> waiting for security key / biometric approval...' }]);
-
-      requireWebAuthnSupport();
-
-      const { response, data } = await startPasskeyLogin();
-      if (!response.ok) {
-        throw new Error(getApiErrorMessage(data, 'Unable to start passkey login.'));
-      }
-
-      const credential = await navigator.credentials.get(normalizeRequestOptions(data));
-      if (!isPublicKeyCredential(credential)) {
-        throw new Error('Passkey login was cancelled.');
-      }
-
-      const nextSession = await submitCredential(credential, finishPasskeyLogin);
-
-      setAuthSession(nextSession);
-      emitAuthChange(nextSession);
-      appendEntries([
-        {
-          type: 'system',
-          text: nextSession.signedIn && nextSession.username
-            ? `> logged in as @${nextSession.username}.`
-            : '> login complete.',
-        },
-      ]);
-    } catch (error) {
-      appendEntries([
-        {
-          type: 'output',
-          text: cleanPasskeyError(error, 'cancelled.', 'login failed.'),
-        },
-      ]);
-    } finally {
-      setBusy(false);
-    }
-  }, [appendEntries, busy, submitCredential]);
+    await runLoginFlow(authCallbacks);
+  }, [authCallbacks, busy, appendEntries]);
 
   const runRegister = useCallback(async (username: string, displayName: string) => {
     if (busy) {
       appendEntries([{ type: 'system', text: '> Authentication already in progress.' }]);
       return;
     }
-
-    setBusy(true);
-    appendEntries([{ type: 'system', text: '> waiting for security key / biometric approval...' }]);
-
-    try {
-      requireWebAuthnSupport();
-
-      const { response, data } = await startPasskeyRegister({ username, displayName });
-      if (!response.ok) {
-        throw new Error(getApiErrorMessage(data, 'Unable to start passkey registration.'));
-      }
-
-      const credential = await navigator.credentials.create(normalizeCreationOptions(data));
-      if (!isPublicKeyCredential(credential)) {
-        throw new Error('Passkey registration was cancelled.');
-      }
-
-      const nextSession = await submitCredential(credential, finishPasskeyRegister);
-
-      setAuthSession(nextSession);
-      emitAuthChange(nextSession);
-      appendEntries([
-        {
-          type: 'system',
-          text: nextSession.signedIn && nextSession.username
-            ? `> registered and signed in as @${nextSession.username}.`
-            : '> registration complete.',
-        },
-      ]);
-    } catch (error) {
-      appendEntries([
-        {
-          type: 'output',
-          text: cleanPasskeyError(error, 'cancelled.', 'register failed.'),
-        },
-      ]);
-    } finally {
-      setBusy(false);
-    }
-  }, [appendEntries, busy, submitCredential]);
+    await runRegisterFlow(username, displayName, authCallbacks);
+  }, [authCallbacks, busy, appendEntries]);
 
   const runLogout = useCallback(async () => {
     if (busy) {
       appendEntries([{ type: 'system', text: '> Authentication already in progress.' }]);
       return;
     }
+    await runLogoutFlow(authCallbacks);
+  }, [authCallbacks, busy, appendEntries]);
 
-    const currentSession = await fetchAuthSession();
-    setAuthSession(currentSession);
-    emitAuthChange(currentSession);
-
-    if (!currentSession.signedIn) {
-      appendEntries([{ type: 'output', text: 'already signed out silly.' }]);
-      return;
-    }
-
-    setBusy(true);
-
-    try {
-      const { response, data } = await postAuthLogout();
-      if (!response.ok) {
-        throw new Error(getApiErrorMessage(data, 'Unable to log out.'));
-      }
-
-      setAuthSession(GUEST_SESSION);
-      emitAuthChange(GUEST_SESSION);
-      appendEntries([{ type: 'system', text: '> logged out.' }]);
-    } catch (error) {
-      const msg = getErrorMessage(error, 'try again.');
-      appendEntries([{ type: 'output', text: `logout failed. ${msg.toLowerCase()}` }]);
-    } finally {
-      setBusy(false);
-    }
-  }, [appendEntries, busy]);
-
-  const processCommand = useCallback(async (cmd: string) => {
+  const handleCommand = useCallback(async (cmd: string) => {
     const raw = cmd.trim();
     if (!raw) {
       appendEntries([{ type: 'input', text: '~ ❯ ' }]);
       return;
     }
 
-    const parts = raw.split(/\s+/);
-    const command = parts[0].toLowerCase();
-    const args = parts.slice(1);
-    const newEntries: Entry[] = [{ type: 'input', text: `~ ❯ ${raw}` }];
-    const add = (text: string, type: Entry['type'] = 'output') => {
-      newEntries.push({ type, text });
-    };
-
-    const easterEggKey = raw.toLowerCase();
-    if (EASTER_EGGS[easterEggKey]) {
-      add(EASTER_EGGS[easterEggKey]!);
+    const command = raw.split(/\s+/)[0].toLowerCase();
+    
+    // Check if this is an auth command that TerminalHero needs to handle
+    if (command === 'login') {
+      appendEntries([{ type: 'input', text: `~ ❯ ${raw}` }]);
+      await runLogin();
+      return;
+    }
+    if (command === 'logout') {
+      appendEntries([{ type: 'input', text: `~ ❯ ${raw}` }]);
+      await runLogout();
+      return;
+    }
+    if (command === 'register') {
+      const newEntries: Entry[] = [
+        { type: 'input', text: `~ ❯ ${raw}` },
+        { type: 'system', text: 'enter username:' }
+      ];
       appendEntries(newEntries);
+      setRegisterCtrlCCancelArmed(false);
+      setPromptState({ kind: 'register-username' });
       return;
     }
 
-    switch (command) {
-      case 'help':
-        add('commands:', 'system');
-        add('  ls              list pages');
-        add('  cd <page>       go to a page');
-        add('  cat <page>      read about a page');
-        add('  register        create an account with a passkey');
-        add('  login           sign in with a passkey');
-        add('  logout          sign out of your account');
-        add('  whoareu         who runs this');
-        add('  clear           clear terminal');
-        break;
+    // Process generic commands
+    const result = processCommand(raw);
+    if (!result) return; // Unhandled auth command
 
-      case 'ls': {
-        const names = Object.keys(PAGES);
-        add(names.map((name) => `${name}/`).join('  '));
-        break;
-      }
-
-      case 'cd': {
-        const target = (args[0] || '').replace(/\/+$/, '').toLowerCase();
-        if (!target) {
-          add('usage: cd <page>');
-          break;
-        }
-
-        if (target === 'account') {
-          const session = await fetchAuthSession();
-          setAuthSession(session);
-          emitAuthChange(session);
-          if (!session.signedIn) {
-            add("access denied. please type 'login' or 'register' first.");
-            break;
-          }
-          add('navigating to account...', 'system');
-          appendEntries(newEntries);
-          window.setTimeout(() => {
-            window.location.href = '/account';
-          }, 250);
-          return;
-        }
-
-        const page = PAGES[target];
-        if (page?.url) {
-          add(`navigating to ${target}...`, 'system');
-          appendEntries(newEntries);
-          window.setTimeout(() => {
-            window.location.href = page.url!;
-          }, 250);
-          return;
-        }
-
-        add(page ? `${target}: can't navigate there yet` : `cd: no such page: ${target}`);
-        break;
-      }
-
-      case 'cat': {
-        const target = args[0] ? args[0].toLowerCase() : '';
-        if (!target) {
-          add('usage: cat <page>');
-          break;
-        }
-        const page = PAGES[target];
-        if (page) {
-          add(page.description);
-        } else if (target === 'readme') {
-          add("actora.art — projects, experiments, computment's site.");
-        } else {
-          add(`cat: ${target}: not found`);
-        }
-        break;
-      }
-
-      case 'login':
-        appendEntries(newEntries);
-        await runLogin();
-        return;
-
-      case 'register':
-        add('enter username:', 'system');
-        appendEntries(newEntries);
-        setRegisterCtrlCCancelArmed(false);
-        setPromptState({ kind: 'register-username' });
-        return;
-
-      case 'logout':
-        appendEntries(newEntries);
-        await runLogout();
-        return;
-
-      case 'whoareu':
-        add('computment');
-        break;
-
-      case 'clear':
-        setEntries(INITIAL_ENTRIES);
-        setPromptState(null);
-        setRegisterCtrlCCancelArmed(false);
-        setInput('');
-        return;
-
-      default:
-        add(`command not found: ${command}`);
-        break;
+    if (result.handled && result.entries.length === 0) {
+      // Clear command
+      setEntries(INITIAL_ENTRIES);
+      setPromptState(null);
+      setRegisterCtrlCCancelArmed(false);
+      setInput('');
+      return;
     }
 
-    appendEntries(newEntries);
+    if (result.navigate) {
+      if (result.navigate === '/account') {
+        const session = await fetchAuthSession();
+        setAuthSession(session);
+        emitAuthChange(session);
+        if (!session.signedIn) {
+          result.entries.push({ type: 'output', text: "access denied. please type 'login' or 'register' first." });
+          appendEntries(result.entries);
+          return;
+        }
+      }
+      
+      appendEntries(result.entries);
+      window.setTimeout(() => {
+        window.location.href = result.navigate!;
+      }, 250);
+      return;
+    }
+
+    appendEntries(result.entries);
   }, [appendEntries, runLogin, runLogout]);
 
   const handlePromptInput = useCallback(async (rawValue: string) => {
@@ -465,7 +216,7 @@ export default function TerminalHero() {
       return;
     }
 
-    await processCommand(raw);
+    await handleCommand(raw);
   };
 
   const cancelHint = registerCtrlCCancelArmed
