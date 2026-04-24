@@ -1,5 +1,7 @@
 # actora.art
 
+Role: repo front door; use it for the public orientation and send detailed docs boundaries to `docs/`.
+
 A small personal site for projects, experiments, and computment's site.
 
 The homepage is a terminal. From there you can browse pages, talk to the chat bot, draw on a shared wall, or find your way into stranger corners. The site is built around the idea that a personal site should feel like a place, not a portfolio.

@@ -1,5 +1,7 @@
 # API Contract
 
+Role: frontend API contract; document only the public `/api/*` surface this repo consumes, not backend internals.
+
 Public contract for the `/api/*` routes consumed by the actora.art frontend.
 
 This repo's frontend calls these routes through [`src/lib/api.ts`](../src/lib/api.ts). Interactive features assume a separate backend serves these routes on the same origin.

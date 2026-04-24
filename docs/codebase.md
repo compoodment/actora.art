@@ -1,5 +1,7 @@
 # Codebase
 
+Role: frontend codebase guide; API shape belongs in `api.md`, deploy shape in `deploy.md`, and private backend details stay private.
+
 A public-safe overview of how the codebase is organized.
 
 ## Top-level structure

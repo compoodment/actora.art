@@ -1,8 +1,12 @@
 # CHANGELOG
 
+Role: public product changelog; keep documentation maintenance brief and leave private ops history elsewhere.
+
 Product-level changes visible to visitors and developers.
 
 ## Unreleased
+
+- Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
 ## 0.1.27 — 2026-04-24
 

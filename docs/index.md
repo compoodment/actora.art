@@ -1,5 +1,7 @@
 # Docs Index
 
+Role: docs map; point readers to the right public doc instead of becoming a second README.
+
 Public-safe documentation for the frontend side of actora.art.
 
 ## Read This First

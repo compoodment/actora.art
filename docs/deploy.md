@@ -1,5 +1,7 @@
 # Deploy
 
+Role: public static-frontend deploy guide; keep private infrastructure, health checks, and ops procedures out.
+
 This repo builds the static frontend for actora.art.
 
 ## What This Repo Does

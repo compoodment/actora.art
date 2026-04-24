@@ -1,5 +1,7 @@
 # Privacy
 
+Role: public privacy stance; cover visitor-facing data use here and keep implementation or moderation procedure private.
+
 actora.art collects the minimum data needed to keep the site usable.
 
 ## What we use

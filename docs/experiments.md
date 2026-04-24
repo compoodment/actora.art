@@ -1,5 +1,7 @@
 # Experiments
 
+Role: public lab guide; describe visitor-facing experiments here and keep product identity in `identity.md`.
+
 The lab is where actora.art can be unfinished in public.
 
 ## Chat
