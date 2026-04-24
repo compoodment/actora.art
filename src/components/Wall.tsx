@@ -51,7 +51,7 @@ export default function Wall() {
     if (typeof window === 'undefined') return false;
     return !localStorage.getItem('wall-info-seen');
   });
-  const gridRef = useRef<HTMLPreElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const pendingRef = useRef<{ x: number; y: number; char?: string; color?: string }[]>([]);
 
@@ -230,7 +230,7 @@ export default function Wall() {
       </div>
       {errorMsg && <div class="wall-error">{errorMsg}</div>}
       <div class="wall-grid-wrapper">
-        <pre
+        <div
           ref={gridRef}
           class="wall-grid"
           onMouseDown={handleDown}
@@ -299,9 +299,9 @@ export default function Wall() {
                   {isHover ? selectedChar : '·'}
                 </span>
               );
-            }).concat([<span key={`nl-${y}`} class="wall-nl">{'\n'}</span>])
+            })
           )}
-        </pre>
+        </div>
       </div>
       <div class="wall-palette">
         <div class="wall-toolbar">

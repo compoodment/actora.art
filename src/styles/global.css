@@ -432,18 +432,23 @@ a:hover {
 }
 
 .wall-grid {
+  display: grid;
+  grid-template-columns: repeat(80, 1ch);
   font-family: var(--font-mono);
   font-size: clamp(0.55rem, 1.2vw, 0.85rem);
   line-height: 1.4;
-  letter-spacing: 0.05em;
   cursor: crosshair;
   touch-action: none;
   user-select: none;
-  white-space: pre;
-  margin: 0;
+  margin: 0 auto;
 }
 
 .wall-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1ch;
+  height: 1.4em;
   transition: color 0.1s ease;
 }
 
@@ -472,11 +477,6 @@ a:hover {
 
 .wall-hover {
   cursor: crosshair;
-}
-
-.wall-nl {
-  font-size: 0;
-  line-height: 0;
 }
 
 .wall-palette {
