@@ -726,11 +726,7 @@ body.immersive-page-particles .particle-hint {
   }
 
   .site-footer-version {
-    font-size: 0.7rem;
-    max-width: 9.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    display: none;
   }
 
   .account-card {
