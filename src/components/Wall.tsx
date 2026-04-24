@@ -334,7 +334,7 @@ export default function Wall() {
         <div class="wall-info-overlay" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>
           <div class="wall-info-popup" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="wall-info-title">
             <div class="wall-info-title" id="wall-info-title">the wall</div>
-            <p>public grid. draw with characters, leave marks, overwrite empty space.</p>
+            <p>a shared wall to draw on with ASCII, leave behind kind remarks, or write over existing stuff :P</p>
             <p><strong>budget:</strong> 100 chars per day. resets at midnight UTC.</p>
             <p><strong>erase:</strong> you can erase your own cells. each erase gives 1 char back, up to 200 refunds per day.</p>
             <p><strong>decay:</strong> marks fade after 1 day and disappear after 3.</p>
