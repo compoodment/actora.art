@@ -55,13 +55,54 @@ export default function Wall() {
   const dragging = useRef(false);
   const pendingRef = useRef<{ x: number; y: number; char?: string; color?: string }[]>([]);
 
-  const fetchWall = async () => {
-    try {
-      const { response, data } = await fetchWallState();
-      if (response.ok) {
-        setGrid((data as WallStateResponse).grid);
+  const wsRef = useRef<WebSocket | null>(null);
+  const isVisible = useRef(typeof document !== 'undefined' ? !document.hidden : true);
+
+  const connectWs = () => {
+    if (wsRef.current) return;
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const host = process.env.NODE_ENV === 'development' ? 'localhost:4322' : window.location.host;
+    const wsUrl = `${protocol}//${host}/ws/wall`;
+    
+    const ws = new WebSocket(wsUrl);
+    wsRef.current = ws;
+
+    ws.onmessage = (event) => {
+      try {
+        const payload = JSON.parse(event.data);
+        if (payload.type === 'wall-snapshot') {
+          setGrid(payload.grid);
+        } else if (payload.type === 'wall-delta') {
+          setGrid(prev => {
+            if (prev.length === 0) return prev; // Not initialized yet
+            const next = prev.map(r => [...r]);
+            for (const c of payload.cells) {
+              if (c.y >= 0 && c.y < ROWS && c.x >= 0 && c.x < COLS) {
+                if (c.char === null) {
+                  next[c.y][c.x] = null;
+                } else {
+                  next[c.y][c.x] = { char: c.char, color: c.color, placedAt: c.placedAt, isMine: c.isMine };
+                }
+              }
+            }
+            return next;
+          });
+        } else if (payload.type === 'wall-refetch') {
+          // Admin action triggered a full wipe or janitor
+          ws.close();
+        }
+      } catch (err) {
+        console.error('Failed to parse WS message:', err);
       }
-    } catch {}
+    };
+
+    ws.onclose = () => {
+      wsRef.current = null;
+      // Reconnect after 2 seconds if still visible
+      if (isVisible.current) {
+        setTimeout(connectWs, 2000);
+      }
+    };
   };
 
   const loadBudget = async () => {
@@ -74,10 +115,32 @@ export default function Wall() {
   };
 
   useEffect(() => {
-    fetchWall();
     loadBudget();
-    const interval = setInterval(() => { fetchWall(); loadBudget(); }, POLL_MS);
-    return () => clearInterval(interval);
+    connectWs();
+
+    if (typeof document === 'undefined') return;
+
+    const onVisibilityChange = () => {
+      isVisible.current = !document.hidden;
+      if (document.hidden) {
+        if (wsRef.current) {
+          wsRef.current.close();
+          wsRef.current = null;
+        }
+      } else {
+        loadBudget();
+        connectWs();
+      }
+    };
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      if (wsRef.current) {
+        wsRef.current.close();
+        wsRef.current = null;
+      }
+    };
   }, []);
 
   const commitCells = async (cells: { x: number; y: number; char?: string; color?: string }[]) => {
@@ -100,7 +163,7 @@ export default function Wall() {
         setErrorMsg(errorCode === 'refund_limit_reached' ? 'no refunds left' : 'no chars left — come back tomorrow');
         setTimeout(() => setErrorMsg(''), 3000);
       }
-      fetchWall();
+      // fetchWall is no longer needed here; the WS delta broadcast handles updates for everyone (including us)
     } catch {}
   };
 
