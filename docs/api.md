@@ -152,6 +152,39 @@ Possible non-200 error:
 { error: 'forbidden', message: 'access denied' }
 ```
 
+### `GET /api/wall/events`
+
+Streams confirmed wall mutations using Server-Sent Events. Clients should load `GET /api/wall` for initial state, then listen for live updates here.
+
+Events:
+
+```ts
+type WallPatchEvent = {
+  cells: Array<{
+    x: number;
+    y: number;
+    cell: WallCell | null;
+  }>;
+  cols: number;
+  rows: number;
+  filled: number;
+  total: number;
+};
+
+type WallRefetchEvent = {
+  reason: 'cleanup' | 'admin_clear_owner' | 'admin_clear_all' | 'owner_claim' | string;
+};
+```
+
+Current event names:
+
+```txt
+patch
+refetch
+```
+
+The stream also sends keepalive comments. If the stream errors or disconnects, clients should reconnect and may temporarily refresh `GET /api/wall`.
+
 ### `GET /api/wall/budget`
 
 Returns the current visitor's wall budget state.

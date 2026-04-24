@@ -8,6 +8,13 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.31 — 2026-04-24
+
+- Wall: replaced always-on 5s wall polling with Server-Sent Events live updates, keeping a slower recovery refresh for stream errors
+- Wall: pending drag paints/erases now stay local until their write settles, so live refreshes no longer resurrect cells mid-drag
+- Docs: documented the wall live-update event stream
+- Terminal: actoraOS bumped to `v0.1.31` in the boot text and footer version
+
 ## 0.1.30 — 2026-04-24
 
 - UI: moved the footer `terminal` link away from the identity cluster so username/account state reads separately from navigation
