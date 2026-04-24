@@ -8,6 +8,12 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.29 — 2026-04-24
+
+- UI: added the missing shared `--color-border` token so list and info-card borders render consistently across public pages
+- Versioning: package metadata now tracks the public site release version alongside the actoraOS version constant
+- Terminal: actoraOS bumped to `v0.1.29` in the boot text and `clear` reset
+
 ## 0.1.28 — 2026-04-24
 
 - Wall: `/lab/wall` now uses CSS grid cells instead of preformatted newline layout, fixing row skewing on real devices
