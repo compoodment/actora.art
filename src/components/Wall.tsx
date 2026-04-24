@@ -5,6 +5,7 @@ import {
   fetchWallState,
   paintWallCells,
   type WallBudgetResponse,
+  type WallCell,
   type WallStateResponse,
 } from '../lib/api';
 
@@ -22,6 +23,14 @@ interface Budget {
   nextResetAt: number;
 }
 
+interface WallPatchEvent {
+  cells: {
+    x: number;
+    y: number;
+    cell: WallCell | null;
+  }[];
+}
+
 const PALETTE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?.,:;-+=/\\|_@#*█▓░▒─│╔╗╚╝═║';
 const COLORS: Record<string, string> = {
   red: '#ff6b6b',
@@ -35,7 +44,7 @@ const COLORS: Record<string, string> = {
 
 const COLS = 80;
 const ROWS = 24;
-const POLL_MS = 5000;
+const WALL_RECOVERY_MS = 15000;
 const FADE_MS = 1 * 24 * 60 * 60 * 1000;
 const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
 
@@ -54,12 +63,54 @@ export default function Wall() {
   const gridRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const pendingRef = useRef<{ x: number; y: number; char?: string; color?: string }[]>([]);
+  const pendingKeysRef = useRef<Map<string, number>>(new Map());
+  const recoveryIntervalRef = useRef<number | null>(null);
+
+  const getCellKey = (x: number, y: number) => `${x}:${y}`;
+  const hasPendingKey = (x: number, y: number) => pendingKeysRef.current.has(getCellKey(x, y));
+  const retainPendingKey = (x: number, y: number) => {
+    const key = getCellKey(x, y);
+    pendingKeysRef.current.set(key, (pendingKeysRef.current.get(key) || 0) + 1);
+  };
+  const releasePendingKey = (key: string) => {
+    const count = pendingKeysRef.current.get(key) || 0;
+    if (count <= 1) {
+      pendingKeysRef.current.delete(key);
+    } else {
+      pendingKeysRef.current.set(key, count - 1);
+    }
+  };
+
+  const applyServerGrid = (serverGrid: (Cell | null)[][]) => {
+    setGrid(prev => {
+      if (pendingKeysRef.current.size === 0 || prev.length === 0) return serverGrid;
+      return serverGrid.map((row, y) => row.map((cell, x) => {
+        return hasPendingKey(x, y) ? prev[y]?.[x] ?? cell : cell;
+      }));
+    });
+  };
+
+  const applyWallPatch = (patch: WallPatchEvent) => {
+    if (!Array.isArray(patch.cells) || patch.cells.length === 0) return;
+    setGrid(prev => {
+      if (prev.length === 0) return prev;
+      const next = prev.map(row => [...row]);
+      for (const { x, y, cell } of patch.cells) {
+        if (typeof x !== 'number' || typeof y !== 'number') continue;
+        if (x < 0 || x >= COLS || y < 0 || y >= ROWS) continue;
+        if (hasPendingKey(x, y)) continue;
+        if (!next[y]) continue;
+        next[y][x] = cell;
+      }
+      return next;
+    });
+  };
 
   const fetchWall = async () => {
     try {
       const { response, data } = await fetchWallState();
       if (response.ok) {
-        setGrid((data as WallStateResponse).grid);
+        applyServerGrid((data as WallStateResponse).grid);
       }
     } catch {}
   };
@@ -74,15 +125,63 @@ export default function Wall() {
   };
 
   useEffect(() => {
-    fetchWall();
-    loadBudget();
-    const interval = setInterval(() => { fetchWall(); loadBudget(); }, POLL_MS);
-    return () => clearInterval(interval);
+    const startRecovery = () => {
+      if (recoveryIntervalRef.current !== null) return;
+      recoveryIntervalRef.current = window.setInterval(() => {
+        fetchWall();
+        loadBudget();
+      }, WALL_RECOVERY_MS);
+    };
+
+    const stopRecovery = () => {
+      if (recoveryIntervalRef.current === null) return;
+      window.clearInterval(recoveryIntervalRef.current);
+      recoveryIntervalRef.current = null;
+    };
+
+    let disposed = false;
+    let events: EventSource | null = null;
+
+    const openEvents = () => {
+      if (disposed) return;
+      events = new EventSource('/api/wall/events');
+
+      events.addEventListener('open', () => {
+        stopRecovery();
+      });
+      events.addEventListener('patch', (event) => {
+        try {
+          applyWallPatch(JSON.parse(event.data) as WallPatchEvent);
+        } catch {}
+      });
+      events.addEventListener('refetch', () => {
+        fetchWall();
+        loadBudget();
+      });
+      events.addEventListener('error', () => {
+        startRecovery();
+      });
+    };
+
+    const initWall = async () => {
+      await fetchWall();
+      await loadBudget();
+      openEvents();
+    };
+    initWall();
+
+    return () => {
+      disposed = true;
+      events?.close();
+      stopRecovery();
+    };
   }, []);
 
   const commitCells = async (cells: { x: number; y: number; char?: string; color?: string }[]) => {
     if (cells.length === 0) return;
     const isErase = mode === 'erase';
+    const committedKeys = cells.map(({ x, y }) => getCellKey(x, y));
+    let shouldLoadBudget = false;
     try {
       const { response, data } = isErase
         ? await eraseWallCells(cells.map(({ x, y }) => ({ x, y })))
@@ -100,8 +199,15 @@ export default function Wall() {
         setErrorMsg(errorCode === 'refund_limit_reached' ? 'no refunds left' : 'no chars left — come back tomorrow');
         setTimeout(() => setErrorMsg(''), 3000);
       }
+    } catch {
+      shouldLoadBudget = true;
+    } finally {
+      for (const key of committedKeys) {
+        releasePendingKey(key);
+      }
       fetchWall();
-    } catch {}
+      if (shouldLoadBudget) loadBudget();
+    }
   };
 
   const getCellFromEvent = (e: MouseEvent | Touch): { x: number; y: number } | null => {
@@ -119,6 +225,7 @@ export default function Wall() {
     if (mode === 'paint') {
       if (!budget || budget.remaining - pendingRef.current.length <= 0) return;
       pendingRef.current.push({ x, y, char: selectedChar, color: selectedColor });
+      retainPendingKey(x, y);
       setGrid(prev => {
         const next = prev.map(r => [...r]);
         if (!next[y]) return prev;
@@ -131,6 +238,7 @@ export default function Wall() {
       if (!cell || !cell.isMine) return; // only erase own cells
       if (!budget || budget.refundsLeft - pendingRef.current.length <= 0) return;
       pendingRef.current.push({ x, y });
+      retainPendingKey(x, y);
       setGrid(prev => {
         const next = prev.map(r => [...r]);
         next[y] = [...next[y]];
