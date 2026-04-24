@@ -103,7 +103,7 @@ export default function TerminalHero() {
     }
 
     const command = raw.split(/\s+/)[0].toLowerCase();
-    
+
     // Check if this is an auth command that TerminalHero needs to handle
     if (command === 'login') {
       appendEntries([{ type: 'input', text: `~ ❯ ${raw}` }]);
@@ -149,8 +149,9 @@ export default function TerminalHero() {
           appendEntries(result.entries);
           return;
         }
+        result.entries.push({ type: 'system', text: 'navigating to account...' });
       }
-      
+
       appendEntries(result.entries);
       window.setTimeout(() => {
         window.location.href = result.navigate!;
