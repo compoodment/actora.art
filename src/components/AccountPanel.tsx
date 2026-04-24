@@ -11,6 +11,7 @@ import {
   finishPasskeyRegister,
   getApiErrorMessage,
   postAuthLogout,
+  renamePasskey,
   startPasskeyRegister,
   type PasskeySummary,
 } from '../lib/api';
@@ -39,27 +40,38 @@ function formatDate(value: number | null): string {
 function formatDeviceType(value: string | null): string {
   if (value === 'singleDevice') return 'device-bound';
   if (value === 'multiDevice') return 'synced';
-  return 'unknown type';
+  return 'unknown';
 }
 
 function formatBackupState(value: boolean | null): string {
-  if (value === true) return 'backed up';
-  if (value === false) return 'not backed up';
-  return 'backup unknown';
+  if (value === true) return 'synced';
+  if (value === false) return 'device-bound';
+  return 'unknown';
 }
 
 function formatPasskeyKind(passkey: PasskeySummary): string {
   const transports = new Set(passkey.transports);
   if (transports.has('internal')) return 'device passkey';
-  if (transports.has('hybrid')) return 'phone / nearby device';
+  if (transports.has('hybrid')) return 'phone passkey';
   if (transports.has('usb') || transports.has('nfc') || transports.has('ble')) return 'security key';
   const deviceType = formatDeviceType(passkey.deviceType);
-  return deviceType === 'unknown type' ? 'passkey' : `${deviceType} passkey`;
+  return deviceType === 'unknown' ? `passkey ...${passkey.displayId}` : `${deviceType} passkey`;
 }
 
 function formatTransports(values: string[]): string {
-  if (!values.length) return 'transport unknown';
-  return values.join(', ');
+  if (!values.length) return 'unknown';
+  const labels: Record<string, string> = {
+    internal: 'this device',
+    usb: 'USB',
+    nfc: 'NFC',
+    ble: 'Bluetooth',
+    hybrid: 'phone / nearby device',
+  };
+  return values.map((value) => labels[value] ?? value).join(', ');
+}
+
+function getPasskeyLabel(passkey: PasskeySummary): string {
+  return passkey.nickname || formatPasskeyKind(passkey);
 }
 
 export default function AccountPanel() {
@@ -70,6 +82,10 @@ export default function AccountPanel() {
   const [passkeys, setPasskeys] = useState<PasskeySummary[]>([]);
   const [passkeysLoading, setPasskeysLoading] = useState(false);
   const [passkeysError, setPasskeysError] = useState<string | null>(null);
+  const [editingPasskeyId, setEditingPasskeyId] = useState<string | null>(null);
+  const [nicknameDraft, setNicknameDraft] = useState('');
+  const [renamingPasskeyId, setRenamingPasskeyId] = useState<string | null>(null);
+  const [renameError, setRenameError] = useState<string | null>(null);
 
   const loadPasskeys = async () => {
     setPasskeysLoading(true);
@@ -175,6 +191,44 @@ export default function AccountPanel() {
     }
   };
 
+  const startRename = (passkey: PasskeySummary) => {
+    setEditingPasskeyId(passkey.id);
+    setNicknameDraft(passkey.nickname);
+    setRenameError(null);
+  };
+
+  const cancelRename = () => {
+    setEditingPasskeyId(null);
+    setNicknameDraft('');
+    setRenameError(null);
+  };
+
+  const saveRename = async (passkey: PasskeySummary) => {
+    if (renamingPasskeyId) return;
+    setRenamingPasskeyId(passkey.id);
+    setRenameError(null);
+
+    try {
+      const { response, data } = await renamePasskey(passkey.id, nicknameDraft);
+      if (!response.ok) {
+        throw new Error(getApiErrorMessage(data, 'Unable to rename passkey.'));
+      }
+
+      const updated = data && 'passkey' in data ? data.passkey : null;
+      if (updated) {
+        setPasskeys((current) => current.map((item) => (item.id === updated.id ? updated : item)));
+      } else {
+        await loadPasskeys();
+      }
+      setEditingPasskeyId(null);
+      setNicknameDraft('');
+    } catch (error) {
+      setRenameError(error instanceof Error ? error.message : 'Unable to rename passkey.');
+    } finally {
+      setRenamingPasskeyId(null);
+    }
+  };
+
   if (session === null) {
     return (
       <section class="account-card" aria-busy="true">
@@ -227,12 +281,43 @@ export default function AccountPanel() {
             {passkeys.map((passkey) => (
               <li class="account-passkey" key={passkey.id}>
                 <div class="account-passkey-head">
-                  <span>passkey ...{passkey.id}</span>
-                  <span>{formatPasskeyKind(passkey)}</span>
+                  <div class="account-passkey-title">
+                    {editingPasskeyId === passkey.id ? (
+                      <input
+                        type="text"
+                        value={nicknameDraft}
+                        maxLength={40}
+                        placeholder={formatPasskeyKind(passkey)}
+                        onInput={(event) => setNicknameDraft(event.currentTarget.value)}
+                        disabled={renamingPasskeyId === passkey.id}
+                        aria-label="passkey nickname"
+                      />
+                    ) : (
+                      <span>{getPasskeyLabel(passkey)}</span>
+                    )}
+                    <small>...{passkey.displayId}</small>
+                  </div>
+                  {passkey.nickname ? <span>{formatPasskeyKind(passkey)}</span> : null}
+                </div>
+                <div class="account-passkey-actions">
+                  {editingPasskeyId === passkey.id ? (
+                    <>
+                      <button type="button" onClick={() => void saveRename(passkey)} disabled={renamingPasskeyId === passkey.id}>
+                        {renamingPasskeyId === passkey.id ? 'saving...' : 'save'}
+                      </button>
+                      <button type="button" onClick={cancelRename} disabled={renamingPasskeyId === passkey.id}>
+                        cancel
+                      </button>
+                    </>
+                  ) : (
+                    <button type="button" onClick={() => startRename(passkey)}>
+                      rename
+                    </button>
+                  )}
                 </div>
                 <dl class="account-passkey-details">
                   <div>
-                    <dt>created</dt>
+                    <dt>added</dt>
                     <dd>{formatDate(passkey.createdAt)}</dd>
                   </div>
                   <div>
@@ -244,10 +329,13 @@ export default function AccountPanel() {
                     <dd>{formatBackupState(passkey.backedUp)}</dd>
                   </div>
                   <div>
-                    <dt>transports</dt>
+                    <dt>connection</dt>
                     <dd>{formatTransports(passkey.transports)}</dd>
                   </div>
                 </dl>
+                {renameError && editingPasskeyId === passkey.id ? (
+                  <p class="account-meta account-error">{renameError}</p>
+                ) : null}
               </li>
             ))}
           </ul>

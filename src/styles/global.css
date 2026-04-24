@@ -307,9 +307,66 @@ a:hover {
   font-size: 0.82rem;
 }
 
+.account-passkey-title {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.account-passkey-title span {
+  overflow-wrap: anywhere;
+}
+
+.account-passkey-title small {
+  color: var(--color-text-dim);
+  font-size: 0.68rem;
+}
+
+.account-passkey-title input {
+  width: min(18rem, 100%);
+  border: 1px solid #333;
+  background: #101010;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  padding: 0.4rem 0.5rem;
+}
+
+.account-passkey-title input:focus {
+  border-color: #666;
+  outline: none;
+}
+
 .account-passkey-head span:last-child {
   color: var(--color-text-dim);
   font-size: 0.72rem;
+}
+
+.account-passkey-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.6rem;
+}
+
+.account-passkey-actions button {
+  border: 1px solid #303030;
+  background: transparent;
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+}
+
+.account-passkey-actions button:hover:not(:disabled) {
+  border-color: #555;
+  color: var(--color-text);
+}
+
+.account-passkey-actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .account-passkey-details {

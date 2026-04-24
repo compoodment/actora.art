@@ -39,6 +39,8 @@ export interface AuthLogoutResponse {
 
 export interface PasskeySummary {
   id: string;
+  displayId: string;
+  nickname: string;
   createdAt: number | null;
   lastUsedAt: number | null;
   transports: string[];
@@ -48,6 +50,11 @@ export interface PasskeySummary {
 
 export interface PasskeysResponse {
   passkeys: PasskeySummary[];
+}
+
+export interface PasskeyRenameResponse {
+  ok: true;
+  passkey: PasskeySummary;
 }
 
 export interface ChatMessage {
@@ -164,6 +171,10 @@ export function postAuthLogout(): Promise<JsonApiResponse<AuthLogoutResponse>> {
 
 export function fetchPasskeys(): Promise<JsonApiResponse<PasskeysResponse>> {
   return requestJson<PasskeysResponse>('/api/auth/passkeys', { cache: 'no-store' });
+}
+
+export function renamePasskey(id: string, nickname: string): Promise<JsonApiResponse<PasskeyRenameResponse>> {
+  return postJson<PasskeyRenameResponse>('/api/auth/passkeys/rename', { id, nickname });
 }
 
 export function startPasskeyRegister(

@@ -307,7 +307,9 @@ Success response:
 
 ```ts
 type PasskeySummary = {
-  id: string; // stable non-secret display id derived from the credential id suffix
+  id: string; // stable non-secret handle for account-scoped updates
+  displayId: string; // safe suffix for display only
+  nickname: string; // optional user label; empty when unset
   createdAt: number | null;
   lastUsedAt: number | null;
   transports: string[];
@@ -322,10 +324,38 @@ type GetPasskeysResponse = {
 
 The response intentionally does not expose the full credential id, public key, signature counter, or user id.
 
+### `POST /api/auth/passkeys/rename`
+
+Renames one of the signed-in user's own passkeys. Signed-out callers receive `401`.
+
+Request:
+
+```ts
+type RenamePasskeyRequest = {
+  id: string; // handle from GET /api/auth/passkeys
+  nickname: string; // whitespace-normalized, max 40 chars; empty clears it
+};
+```
+
+Success response:
+
+```ts
+type RenamePasskeyResponse = {
+  ok: true;
+  passkey: PasskeySummary;
+};
+```
+
+The handle resolves only against the signed-in user's credentials and does not expose the full credential id.
+
 Current error responses:
 
 ```ts
 { error: 'unauthorized' }
+{ error: 'bad_request' }
+{ error: 'body_too_large' }
+{ error: 'invalid_passkey_nickname' }
+{ error: 'passkey_not_found' }
 ```
 
 ### `POST /api/auth/passkey/register/start`

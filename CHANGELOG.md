@@ -8,6 +8,13 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.37 — 2026-04-25
+
+- Auth: `/account` passkeys can now be nicknamed, with nicknames shown as the primary label when set
+- Auth: passkey metadata now uses friendlier account labels for sync, connection, added, and last-used details instead of foregrounding raw WebAuthn field names
+- API: added signed-in-only `POST /api/auth/passkeys/rename` using account-scoped passkey handles
+- Terminal: actoraOS bumped to `v0.1.37` in the boot text and desktop/footer version
+
 ## 0.1.36 — 2026-04-25
 
 - Auth: `/account` now lists the signed-in user's linked passkeys with safe metadata for type, sync/backup state, transports, creation time, and last-used time
