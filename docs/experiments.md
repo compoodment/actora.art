@@ -2,7 +2,7 @@
 
 Role: public lab guide; describe visitor-facing experiments here and keep product identity in `identity.md`.
 
-The lab is where actora.art can be unfinished in public.
+The lab is for public experiments, ideas still taking shape, and weird things worth trying. It is not a dumping ground for unfinished junk.
 
 ## Chat
 
@@ -14,8 +14,4 @@ The wall is a collaborative text-based graffiti space. Visitors get a daily char
 
 ## Particles
 
-A visual experiment in the lab. It belongs there instead of the main terminal because it is an experiment, not a core destination.
-
-## Lab philosophy
-
-The lab is for public experiments, ideas still taking shape, and weird things worth trying. It is not a dumping ground for unfinished junk.
+An interactive visual flow experiment.
