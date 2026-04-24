@@ -76,8 +76,26 @@ export default function Wall() {
   useEffect(() => {
     fetchWall();
     loadBudget();
-    const interval = setInterval(() => { fetchWall(); loadBudget(); }, POLL_MS);
-    return () => clearInterval(interval);
+
+    let interval: ReturnType<typeof setInterval> | null = setInterval(() => { fetchWall(); loadBudget(); }, POLL_MS);
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        if (interval) { clearInterval(interval); interval = null; }
+      } else {
+        if (!interval) {
+          fetchWall();
+          loadBudget();
+          interval = setInterval(() => { fetchWall(); loadBudget(); }, POLL_MS);
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => {
+      if (interval) clearInterval(interval);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    };
   }, []);
 
   const commitCells = async (cells: { x: number; y: number; char?: string; color?: string }[]) => {
