@@ -37,6 +37,19 @@ export interface AuthLogoutResponse {
   signedIn: false;
 }
 
+export interface PasskeySummary {
+  id: string;
+  createdAt: number | null;
+  lastUsedAt: number | null;
+  transports: string[];
+  deviceType: string | null;
+  backedUp: boolean | null;
+}
+
+export interface PasskeysResponse {
+  passkeys: PasskeySummary[];
+}
+
 export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
@@ -147,6 +160,10 @@ export function fetchAuthMe(): Promise<JsonApiResponse<AuthMeResponse>> {
 
 export function postAuthLogout(): Promise<JsonApiResponse<AuthLogoutResponse>> {
   return postJson<AuthLogoutResponse>('/api/auth/logout');
+}
+
+export function fetchPasskeys(): Promise<JsonApiResponse<PasskeysResponse>> {
+  return requestJson<PasskeysResponse>('/api/auth/passkeys', { cache: 'no-store' });
 }
 
 export function startPasskeyRegister(

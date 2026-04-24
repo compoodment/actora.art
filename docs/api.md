@@ -299,6 +299,35 @@ type PostAuthLogoutResponse = {
 };
 ```
 
+### `GET /api/auth/passkeys`
+
+Returns passkey metadata for the signed-in user's own account. Signed-out callers receive `401`.
+
+Success response:
+
+```ts
+type PasskeySummary = {
+  id: string; // stable non-secret display id derived from the credential id suffix
+  createdAt: number | null;
+  lastUsedAt: number | null;
+  transports: string[];
+  deviceType: 'singleDevice' | 'multiDevice' | string | null;
+  backedUp: boolean | null;
+};
+
+type GetPasskeysResponse = {
+  passkeys: PasskeySummary[];
+};
+```
+
+The response intentionally does not expose the full credential id, public key, signature counter, or user id.
+
+Current error responses:
+
+```ts
+{ error: 'unauthorized' }
+```
+
 ### `POST /api/auth/passkey/register/start`
 
 Starts passkey registration.

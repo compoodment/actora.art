@@ -7,10 +7,12 @@ import {
   type AuthSession,
 } from '../lib/auth';
 import {
+  fetchPasskeys,
   finishPasskeyRegister,
   getApiErrorMessage,
   postAuthLogout,
   startPasskeyRegister,
+  type PasskeySummary,
 } from '../lib/api';
 import {
   cleanPasskeyError,
@@ -26,11 +28,69 @@ const GUEST_SESSION: AuthSession = {
   displayName: null,
 };
 
+function formatDate(value: number | null): string {
+  if (!value) return 'unknown';
+  return new Intl.DateTimeFormat(undefined, {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(new Date(value));
+}
+
+function formatDeviceType(value: string | null): string {
+  if (value === 'singleDevice') return 'device-bound';
+  if (value === 'multiDevice') return 'synced';
+  return 'unknown type';
+}
+
+function formatBackupState(value: boolean | null): string {
+  if (value === true) return 'backed up';
+  if (value === false) return 'not backed up';
+  return 'backup unknown';
+}
+
+function formatPasskeyKind(passkey: PasskeySummary): string {
+  const transports = new Set(passkey.transports);
+  if (transports.has('internal')) return 'device passkey';
+  if (transports.has('hybrid')) return 'phone / nearby device';
+  if (transports.has('usb') || transports.has('nfc') || transports.has('ble')) return 'security key';
+  const deviceType = formatDeviceType(passkey.deviceType);
+  return deviceType === 'unknown type' ? 'passkey' : `${deviceType} passkey`;
+}
+
+function formatTransports(values: string[]): string {
+  if (!values.length) return 'transport unknown';
+  return values.join(', ');
+}
+
 export default function AccountPanel() {
   const [session, setSession] = useState<AuthSession | null>(null);
   const [loggingOut, setLoggingOut] = useState(false);
   const [addingPasskey, setAddingPasskey] = useState(false);
   const [passkeyStatus, setPasskeyStatus] = useState('ready to add another passkey.');
+  const [passkeys, setPasskeys] = useState<PasskeySummary[]>([]);
+  const [passkeysLoading, setPasskeysLoading] = useState(false);
+  const [passkeysError, setPasskeysError] = useState<string | null>(null);
+
+  const loadPasskeys = async () => {
+    setPasskeysLoading(true);
+    setPasskeysError(null);
+
+    try {
+      const { response, data } = await fetchPasskeys();
+      if (!response.ok) {
+        throw new Error(getApiErrorMessage(data, 'Unable to load passkeys.'));
+      }
+
+      const nextPasskeys = data && 'passkeys' in data && Array.isArray(data.passkeys)
+        ? data.passkeys
+        : [];
+      setPasskeys(nextPasskeys);
+    } catch (error) {
+      setPasskeysError(error instanceof Error ? error.message : 'Unable to load passkeys.');
+    } finally {
+      setPasskeysLoading(false);
+    }
+  };
 
   useEffect(() => {
     let active = true;
@@ -57,6 +117,11 @@ export default function AccountPanel() {
       window.removeEventListener(AUTH_CHANGE_EVENT, handleAuthChange as EventListener);
     };
   }, []);
+
+  useEffect(() => {
+    if (!session?.signedIn) return;
+    void loadPasskeys();
+  }, [session?.signedIn]);
 
   const logout = async () => {
     if (loggingOut) return;
@@ -97,6 +162,7 @@ export default function AccountPanel() {
       setSession(nextSession);
       emitAuthChange(nextSession);
       setPasskeyStatus('passkey added.');
+      await loadPasskeys();
     } catch (error) {
       setPasskeyStatus(cleanPasskeyError(
         error,
@@ -143,6 +209,50 @@ export default function AccountPanel() {
           <dd>{session.displayName ?? 'not set'}</dd>
         </div>
       </dl>
+
+      <section class="account-passkeys" aria-busy={passkeysLoading}>
+        <div class="account-section-heading">
+          <h2>linked passkeys</h2>
+          <p>{passkeys.length} total</p>
+        </div>
+
+        {passkeysLoading && passkeys.length === 0 ? (
+          <p class="account-meta">loading passkeys...</p>
+        ) : passkeysError ? (
+          <p class="account-meta account-error">{passkeysError}</p>
+        ) : passkeys.length === 0 ? (
+          <p class="account-meta">no passkeys linked yet.</p>
+        ) : (
+          <ul class="account-passkey-list">
+            {passkeys.map((passkey) => (
+              <li class="account-passkey" key={passkey.id}>
+                <div class="account-passkey-head">
+                  <span>passkey ...{passkey.id}</span>
+                  <span>{formatPasskeyKind(passkey)}</span>
+                </div>
+                <dl class="account-passkey-details">
+                  <div>
+                    <dt>created</dt>
+                    <dd>{formatDate(passkey.createdAt)}</dd>
+                  </div>
+                  <div>
+                    <dt>last used</dt>
+                    <dd>{formatDate(passkey.lastUsedAt)}</dd>
+                  </div>
+                  <div>
+                    <dt>sync</dt>
+                    <dd>{formatBackupState(passkey.backedUp)}</dd>
+                  </div>
+                  <div>
+                    <dt>transports</dt>
+                    <dd>{formatTransports(passkey.transports)}</dd>
+                  </div>
+                </dl>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
 
       <div class="account-actions">
         <button type="button" class="account-button" onClick={addPasskey} disabled={addingPasskey || loggingOut}>

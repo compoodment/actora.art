@@ -8,6 +8,12 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.36 — 2026-04-25
+
+- Auth: `/account` now lists the signed-in user's linked passkeys with safe metadata for type, sync/backup state, transports, creation time, and last-used time
+- API: added signed-in-only `GET /api/auth/passkeys` for account-scoped passkey metadata
+- Terminal: actoraOS bumped to `v0.1.36` in the boot text and desktop/footer version
+
 ## 0.1.35 — 2026-04-25
 
 - UI: hid the centered `actoraOS` footer version label on mobile so `terminal` and identity no longer collide
