@@ -4,13 +4,13 @@ Role: public static-frontend deploy guide; keep private infrastructure, health c
 
 This repo builds the static frontend for actora.art.
 
-## What This Repo Does
+## What this repo does
 
 - `npm run build` produces the static site in `dist/`.
 - Pages and client-side UI ship from this repo.
 - Interactive features do not live in this repo.
 
-## Interactive Features Need A Separate Backend
+## Interactive features need a separate backend
 
 Chat, wall, and auth flows require a separate Node backend that exposes the public routes documented in [api.md](api.md).
 
@@ -22,7 +22,7 @@ The frontend expects that backend to:
 
 If that backend is absent, the site can still render, but chat, wall, account, and passkey features will not work.
 
-## Basic Frontend Deploy Flow
+## Basic frontend deploy flow
 
 ```bash
 npm install
