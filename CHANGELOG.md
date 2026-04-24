@@ -8,6 +8,11 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.32 — 2026-04-24
+
+- Wall: moved the palette/tools into a left rail on desktop-width screens while keeping the bottom palette on narrow/mobile screens
+- Terminal: actoraOS bumped to `v0.1.32` in the boot text and footer version
+
 ## 0.1.31 — 2026-04-24
 
 - Wall: replaced always-on 5s wall polling with Server-Sent Events live updates, keeping a slower recovery refresh for stream errors

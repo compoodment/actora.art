@@ -645,6 +645,39 @@ body.immersive-page-particles .particle-hint {
   bottom: calc(1.5rem + var(--site-footer-overlay-offset));
 }
 
+@media (min-width: 900px) {
+  body.immersive-page-wall .wall-container {
+    flex-direction: row;
+  }
+
+  body.immersive-page-wall .wall-grid-wrapper {
+    order: 2;
+    min-width: 0;
+    padding: 2.5rem 1rem 0.75rem;
+  }
+
+  body.immersive-page-wall .wall-grid {
+    font-size: clamp(0.5rem, 0.8vw, 0.85rem);
+  }
+
+  body.immersive-page-wall .wall-palette {
+    order: 1;
+    width: 14rem;
+    max-width: 26vw;
+    min-height: 0;
+    padding: 2.75rem 0.75rem 0.75rem;
+    border-top: 0;
+    border-right: 1px solid #1a1a1a;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body.immersive-page-wall .wall-toolbar,
+  body.immersive-page-wall .wall-colors {
+    flex-wrap: wrap;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
