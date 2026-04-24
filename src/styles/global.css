@@ -174,17 +174,6 @@ a:hover {
   min-width: 0;
 }
 
-.site-footer-version {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--color-text-dim);
-  font: inherit;
-  letter-spacing: 0.04em;
-  pointer-events: none;
-  opacity: 0.85;
-}
-
 .site-footer-link,
 .site-footer-status {
   color: var(--color-text-dim);
@@ -210,6 +199,10 @@ a:hover {
   opacity: 0.35;
   cursor: default;
   pointer-events: none;
+}
+
+.site-footer-version-link {
+  text-transform: none;
 }
 
 .account-card {
@@ -865,10 +858,6 @@ body.immersive-page-particles .particle-hint {
   .site-footer {
     padding-left: 0.85rem;
     padding-right: 0.85rem;
-  }
-
-  .site-footer-version {
-    display: none;
   }
 
   .account-card {

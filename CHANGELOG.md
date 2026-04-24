@@ -8,6 +8,12 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.40 — 2026-04-25
+
+- UI: changed the non-home footer homepage shortcut from `terminal` to the current `actoraOS v...` version label
+- Wall: corrected the `?` help budget copy to say the character budget resets every 24 hours
+- Terminal: actoraOS bumped to `v0.1.40` in the boot text and footer home shortcut
+
 ## 0.1.39 — 2026-04-25
 
 - Wall: updated the `?` help intro copy to describe the shared ASCII wall and invite kind remarks or overwriting existing stuff

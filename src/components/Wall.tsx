@@ -335,7 +335,7 @@ export default function Wall() {
           <div class="wall-info-popup" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="wall-info-title">
             <div class="wall-info-title" id="wall-info-title">the wall</div>
             <p>a shared wall to draw on with ASCII, leave behind kind remarks, or write over existing stuff :P</p>
-            <p><strong>budget:</strong> 100 chars per day. resets at midnight UTC.</p>
+            <p><strong>budget:</strong> 100 chars per day. resets every 24 hours.</p>
             <p><strong>erase:</strong> you can erase your own cells. each erase gives 1 char back, up to 200 refunds per day.</p>
             <p><strong>decay:</strong> marks fade after 1 day and disappear after 3.</p>
             <p><strong>controls:</strong> click or drag to place. type to change character. use paint/erase to switch modes.</p>
