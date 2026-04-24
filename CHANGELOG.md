@@ -8,6 +8,12 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.30 — 2026-04-24
+
+- UI: moved the footer `terminal` link away from the identity cluster so username/account state reads separately from navigation
+- Wall: rewrote the `?` help copy to be shorter and less generic
+- Terminal: actoraOS bumped to `v0.1.30` in the boot text and footer version
+
 ## 0.1.29 — 2026-04-24
 
 - UI: added the missing shared `--color-border` token so list and info-card borders render consistently across public pages

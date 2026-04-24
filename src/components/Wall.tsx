@@ -215,11 +215,11 @@ export default function Wall() {
         <div class="wall-info-overlay" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>
           <div class="wall-info-popup" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="wall-info-title">
             <div class="wall-info-title" id="wall-info-title">the wall</div>
-            <p>a collaborative graffiti wall. place characters to draw, write, leave marks.</p>
-            <p><strong>budget:</strong> you get 100 characters per day. resets at midnight UTC.</p>
-            <p><strong>erasing:</strong> switch to erase mode to remove cells you placed. each erase refunds 1 character to your budget. you can get up to 200 refunds per day (2x your budget) — so you can rearrange, but not infinitely.</p>
-            <p><strong>decay:</strong> cells fade after 1 day and disappear after 3 days.</p>
-            <p><strong>controls:</strong> click/drag to place. type any key to pick a character. click paint or erase to switch modes.</p>
+            <p>public grid. draw with characters, leave marks, overwrite empty space.</p>
+            <p><strong>budget:</strong> 100 chars per day. resets at midnight UTC.</p>
+            <p><strong>erase:</strong> you can erase your own cells. each erase gives 1 char back, up to 200 refunds per day.</p>
+            <p><strong>decay:</strong> marks fade after 1 day and disappear after 3.</p>
+            <p><strong>controls:</strong> click or drag to place. type to change character. use paint/erase to switch modes.</p>
             <button type="button" class="wall-info-close" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>got it</button>
           </div>
         </div>
