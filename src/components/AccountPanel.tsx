@@ -13,8 +13,10 @@ import {
   startPasskeyRegister,
 } from '../lib/api';
 import {
-  getErrorMessage,
+  cleanPasskeyError,
+  isPublicKeyCredential,
   normalizeCreationOptions,
+  requireWebAuthnSupport,
   serializeCredential,
 } from '../lib/webauthn';
 
@@ -23,28 +25,6 @@ const GUEST_SESSION: AuthSession = {
   username: null,
   displayName: null,
 };
-
-function requireWebAuthnSupport(): void {
-  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
-    throw new Error('Passkeys are only available in the browser.');
-  }
-  if (!window.PublicKeyCredential || !navigator.credentials) {
-    throw new Error('This browser does not support passkeys.');
-  }
-}
-
-function cleanPasskeyError(error: unknown): string {
-  const msg = getErrorMessage(error, 'try again.');
-  const lowerMsg = msg.toLowerCase();
-  if (
-    lowerMsg.includes('cancelled') ||
-    lowerMsg.includes('timed out or was not allowed') ||
-    lowerMsg.includes('privacy-considerations-client')
-  ) {
-    return 'passkey setup cancelled.';
-  }
-  return `passkey setup failed. ${lowerMsg}`;
-}
 
 export default function AccountPanel() {
   const [session, setSession] = useState<AuthSession | null>(null);
@@ -104,7 +84,7 @@ export default function AccountPanel() {
       }
 
       const credential = await navigator.credentials.create(normalizeCreationOptions(data));
-      if (!(credential instanceof PublicKeyCredential)) {
+      if (!isPublicKeyCredential(credential)) {
         throw new Error('Passkey setup was cancelled.');
       }
 
@@ -118,7 +98,12 @@ export default function AccountPanel() {
       emitAuthChange(nextSession);
       setPasskeyStatus('passkey added.');
     } catch (error) {
-      setPasskeyStatus(cleanPasskeyError(error));
+      setPasskeyStatus(cleanPasskeyError(
+        error,
+        'passkey setup cancelled.',
+        'passkey setup failed.',
+        { includeExplicitCancellation: true },
+      ));
     } finally {
       setAddingPasskey(false);
     }

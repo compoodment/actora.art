@@ -16,10 +16,13 @@ import {
   type JsonApiResponse,
 } from '../lib/api';
 import {
+  cleanPasskeyError,
   type CredentialPayload,
   getErrorMessage,
+  isPublicKeyCredential,
   normalizeCreationOptions,
   normalizeRequestOptions,
+  requireWebAuthnSupport,
   serializeCredential,
 } from '../lib/webauthn';
 import { ACTORA_OS_VERSION } from '../lib/version';
@@ -74,15 +77,6 @@ const EASTER_EGGS: Record<string, string> = {
   '42': 'the answer to life, the universe, and everything',
   bitch: 'no u',
 };
-
-function requireWebAuthnSupport(): void {
-  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
-    throw new Error('Passkeys are only available in the browser.');
-  }
-  if (!window.PublicKeyCredential || !navigator.credentials) {
-    throw new Error('This browser does not support passkeys.');
-  }
-}
 
 export default function TerminalHero() {
   const [entries, setEntries] = useState<Entry[]>(() => {
@@ -177,7 +171,7 @@ export default function TerminalHero() {
       }
 
       const credential = await navigator.credentials.get(normalizeRequestOptions(data));
-      if (!(credential instanceof PublicKeyCredential)) {
+      if (!isPublicKeyCredential(credential)) {
         throw new Error('Passkey login was cancelled.');
       }
 
@@ -194,16 +188,10 @@ export default function TerminalHero() {
         },
       ]);
     } catch (error) {
-      const msg = getErrorMessage(error, 'try again.');
-      // Simplify the gnarly W3C browser error when a user cancels the passkey prompt
-      const cleanMsg = msg.includes('timed out or was not allowed') || msg.includes('privacy-considerations-client')
-        ? 'cancelled.'
-        : `login failed. ${msg.toLowerCase()}`;
-        
       appendEntries([
         {
           type: 'output',
-          text: cleanMsg,
+          text: cleanPasskeyError(error, 'cancelled.', 'login failed.'),
         },
       ]);
     } finally {
@@ -229,7 +217,7 @@ export default function TerminalHero() {
       }
 
       const credential = await navigator.credentials.create(normalizeCreationOptions(data));
-      if (!(credential instanceof PublicKeyCredential)) {
+      if (!isPublicKeyCredential(credential)) {
         throw new Error('Passkey registration was cancelled.');
       }
 
@@ -246,15 +234,10 @@ export default function TerminalHero() {
         },
       ]);
     } catch (error) {
-      const msg = getErrorMessage(error, 'try again.');
-      const cleanMsg = msg.includes('timed out or was not allowed') || msg.includes('privacy-considerations-client')
-        ? 'cancelled.'
-        : `register failed. ${msg.toLowerCase()}`;
-
       appendEntries([
         {
           type: 'output',
-          text: cleanMsg,
+          text: cleanPasskeyError(error, 'cancelled.', 'register failed.'),
         },
       ]);
     } finally {

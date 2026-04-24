@@ -13,6 +13,49 @@ interface StartResponseShape {
   options?: PublicKeyCredentialCreationOptionsJSON | PublicKeyCredentialRequestOptionsJSON;
 }
 
+export function requireWebAuthnSupport(): void {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    throw new Error('Passkeys are only available in the browser.');
+  }
+  if (!window.PublicKeyCredential || !navigator.credentials) {
+    throw new Error('This browser does not support passkeys.');
+  }
+}
+
+export function isPublicKeyCredential(value: unknown): value is PublicKeyCredential {
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.PublicKeyCredential !== 'undefined' &&
+    value instanceof window.PublicKeyCredential
+  );
+}
+
+interface PasskeyErrorOptions {
+  includeExplicitCancellation?: boolean;
+}
+
+export function isWebAuthnCancellationError(
+  error: unknown,
+  options: PasskeyErrorOptions = {},
+): boolean {
+  const message = getErrorMessage(error, '').toLowerCase();
+  return (
+    (options.includeExplicitCancellation === true && message.includes('cancelled')) ||
+    message.includes('timed out or was not allowed') ||
+    message.includes('privacy-considerations-client')
+  );
+}
+
+export function cleanPasskeyError(
+  error: unknown,
+  cancelledMessage: string,
+  failedPrefix: string,
+  options?: PasskeyErrorOptions,
+): string {
+  if (isWebAuthnCancellationError(error, options)) return cancelledMessage;
+  return `${failedPrefix} ${getErrorMessage(error, 'try again.').toLowerCase()}`;
+}
+
 function base64UrlToBytes(value: string): Uint8Array {
   const normalized = value.replace(/-/g, '+').replace(/_/g, '/');
   const padding = normalized.length % 4 === 0 ? '' : '='.repeat(4 - (normalized.length % 4));
