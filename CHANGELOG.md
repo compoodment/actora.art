@@ -4,6 +4,11 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.27 — 2026-04-24
+
+- Auth: passkey login and registration now work on both `actora.art` and `www.actora.art`, fixing iPhone passkey failures caused by the host mismatch between the two live public origins
+- Terminal: actoraOS bumped to `v0.1.27` in the boot text and `clear` reset
+
 ## 0.1.26 — 2026-04-23
 
 - Auth: account page `add another passkey` now starts the signed-in passkey registration flow instead of showing a placeholder alert
