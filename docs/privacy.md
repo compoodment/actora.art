@@ -2,13 +2,14 @@
 
 Role: public privacy stance; cover visitor-facing data use here and keep implementation or moderation procedure private.
 
-actora.art collects the minimum data needed to keep the site usable.
+actora.art collects only what it needs to work.
 
 ## What we use
 
 The site uses limited operational data for:
 - rate limiting (preventing spam and abuse)
 - operating interactive features (like the wall and chat)
+- managing account sessions and identity
 - restoring feature state in the same browser/device when needed
 - basic site security
 

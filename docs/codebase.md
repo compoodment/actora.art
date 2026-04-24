@@ -2,7 +2,7 @@
 
 Role: frontend codebase guide; API shape belongs in `api.md`, deploy shape in `deploy.md`, and private backend details stay private.
 
-A public-safe overview of how the codebase is organized.
+How the frontend is organized.
 
 ## Top-level structure
 
@@ -33,6 +33,7 @@ src/
 | Route | File |
 |-------|------|
 | Homepage | `src/pages/index.astro` |
+| Account | `src/pages/account.astro` |
 | Chat | `src/pages/chat/index.astro` |
 | Lab index | `src/pages/lab/index.astro` |
 | Wall | `src/pages/lab/wall.astro` |
