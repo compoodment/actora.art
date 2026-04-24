@@ -8,6 +8,11 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.28 — 2026-04-24
+
+- Wall: `/lab/wall` now uses CSS grid cells instead of preformatted newline layout, fixing row skewing on real devices
+- Terminal: actoraOS bumped to `v0.1.28` in the boot text and `clear` reset
+
 ## 0.1.27 — 2026-04-24
 
 - Auth: passkey login and registration now work on both `actora.art` and `www.actora.art`, fixing iPhone passkey failures caused by the host mismatch between the two live public origins
