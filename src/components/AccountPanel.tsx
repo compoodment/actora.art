@@ -37,37 +37,12 @@ function formatDate(value: number | null): string {
   }).format(new Date(value));
 }
 
-function formatDeviceType(value: string | null): string {
-  if (value === 'singleDevice') return 'device-bound';
-  if (value === 'multiDevice') return 'synced';
-  return 'unknown';
-}
-
-function formatBackupState(value: boolean | null): string {
-  if (value === true) return 'synced';
-  if (value === false) return 'device-bound';
-  return 'unknown';
-}
-
 function formatPasskeyKind(passkey: PasskeySummary): string {
   const transports = new Set(passkey.transports);
-  if (transports.has('internal')) return 'device passkey';
-  if (transports.has('hybrid')) return 'phone passkey';
+  if (transports.has('internal')) return 'built-in passkey';
+  if (transports.has('hybrid')) return 'phone or tablet passkey';
   if (transports.has('usb') || transports.has('nfc') || transports.has('ble')) return 'security key';
-  const deviceType = formatDeviceType(passkey.deviceType);
-  return deviceType === 'unknown' ? `passkey ...${passkey.displayId}` : `${deviceType} passkey`;
-}
-
-function formatTransports(values: string[]): string {
-  if (!values.length) return 'unknown';
-  const labels: Record<string, string> = {
-    internal: 'this device',
-    usb: 'USB',
-    nfc: 'NFC',
-    ble: 'Bluetooth',
-    hybrid: 'phone / nearby device',
-  };
-  return values.map((value) => labels[value] ?? value).join(', ');
+  return `passkey ...${passkey.displayId}`;
 }
 
 function getPasskeyLabel(passkey: PasskeySummary): string {
@@ -78,7 +53,7 @@ export default function AccountPanel() {
   const [session, setSession] = useState<AuthSession | null>(null);
   const [loggingOut, setLoggingOut] = useState(false);
   const [addingPasskey, setAddingPasskey] = useState(false);
-  const [passkeyStatus, setPasskeyStatus] = useState('ready to add another passkey.');
+  const [passkeyStatus, setPasskeyStatus] = useState('');
   const [passkeys, setPasskeys] = useState<PasskeySummary[]>([]);
   const [passkeysLoading, setPasskeysLoading] = useState(false);
   const [passkeysError, setPasskeysError] = useState<string | null>(null);
@@ -154,7 +129,7 @@ export default function AccountPanel() {
   const addPasskey = async () => {
     if (addingPasskey || loggingOut) return;
     setAddingPasskey(true);
-    setPasskeyStatus('waiting for security key / biometric approval...');
+    setPasskeyStatus('waiting for passkey approval...');
 
     try {
       requireWebAuthnSupport();
@@ -324,14 +299,6 @@ export default function AccountPanel() {
                     <dt>last used</dt>
                     <dd>{formatDate(passkey.lastUsedAt)}</dd>
                   </div>
-                  <div>
-                    <dt>sync</dt>
-                    <dd>{formatBackupState(passkey.backedUp)}</dd>
-                  </div>
-                  <div>
-                    <dt>connection</dt>
-                    <dd>{formatTransports(passkey.transports)}</dd>
-                  </div>
                 </dl>
                 {renameError && editingPasskeyId === passkey.id ? (
                   <p class="account-meta account-error">{renameError}</p>
@@ -351,7 +318,7 @@ export default function AccountPanel() {
         </button>
       </div>
 
-      <p class="account-meta" aria-live="polite">{passkeyStatus}</p>
+      {passkeyStatus ? <p class="account-meta" aria-live="polite">{passkeyStatus}</p> : null}
     </section>
   );
 }

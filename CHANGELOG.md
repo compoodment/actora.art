@@ -8,6 +8,12 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.38 — 2026-04-25
+
+- Auth: simplified `/account` passkey cards to show only nickname/kind, safe suffix, added time, and last-used time
+- Auth: removed the idle `ready to add another passkey` status line and stopped showing confusing sync/connection metadata in the main account UI
+- Terminal: actoraOS bumped to `v0.1.38` in the boot text and desktop/footer version
+
 ## 0.1.37 — 2026-04-25
 
 - Auth: `/account` passkeys can now be nicknamed, with nicknames shown as the primary label when set
