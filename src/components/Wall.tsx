@@ -56,7 +56,7 @@ const LEGACY_COLORS: Record<string, string> = {
   white: '#e0e0e0',
   brightWhite: '#ffffff',
 };
-const BASIC_WALL_COLORS = ['#ffffff', '#000000', '#ff3b30', '#ff9500', '#ffcc00', '#34c759', '#007aff', '#5856d6'];
+const BASIC_WALL_COLORS = ['#ffffff', '#ff3b30', '#ff9500', '#ffcc00', '#34c759', '#00c7be', '#007aff', '#5856d6'];
 const PICKER_MAX_COLOR_VALUE = 0.93;
 
 const COLS = 80;

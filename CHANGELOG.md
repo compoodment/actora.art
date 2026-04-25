@@ -8,6 +8,11 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.52 — 2026-04-25
+
+- Wall: removed black from the basic color row while keeping eight quick-pick colors; dark colors remain available through custom color
+- Terminal: actoraOS bumped to `v0.1.52` in the boot text and footer home shortcut
+
 ## 0.1.51 — 2026-04-25
 
 - Wall: corrected toolbar order so `paint`, `erase`, and `click a mode` stay together on the first row, with the selected-character box on the row underneath
