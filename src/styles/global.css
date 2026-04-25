@@ -201,8 +201,13 @@ a:hover {
   pointer-events: none;
 }
 
-.site-footer-version-link {
+.site-footer-version {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   text-transform: none;
+  opacity: 0.85;
+  pointer-events: auto;
 }
 
 .account-card {

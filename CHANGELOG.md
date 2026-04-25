@@ -8,6 +8,11 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.41 — 2026-04-25
+
+- UI: moved the `actoraOS v...` homepage shortcut back to the center of non-home footers so the footer stays balanced while the version text remains the home link
+- Terminal: actoraOS bumped to `v0.1.41` in the boot text and footer home shortcut
+
 ## 0.1.40 — 2026-04-25
 
 - UI: changed the non-home footer homepage shortcut from `terminal` to the current `actoraOS v...` version label

@@ -84,9 +84,9 @@ export default function FooterBar() {
           >
             forward
           </button>
-          {!isHomepage ? <a class="site-footer-link site-footer-version-link" href="/">actoraOS v{ACTORA_OS_VERSION}</a> : null}
         </>
       </div>
+      {!isHomepage ? <a class="site-footer-link site-footer-version" href="/">actoraOS v{ACTORA_OS_VERSION}</a> : null}
       <div class="site-footer-group">
         {session.signedIn && session.username ? (
           <a class="site-footer-link" href="/account">@{session.username}</a>
