@@ -12,7 +12,7 @@ The chat page lets visitors talk to the site's chat bot. It's a conversational i
 
 The wall is a collaborative text-based graffiti space. Visitors get a daily character budget, can paint on a shared grid, and can erase their own marks. Content fades over time and eventually expires. The wall is meant to feel alive and temporary — not frozen.
 
-The clickable character palette is symbol-only; letters and numbers are still available from the keyboard, with letters normalized uppercase. Paint colors use a constrained bright palette/custom picker, and signed-in visitors can save account color slots.
+The clickable character palette is symbol-only; letters and numbers are still available from the keyboard, with letters normalized uppercase. Paint accepts any valid 6-digit `#rrggbb` color, and signed-in visitors can save four account color slots.
 
 ## Particles
 

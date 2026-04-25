@@ -48,7 +48,7 @@ type WallCell = {
 
 type WallColor =
   | 'red' | 'green' | 'yellow' | 'cyan' | 'magenta' | 'white' | 'brightWhite'
-  | `#${string}`; // validated 6-digit #rrggbb accepted only when bright enough for the black wall background
+  | `#${string}`; // validated 6-digit #rrggbb; legacy named tokens are accepted for old wall cells
 
 type WallBudget = {
   remaining: number;
@@ -212,7 +212,7 @@ type WallToolPreference = {
   char: string; // exactly one character; alphabetic chars are uppercase
   color: WallColor;
   mode: 'paint' | 'erase';
-  savedColors?: Array<WallColor | null>; // signed-in preferences only; exactly 7 slots when returned
+  savedColors?: Array<WallColor | null>; // signed-in preferences only; exactly 4 slots when returned
 };
 
 type GetWallToolPreferenceResponse = {
@@ -223,7 +223,7 @@ type GetWallToolPreferenceResponse = {
 
 ### `POST /api/wall/tool-preference`
 
-Saves the signed-in user's wall tool preference, including seven optional saved light-color slots. Signed-out callers receive `401`.
+Saves the signed-in user's wall tool preference, including four optional saved color slots. Signed-out callers receive `401`.
 
 Request:
 

@@ -663,8 +663,22 @@ a:hover {
   font-size: 0.6rem;
 }
 
-.wall-selected-char {
+.wall-selected-wrap {
   margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  flex: 0 0 auto;
+}
+
+.wall-type-hint {
+  color: #444;
+  font-size: 0.58rem;
+  white-space: nowrap;
+}
+
+.wall-selected-char {
   min-width: 1.6rem;
   height: 1.6rem;
   display: inline-flex;
@@ -780,7 +794,7 @@ a:hover {
 }
 
 .wall-color-field::before {
-  background: linear-gradient(90deg, #fff, transparent);
+  background: linear-gradient(90deg, #ededed, transparent);
 }
 
 .wall-color-field::after {

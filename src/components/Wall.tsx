@@ -35,13 +35,13 @@ interface WallPatchEvent {
 }
 
 const PALETTE_CHARS = [
-  '!', '?', '.', ',', ':', ';', '-', '+', '=', '/', '\\', '|', '_', '@', '#', '*', '$', '%', '&', '~', '^',
+  '!', '?', '.', ',', ':', ';', '-', '+', '=', '/', '\\', '|', '_', '@', '#', '*', '$', '€', '%', '&', '~', '^',
   '"', '\'', '`', '(', ')', '[', ']', '{', '}', '<', '>',
   '█', '▓', '▒', '░', '■', '□', '▲', '△', '▼', '▽', '◆', '◇', '●', '○', '★', '☆',
   '─', '│', '┌', '┐', '└', '┘', '├', '┤', '┬', '┴', '┼', '═', '║', '╔', '╗', '╚', '╝', '╠', '╣', '╦', '╩', '╬',
 ];
 const WALL_TOOL_STORAGE_KEY = 'wall-tool-preference';
-const SAVED_COLOR_SLOT_COUNT = 7;
+const SAVED_COLOR_SLOT_COUNT = 4;
 const DEFAULT_WALL_TOOL: WallToolPreference = {
   char: '█',
   color: '#ffffff',
@@ -56,8 +56,8 @@ const LEGACY_COLORS: Record<string, string> = {
   white: '#e0e0e0',
   brightWhite: '#ffffff',
 };
-const BASIC_WALL_COLORS = ['#ffffff', '#ff2d55', '#ff3b30', '#ff9500', '#ffcc00', '#34c759', '#00c7be', '#32ade6', '#007aff', '#5856d6', '#af52de'];
-const MIN_WALL_COLOR_VALUE = 0.62;
+const BASIC_WALL_COLORS = ['#ffffff', '#000000', '#ff3b30', '#ff9500', '#ffcc00', '#34c759', '#007aff', '#5856d6'];
+const PICKER_MAX_COLOR_VALUE = 0.93;
 
 const COLS = 80;
 const ROWS = 24;
@@ -83,7 +83,7 @@ const rgbToHex = (r: number, g: number, b: number) => `#${[r, g, b].map(value =>
 const hsvToHex = (hue: number, saturation: number, value: number) => {
   const h = ((hue % 360) + 360) % 360;
   const s = clamp(saturation, 0, 1);
-  const v = clamp(value, MIN_WALL_COLOR_VALUE, 1);
+  const v = clamp(value, 0, PICKER_MAX_COLOR_VALUE);
   const c = v * s;
   const x = c * (1 - Math.abs((h / 60) % 2 - 1));
   const m = v - c;
@@ -112,13 +112,12 @@ const hexToHsv = (hex: string) => {
   return {
     hue: (hue + 360) % 360,
     saturation: max === 0 ? 0 : delta / max,
-    value: Math.max(max, MIN_WALL_COLOR_VALUE),
+    value: max,
   };
 };
 const isAllowedWallColor = (color: string) => {
   if (Object.prototype.hasOwnProperty.call(LEGACY_COLORS, color)) return true;
-  if (!isHexWallColor(color)) return false;
-  return hexToHsv(color).value >= MIN_WALL_COLOR_VALUE;
+  return isHexWallColor(color);
 };
 const normalizeSavedColors = (value: unknown, includeFallback = false): (string | null)[] => {
   const fallback = Array(SAVED_COLOR_SLOT_COUNT).fill(null) as (string | null)[];
@@ -603,7 +602,7 @@ export default function Wall() {
     const normalizedPicker = {
       hue: clamp(nextPicker.hue, 0, 360),
       saturation: clamp(nextPicker.saturation, 0, 1),
-      value: clamp(nextPicker.value, MIN_WALL_COLOR_VALUE, 1),
+      value: clamp(nextPicker.value, 0, PICKER_MAX_COLOR_VALUE),
     };
     setPicker(normalizedPicker);
     setSelectedColor(hsvToHex(normalizedPicker.hue, normalizedPicker.saturation, normalizedPicker.value));
@@ -627,7 +626,6 @@ export default function Wall() {
     if (preferenceOwner !== 'account') return;
     setSavedColors(prev => prev.map((color, idx) => idx === index ? selectedColor : color));
   };
-  const selectedPaletteChar = PALETTE_CHARS.includes(selectedChar);
 
   if (grid.length === 0) {
     return <div class="wall-loading">loading wall…</div>;
@@ -749,7 +747,10 @@ export default function Wall() {
             aria-pressed={mode === 'erase'}
           >erase</button>
           <span class="wall-mode-hint">click a mode</span>
-          {!selectedPaletteChar && <span class="wall-selected-char" aria-label={`Selected typed character ${selectedChar}`}>{selectedChar}</span>}
+          <span class="wall-selected-wrap">
+            <span class="wall-type-hint">type letters/numbers</span>
+            <span class="wall-selected-char" aria-label={`Selected character ${selectedChar}`}>{selectedChar}</span>
+          </span>
         </div>
         <div class="wall-tools" style={`min-height: 3.5rem;`}>
           {mode === 'paint' ? (

@@ -8,6 +8,13 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.48 — 2026-04-25
+
+- Wall: all valid 6-digit hex paint colors are now accepted for wall cells and saved tool preferences, while legacy named color tokens still render for old cells
+- Wall: added `€` to the symbol palette, kept the selected character display always visible with a concise typing hint, and reduced signed-in saved color slots to four
+- Wall: changed the basic color row to exactly eight colors including dark options, and made picker-generated colors stop just below pure white
+- Terminal: actoraOS bumped to `v0.1.48` in the boot text and footer home shortcut
+
 ## 0.1.47 — 2026-04-25
 
 - Wall: failed or over-budget optimistic paints and erases now roll back locally instead of lingering until a successful wall refetch
