@@ -205,7 +205,7 @@ Possible non-200 error:
 
 ### `GET /api/wall/tool-preference`
 
-Returns the signed-in user's saved wall tool preference. Signed-out callers receive `signedIn: false` and no saved preference or saved color slots; guest preference storage is browser-local.
+Returns the signed-in user's saved wall tool preference. Signed-out callers receive `signedIn: false` and no saved preference or saved color slots; guest preference storage is browser-local. When a signed-in preference is returned, `savedColors` is exactly four nullable slots.
 
 ```ts
 type WallToolPreference = {
@@ -223,7 +223,7 @@ type GetWallToolPreferenceResponse = {
 
 ### `POST /api/wall/tool-preference`
 
-Saves the signed-in user's wall tool preference, including four optional saved color slots. Signed-out callers receive `401`.
+Saves the signed-in user's wall tool preference. Saved colors are normalized to exactly four nullable signed-in slots. Signed-out callers receive `401`.
 
 Request:
 
