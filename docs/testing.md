@@ -16,21 +16,27 @@ Use this when you only have one browser/device.
 2. Paint one character.
    - Expected: the cell changes immediately.
    - Expected: character budget decreases by 1.
-3. Switch to erase and erase that same character.
+3. Use undo, then redo.
+   - Expected: undo removes the painted character and restores the character budget.
+   - Expected: redo restores the character and spends the character budget again.
+4. Switch to erase and erase that same character.
    - Expected: the cell clears or reveals the previous layer.
    - Expected: refund count decreases by 1.
    - Expected: character budget gets 1 back.
-4. Type a letter.
+5. Use undo, then redo on the erase.
+   - Expected: undo restores the erased character if the budget state allows it.
+   - Expected: redo erases it again and restores the post-erase budget/refund state.
+6. Type a letter.
    - Expected: selected character becomes uppercase.
-5. Type a number.
+7. Type a number.
    - Expected: selected character becomes that number.
-6. Click several symbol palette buttons.
+8. Click several symbol palette buttons.
    - Expected: letters/numbers are not clickable palette options.
    - Expected: symbols, including `€`, work.
-7. Pick a quick color, then a custom dark color.
+9. Pick a quick color, then a custom dark color.
    - Expected: both valid colors paint successfully.
    - Expected: black/dark colors work through custom hex, but black is not in the quick row.
-8. Reload the page.
+10. Reload the page.
    - Expected: confirmed cells stay; failed/pending-looking cells do not linger incorrectly.
 
 ### Two-browser pass
@@ -50,7 +56,13 @@ Use two browser profiles, two devices, or a normal window plus private/incognito
    - Expected: A does see the revealed cell as erasable.
 5. In browser A, erase the revealed cell.
    - Expected: the cell clears or reveals the next older layer.
-6. Draw at the same time in both browsers for 10-20 seconds.
+6. In browser A, drag a short multi-cell stroke, then click undo once.
+   - Expected: the recent stroke/action is reversed without removing browser B's intervening cells.
+   - Expected: browser B sees the undo live.
+7. Click redo in browser A.
+   - Expected: the stroke/action returns where no intervening changes blocked it.
+   - Expected: browser B sees the redo live.
+8. Draw at the same time in both browsers for 10-20 seconds.
    - Watch for missing cells, delayed bursts, weird flicker, stuck pending cells, or budget/refund HUD drift.
 
 ### Signed-in vs guest pass
@@ -96,9 +108,11 @@ Use this when paint/erase accounting changed.
 3. Erase those 3 visible owned cells.
    - Expected: chars increase by 3, up to the daily max.
    - Expected: refunds decrease by 3.
-4. Try to erase someone else's visible cell.
+4. Undo and redo the paint/erase sequence.
+   - Expected: chars and refunds return to the matching action state each time.
+5. Try to erase someone else's visible cell.
    - Expected: nothing happens; refunds should not decrease.
-5. Try to paint after budget is exhausted if practical.
+6. Try to paint after budget is exhausted if practical.
    - Expected: the UI shows the no-chars message and rolls back failed optimistic cells.
 
 ### Realtime/reconnect pass

@@ -699,6 +699,27 @@ a:hover {
   border-color: var(--color-text);
 }
 
+.wall-history-btn {
+  background: #111;
+  color: #555;
+  border: 1px solid #2a2a2a;
+  padding: 0.2rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.wall-history-btn:hover:not(:disabled) {
+  color: var(--color-text);
+  border-color: #555;
+}
+
+.wall-history-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 .wall-mode-hint {
   color: #444;
   font-size: 0.6rem;

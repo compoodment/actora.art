@@ -9,6 +9,12 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.59 — 2026-04-26
+
+- Wall: added undo and redo controls for recent confirmed paint/erase actions and drag strokes, with ownership-safe stack checks and authoritative budget/refund updates from the backend
+- API: added `POST /api/wall/undo`, `POST /api/wall/redo`, and Wall `canUndo`/`canRedo` budget fields
+- Terminal: actoraOS bumped to `v0.1.59` in the boot text and footer home shortcut
+
 ## 0.1.58 — 2026-04-26
 
 - UI: moved the projects list status letter-spacing into shared standard-page list CSS without changing the rendered spacing

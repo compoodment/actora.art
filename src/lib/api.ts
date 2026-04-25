@@ -94,6 +94,8 @@ export interface WallBudgetResponse {
   refundsLeft: number;
   maxDaily: number;
   nextResetAt: number;
+  canUndo: boolean;
+  canRedo: boolean;
 }
 
 export interface WallToolPreference {
@@ -114,6 +116,10 @@ export interface WallPaintResponse extends WallBudgetResponse {
 
 export interface WallEraseResponse extends WallBudgetResponse {
   erased: number;
+}
+
+export interface WallHistoryResponse extends WallBudgetResponse {
+  changed: number;
 }
 
 export interface PasskeyRegisterStartRequest {
@@ -235,10 +241,18 @@ export function saveWallToolPreference(preference: WallToolPreference): Promise<
   return postJson<WallToolPreferenceResponse>('/api/wall/tool-preference', preference);
 }
 
-export function paintWallCells(cells: WallPaintCellInput[]): Promise<JsonApiResponse<WallPaintResponse>> {
-  return postJson<WallPaintResponse>('/api/wall/paint', { cells });
+export function paintWallCells(cells: WallPaintCellInput[], actionId?: string): Promise<JsonApiResponse<WallPaintResponse>> {
+  return postJson<WallPaintResponse>('/api/wall/paint', { cells, actionId });
 }
 
-export function eraseWallCells(cells: WallEraseCellInput[]): Promise<JsonApiResponse<WallEraseResponse>> {
-  return postJson<WallEraseResponse>('/api/wall/erase', { cells });
+export function eraseWallCells(cells: WallEraseCellInput[], actionId?: string): Promise<JsonApiResponse<WallEraseResponse>> {
+  return postJson<WallEraseResponse>('/api/wall/erase', { cells, actionId });
+}
+
+export function undoWallAction(): Promise<JsonApiResponse<WallHistoryResponse>> {
+  return postJson<WallHistoryResponse>('/api/wall/undo');
+}
+
+export function redoWallAction(): Promise<JsonApiResponse<WallHistoryResponse>> {
+  return postJson<WallHistoryResponse>('/api/wall/redo');
 }

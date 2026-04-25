@@ -5,9 +5,12 @@ import {
   fetchWallState,
   fetchWallToolPreference,
   paintWallCells,
+  redoWallAction,
   saveWallToolPreference,
+  undoWallAction,
   type WallBudgetResponse,
   type WallCell,
+  type WallHistoryResponse,
   type WallStateResponse,
   type WallToolPreference,
 } from '../lib/api';
@@ -24,6 +27,8 @@ interface Budget {
   refundsLeft: number;
   maxDaily: number;
   nextResetAt: number;
+  canUndo: boolean;
+  canRedo: boolean;
 }
 
 interface WallPatchEvent {
@@ -65,7 +70,7 @@ const WALL_RECOVERY_MS = 15000;
 const FADE_MS = 1 * 24 * 60 * 60 * 1000;
 const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
 
-type PendingWallCell = { x: number; y: number; char?: string; color?: string; previousCell?: Cell | null };
+type PendingWallCell = { x: number; y: number; char?: string; color?: string; previousCell?: Cell | null; actionId?: string };
 type WallPreferenceOwner = 'unknown' | 'guest' | 'account';
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
@@ -136,6 +141,11 @@ const normalizeWallChar = (value: unknown): string | null => {
   return upper.length === 1 ? upper : value;
 };
 
+const createWallActionId = () => {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+};
+
 const normalizeWallToolPreference = (value: unknown): WallToolPreference | null => {
   if (!value || typeof value !== 'object') return null;
   const preference = value as Partial<WallToolPreference>;
@@ -178,6 +188,7 @@ export default function Wall() {
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [, setPendingDisplayRevision] = useState(0);
+  const [historyBusy, setHistoryBusy] = useState(false);
   const [showInfo, setShowInfo] = useState(() => {
     if (typeof window === 'undefined') return false;
     return !localStorage.getItem('wall-info-seen');
@@ -193,6 +204,7 @@ export default function Wall() {
   const reservedPaintRef = useRef(0);
   const reservedEraseRef = useRef(0);
   const recoveryIntervalRef = useRef<number | null>(null);
+  const dragActionIdRef = useRef<string | null>(null);
 
   const getCellKey = (x: number, y: number) => `${x}:${y}`;
   const refreshPendingDisplay = () => setPendingDisplayRevision(revision => revision + 1);
@@ -209,6 +221,21 @@ export default function Wall() {
     }
     pendingKeysRef.current.set(key, count - 1);
     return false;
+  };
+
+  const applyBudgetState = (payload: Partial<WallBudgetResponse>) => {
+    setBudget(prev => {
+      if (!prev) return null;
+      return {
+        ...prev,
+        maxDaily: payload.maxDaily ?? prev.maxDaily,
+        nextResetAt: payload.nextResetAt ?? prev.nextResetAt,
+        remaining: payload.remaining ?? prev.remaining,
+        refundsLeft: payload.refundsLeft ?? prev.refundsLeft,
+        canUndo: payload.canUndo ?? prev.canUndo,
+        canRedo: payload.canRedo ?? prev.canRedo,
+      };
+    });
   };
 
   const applyServerGrid = (serverGrid: (Cell | null)[][]) => {
@@ -252,7 +279,15 @@ export default function Wall() {
     try {
       const { response, data } = await fetchWallBudget();
       if (response.ok) {
-        setBudget(data as WallBudgetResponse);
+        const payload = data as WallBudgetResponse;
+        setBudget({
+          maxDaily: payload.maxDaily,
+          nextResetAt: payload.nextResetAt,
+          remaining: payload.remaining,
+          refundsLeft: payload.refundsLeft,
+          canUndo: !!payload.canUndo,
+          canRedo: !!payload.canRedo,
+        });
       }
     } catch {}
   };
@@ -323,21 +358,12 @@ export default function Wall() {
     let shouldRestoreOptimisticCells = false;
     try {
       const { response, data } = isErase
-        ? await eraseWallCells(cells.map(({ x, y }) => ({ x, y })))
-        : await paintWallCells(cells.map(({ x, y, char, color }) => ({ x, y, char: normalizeWallChar(char) || '█', color })));
+        ? await eraseWallCells(cells.map(({ x, y }) => ({ x, y })), cells[0]?.actionId)
+        : await paintWallCells(cells.map(({ x, y, char, color }) => ({ x, y, char: normalizeWallChar(char) || '█', color })), cells[0]?.actionId);
 
       if (response.ok) {
         const payload = data as Partial<WallBudgetResponse> & { placed?: number; erased?: number };
-        setBudget(prev => {
-          if (!prev) return null;
-          return {
-            ...prev,
-            maxDaily: payload.maxDaily ?? prev.maxDaily,
-            nextResetAt: payload.nextResetAt ?? prev.nextResetAt,
-            remaining: payload.remaining ?? prev.remaining,
-            refundsLeft: payload.refundsLeft ?? prev.refundsLeft,
-          };
-        });
+        applyBudgetState(payload);
         if (isErase) {
           shouldRefetchWall = true;
         }
@@ -347,16 +373,7 @@ export default function Wall() {
         setTimeout(() => setErrorMsg(''), 3000);
         const payload = data as Partial<WallBudgetResponse> | null;
         if (payload && typeof payload === 'object') {
-          setBudget(prev => {
-            if (!prev) return null;
-            return {
-              ...prev,
-              maxDaily: payload.maxDaily ?? prev.maxDaily,
-              nextResetAt: payload.nextResetAt ?? prev.nextResetAt,
-              remaining: payload.remaining ?? prev.remaining,
-              refundsLeft: payload.refundsLeft ?? prev.refundsLeft,
-            };
-          });
+          applyBudgetState(payload);
         }
         shouldRestoreOptimisticCells = true;
         shouldRefetchWall = true;
@@ -432,6 +449,31 @@ export default function Wall() {
     void commitCells(cells, commitMode);
   };
 
+  const handleHistoryAction = async (direction: 'undo' | 'redo') => {
+    if (historyBusy || pendingKeysRef.current.size > 0) return;
+    const available = direction === 'undo' ? budget?.canUndo : budget?.canRedo;
+    if (!available) return;
+    setHistoryBusy(true);
+    try {
+      const { response, data } = direction === 'undo' ? await undoWallAction() : await redoWallAction();
+      if (response.ok && data && typeof data === 'object') {
+        const payload = data as WallHistoryResponse;
+        applyBudgetState(payload);
+        if (payload.changed > 0) {
+          fetchWall();
+        }
+      } else {
+        fetchWall();
+        loadBudget();
+      }
+    } catch {
+      fetchWall();
+      loadBudget();
+    } finally {
+      setHistoryBusy(false);
+    }
+  };
+
   const getCellFromEvent = (e: MouseEvent | Touch): { x: number; y: number } | null => {
     if (!gridRef.current) return null;
     const rect = gridRef.current.getBoundingClientRect();
@@ -447,7 +489,7 @@ export default function Wall() {
 
     if (mode === 'paint') {
       if (!budget || budget.remaining - getReservedPaintCount() <= 0) return;
-      pendingRef.current.push({ x, y, char: selectedChar, color: selectedColor, previousCell: grid[y]?.[x] ?? null });
+      pendingRef.current.push({ x, y, char: selectedChar, color: selectedColor, previousCell: grid[y]?.[x] ?? null, actionId: dragActionIdRef.current || undefined });
       dragKeysRef.current.add(key);
       refreshPendingDisplay();
       retainPendingKey(x, y);
@@ -462,7 +504,7 @@ export default function Wall() {
       const cell = grid[y]?.[x];
       if (!cell || !cell.isMine) return; // only erase your visible cells
       if (!budget || budget.refundsLeft - getReservedEraseCount() <= 0) return;
-      pendingRef.current.push({ x, y, previousCell: cell });
+      pendingRef.current.push({ x, y, previousCell: cell, actionId: dragActionIdRef.current || undefined });
       dragKeysRef.current.add(key);
       refreshPendingDisplay();
       retainPendingKey(x, y);
@@ -492,6 +534,7 @@ export default function Wall() {
     if (!pos) return;
     e.preventDefault();
     dragging.current = true;
+    dragActionIdRef.current = createWallActionId();
     pendingRef.current = [];
     dragKeysRef.current = new Set();
     refreshPendingDisplay();
@@ -512,6 +555,7 @@ export default function Wall() {
     dragging.current = false;
     flush();
     dragKeysRef.current = new Set();
+    dragActionIdRef.current = null;
   };
 
   const handleLeave = () => {
@@ -520,6 +564,7 @@ export default function Wall() {
       dragging.current = false;
       flush();
       dragKeysRef.current = new Set();
+      dragActionIdRef.current = null;
     }
   };
 
@@ -679,7 +724,7 @@ export default function Wall() {
             <p><strong>budget:</strong> 100 chars per day. resets every 24 hours.</p>
             <p><strong>erase:</strong> you can erase your own visible cells. each erase gives 1 char back, up to 200 refunds per reset.</p>
             <p><strong>decay:</strong> chars fade after 1 day and disappear after 3.</p>
-            <p><strong>controls:</strong> click or drag to place. type to select letters/numbers and characters. use paint/erase to place chars and remove chars.</p>
+            <p><strong>controls:</strong> click or drag to place. type to select letters/numbers and characters. use paint/erase to place chars and remove chars. undo/redo can reverse recent confirmed actions.</p>
             <button type="button" class="wall-info-close" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>got it</button>
           </div>
         </div>
@@ -778,6 +823,22 @@ export default function Wall() {
               onClick={() => setMode('erase')}
               aria-pressed={mode === 'erase'}
             >erase</button>
+            <button
+              type="button"
+              class="wall-history-btn"
+              onClick={() => handleHistoryAction('undo')}
+              disabled={historyBusy || pendingKeysRef.current.size > 0 || !budget?.canUndo}
+              title="undo"
+              aria-label="Undo last wall action"
+            >undo</button>
+            <button
+              type="button"
+              class="wall-history-btn"
+              onClick={() => handleHistoryAction('redo')}
+              disabled={historyBusy || pendingKeysRef.current.size > 0 || !budget?.canRedo}
+              title="redo"
+              aria-label="Redo last undone wall action"
+            >redo</button>
             <span class="wall-mode-hint">click a mode</span>
           </div>
           <span class="wall-selected-wrap">

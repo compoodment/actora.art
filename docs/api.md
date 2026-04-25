@@ -55,6 +55,8 @@ type WallBudget = {
   refundsLeft: number;
   maxDaily: number;
   nextResetAt: number;
+  canUndo: boolean;
+  canRedo: boolean;
 };
 
 type CredentialPayload = {
@@ -193,7 +195,7 @@ The stream also sends keepalive comments. If the stream errors or disconnects, c
 
 ### `GET /api/wall/budget`
 
-Returns the current visitor's wall budget state.
+Returns the current visitor's wall budget state plus whether the current owner has recent undo/redo history available.
 
 ```ts
 type GetWallBudgetResponse = WallBudget;
@@ -256,12 +258,13 @@ Current error responses:
 
 Places characters on the wall. Painting a coordinate pushes a new visible top layer. If the coordinate is already at the server-side stack cap, the oldest hidden layer is dropped. Paint requests validate cells before budget enforcement; daily paint budget is charged only for valid cells that pass bounds, one-character char, uppercase normalization, and color validation, including valid paints over existing cells. Invalid cells are ignored and not charged.
 
-Budget fields returned by success and `budget_exhausted` responses are authoritative for the client HUD.
+Budget and `canUndo`/`canRedo` fields returned by success and `budget_exhausted` responses are authoritative for the client HUD.
 
 Request:
 
 ```ts
 type PaintWallRequest = {
+  actionId?: string; // optional client stroke/action id for grouping recent undo history
   cells: Array<{
     x: number;
     y: number;
@@ -284,7 +287,7 @@ Current error responses:
 ```ts
 { error: 'forbidden', message: 'access denied' }
 { error: 'invalid_cells' }
-{ error: 'budget_exhausted', remaining: number, refundsLeft: number, maxDaily: number, nextResetAt: number }
+{ error: 'budget_exhausted', remaining: number, refundsLeft: number, maxDaily: number, nextResetAt: number, canUndo: boolean, canRedo: boolean }
 { error: 'body_too_large' }
 { error: 'bad_request' }
 ```
@@ -293,12 +296,13 @@ Current error responses:
 
 Erases visible top layers owned by the current visitor. Erase requests dedupe coordinates and count only coordinates whose current visible top layer is owned by the resolved visitor before refund-limit enforcement. Erasing removes only that top layer; an older unexpired layer underneath may become visible. Non-owned, empty, invalid, or duplicate cells are ignored.
 
-Budget fields returned by success and `refund_limit_reached` responses are authoritative for the client HUD.
+Budget and `canUndo`/`canRedo` fields returned by success and `refund_limit_reached` responses are authoritative for the client HUD.
 
 Request:
 
 ```ts
 type EraseWallRequest = {
+  actionId?: string; // optional client stroke/action id for grouping recent undo history
   cells: Array<{
     x: number;
     y: number;
@@ -319,9 +323,33 @@ Current error responses:
 ```ts
 { error: 'forbidden', message: 'access denied' }
 { error: 'invalid_cells' }
-{ error: 'refund_limit_reached', remaining: number, refundsLeft: number, maxDaily: number, nextResetAt: number }
+{ error: 'refund_limit_reached', remaining: number, refundsLeft: number, maxDaily: number, nextResetAt: number, canUndo: boolean, canRedo: boolean }
 { error: 'body_too_large' }
 { error: 'bad_request' }
+```
+
+### `POST /api/wall/undo`
+
+Undoes the current owner's most recent confirmed paint or erase action/stroke when the affected cell stacks still match the expected before/after state. Cells with intervening visible or hidden-stack changes are skipped instead of clobbered. Paint undo refunds the budget units that actually applied. Erase undo restores the erased layer only when the resulting budget charge is safe.
+
+Success response:
+
+```ts
+type WallUndoResponse = WallBudget & {
+  changed: number;
+};
+```
+
+### `POST /api/wall/redo`
+
+Redoes the current owner's most recently undone Wall action/stroke with the same ownership-safe stack checks. Redo applies budget/refund deltas only for cells that actually change.
+
+Success response:
+
+```ts
+type WallRedoResponse = WallBudget & {
+  changed: number;
+};
 ```
 
 ## Auth
