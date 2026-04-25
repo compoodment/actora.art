@@ -3,10 +3,13 @@ import {
   eraseWallCells,
   fetchWallBudget,
   fetchWallState,
+  fetchWallToolPreference,
   paintWallCells,
+  saveWallToolPreference,
   type WallBudgetResponse,
   type WallCell,
   type WallStateResponse,
+  type WallToolPreference,
 } from '../lib/api';
 
 interface Cell {
@@ -32,6 +35,12 @@ interface WallPatchEvent {
 }
 
 const PALETTE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?.,:;-+=/\\|_@#*█▓░▒─│╔╗╚╝═║';
+const WALL_TOOL_STORAGE_KEY = 'wall-tool-preference';
+const DEFAULT_WALL_TOOL: WallToolPreference = {
+  char: '█',
+  color: 'white',
+  mode: 'paint',
+};
 const COLORS: Record<string, string> = {
   red: '#ff6b6b',
   green: '#51cf66',
@@ -49,13 +58,49 @@ const FADE_MS = 1 * 24 * 60 * 60 * 1000;
 const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
 
 type PendingWallCell = { x: number; y: number; char?: string; color?: string };
+type WallPreferenceOwner = 'unknown' | 'guest' | 'account';
+
+const isAllowedWallColor = (color: string) => Object.prototype.hasOwnProperty.call(COLORS, color);
+
+const normalizeWallChar = (value: unknown): string | null => {
+  if (typeof value !== 'string' || value.length !== 1) return null;
+  const upper = value.toUpperCase();
+  return upper.length === 1 ? upper : value;
+};
+
+const normalizeWallToolPreference = (value: unknown): WallToolPreference | null => {
+  if (!value || typeof value !== 'object') return null;
+  const preference = value as Partial<WallToolPreference>;
+  const char = normalizeWallChar(preference.char);
+  if (!char || !isAllowedWallColor(String(preference.color || ''))) return null;
+  return {
+    char,
+    color: String(preference.color),
+    mode: preference.mode === 'erase' ? 'erase' : 'paint',
+  };
+};
+
+const readGuestWallToolPreference = (): WallToolPreference | null => {
+  if (typeof window === 'undefined') return null;
+  try {
+    return normalizeWallToolPreference(JSON.parse(localStorage.getItem(WALL_TOOL_STORAGE_KEY) || 'null'));
+  } catch {
+    return null;
+  }
+};
+
+const writeGuestWallToolPreference = (preference: WallToolPreference) => {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem(WALL_TOOL_STORAGE_KEY, JSON.stringify(preference));
+};
 
 export default function Wall() {
   const [grid, setGrid] = useState<(Cell | null)[][]>([]);
   const [budget, setBudget] = useState<Budget | null>(null);
-  const [selectedChar, setSelectedChar] = useState('█');
-  const [selectedColor, setSelectedColor] = useState('white');
-  const [mode, setMode] = useState<'paint' | 'erase'>('paint');
+  const [selectedChar, setSelectedChar] = useState(() => (readGuestWallToolPreference() || DEFAULT_WALL_TOOL).char);
+  const [selectedColor, setSelectedColor] = useState(() => (readGuestWallToolPreference() || DEFAULT_WALL_TOOL).color);
+  const [mode, setMode] = useState<'paint' | 'erase'>(() => (readGuestWallToolPreference() || DEFAULT_WALL_TOOL).mode);
+  const [preferenceOwner, setPreferenceOwner] = useState<WallPreferenceOwner>('unknown');
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [, setPendingDisplayRevision] = useState(0);
@@ -64,6 +109,8 @@ export default function Wall() {
     return !localStorage.getItem('wall-info-seen');
   });
   const gridRef = useRef<HTMLDivElement>(null);
+  const preferenceLoadedRef = useRef(false);
+  const preferenceSaveTimerRef = useRef<number | null>(null);
   const dragging = useRef(false);
   const pendingRef = useRef<PendingWallCell[]>([]);
   const pendingKeysRef = useRef<Map<string, number>>(new Map());
@@ -197,7 +244,7 @@ export default function Wall() {
     try {
       const { response, data } = isErase
         ? await eraseWallCells(cells.map(({ x, y }) => ({ x, y })))
-        : await paintWallCells(cells.map(({ x, y, char, color }) => ({ x, y, char: char || '█', color })));
+        : await paintWallCells(cells.map(({ x, y, char, color }) => ({ x, y, char: normalizeWallChar(char) || '█', color })));
 
       if (response.ok) {
         const payload = data as Partial<WallBudgetResponse> & { placed?: number; erased?: number };
@@ -347,12 +394,83 @@ export default function Wall() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
         setMode('paint');
-        const idx = PALETTE_CHARS.indexOf(e.key.toUpperCase());
-        setSelectedChar(idx >= 0 ? PALETTE_CHARS[idx] : e.key);
+        const char = normalizeWallChar(e.key);
+        if (!char) return;
+        const idx = PALETTE_CHARS.indexOf(char);
+        setSelectedChar(idx >= 0 ? PALETTE_CHARS[idx] : char);
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  useEffect(() => {
+    let disposed = false;
+
+    const loadToolPreference = async () => {
+      try {
+        const { response, data } = await fetchWallToolPreference();
+        if (disposed || !response.ok || !data || typeof data !== 'object') return;
+        const payload = data as { signedIn?: boolean; preference?: unknown };
+        if (payload.signedIn) {
+          const preference = normalizeWallToolPreference(payload.preference);
+          if (preference) {
+            setSelectedChar(preference.char);
+            setSelectedColor(preference.color);
+            setMode(preference.mode);
+          } else {
+            setSelectedChar(DEFAULT_WALL_TOOL.char);
+            setSelectedColor(DEFAULT_WALL_TOOL.color);
+            setMode(DEFAULT_WALL_TOOL.mode);
+          }
+          setPreferenceOwner('account');
+        } else {
+          const preference = readGuestWallToolPreference();
+          if (preference) {
+            setSelectedChar(preference.char);
+            setSelectedColor(preference.color);
+            setMode(preference.mode);
+          }
+          setPreferenceOwner('guest');
+        }
+      } catch {
+        if (!disposed) setPreferenceOwner('guest');
+      } finally {
+        if (!disposed) preferenceLoadedRef.current = true;
+      }
+    };
+
+    void loadToolPreference();
+
+    return () => {
+      disposed = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!preferenceLoadedRef.current) return;
+    const preference = normalizeWallToolPreference({ char: selectedChar, color: selectedColor, mode }) || DEFAULT_WALL_TOOL;
+
+    if (preferenceOwner === 'guest' || preferenceOwner === 'unknown') {
+      writeGuestWallToolPreference(preference);
+      return;
+    }
+
+    if (preferenceSaveTimerRef.current !== null) {
+      window.clearTimeout(preferenceSaveTimerRef.current);
+    }
+    preferenceSaveTimerRef.current = window.setTimeout(() => {
+      preferenceSaveTimerRef.current = null;
+      void saveWallToolPreference(preference);
+    }, 300);
+  }, [mode, preferenceOwner, selectedChar, selectedColor]);
+
+  useEffect(() => {
+    return () => {
+      if (preferenceSaveTimerRef.current !== null) {
+        window.clearTimeout(preferenceSaveTimerRef.current);
+      }
+    };
   }, []);
 
   const getCellColor = (cell: Cell): string => {

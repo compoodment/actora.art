@@ -8,6 +8,13 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.44 — 2026-04-25
+
+- Wall: keyboard number keys now explicitly select number glyphs, alphabetic wall characters are normalized to uppercase before preview, submit, load, and store, and wall tool choices persist per account when signed in or locally for guests
+- Wall: kept paint color selection on the approved light-color swatch palette so dark native color values cannot be selected or retained
+- API: added signed-in-only wall tool preference persistence without changing wall cell ownership semantics
+- Terminal: actoraOS bumped to `v0.1.44` in the boot text and footer home shortcut
+
 ## 0.1.43 — 2026-04-25
 
 - Wall: fixed optimistic drag-painted cells so they remain recognized as your own and can be erased without waiting for a full wall refresh

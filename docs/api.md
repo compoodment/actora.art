@@ -199,6 +199,52 @@ Possible non-200 error:
 { error: 'forbidden', message: 'access denied' }
 ```
 
+### `GET /api/wall/tool-preference`
+
+Returns the signed-in user's saved wall tool preference. Signed-out callers receive `signedIn: false` and no saved preference; guest preference storage is browser-local.
+
+```ts
+type WallToolPreference = {
+  char: string; // exactly one character; alphabetic chars are uppercase
+  color: 'red' | 'green' | 'yellow' | 'cyan' | 'magenta' | 'white' | 'brightWhite';
+  mode: 'paint' | 'erase';
+};
+
+type GetWallToolPreferenceResponse = {
+  signedIn: boolean;
+  preference: WallToolPreference | null;
+};
+```
+
+### `POST /api/wall/tool-preference`
+
+Saves the signed-in user's wall tool preference. Signed-out callers receive `401`.
+
+Request:
+
+```ts
+type PostWallToolPreferenceRequest = WallToolPreference;
+```
+
+Success response:
+
+```ts
+type PostWallToolPreferenceResponse = {
+  signedIn: true;
+  preference: WallToolPreference;
+};
+```
+
+Current error responses:
+
+```ts
+{ error: 'forbidden', message: 'access denied' }
+{ error: 'unauthorized' }
+{ error: 'invalid_wall_tool_preference' }
+{ error: 'body_too_large' }
+{ error: 'bad_request' }
+```
+
 ### `POST /api/wall/paint`
 
 Places characters on the wall.
@@ -210,7 +256,7 @@ type PaintWallRequest = {
   cells: Array<{
     x: number;
     y: number;
-    char: string; // exactly one character
+    char: string; // exactly one character; alphabetic chars are stored uppercase
     color?: 'red' | 'green' | 'yellow' | 'cyan' | 'magenta' | 'white' | 'brightWhite';
   }>;
 };

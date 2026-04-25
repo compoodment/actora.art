@@ -96,6 +96,17 @@ export interface WallBudgetResponse {
   nextResetAt: number;
 }
 
+export interface WallToolPreference {
+  char: string;
+  color: string;
+  mode: 'paint' | 'erase';
+}
+
+export interface WallToolPreferenceResponse {
+  signedIn: boolean;
+  preference: WallToolPreference | null;
+}
+
 export interface WallPaintResponse extends WallBudgetResponse {
   placed: number;
 }
@@ -213,6 +224,14 @@ export function fetchWallState(): Promise<JsonApiResponse<WallStateResponse>> {
 
 export function fetchWallBudget(): Promise<JsonApiResponse<WallBudgetResponse>> {
   return requestJson<WallBudgetResponse>('/api/wall/budget');
+}
+
+export function fetchWallToolPreference(): Promise<JsonApiResponse<WallToolPreferenceResponse>> {
+  return requestJson<WallToolPreferenceResponse>('/api/wall/tool-preference', { cache: 'no-store' });
+}
+
+export function saveWallToolPreference(preference: WallToolPreference): Promise<JsonApiResponse<WallToolPreferenceResponse>> {
+  return postJson<WallToolPreferenceResponse>('/api/wall/tool-preference', preference);
 }
 
 export function paintWallCells(cells: WallPaintCellInput[]): Promise<JsonApiResponse<WallPaintResponse>> {
