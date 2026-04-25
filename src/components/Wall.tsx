@@ -65,7 +65,7 @@ const WALL_RECOVERY_MS = 15000;
 const FADE_MS = 1 * 24 * 60 * 60 * 1000;
 const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
 
-type PendingWallCell = { x: number; y: number; char?: string; color?: string };
+type PendingWallCell = { x: number; y: number; char?: string; color?: string; previousCell?: Cell | null };
 type WallPreferenceOwner = 'unknown' | 'guest' | 'account';
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
@@ -316,6 +316,7 @@ export default function Wall() {
     const isErase = commitMode === 'erase';
     const committedKeys = cells.map(({ x, y }) => getCellKey(x, y));
     let shouldRefetchWall = false;
+    let shouldRestoreOptimisticCells = false;
     try {
       const { response, data } = isErase
         ? await eraseWallCells(cells.map(({ x, y }) => ({ x, y })))
@@ -323,28 +324,41 @@ export default function Wall() {
 
       if (response.ok) {
         const payload = data as Partial<WallBudgetResponse> & { placed?: number; erased?: number };
-        const changedCount = isErase ? payload.erased ?? cells.length : payload.placed ?? cells.length;
         setBudget(prev => {
           if (!prev) return null;
           return {
             ...prev,
             maxDaily: payload.maxDaily ?? prev.maxDaily,
             nextResetAt: payload.nextResetAt ?? prev.nextResetAt,
-            remaining: isErase
-              ? Math.min(prev.maxDaily, prev.remaining + changedCount)
-              : Math.max(0, prev.remaining - changedCount),
-            refundsLeft: isErase ? Math.max(0, prev.refundsLeft - changedCount) : prev.refundsLeft,
+            remaining: payload.remaining ?? prev.remaining,
+            refundsLeft: payload.refundsLeft ?? prev.refundsLeft,
           };
         });
       } else if (response.status === 429) {
         const errorCode = (data && typeof data === 'object' ? (data as { error?: string }).error : undefined);
         setErrorMsg(errorCode === 'refund_limit_reached' ? 'no refunds left' : 'no chars left — come back tomorrow');
         setTimeout(() => setErrorMsg(''), 3000);
+        const payload = data as Partial<WallBudgetResponse> | null;
+        if (payload && typeof payload === 'object') {
+          setBudget(prev => {
+            if (!prev) return null;
+            return {
+              ...prev,
+              maxDaily: payload.maxDaily ?? prev.maxDaily,
+              nextResetAt: payload.nextResetAt ?? prev.nextResetAt,
+              remaining: payload.remaining ?? prev.remaining,
+              refundsLeft: payload.refundsLeft ?? prev.refundsLeft,
+            };
+          });
+        }
+        shouldRestoreOptimisticCells = true;
         shouldRefetchWall = true;
       } else {
+        shouldRestoreOptimisticCells = true;
         shouldRefetchWall = true;
       }
     } catch {
+      shouldRestoreOptimisticCells = true;
       shouldRefetchWall = true;
     } finally {
       if (isErase) {
@@ -354,6 +368,20 @@ export default function Wall() {
       }
       for (const key of committedKeys) {
         releasePendingKey(key);
+      }
+      if (shouldRestoreOptimisticCells) {
+        setGrid(prev => {
+          if (prev.length === 0) return prev;
+          const next = prev.map(row => [...row]);
+          let changed = false;
+          for (const cell of cells) {
+            if (hasPendingKey(cell.x, cell.y)) continue;
+            if (!next[cell.y]) continue;
+            next[cell.y][cell.x] = cell.previousCell ?? null;
+            changed = true;
+          }
+          return changed ? next : prev;
+        });
       }
       refreshPendingDisplay();
       if (shouldRefetchWall) {
@@ -389,7 +417,7 @@ export default function Wall() {
 
     if (mode === 'paint') {
       if (!budget || budget.remaining - getReservedPaintCount() <= 0) return;
-      pendingRef.current.push({ x, y, char: selectedChar, color: selectedColor });
+      pendingRef.current.push({ x, y, char: selectedChar, color: selectedColor, previousCell: grid[y]?.[x] ?? null });
       dragKeysRef.current.add(key);
       refreshPendingDisplay();
       retainPendingKey(x, y);
@@ -404,7 +432,7 @@ export default function Wall() {
       const cell = grid[y]?.[x];
       if (!cell || !cell.isMine) return; // only erase own cells
       if (!budget || budget.refundsLeft - getReservedEraseCount() <= 0) return;
-      pendingRef.current.push({ x, y });
+      pendingRef.current.push({ x, y, previousCell: cell });
       dragKeysRef.current.add(key);
       refreshPendingDisplay();
       retainPendingKey(x, y);

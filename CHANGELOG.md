@@ -8,6 +8,12 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.47 — 2026-04-25
+
+- Wall: failed or over-budget optimistic paints and erases now roll back locally instead of lingering until a successful wall refetch
+- API: wall budget responses are now applied authoritatively in the wall HUD after paint and erase writes
+- Terminal: actoraOS bumped to `v0.1.47` in the boot text and footer home shortcut
+
 ## 0.1.46 — 2026-04-25
 
 - Wall: kept the ASCII picker stable when selecting a character, with the selected symbol highlighted in place instead of being removed and shifting the grid
