@@ -9,6 +9,11 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.54 — 2026-04-25
+
+- Wall: pending paint/erase cells now adopt deferred live patches as soon as their write settles, reducing self-client flicker after erase-reveal and keeping local cells aligned with server-confirmed state
+- Terminal: actoraOS bumped to `v0.1.54` in the boot text and footer home shortcut
+
 ## 0.1.53 — 2026-04-25
 
 - Wall: painting over an occupied coordinate now preserves up to two older hidden layers, so erasing your own visible top mark can reveal the previous unexpired mark underneath

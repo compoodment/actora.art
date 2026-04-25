@@ -188,6 +188,7 @@ export default function Wall() {
   const dragging = useRef(false);
   const pendingRef = useRef<PendingWallCell[]>([]);
   const pendingKeysRef = useRef<Map<string, number>>(new Map());
+  const deferredPatchCellsRef = useRef<Map<string, Cell | null>>(new Map());
   const dragKeysRef = useRef<Set<string>>(new Set());
   const reservedPaintRef = useRef(0);
   const reservedEraseRef = useRef(0);
@@ -204,9 +205,10 @@ export default function Wall() {
     const count = pendingKeysRef.current.get(key) || 0;
     if (count <= 1) {
       pendingKeysRef.current.delete(key);
-    } else {
-      pendingKeysRef.current.set(key, count - 1);
+      return true;
     }
+    pendingKeysRef.current.set(key, count - 1);
+    return false;
   };
 
   const applyServerGrid = (serverGrid: (Cell | null)[][]) => {
@@ -226,7 +228,10 @@ export default function Wall() {
       for (const { x, y, cell } of patch.cells) {
         if (typeof x !== 'number' || typeof y !== 'number') continue;
         if (x < 0 || x >= COLS || y < 0 || y >= ROWS) continue;
-        if (hasPendingKey(x, y)) continue;
+        if (hasPendingKey(x, y)) {
+          deferredPatchCellsRef.current.set(getCellKey(x, y), cell);
+          continue;
+        }
         if (!next[y]) continue;
         next[y][x] = cell;
       }
@@ -368,8 +373,31 @@ export default function Wall() {
       } else {
         reservedPaintRef.current = Math.max(0, reservedPaintRef.current - cells.length);
       }
+      const deferredCells: { x: number; y: number; cell: Cell | null }[] = [];
       for (const key of committedKeys) {
-        releasePendingKey(key);
+        const released = releasePendingKey(key);
+        if (released && deferredPatchCellsRef.current.has(key)) {
+          const [x, y] = key.split(':').map(Number);
+          const cell = deferredPatchCellsRef.current.get(key) ?? null;
+          deferredPatchCellsRef.current.delete(key);
+          if (!shouldRestoreOptimisticCells && Number.isFinite(x) && Number.isFinite(y)) {
+            deferredCells.push({ x, y, cell });
+          }
+        }
+      }
+      if (deferredCells.length > 0) {
+        setGrid(prev => {
+          if (prev.length === 0) return prev;
+          const next = prev.map(row => [...row]);
+          let changed = false;
+          for (const { x, y, cell } of deferredCells) {
+            if (hasPendingKey(x, y)) continue;
+            if (!next[y]) continue;
+            next[y][x] = cell;
+            changed = true;
+          }
+          return changed ? next : prev;
+        });
       }
       if (shouldRestoreOptimisticCells) {
         setGrid(prev => {
