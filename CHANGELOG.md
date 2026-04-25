@@ -8,6 +8,13 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.46 — 2026-04-25
+
+- Wall: kept the ASCII picker stable when selecting a character, with the selected symbol highlighted in place instead of being removed and shifting the grid
+- Wall: replaced the pale color swatch grid with a compact custom hue/brightness picker plus more distinct preset colors, while still rejecting too-dark hex values
+- Wall: tightened the desktop left panel so the normal-size page does not need scrolling just to reach the tools
+- Terminal: actoraOS bumped to `v0.1.46` in the boot text and footer home shortcut
+
 ## 0.1.45 — 2026-04-25
 
 - Wall: removed letters and numbers from the clickable character palette while keeping keyboard letters and numbers available, with typed letters normalized uppercase

@@ -694,8 +694,8 @@ a:hover {
 }
 
 .wall-char-btn {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.28rem;
+  height: 1.28rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -712,6 +712,12 @@ a:hover {
 .wall-char-btn:hover {
   color: var(--color-text);
   border-color: #333;
+}
+
+.wall-char-active {
+  color: var(--color-text);
+  border-color: #555;
+  background: #1a1a1a;
 }
 
 .wall-color-section {
@@ -731,8 +737,8 @@ a:hover {
 }
 
 .wall-color-btn {
-  width: 1.35rem;
-  height: 1.35rem;
+  width: 1.15rem;
+  height: 1.15rem;
   border-radius: 3px;
   border: 2px solid #222;
   cursor: pointer;
@@ -740,7 +746,6 @@ a:hover {
 }
 
 .wall-color-btn:hover,
-.wall-custom-color-btn:hover,
 .wall-saved-color-btn:hover,
 .wall-save-color-btn:hover {
   border-color: #444;
@@ -750,19 +755,72 @@ a:hover {
   border-color: var(--color-text);
 }
 
-.wall-custom-colors {
+.wall-color-picker {
   display: grid;
-  grid-template-columns: repeat(6, 1.35rem);
-  gap: 5px;
+  gap: 0.35rem;
 }
 
-.wall-custom-color-btn {
-  width: 1.35rem;
-  height: 1.35rem;
-  border-radius: 3px;
-  border: 2px solid #222;
-  cursor: pointer;
+.wall-color-field {
+  position: relative;
+  width: 100%;
+  height: 5.3rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: crosshair;
   padding: 0;
+}
+
+.wall-color-field::before,
+.wall-color-field::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wall-color-field::before {
+  background: linear-gradient(90deg, #fff, transparent);
+}
+
+.wall-color-field::after {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.38), transparent 45%);
+}
+
+.wall-color-target {
+  position: absolute;
+  z-index: 1;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.wall-hue-slider {
+  width: 100%;
+  accent-color: var(--color-text);
+}
+
+.wall-color-current {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #aaa;
+  font-size: 0.65rem;
+}
+
+.wall-color-preview {
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  border: 1px solid #777;
+}
+
+.wall-color-value {
+  text-transform: uppercase;
 }
 
 .wall-saved-colors {
