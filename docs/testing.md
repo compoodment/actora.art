@@ -1,10 +1,14 @@
-# Wall Testing Checklist
+# Testing
 
-Role: public manual QA checklist for `/lab/wall`. Use this when testing with one person, two people, or a phone nearby. General/sensitive testing plans live in private docs; API contract details belong in `api.md`.
+Role: public owner for safe, visitor-facing manual QA checklists. Use this for tests that can be shared openly with friends or contributors. Sensitive QA, admin surfaces, backend behavior, abuse cases, and pentest-style checklists belong in private docs.
 
 The goal is not to test every item every time. Pick the smallest section that matches the change, and write down anything that feels wrong, delayed, confusing, or inconsistent.
 
-## Quick solo pass
+## Wall
+
+Manual QA checklist for `/lab/wall`. Use this when testing with one person, two people, or a phone nearby. API contract details belong in `api.md`.
+
+### Quick solo pass
 
 Use this when you only have one browser/device.
 
@@ -29,7 +33,7 @@ Use this when you only have one browser/device.
 8. Reload the page.
    - Expected: confirmed cells stay; failed/pending-looking cells do not linger incorrectly.
 
-## Two-browser pass
+### Two-browser pass
 
 Use two browser profiles, two devices, or a normal window plus private/incognito window.
 
@@ -49,7 +53,7 @@ Use two browser profiles, two devices, or a normal window plus private/incognito
 6. Draw at the same time in both browsers for 10-20 seconds.
    - Watch for missing cells, delayed bursts, weird flicker, stuck pending cells, or budget/refund HUD drift.
 
-## Signed-in vs guest pass
+### Signed-in vs guest pass
 
 Use this when checking ownership boundaries.
 
@@ -65,7 +69,7 @@ Use this when checking ownership boundaries.
 6. Erase the guest top layer.
    - Expected: signed-in layer reappears underneath.
 
-## Mobile/touch pass
+### Mobile/touch pass
 
 Use a phone or narrow responsive viewport.
 
@@ -82,7 +86,7 @@ Use a phone or narrow responsive viewport.
 5. Use the bottom tools/palette.
    - Expected: controls scroll or fit without clipping important buttons.
 
-## Budget and refund pass
+### Budget and refund pass
 
 Use this when paint/erase accounting changed.
 
@@ -97,7 +101,7 @@ Use this when paint/erase accounting changed.
 5. Try to paint after budget is exhausted if practical.
    - Expected: the UI shows the no-chars message and rolls back failed optimistic cells.
 
-## Realtime/reconnect pass
+### Realtime/reconnect pass
 
 Use this when checking SSE or network behavior.
 

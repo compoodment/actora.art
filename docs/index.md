@@ -11,7 +11,7 @@ Public-safe documentation for the frontend side of actora.art.
 3. [api](api.md) — exact `/api/*` contract used by the frontend
 4. [deploy](deploy.md) — static frontend deployment requirements
 5. [experiments](experiments.md) — public interactive surfaces
-6. [wall testing](wall-testing.md) — manual `/lab/wall` QA checklist
+6. [testing](testing.md) — public-safe manual QA checklists
 7. [privacy](privacy.md) — public privacy stance
 
 ## Scope
