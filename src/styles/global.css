@@ -667,54 +667,43 @@ a:hover {
   /* holds both paint and erase content — min-height prevents layout shift */
 }
 
-.wall-char-control {
-  display: grid;
-  grid-template-columns: auto 2.3rem minmax(4.5rem, 8rem);
-  align-items: center;
-  gap: 0.45rem;
-  color: #777;
-  font-size: 0.65rem;
-}
-
-.wall-char-label {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.wall-char-preview {
-  width: 2.1rem;
-  height: 2.1rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #555;
-  background: #1a1a1a;
-  color: var(--color-text);
-  font-size: 1rem;
-}
-
-.wall-char-input {
-  min-width: 0;
-  height: 2.1rem;
-  padding: 0 0.55rem;
-  border: 1px solid #333;
-  border-radius: 2px;
-  background: #080808;
-  color: var(--color-text);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-}
-
-.wall-char-input:focus {
-  border-color: var(--color-text);
-  outline: none;
-}
-
 .wall-erase-hint {
   color: #555;
   font-size: 0.65rem;
   padding: 0.5rem 0;
+}
+
+.wall-chars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+}
+
+.wall-char-btn {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #555;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 2px;
+}
+
+.wall-char-btn:hover {
+  color: var(--color-text);
+  border-color: #333;
+}
+
+.wall-char-active {
+  color: var(--color-text);
+  border-color: #555;
+  background: #1a1a1a;
 }
 
 .wall-colors {
@@ -858,8 +847,10 @@ body.immersive-page-particles .particle-hint {
     overflow-y: auto;
   }
 
-  body.immersive-page-wall .wall-char-control {
-    grid-template-columns: auto 2.3rem minmax(4.5rem, 1fr);
+  body.immersive-page-wall .wall-chars {
+    max-height: 6.6rem;
+    overflow-y: auto;
+    padding-right: 0.25rem;
   }
 }
 

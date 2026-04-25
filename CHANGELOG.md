@@ -8,11 +8,6 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
-## 0.1.45 — 2026-04-25
-
-- Wall: replaced the visible A-Z/0-9 character button grid with a compact type-a-character control so letters, numbers, and symbols are selected by typing instead of browsing a giant palette
-- Wall: kept the paint colors as the custom approved swatch palette and bumped the visible actoraOS label to `v0.1.45`
-
 ## 0.1.44 — 2026-04-25
 
 - Wall: keyboard number keys now explicitly select number glyphs, alphabetic wall characters are normalized to uppercase before preview, submit, load, and store, and wall tool choices persist per account when signed in or locally for guests
