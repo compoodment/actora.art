@@ -1,6 +1,6 @@
 # Wall Testing Checklist
 
-Role: public manual QA checklist for `/lab/wall`. Use this when testing with one person, two people, or a phone nearby. Backend/admin verification belongs in private docs; API contract details belong in `api.md`.
+Role: public manual QA checklist for `/lab/wall`. Use this when testing with one person, two people, or a phone nearby. General/sensitive testing plans live in private docs; API contract details belong in `api.md`.
 
 The goal is not to test every item every time. Pick the smallest section that matches the change, and write down anything that feels wrong, delayed, confusing, or inconsistent.
 
