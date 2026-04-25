@@ -275,7 +275,7 @@ export default function Wall() {
         const next = prev.map(r => [...r]);
         if (!next[y]) return prev;
         next[y] = [...next[y]];
-        next[y][x] = { char: selectedChar, color: selectedColor, placedAt: Date.now() };
+        next[y][x] = { char: selectedChar, color: selectedColor, placedAt: Date.now(), isMine: true };
         return next;
       });
     } else {

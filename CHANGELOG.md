@@ -8,6 +8,11 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.43 — 2026-04-25
+
+- Wall: fixed optimistic drag-painted cells so they remain recognized as your own and can be erased without waiting for a full wall refresh
+- Terminal: actoraOS bumped to `v0.1.43` in the boot text and footer home shortcut
+
 ## 0.1.42 — 2026-04-25
 
 - Wall: drag paint and erase now send each changed cell during the drag so connected clients see live SSE patches immediately instead of waiting for release
