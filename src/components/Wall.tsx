@@ -734,25 +734,25 @@ export default function Wall() {
       </div>
       <div class="wall-palette">
         <div class="wall-toolbar">
-          <div class="wall-paint-control">
+          <div class="wall-mode-row">
             <button
               type="button"
               class={`wall-mode-btn${mode === 'paint' ? ' wall-mode-active' : ''}`}
               onClick={() => setMode('paint')}
               aria-pressed={mode === 'paint'}
             >paint</button>
-            <span class="wall-selected-wrap">
-              <span class="wall-selected-char" aria-label={`Selected character ${selectedChar}`}>{selectedChar}</span>
-              <span class="wall-type-hint">type letters/numbers</span>
-            </span>
+            <button
+              type="button"
+              class={`wall-mode-btn${mode === 'erase' ? ' wall-mode-active' : ''}`}
+              onClick={() => setMode('erase')}
+              aria-pressed={mode === 'erase'}
+            >erase</button>
+            <span class="wall-mode-hint">click a mode</span>
           </div>
-          <button
-            type="button"
-            class={`wall-mode-btn${mode === 'erase' ? ' wall-mode-active' : ''}`}
-            onClick={() => setMode('erase')}
-            aria-pressed={mode === 'erase'}
-          >erase</button>
-          <span class="wall-mode-hint">click a mode</span>
+          <span class="wall-selected-wrap">
+            <span class="wall-selected-char" aria-label={`Selected character ${selectedChar}`}>{selectedChar}</span>
+            <span class="wall-type-hint">type letters/numbers</span>
+          </span>
         </div>
         <div class="wall-tools" style={`min-height: 3.5rem;`}>
           {mode === 'paint' ? (

@@ -632,6 +632,12 @@ a:hover {
 }
 
 .wall-toolbar {
+  display: grid;
+  justify-items: start;
+  gap: 0.2rem;
+}
+
+.wall-mode-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -661,12 +667,6 @@ a:hover {
 .wall-mode-hint {
   color: #444;
   font-size: 0.6rem;
-}
-
-.wall-paint-control {
-  display: grid;
-  justify-items: start;
-  gap: 0.2rem;
 }
 
 .wall-selected-wrap {
