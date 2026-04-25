@@ -34,14 +34,20 @@ interface WallPatchEvent {
   }[];
 }
 
-const PALETTE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?.,:;-+=/\\|_@#*█▓░▒─│╔╗╚╝═║';
+const PALETTE_CHARS = [
+  '!', '?', '.', ',', ':', ';', '-', '+', '=', '/', '\\', '|', '_', '@', '#', '*', '$', '%', '&', '~', '^',
+  '"', '\'', '`', '(', ')', '[', ']', '{', '}', '<', '>',
+  '█', '▓', '▒', '░', '■', '□', '▲', '△', '▼', '▽', '◆', '◇', '●', '○', '★', '☆',
+  '─', '│', '┌', '┐', '└', '┘', '├', '┤', '┬', '┴', '┼', '═', '║', '╔', '╗', '╚', '╝', '╠', '╣', '╦', '╩', '╬',
+];
 const WALL_TOOL_STORAGE_KEY = 'wall-tool-preference';
+const SAVED_COLOR_SLOT_COUNT = 7;
 const DEFAULT_WALL_TOOL: WallToolPreference = {
   char: '█',
-  color: 'white',
+  color: '#ffffff',
   mode: 'paint',
 };
-const COLORS: Record<string, string> = {
+const LEGACY_COLORS: Record<string, string> = {
   red: '#ff6b6b',
   green: '#51cf66',
   yellow: '#fcc419',
@@ -50,6 +56,16 @@ const COLORS: Record<string, string> = {
   white: '#e0e0e0',
   brightWhite: '#ffffff',
 };
+const BASIC_WALL_COLORS = ['#ffffff', '#ffe3e3', '#fff3bf', '#d3f9d8', '#c5f6fa', '#dbe4ff', '#f3d9fa'];
+const CUSTOM_WALL_COLORS = [
+  '#fff5f5', '#ffe3e3', '#ffc9c9', '#fff0f6', '#ffdeeb', '#fcc2d7',
+  '#f8f0fc', '#f3d9fa', '#eebefa', '#f3f0ff', '#e5dbff', '#d0bfff',
+  '#edf2ff', '#dbe4ff', '#bac8ff', '#e7f5ff', '#d0ebff', '#a5d8ff',
+  '#e3fafc', '#c5f6fa', '#99e9f2', '#e6fcf5', '#c3fae8', '#96f2d7',
+  '#ebfbee', '#d3f9d8', '#b2f2bb', '#f4fce3', '#e9fac8', '#d8f5a2',
+  '#fff9db', '#fff3bf', '#ffec99', '#fff4e6', '#ffe8cc', '#ffd8a8',
+];
+const ALLOWED_WALL_COLORS = new Set([...Object.keys(LEGACY_COLORS), ...BASIC_WALL_COLORS, ...CUSTOM_WALL_COLORS]);
 
 const COLS = 80;
 const ROWS = 24;
@@ -60,7 +76,17 @@ const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
 type PendingWallCell = { x: number; y: number; char?: string; color?: string };
 type WallPreferenceOwner = 'unknown' | 'guest' | 'account';
 
-const isAllowedWallColor = (color: string) => Object.prototype.hasOwnProperty.call(COLORS, color);
+const isAllowedWallColor = (color: string) => ALLOWED_WALL_COLORS.has(color);
+const normalizeSavedColors = (value: unknown, includeFallback = false): (string | null)[] => {
+  const fallback = Array(SAVED_COLOR_SLOT_COUNT).fill(null) as (string | null)[];
+  if (!Array.isArray(value)) return includeFallback ? fallback : [];
+  const normalized = value.slice(0, SAVED_COLOR_SLOT_COUNT).map(color => {
+    if (typeof color !== 'string') return null;
+    return isAllowedWallColor(color) ? color : null;
+  });
+  while (normalized.length < SAVED_COLOR_SLOT_COUNT) normalized.push(null);
+  return normalized;
+};
 
 const normalizeWallChar = (value: unknown): string | null => {
   if (typeof value !== 'string' || value.length !== 1) return null;
@@ -73,11 +99,15 @@ const normalizeWallToolPreference = (value: unknown): WallToolPreference | null 
   const preference = value as Partial<WallToolPreference>;
   const char = normalizeWallChar(preference.char);
   if (!char || !isAllowedWallColor(String(preference.color || ''))) return null;
-  return {
+  const normalized: WallToolPreference = {
     char,
     color: String(preference.color),
     mode: preference.mode === 'erase' ? 'erase' : 'paint',
   };
+  if (Array.isArray(preference.savedColors)) {
+    normalized.savedColors = normalizeSavedColors(preference.savedColors, true);
+  }
+  return normalized;
 };
 
 const readGuestWallToolPreference = (): WallToolPreference | null => {
@@ -100,6 +130,7 @@ export default function Wall() {
   const [selectedChar, setSelectedChar] = useState(() => (readGuestWallToolPreference() || DEFAULT_WALL_TOOL).char);
   const [selectedColor, setSelectedColor] = useState(() => (readGuestWallToolPreference() || DEFAULT_WALL_TOOL).color);
   const [mode, setMode] = useState<'paint' | 'erase'>(() => (readGuestWallToolPreference() || DEFAULT_WALL_TOOL).mode);
+  const [savedColors, setSavedColors] = useState<(string | null)[]>(() => normalizeSavedColors(null, true));
   const [preferenceOwner, setPreferenceOwner] = useState<WallPreferenceOwner>('unknown');
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
@@ -396,8 +427,7 @@ export default function Wall() {
         setMode('paint');
         const char = normalizeWallChar(e.key);
         if (!char) return;
-        const idx = PALETTE_CHARS.indexOf(char);
-        setSelectedChar(idx >= 0 ? PALETTE_CHARS[idx] : char);
+        setSelectedChar(char);
       }
     };
     window.addEventListener('keydown', onKey);
@@ -418,10 +448,12 @@ export default function Wall() {
             setSelectedChar(preference.char);
             setSelectedColor(preference.color);
             setMode(preference.mode);
+            setSavedColors(normalizeSavedColors(preference.savedColors, true));
           } else {
             setSelectedChar(DEFAULT_WALL_TOOL.char);
             setSelectedColor(DEFAULT_WALL_TOOL.color);
             setMode(DEFAULT_WALL_TOOL.mode);
+            setSavedColors(normalizeSavedColors(null, true));
           }
           setPreferenceOwner('account');
         } else {
@@ -431,6 +463,7 @@ export default function Wall() {
             setSelectedColor(preference.color);
             setMode(preference.mode);
           }
+          setSavedColors(normalizeSavedColors(null, true));
           setPreferenceOwner('guest');
         }
       } catch {
@@ -449,10 +482,15 @@ export default function Wall() {
 
   useEffect(() => {
     if (!preferenceLoadedRef.current) return;
-    const preference = normalizeWallToolPreference({ char: selectedChar, color: selectedColor, mode }) || DEFAULT_WALL_TOOL;
+    const preference = normalizeWallToolPreference({
+      char: selectedChar,
+      color: selectedColor,
+      mode,
+      savedColors: preferenceOwner === 'account' ? savedColors : undefined,
+    }) || DEFAULT_WALL_TOOL;
 
     if (preferenceOwner === 'guest' || preferenceOwner === 'unknown') {
-      writeGuestWallToolPreference(preference);
+      writeGuestWallToolPreference({ char: preference.char, color: preference.color, mode: preference.mode });
       return;
     }
 
@@ -463,7 +501,7 @@ export default function Wall() {
       preferenceSaveTimerRef.current = null;
       void saveWallToolPreference(preference);
     }, 300);
-  }, [mode, preferenceOwner, selectedChar, selectedColor]);
+  }, [mode, preferenceOwner, savedColors, selectedChar, selectedColor]);
 
   useEffect(() => {
     return () => {
@@ -475,13 +513,27 @@ export default function Wall() {
 
   const getCellColor = (cell: Cell): string => {
     const age = Date.now() - cell.placedAt;
-    const base = COLORS[cell.color] || COLORS.white;
+    const base = LEGACY_COLORS[cell.color] || (isAllowedWallColor(cell.color) ? cell.color : LEGACY_COLORS.white);
     if (age > FADE_MS) {
       const fadeProgress = Math.min((age - FADE_MS) / (EXPIRE_MS - FADE_MS), 1);
       const opacity = 0.8 - fadeProgress * 0.6;
       return base + Math.round(opacity * 255).toString(16).padStart(2, '0');
     }
     return base;
+  };
+  const getToolColor = (color: string) => LEGACY_COLORS[color] || (isAllowedWallColor(color) ? color : LEGACY_COLORS.white);
+  const selectSavedColorSlot = (index: number) => {
+    if (preferenceOwner !== 'account') return;
+    const existing = savedColors[index];
+    if (existing) {
+      setSelectedColor(existing);
+      return;
+    }
+    setSavedColors(prev => prev.map((color, idx) => idx === index ? selectedColor : color));
+  };
+  const saveSelectedColorToSlot = (index: number) => {
+    if (preferenceOwner !== 'account') return;
+    setSavedColors(prev => prev.map((color, idx) => idx === index ? selectedColor : color));
   };
 
   if (grid.length === 0) {
@@ -580,7 +632,7 @@ export default function Wall() {
                 <span
                   key={`${x}-${y}`}
                   class={`wall-cell wall-empty${isHover ? ' wall-hover' : ''}`}
-                  style={isHover ? { color: COLORS[selectedColor] + '66' } : undefined}
+                  style={isHover ? { color: getToolColor(selectedColor) + '66' } : undefined}
                 >
                   {isHover ? selectedChar : '·'}
                 </span>
@@ -604,38 +656,84 @@ export default function Wall() {
             aria-pressed={mode === 'erase'}
           >erase</button>
           <span class="wall-mode-hint">click a mode</span>
+          <span class="wall-selected-char" aria-label={`Selected character ${selectedChar}`}>{selectedChar}</span>
         </div>
         <div class="wall-tools" style={`min-height: 3.5rem;`}>
           {mode === 'paint' ? (
             <>
               <div class="wall-chars">
-                {PALETTE_CHARS.split('').map(ch => (
+                {PALETTE_CHARS.filter(ch => ch !== selectedChar).map(ch => (
                   <button
                     type="button"
                     key={ch}
-                    class={`wall-char-btn${ch === selectedChar ? ' wall-char-active' : ''}`}
+                    class="wall-char-btn"
                     onClick={() => setSelectedChar(ch)}
-                    aria-pressed={ch === selectedChar}
                     aria-label={`Select character ${ch}`}
                   >
                     {ch}
                   </button>
                 ))}
               </div>
-              <div class="wall-colors">
-                {Object.entries(COLORS).map(([name, hex]) => (
+              <div class="wall-color-section">
+                <div class="wall-color-label">basic colors</div>
+                <div class="wall-colors">
+                  {BASIC_WALL_COLORS.map(hex => (
                   <button
                     type="button"
-                    key={name}
-                    class={`wall-color-btn${name === selectedColor ? ' wall-color-active' : ''}`}
+                    key={hex}
+                    class={`wall-color-btn${hex === selectedColor ? ' wall-color-active' : ''}`}
                     style={{ backgroundColor: hex }}
-                    onClick={() => setSelectedColor(name)}
-                    title={name}
-                    aria-label={`Select ${name} color`}
-                    aria-pressed={name === selectedColor}
+                    onClick={() => setSelectedColor(hex)}
+                    title={hex}
+                    aria-label={`Select color ${hex}`}
+                    aria-pressed={hex === selectedColor}
                   />
-                ))}
+                  ))}
+                </div>
               </div>
+              <div class="wall-color-section">
+                <div class="wall-color-label">custom light palette</div>
+                <div class="wall-custom-colors" aria-label="Custom light colors">
+                  {CUSTOM_WALL_COLORS.map(hex => (
+                  <button
+                    type="button"
+                    key={hex}
+                    class={`wall-custom-color-btn${hex === selectedColor ? ' wall-color-active' : ''}`}
+                    style={{ backgroundColor: hex }}
+                    onClick={() => setSelectedColor(hex)}
+                    title={hex}
+                    aria-label={`Select custom color ${hex}`}
+                    aria-pressed={hex === selectedColor}
+                  />
+                  ))}
+                </div>
+              </div>
+              {preferenceOwner === 'account' ? (
+                <div class="wall-saved-colors" aria-label="Saved account colors">
+                  <div class="wall-saved-label">saved colors</div>
+                  <div class="wall-saved-slots">
+                    {savedColors.map((hex, index) => (
+                      <div class="wall-saved-slot-wrap" key={index}>
+                        <button
+                          type="button"
+                          class={`wall-saved-color-btn${hex && hex === selectedColor ? ' wall-color-active' : ''}${hex ? '' : ' wall-saved-empty'}`}
+                          style={hex ? { backgroundColor: getToolColor(hex) } : undefined}
+                          onClick={() => selectSavedColorSlot(index)}
+                          aria-label={hex ? `Select saved color ${index + 1}` : `Save current color to slot ${index + 1}`}
+                          title={hex ? `select slot ${index + 1}` : `save current color to slot ${index + 1}`}
+                        />
+                        <button
+                          type="button"
+                          class="wall-save-color-btn"
+                          onClick={() => saveSelectedColorToSlot(index)}
+                          aria-label={`Save current color to slot ${index + 1}`}
+                          title={`save current color to slot ${index + 1}`}
+                        >+</button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
             </>
           ) : (
             <div class="wall-erase-hint">click your own cells to erase them</div>

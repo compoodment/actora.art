@@ -41,10 +41,19 @@ type ChatMessage = {
 
 type WallCell = {
   char: string;
-  color: 'red' | 'green' | 'yellow' | 'cyan' | 'magenta' | 'white' | 'brightWhite';
+  color: WallColor;
   placedAt: number;
   isMine: boolean;
 };
+
+type WallColor =
+  | 'red' | 'green' | 'yellow' | 'cyan' | 'magenta' | 'white' | 'brightWhite'
+  | '#ffffff' | '#fff5f5' | '#ffe3e3' | '#ffc9c9' | '#fff0f6' | '#ffdeeb' | '#fcc2d7'
+  | '#f8f0fc' | '#f3d9fa' | '#eebefa' | '#f3f0ff' | '#e5dbff' | '#d0bfff'
+  | '#edf2ff' | '#dbe4ff' | '#bac8ff' | '#e7f5ff' | '#d0ebff' | '#a5d8ff'
+  | '#e3fafc' | '#c5f6fa' | '#99e9f2' | '#e6fcf5' | '#c3fae8' | '#96f2d7'
+  | '#ebfbee' | '#d3f9d8' | '#b2f2bb' | '#f4fce3' | '#e9fac8' | '#d8f5a2'
+  | '#fff9db' | '#fff3bf' | '#ffec99' | '#fff4e6' | '#ffe8cc' | '#ffd8a8';
 
 type WallBudget = {
   remaining: number;
@@ -201,13 +210,14 @@ Possible non-200 error:
 
 ### `GET /api/wall/tool-preference`
 
-Returns the signed-in user's saved wall tool preference. Signed-out callers receive `signedIn: false` and no saved preference; guest preference storage is browser-local.
+Returns the signed-in user's saved wall tool preference. Signed-out callers receive `signedIn: false` and no saved preference or saved color slots; guest preference storage is browser-local.
 
 ```ts
 type WallToolPreference = {
   char: string; // exactly one character; alphabetic chars are uppercase
-  color: 'red' | 'green' | 'yellow' | 'cyan' | 'magenta' | 'white' | 'brightWhite';
+  color: WallColor;
   mode: 'paint' | 'erase';
+  savedColors?: Array<WallColor | null>; // signed-in preferences only; exactly 7 slots when returned
 };
 
 type GetWallToolPreferenceResponse = {
@@ -218,7 +228,7 @@ type GetWallToolPreferenceResponse = {
 
 ### `POST /api/wall/tool-preference`
 
-Saves the signed-in user's wall tool preference. Signed-out callers receive `401`.
+Saves the signed-in user's wall tool preference, including seven optional saved light-color slots. Signed-out callers receive `401`.
 
 Request:
 
@@ -257,7 +267,7 @@ type PaintWallRequest = {
     x: number;
     y: number;
     char: string; // exactly one character; alphabetic chars are stored uppercase
-    color?: 'red' | 'green' | 'yellow' | 'cyan' | 'magenta' | 'white' | 'brightWhite';
+    color?: WallColor;
   }>;
 };
 ```

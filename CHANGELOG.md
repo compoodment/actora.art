@@ -8,6 +8,13 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.45 — 2026-04-25
+
+- Wall: removed letters and numbers from the clickable character palette while keeping keyboard letters and numbers available, with typed letters normalized uppercase
+- Wall: replaced the tiny paint swatches with a constrained light-color palette and signed-in-only saved color slots
+- API: wall cells and signed-in wall tool preferences now accept validated light hex colors while retaining legacy named wall color tokens
+- Terminal: actoraOS bumped to `v0.1.45` in the boot text and footer home shortcut
+
 ## 0.1.44 — 2026-04-25
 
 - Wall: keyboard number keys now explicitly select number glyphs, alphabetic wall characters are normalized to uppercase before preview, submit, load, and store, and wall tool choices persist per account when signed in or locally for guests

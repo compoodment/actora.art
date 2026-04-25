@@ -663,6 +663,20 @@ a:hover {
   font-size: 0.6rem;
 }
 
+.wall-selected-char {
+  margin-left: auto;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  border: 1px solid #555;
+  background: #1a1a1a;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
 .wall-tools {
   /* holds both paint and erase content — min-height prevents layout shift */
 }
@@ -700,32 +714,104 @@ a:hover {
   border-color: #333;
 }
 
-.wall-char-active {
-  color: var(--color-text);
-  border-color: #555;
-  background: #1a1a1a;
+.wall-color-section {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.wall-color-label {
+  color: #555;
+  font-size: 0.6rem;
 }
 
 .wall-colors {
   display: flex;
-  gap: 4px;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .wall-color-btn {
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 50%;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 3px;
   border: 2px solid #222;
   cursor: pointer;
   padding: 0;
 }
 
-.wall-color-btn:hover {
+.wall-color-btn:hover,
+.wall-custom-color-btn:hover,
+.wall-saved-color-btn:hover,
+.wall-save-color-btn:hover {
   border-color: #444;
 }
 
 .wall-color-active {
   border-color: var(--color-text);
+}
+
+.wall-custom-colors {
+  display: grid;
+  grid-template-columns: repeat(6, 1.35rem);
+  gap: 5px;
+}
+
+.wall-custom-color-btn {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 3px;
+  border: 2px solid #222;
+  cursor: pointer;
+  padding: 0;
+}
+
+.wall-saved-colors {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.wall-saved-label {
+  color: #555;
+  font-size: 0.6rem;
+}
+
+.wall-saved-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.wall-saved-slot-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.wall-saved-color-btn,
+.wall-save-color-btn {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 3px;
+  border: 2px solid #222;
+  background: #151515;
+  color: #777;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.wall-saved-empty {
+  background:
+    linear-gradient(135deg, transparent 45%, #333 47%, #333 53%, transparent 55%),
+    #111;
+}
+
+.wall-save-color-btn {
+  width: 1rem;
+  color: #888;
+  background: #1a1a1a;
 }
 
 .wall-loading {

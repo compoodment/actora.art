@@ -100,6 +100,7 @@ export interface WallToolPreference {
   char: string;
   color: string;
   mode: 'paint' | 'erase';
+  savedColors?: (string | null)[];
 }
 
 export interface WallToolPreferenceResponse {
