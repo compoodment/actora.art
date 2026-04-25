@@ -8,6 +8,11 @@ Product-level changes visible to visitors and developers.
 
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.49 — 2026-04-25
+
+- Wall: moved the selected-character box and keyboard hint to the left side of the toolbar beside `paint`, keeping the controls from feeling right-heavy
+- Terminal: actoraOS bumped to `v0.1.49` in the boot text and footer home shortcut
+
 ## 0.1.48 — 2026-04-25
 
 - Wall: all valid 6-digit hex paint colors are now accepted for wall cells and saved tool preferences, while legacy named color tokens still render for old cells

@@ -740,6 +740,10 @@ export default function Wall() {
             onClick={() => setMode('paint')}
             aria-pressed={mode === 'paint'}
           >paint</button>
+          <span class="wall-selected-wrap">
+            <span class="wall-type-hint">type letters/numbers</span>
+            <span class="wall-selected-char" aria-label={`Selected character ${selectedChar}`}>{selectedChar}</span>
+          </span>
           <button
             type="button"
             class={`wall-mode-btn${mode === 'erase' ? ' wall-mode-active' : ''}`}
@@ -747,10 +751,6 @@ export default function Wall() {
             aria-pressed={mode === 'erase'}
           >erase</button>
           <span class="wall-mode-hint">click a mode</span>
-          <span class="wall-selected-wrap">
-            <span class="wall-type-hint">type letters/numbers</span>
-            <span class="wall-selected-char" aria-label={`Selected character ${selectedChar}`}>{selectedChar}</span>
-          </span>
         </div>
         <div class="wall-tools" style={`min-height: 3.5rem;`}>
           {mode === 'paint' ? (

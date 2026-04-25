@@ -664,10 +664,8 @@ a:hover {
 }
 
 .wall-selected-wrap {
-  margin-left: auto;
   display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 0.45rem;
   flex: 0 0 auto;
 }
