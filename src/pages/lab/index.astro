@@ -9,25 +9,14 @@ import Base from '../../layouts/Base.astro';
     </header>
 
     <section class="page-list page-section">
-      <a href="/lab/particles" class="page-list-item page-list-link lab-list-link">
+      <a href="/lab/particles" class="page-list-item page-list-link">
         <span class="page-list-name">particles</span>
         <span class="page-list-meta">visual particle simulator.</span>
       </a>
-      <a href="/lab/wall" class="page-list-item page-list-link lab-list-link">
+      <a href="/lab/wall" class="page-list-item page-list-link">
         <span class="page-list-name">the wall</span>
         <span class="page-list-meta">a wall. draw on it.</span>
       </a>
     </section>
   </main>
 </Base>
-
-<style>
-  .lab-list-link {
-    transition: border-color 0.2s;
-  }
-
-  .lab-list-link:hover {
-    border-color: #444;
-    color: var(--color-link-hover);
-  }
-</style>
