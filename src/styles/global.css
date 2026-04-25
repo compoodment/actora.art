@@ -181,6 +181,10 @@ a:hover {
   font-size: 0.75rem;
 }
 
+.page-list-status {
+  letter-spacing: 0.02em;
+}
+
 .site-footer {
   position: fixed;
   inset: auto 0 0;
