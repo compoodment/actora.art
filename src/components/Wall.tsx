@@ -734,16 +734,18 @@ export default function Wall() {
       </div>
       <div class="wall-palette">
         <div class="wall-toolbar">
-          <button
-            type="button"
-            class={`wall-mode-btn${mode === 'paint' ? ' wall-mode-active' : ''}`}
-            onClick={() => setMode('paint')}
-            aria-pressed={mode === 'paint'}
-          >paint</button>
-          <span class="wall-selected-wrap">
-            <span class="wall-type-hint">type letters/numbers</span>
-            <span class="wall-selected-char" aria-label={`Selected character ${selectedChar}`}>{selectedChar}</span>
-          </span>
+          <div class="wall-paint-control">
+            <button
+              type="button"
+              class={`wall-mode-btn${mode === 'paint' ? ' wall-mode-active' : ''}`}
+              onClick={() => setMode('paint')}
+              aria-pressed={mode === 'paint'}
+            >paint</button>
+            <span class="wall-selected-wrap">
+              <span class="wall-selected-char" aria-label={`Selected character ${selectedChar}`}>{selectedChar}</span>
+              <span class="wall-type-hint">type letters/numbers</span>
+            </span>
+          </div>
           <button
             type="button"
             class={`wall-mode-btn${mode === 'erase' ? ' wall-mode-active' : ''}`}
