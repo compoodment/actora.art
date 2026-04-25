@@ -140,6 +140,8 @@ Current error responses:
 
 Returns the public wall state plus ownership flags for the current visitor.
 
+Wall coordinates are stored server-side as capped layer stacks. Public wall responses expose only the visible top layer as `WallCell | null`; hidden layers, owner keys, owner labels, and IP metadata are never included.
+
 ```ts
 type GetWallResponse = {
   grid: (WallCell | null)[][];
@@ -252,7 +254,7 @@ Current error responses:
 
 ### `POST /api/wall/paint`
 
-Places characters on the wall. Paint requests validate cells before budget enforcement; daily paint budget is charged only for valid cells that pass bounds, one-character char, uppercase normalization, and color validation. Invalid cells are ignored and not charged.
+Places characters on the wall. Painting a coordinate pushes a new visible top layer. If the coordinate is already at the server-side stack cap, the oldest hidden layer is dropped. Paint requests validate cells before budget enforcement; daily paint budget is charged only for valid cells that pass bounds, one-character char, uppercase normalization, and color validation, including valid paints over existing cells. Invalid cells are ignored and not charged.
 
 Budget fields returned by success and `budget_exhausted` responses are authoritative for the client HUD.
 
@@ -289,7 +291,7 @@ Current error responses:
 
 ### `POST /api/wall/erase`
 
-Erases cells owned by the current visitor. Erase requests dedupe coordinates and count only cells currently owned by the resolved visitor before refund-limit enforcement. Non-owned, empty, invalid, or duplicate cells are ignored.
+Erases visible top layers owned by the current visitor. Erase requests dedupe coordinates and count only coordinates whose current visible top layer is owned by the resolved visitor before refund-limit enforcement. Erasing removes only that top layer; an older unexpired layer underneath may become visible. Non-owned, empty, invalid, or duplicate cells are ignored.
 
 Budget fields returned by success and `refund_limit_reached` responses are authoritative for the client HUD.
 

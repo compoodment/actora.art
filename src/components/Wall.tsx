@@ -333,6 +333,9 @@ export default function Wall() {
             refundsLeft: payload.refundsLeft ?? prev.refundsLeft,
           };
         });
+        if (isErase) {
+          shouldRefetchWall = true;
+        }
       } else if (response.status === 429) {
         const errorCode = (data && typeof data === 'object' ? (data as { error?: string }).error : undefined);
         setErrorMsg(errorCode === 'refund_limit_reached' ? 'no refunds left' : 'no chars left — come back tomorrow');
@@ -429,7 +432,7 @@ export default function Wall() {
       });
     } else {
       const cell = grid[y]?.[x];
-      if (!cell || !cell.isMine) return; // only erase own cells
+      if (!cell || !cell.isMine) return; // only erase your visible cells
       if (!budget || budget.refundsLeft - getReservedEraseCount() <= 0) return;
       pendingRef.current.push({ x, y, previousCell: cell });
       dragKeysRef.current.add(key);
@@ -646,7 +649,7 @@ export default function Wall() {
             <div class="wall-info-title" id="wall-info-title">the wall</div>
             <p>a shared wall to draw on with ASCII, leave behind kind remarks, or write over existing stuff :P</p>
             <p><strong>budget:</strong> 100 chars per day. resets every 24 hours.</p>
-            <p><strong>erase:</strong> you can erase your own cells. each erase gives 1 char back, up to 200 refunds per day.</p>
+            <p><strong>erase:</strong> you can erase your own visible cells. each erase gives 1 char back, up to 200 refunds per day.</p>
             <p><strong>decay:</strong> marks fade after 1 day and disappear after 3.</p>
             <p><strong>controls:</strong> click or drag to place. type to change character. use paint/erase to switch modes.</p>
             <button type="button" class="wall-info-close" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>got it</button>
@@ -677,7 +680,7 @@ export default function Wall() {
               const isHover = hoverPos?.x === x && hoverPos?.y === y;
               const mine = isMine(cell);
 
-              // In erase mode: dim other people's cells, hide empty cells, highlight own cells
+              // In erase mode: dim other people's visible cells, hide empty cells, highlight own visible cells
               if (mode === 'erase') {
                 if (cell) {
                   if (mine) {
@@ -846,7 +849,7 @@ export default function Wall() {
               ) : null}
             </>
           ) : (
-            <div class="wall-erase-hint">click your own cells to erase them</div>
+            <div class="wall-erase-hint">click your own visible cells to erase them</div>
           )}
         </div>
       </div>

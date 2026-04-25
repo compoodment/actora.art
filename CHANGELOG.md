@@ -9,6 +9,12 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.53 — 2026-04-25
+
+- Wall: painting over an occupied coordinate now preserves up to two older hidden layers, so erasing your own visible top mark can reveal the previous unexpired mark underneath
+- API: wall state and SSE patches still expose only the visible `WallCell | null`; hidden layers and owner details remain private
+- Terminal: actoraOS bumped to `v0.1.53` in the boot text and footer home shortcut
+
 ## 0.1.52 — 2026-04-25
 
 - Wall: removed black from the basic color row while keeping eight quick-pick colors; dark colors remain available through custom color
