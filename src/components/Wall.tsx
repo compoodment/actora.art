@@ -34,7 +34,6 @@ interface WallPatchEvent {
   }[];
 }
 
-const PALETTE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?.,:;-+=/\\|_@#*█▓░▒─│╔╗╚╝═║';
 const WALL_TOOL_STORAGE_KEY = 'wall-tool-preference';
 const DEFAULT_WALL_TOOL: WallToolPreference = {
   char: '█',
@@ -390,14 +389,17 @@ export default function Wall() {
     }
   };
 
+  const selectWallChar = (value: unknown) => {
+    const char = normalizeWallChar(value);
+    if (!char) return;
+    setMode('paint');
+    setSelectedChar(char);
+  };
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
-        setMode('paint');
-        const char = normalizeWallChar(e.key);
-        if (!char) return;
-        const idx = PALETTE_CHARS.indexOf(char);
-        setSelectedChar(idx >= 0 ? PALETTE_CHARS[idx] : char);
+        selectWallChar(e.key);
       }
     };
     window.addEventListener('keydown', onKey);
@@ -608,21 +610,24 @@ export default function Wall() {
         <div class="wall-tools" style={`min-height: 3.5rem;`}>
           {mode === 'paint' ? (
             <>
-              <div class="wall-chars">
-                {PALETTE_CHARS.split('').map(ch => (
-                  <button
-                    type="button"
-                    key={ch}
-                    class={`wall-char-btn${ch === selectedChar ? ' wall-char-active' : ''}`}
-                    onClick={() => setSelectedChar(ch)}
-                    aria-pressed={ch === selectedChar}
-                    aria-label={`Select character ${ch}`}
-                  >
-                    {ch}
-                  </button>
-                ))}
-              </div>
-              <div class="wall-colors">
+              <label class="wall-char-control">
+                <span class="wall-char-label">character</span>
+                <span class="wall-char-preview" aria-hidden="true">{selectedChar}</span>
+                <input
+                  type="text"
+                  class="wall-char-input"
+                  value={selectedChar}
+                  maxLength={1}
+                  inputMode="text"
+                  autoCapitalize="characters"
+                  spellcheck={false}
+                  aria-label="Wall character"
+                  onInput={(event) => selectWallChar((event.currentTarget as HTMLInputElement).value)}
+                  onFocus={(event) => (event.currentTarget as HTMLInputElement).select()}
+                />
+              </label>
+              <div class="wall-mode-hint">type any key — letters save uppercase, numbers work too</div>
+              <div class="wall-colors" aria-label="Wall color palette">
                 {Object.entries(COLORS).map(([name, hex]) => (
                   <button
                     type="button"
