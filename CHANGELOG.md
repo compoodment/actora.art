@@ -9,6 +9,12 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
 
+## 0.1.56 — 2026-04-25
+
+- Terminal: kept the command input focused during busy auth work while still preventing duplicate Enter submits
+- UI: consolidated repeated info/projects/lab list-page styling without changing the list layouts
+- Terminal: actoraOS bumped to `v0.1.56` in the boot text and footer home shortcut
+
 ## 0.1.55 — 2026-04-25
 
 - Wall: clarified the help dialog copy for erase refunds, decay, and paint/erase controls

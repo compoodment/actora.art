@@ -8,47 +8,26 @@ import Base from '../../layouts/Base.astro';
       <h1 class="page-title page-title-section">lab</h1>
     </header>
 
-    <section class="lab-list page-section">
-      <a href="/lab/particles" class="lab-item">
-        <span class="lab-item-name">particles</span>
-        <span class="lab-item-desc">visual particle simulator.</span>
+    <section class="page-list page-section">
+      <a href="/lab/particles" class="page-list-item page-list-link lab-list-link">
+        <span class="page-list-name">particles</span>
+        <span class="page-list-meta">visual particle simulator.</span>
       </a>
-      <a href="/lab/wall" class="lab-item">
-        <span class="lab-item-name">the wall</span>
-        <span class="lab-item-desc">a wall. draw on it.</span>
+      <a href="/lab/wall" class="page-list-item page-list-link lab-list-link">
+        <span class="page-list-name">the wall</span>
+        <span class="page-list-meta">a wall. draw on it.</span>
       </a>
     </section>
   </main>
 </Base>
 
 <style>
-  .lab-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  .lab-item {
-    display: flex;
-    flex-direction: column;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-border);
-    text-decoration: none;
-    color: var(--color-text);
+  .lab-list-link {
     transition: border-color 0.2s;
   }
 
-  .lab-item:hover {
+  .lab-list-link:hover {
     border-color: #444;
-  }
-
-  .lab-item-name {
-    font-weight: 500;
-  }
-
-  .lab-item-desc {
-    color: var(--color-text-dim);
-    font-size: 0.75rem;
-    margin-top: 0.15rem;
+    color: var(--color-link-hover);
   }
 </style>

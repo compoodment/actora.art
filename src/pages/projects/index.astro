@@ -8,10 +8,10 @@ import Base from '../../layouts/Base.astro';
       <h1 class="page-title page-title-section">projects</h1>
     </header>
 
-    <section class="projects-list page-section">
-      <a href="/projects/actora" class="project-link">
-        <span class="project-name">actora</span>
-        <span class="project-status">ongoing</span>
+    <section class="page-list page-section">
+      <a href="/projects/actora" class="page-list-item page-list-link">
+        <span class="page-list-name">actora</span>
+        <span class="page-list-meta project-list-status">ongoing</span>
       </a>
     </section>
 
@@ -19,33 +19,7 @@ import Base from '../../layouts/Base.astro';
 </Base>
 
 <style>
-  .projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  .project-link {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-border);
-    text-decoration: none;
-    color: var(--color-text);
-  }
-
-  .project-link:hover {
-    color: var(--color-accent);
-  }
-
-  .project-name {
-    font-weight: 500;
-  }
-
-  .project-status {
-    color: var(--color-text-dim);
-    font-size: 0.75rem;
+  .project-list-status {
     letter-spacing: 0.02em;
   }
 </style>

@@ -8,21 +8,21 @@ import Base from '../../layouts/Base.astro';
       <h1 class="page-title page-title-section">info</h1>
     </header>
 
-    <section class="info-list page-section">
+    <section class="page-list page-section">
       <a
         href="https://github.com/compoodment/actora.art"
         target="_blank"
         rel="noopener"
-        class="info-item"
+        class="page-list-item page-list-link"
       >
-        <span class="info-name">github</span>
-        <span class="info-desc">actora.art repository.</span>
+        <span class="page-list-name">github</span>
+        <span class="page-list-meta">actora.art repository.</span>
       </a>
 
-      <div class="info-item info-copy">
-        <span class="info-name">discord</span>
+      <div class="page-list-item info-copy">
+        <span class="page-list-name">discord</span>
         <div class="info-copy-row">
-          <span class="info-value">computment</span>
+          <span class="page-list-meta">computment</span>
           <button class="copy-button" type="button" data-copy="computment" aria-label="Copy Discord username" title="Copy Discord username">
             <svg class="copy-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
               <path d="M5 1.75A1.75 1.75 0 0 0 3.25 3.5v7A1.75 1.75 0 0 0 5 12.25h1.25v-1.5H5a.25.25 0 0 1-.25-.25v-7A.25.25 0 0 1 5 3.25h7a.25.25 0 0 1 .25.25v1.25h1.5V3.5A1.75 1.75 0 0 0 12 1.75H5Z" />
@@ -62,36 +62,6 @@ import Base from '../../layouts/Base.astro';
 </script>
 
 <style>
-  .info-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  .info-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-border);
-    text-decoration: none;
-    color: var(--color-text);
-  }
-
-  .info-item:hover {
-    color: var(--color-accent);
-  }
-
-  .info-name {
-    font-weight: 500;
-  }
-
-  .info-desc,
-  .info-value {
-    color: var(--color-text-dim);
-    font-size: 0.75rem;
-  }
-
   .info-copy {
     gap: 0.2rem;
   }

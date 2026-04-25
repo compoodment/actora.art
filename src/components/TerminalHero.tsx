@@ -195,6 +195,11 @@ export default function TerminalHero() {
   }, [appendEntries, promptState, runRegister]);
 
   const handleKey = async (event: KeyboardEvent) => {
+    if (busy && event.key === 'Enter') {
+      event.preventDefault();
+      return;
+    }
+
     if (promptState && event.key.toLowerCase() === 'c' && event.ctrlKey) {
       event.preventDefault();
       if (registerCtrlCCancelArmed) {
@@ -254,7 +259,7 @@ export default function TerminalHero() {
           autoComplete="off"
           aria-label={promptState ? 'Terminal prompt input' : 'Terminal command'}
           aria-describedby="terminal-help"
-          disabled={busy}
+          readOnly={busy}
         />
       </div>
       <div class="terminal-notes">
