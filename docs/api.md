@@ -48,7 +48,7 @@ type WallCell = {
 
 type WallColor =
   | 'red' | 'green' | 'yellow' | 'cyan' | 'magenta' | 'white' | 'brightWhite'
-  | `#${string}`; // 6-digit hex accepted only when bright enough for the black wall background
+  | `#${string}`; // validated 6-digit #rrggbb accepted only when bright enough for the black wall background
 
 type WallBudget = {
   remaining: number;
@@ -252,7 +252,9 @@ Current error responses:
 
 ### `POST /api/wall/paint`
 
-Places characters on the wall.
+Places characters on the wall. Paint requests validate cells before budget enforcement; daily paint budget is charged only for valid cells that pass bounds, one-character char, uppercase normalization, and color validation. Invalid cells are ignored and not charged.
+
+Budget fields returned by success and `budget_exhausted` responses are authoritative for the client HUD.
 
 Request:
 
@@ -287,7 +289,9 @@ Current error responses:
 
 ### `POST /api/wall/erase`
 
-Erases cells owned by the current visitor.
+Erases cells owned by the current visitor. Erase requests dedupe coordinates and count only cells currently owned by the resolved visitor before refund-limit enforcement. Non-owned, empty, invalid, or duplicate cells are ignored.
+
+Budget fields returned by success and `refund_limit_reached` responses are authoritative for the client HUD.
 
 Request:
 
