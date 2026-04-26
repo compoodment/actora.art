@@ -67,9 +67,13 @@ export interface ChatMessage {
   content: string;
 }
 
+export type ChatModelChoice = 'fast' | 'smart';
+
 export interface ChatBootstrapResponse {
   messages: ChatMessage[];
   signedIn: boolean;
+  model?: string;
+  modelLabel?: string;
 }
 
 export interface ChatReplyResponse {
@@ -77,6 +81,8 @@ export interface ChatReplyResponse {
   signedIn: boolean;
   remaining: number;
   resetAt: number;
+  model?: string;
+  modelLabel?: string;
 }
 
 export interface ChatResetResponse {
@@ -237,8 +243,8 @@ export function fetchChatBootstrap(): Promise<JsonApiResponse<ChatBootstrapRespo
   return requestJson<ChatBootstrapResponse>('/api/chat');
 }
 
-export function sendChatMessage(message: string): Promise<JsonApiResponse<ChatReplyResponse>> {
-  return postJson<ChatReplyResponse>('/api/chat', { message });
+export function sendChatMessage(message: string, model?: ChatModelChoice): Promise<JsonApiResponse<ChatReplyResponse>> {
+  return postJson<ChatReplyResponse>('/api/chat', { message, model });
 }
 
 export function resetChatThread(): Promise<JsonApiResponse<ChatResetResponse>> {

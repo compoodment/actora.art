@@ -5,6 +5,7 @@ import {
   resetChatThread,
   sendChatMessage,
   type ChatMessage,
+  type ChatModelChoice,
   type ChatReplyResponse,
 } from '../lib/api';
 
@@ -35,6 +36,7 @@ export default function ChatIsland() {
   const [remaining, setRemaining] = useState<number | null>(null);
   const [resetAt, setResetAt] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [model, setModel] = useState<ChatModelChoice>('fast');
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const loadRef = useRef<Promise<void> | null>(null);
@@ -65,8 +67,9 @@ export default function ChatIsland() {
           return;
         }
 
-        const payload = data as { messages?: unknown };
+        const payload = data as { messages?: unknown; model?: string };
         setMessages(normalizeMessages(payload.messages));
+        setModel(payload.model === 'gemini-3.1-pro-preview' ? 'smart' : 'fast');
         setError(null);
       } catch {
         // Keep local state as-is if bootstrap fails.
@@ -137,7 +140,7 @@ export default function ChatIsland() {
     setLoading(true);
 
     try {
-      const { response, data } = await sendChatMessage(text);
+      const { response, data } = await sendChatMessage(text, model);
 
       if (!response.ok) {
         const errorBody = (data && typeof data === 'object' ? data : {}) as {
@@ -170,7 +173,7 @@ export default function ChatIsland() {
     }
 
     setLoading(false);
-  }, [bootstrapped, input, loadThread, loading]);
+  }, [bootstrapped, input, loadThread, loading, model]);
 
   const handleKey = (e: KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -187,6 +190,10 @@ export default function ChatIsland() {
           {remaining !== null && resetAt !== null && (
             <span class="chat-meta">{remaining} left — {formatResetTime(resetAt)}</span>
           )}
+          <select class="chat-model" value={model} onChange={(e) => setModel((e.target as HTMLSelectElement).value as ChatModelChoice)} disabled={loading} aria-label="chat model">
+            <option value="fast">fast</option>
+            <option value="smart">smart</option>
+          </select>
           <button type="button" class="chat-reset" onClick={resetThread} disabled={loading || messages.length === 0}>reset</button>
         </div>
       </div>

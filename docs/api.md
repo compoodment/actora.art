@@ -617,3 +617,8 @@ Clears the active chat thread for the current signed-in account or guest browser
 
 
 Signed-in chat requests include the public account username and display name in the server-side bot context. Guest chats are labeled as guests.
+
+
+### Chat model choices
+
+`POST /api/chat` accepts an optional `model` field: `fast` for Gemini 2.5 Flash or `smart` for Gemini 3.1 Pro Preview. The choice is stored on the current account/guest thread.
