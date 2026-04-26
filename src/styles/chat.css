@@ -50,9 +50,34 @@
   font-weight: 500;
 }
 
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .chat-meta {
   color: var(--color-text-dim);
   font-size: 0.7rem;
+}
+
+.chat-reset {
+  background: transparent;
+  border: none;
+  color: var(--color-text-dim);
+  font-family: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.chat-reset:hover:not(:disabled) {
+  color: var(--color-text);
+}
+
+.chat-reset:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 .chat-messages {

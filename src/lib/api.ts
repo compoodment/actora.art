@@ -79,6 +79,13 @@ export interface ChatReplyResponse {
   resetAt: number;
 }
 
+export interface ChatResetResponse {
+  ok: true;
+  deleted: boolean;
+  messages: ChatMessage[];
+  signedIn: boolean;
+}
+
 export interface WallCell {
   char: string;
   color: string;
@@ -232,6 +239,10 @@ export function fetchChatBootstrap(): Promise<JsonApiResponse<ChatBootstrapRespo
 
 export function sendChatMessage(message: string): Promise<JsonApiResponse<ChatReplyResponse>> {
   return postJson<ChatReplyResponse>('/api/chat', { message });
+}
+
+export function resetChatThread(): Promise<JsonApiResponse<ChatResetResponse>> {
+  return postJson<ChatResetResponse>('/api/chat/reset');
 }
 
 export function fetchWallState(): Promise<JsonApiResponse<WallStateResponse>> {

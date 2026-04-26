@@ -605,3 +605,12 @@ Current error responses:
 { error: 'body_too_large' }
 { error: 'bad_request' }
 ```
+
+
+### POST /api/chat/reset
+
+Clears the active chat thread for the current signed-in account or guest browser. It does not reset daily or burst message limits.
+
+```js
+{ ok: true, deleted: boolean, messages: [], signedIn: boolean }
+```

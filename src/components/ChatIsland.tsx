@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'preact/hooks';
 import {
   fetchChatBootstrap,
   getApiErrorMessage,
+  resetChatThread,
   sendChatMessage,
   type ChatMessage,
   type ChatReplyResponse,
@@ -101,6 +102,28 @@ export default function ChatIsland() {
     };
   }, [loadThread, loading]);
 
+  const resetThread = useCallback(async () => {
+    if (loading) return;
+    const ok = window.confirm('reset this conversation? the bot will forget the current context.');
+    if (!ok) return;
+
+    setError(null);
+    setLoading(true);
+    try {
+      const { response, data } = await resetChatThread();
+      if (!response.ok) {
+        setError(getApiErrorMessage(data, 'could not reset conversation'));
+        return;
+      }
+      setMessages([]);
+      setBootstrapped(true);
+    } catch {
+      setError('connection failed');
+    } finally {
+      setLoading(false);
+    }
+  }, [loading]);
+
   const send = useCallback(async () => {
     const text = input.trim();
     if (!text || loading) return;
@@ -160,9 +183,12 @@ export default function ChatIsland() {
     <div class="chat-container" onClick={() => inputRef.current?.focus()}>
       <div class="chat-header">
         <span class="chat-title">chat bot</span>
-        {remaining !== null && resetAt !== null && (
-          <span class="chat-meta">{remaining} left — {formatResetTime(resetAt)}</span>
-        )}
+        <div class="chat-header-actions">
+          {remaining !== null && resetAt !== null && (
+            <span class="chat-meta">{remaining} left — {formatResetTime(resetAt)}</span>
+          )}
+          <button type="button" class="chat-reset" onClick={resetThread} disabled={loading || messages.length === 0}>reset</button>
+        </div>
       </div>
 
       <div class="chat-messages" ref={messagesRef} role="log" aria-live="polite" aria-relevant="additions text" aria-busy={loading}>
