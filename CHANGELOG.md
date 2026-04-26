@@ -4,6 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+- Docs: tightened the public docs tone for identity, experiments, and privacy so they read less like maintenance notes
 - Docs: kept the public experiments guide visitor-facing after private per-experiment owner docs were split out for maintenance planning
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: simplified the public docs so they stay readable and leave live operations elsewhere

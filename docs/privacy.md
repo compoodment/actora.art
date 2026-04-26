@@ -1,30 +1,25 @@
 # Privacy
 
-actora.art collects only what it needs to work.
+actora.art collects only what it needs to run the site.
 
-## What we use
+## What the site uses
 
-The site uses limited operational data for:
-- rate limiting (preventing spam and abuse)
-- operating interactive features (like the wall and chat)
-- managing account sessions and identity
-- restoring feature state in the same browser/device when needed
-- basic site security
+- rate limits to reduce spam and abuse
+- cookies/session state for chat, wall, accounts, and passkeys
+- enough local state to restore recent activity in the same browser/device
+- basic security data to keep the interactive parts usable
 
-We do not:
-- track you across other sites
-- build identity profiles
-- sell or share data
-- use analytics or tracking scripts
+## What it does not do
 
-## What happens with your data
+- no cross-site tracking
+- no ad profiles
+- no analytics scripts
+- no selling or sharing visitor data
 
-Operational data is kept only as long as the site needs it to stay usable and safe. Some interactive features may keep enough state to restore chat or ownership in the same browser/device, but that is not used for analytics, advertising, or cross-site tracking.
+## Retention
 
-## Changes to this note
+Data is kept only as long as it is useful for the site to work safely. Some interactive features keep enough state to restore chat or wall ownership in the same browser/device, but that state is not used for analytics or advertising.
 
-If what we collect changes, this note will be updated. Significant changes will be reflected on the site where they are visible.
+## Changes
 
-## Questions
-
-If you have questions about data handling, reach out through the site.
+If this changes, this note will change too.

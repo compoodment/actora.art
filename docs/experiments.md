@@ -1,15 +1,21 @@
 # Experiments
 
-The lab is for public experiments, ideas still taking shape, and weird things worth trying. It is not a dumping ground for unfinished junk.
+The lab is where actora.art keeps the odd stuff: public experiments, prototypes, and things still taking shape.
 
 ## Chat
 
-The chat page lets visitors talk to the site's chat bot. It's a conversational interface with message limits and a restorable recent thread in the same browser/device. The chat bot is part of the site, but it is not the same thing as the assistant that helps maintain the site.
+A public chat bot for visitors. It has message limits and can restore a recent thread in the same browser/device.
+
+It is part of the site itself.
 
 ## Wall
 
-The wall is a collaborative text-based graffiti space. Visitors get a daily character budget, paint on a shared grid, erase their own visible marks, and undo or redo recent confirmed paint/erase actions or strokes from the same guest session or signed-in account. Marks can be overwritten, older unexpired marks can reappear, and content fades over time. The wall is meant to feel alive and temporary, not frozen.
+A shared text and ASCII wall.
+
+Visitors get a daily character budget, paint on a grid, erase their own visible marks, and undo or redo recent confirmed actions. Marks can be overwritten, older unexpired marks can reappear, and content fades over time.
+
+It is meant to feel alive and temporary.
 
 ## Particles
 
-An interactive visual flow experiment.
+A small interactive visual toy.
