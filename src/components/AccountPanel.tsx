@@ -212,7 +212,7 @@ export default function AccountPanel() {
 
   const deletePasskey = async (passkey: PasskeySummary) => {
     if (removingPasskeyId) return;
-    const confirmed = window.confirm('Remove this passkey? It will no longer sign in to this account.');
+    const confirmed = window.confirm('Remove this passkey? It will stop working for this account.');
     if (!confirmed) return;
 
     setRemovingPasskeyId(passkey.id);
@@ -287,7 +287,7 @@ export default function AccountPanel() {
           <p>{passkeys.length} total</p>
         </div>
         <p class="account-meta account-recovery-note">
-          Keep at least two passkeys if you can. If you lose every passkey, there is no self-serve recovery yet.
+          Keep a second passkey if you can. Lose every passkey and you may be locked out.
         </p>
 
         {passkeysLoading && passkeys.length === 0 ? (
@@ -336,6 +336,7 @@ export default function AccountPanel() {
                       </button>
                       <button
                         type="button"
+                        class="account-passkey-remove"
                         onClick={() => void deletePasskey(passkey)}
                         disabled={removingPasskeyId === passkey.id || passkeys.length <= 1}
                         title={passkeys.length <= 1 ? 'add another passkey before removing this one' : undefined}

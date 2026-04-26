@@ -4,6 +4,7 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+- Account: tightened passkey removal copy and styled the remove action as a quieter destructive button
 - Auth: `/account` can now remove linked passkeys after confirmation, while keeping the last passkey protected from removal
 - Auth: added account recovery guidance near linked passkeys so users know to keep more than one passkey
 - API: added signed-in-only `POST /api/auth/passkeys/remove` using account-scoped passkey handles

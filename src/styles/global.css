@@ -401,6 +401,16 @@ a:hover {
   color: var(--color-text);
 }
 
+.account-passkey-actions .account-passkey-remove {
+  border-color: #4a2828;
+  color: #d89797;
+}
+
+.account-passkey-actions .account-passkey-remove:hover:not(:disabled) {
+  border-color: #8b3f3f;
+  color: #ffc6c6;
+}
+
 .account-passkey-actions button:disabled {
   opacity: 0.5;
   cursor: default;
