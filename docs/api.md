@@ -441,6 +441,37 @@ Current error responses:
 { error: 'passkey_not_found' }
 ```
 
+### `POST /api/auth/passkeys/remove`
+
+Removes one of the signed-in user's own passkeys. Signed-out callers receive `401`. The last passkey on an account cannot be removed.
+
+Request:
+
+```ts
+type RemovePasskeyRequest = {
+  id: string; // handle from GET /api/auth/passkeys
+};
+```
+
+Success response:
+
+```ts
+type RemovePasskeyResponse = {
+  ok: true;
+  passkeys: PasskeySummary[];
+};
+```
+
+Current error responses:
+
+```ts
+{ error: 'unauthorized' }
+{ error: 'bad_request' }
+{ error: 'body_too_large' }
+{ error: 'passkey_not_found' }
+{ error: 'last_passkey', message: 'Add another passkey before removing this one.' }
+```
+
 ### `POST /api/auth/passkey/register/start`
 
 Starts passkey registration.

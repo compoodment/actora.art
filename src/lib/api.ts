@@ -57,6 +57,11 @@ export interface PasskeyRenameResponse {
   passkey: PasskeySummary;
 }
 
+export interface PasskeyRemoveResponse {
+  ok: true;
+  passkeys: PasskeySummary[];
+}
+
 export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
@@ -193,6 +198,10 @@ export function fetchPasskeys(): Promise<JsonApiResponse<PasskeysResponse>> {
 
 export function renamePasskey(id: string, nickname: string): Promise<JsonApiResponse<PasskeyRenameResponse>> {
   return postJson<PasskeyRenameResponse>('/api/auth/passkeys/rename', { id, nickname });
+}
+
+export function removePasskey(id: string): Promise<JsonApiResponse<PasskeyRemoveResponse>> {
+  return postJson<PasskeyRemoveResponse>('/api/auth/passkeys/remove', { id });
 }
 
 export function startPasskeyRegister(

@@ -12,6 +12,7 @@ import {
   getApiErrorMessage,
   postAuthLogout,
   renamePasskey,
+  removePasskey,
   startPasskeyRegister,
   type PasskeySummary,
 } from '../lib/api';
@@ -61,6 +62,9 @@ export default function AccountPanel() {
   const [nicknameDraft, setNicknameDraft] = useState('');
   const [renamingPasskeyId, setRenamingPasskeyId] = useState<string | null>(null);
   const [renameError, setRenameError] = useState<string | null>(null);
+  const [removingPasskeyId, setRemovingPasskeyId] = useState<string | null>(null);
+  const [removeErrorPasskeyId, setRemoveErrorPasskeyId] = useState<string | null>(null);
+  const [removeError, setRemoveError] = useState<string | null>(null);
 
   const loadPasskeys = async () => {
     setPasskeysLoading(true);
@@ -170,6 +174,8 @@ export default function AccountPanel() {
     setEditingPasskeyId(passkey.id);
     setNicknameDraft(passkey.nickname);
     setRenameError(null);
+    setRemoveErrorPasskeyId(null);
+    setRemoveError(null);
   };
 
   const cancelRename = () => {
@@ -201,6 +207,42 @@ export default function AccountPanel() {
       setRenameError(error instanceof Error ? error.message : 'Unable to rename passkey.');
     } finally {
       setRenamingPasskeyId(null);
+    }
+  };
+
+  const deletePasskey = async (passkey: PasskeySummary) => {
+    if (removingPasskeyId) return;
+    const confirmed = window.confirm('Remove this passkey? It will no longer sign in to this account.');
+    if (!confirmed) return;
+
+    setRemovingPasskeyId(passkey.id);
+    setRemoveErrorPasskeyId(null);
+    setRemoveError(null);
+    setPasskeyStatus('');
+
+    try {
+      const { response, data } = await removePasskey(passkey.id);
+      if (!response.ok) {
+        throw new Error(getApiErrorMessage(data, 'Unable to remove passkey.'));
+      }
+
+      const nextPasskeys = data && 'passkeys' in data && Array.isArray(data.passkeys)
+        ? data.passkeys
+        : null;
+      if (nextPasskeys) {
+        setPasskeys(nextPasskeys);
+      } else {
+        await loadPasskeys();
+      }
+      if (editingPasskeyId === passkey.id) {
+        cancelRename();
+      }
+      setPasskeyStatus('passkey removed.');
+    } catch (error) {
+      setRemoveErrorPasskeyId(passkey.id);
+      setRemoveError(error instanceof Error ? error.message : 'Unable to remove passkey.');
+    } finally {
+      setRemovingPasskeyId(null);
     }
   };
 
@@ -244,6 +286,9 @@ export default function AccountPanel() {
           <h2>linked passkeys</h2>
           <p>{passkeys.length} total</p>
         </div>
+        <p class="account-meta account-recovery-note">
+          Keep at least two passkeys if you can. If you lose every passkey, there is no self-serve recovery yet.
+        </p>
 
         {passkeysLoading && passkeys.length === 0 ? (
           <p class="account-meta">loading passkeys...</p>
@@ -285,9 +330,19 @@ export default function AccountPanel() {
                       </button>
                     </>
                   ) : (
-                    <button type="button" onClick={() => startRename(passkey)}>
-                      rename
-                    </button>
+                    <>
+                      <button type="button" onClick={() => startRename(passkey)} disabled={removingPasskeyId === passkey.id}>
+                        rename
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => void deletePasskey(passkey)}
+                        disabled={removingPasskeyId === passkey.id || passkeys.length <= 1}
+                        title={passkeys.length <= 1 ? 'add another passkey before removing this one' : undefined}
+                      >
+                        {removingPasskeyId === passkey.id ? 'removing...' : 'remove'}
+                      </button>
+                    </>
                   )}
                 </div>
                 <dl class="account-passkey-details">
@@ -302,6 +357,9 @@ export default function AccountPanel() {
                 </dl>
                 {renameError && editingPasskeyId === passkey.id ? (
                   <p class="account-meta account-error">{renameError}</p>
+                ) : null}
+                {removeError && removeErrorPasskeyId === passkey.id ? (
+                  <p class="account-meta account-error">{removeError}</p>
                 ) : null}
               </li>
             ))}

@@ -4,6 +4,10 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+- Auth: `/account` can now remove linked passkeys after confirmation, while keeping the last passkey protected from removal
+- Auth: added account recovery guidance near linked passkeys so users know to keep more than one passkey
+- API: added signed-in-only `POST /api/auth/passkeys/remove` using account-scoped passkey handles
+- Terminal: actoraOS bumped to `v0.1.60` in the boot text and footer home shortcut
 - Docs: tightened the public docs tone for identity, experiments, and privacy so they read less like maintenance notes
 - Docs: kept the public experiments guide visitor-facing after private per-experiment owner docs were split out for maintenance planning
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
