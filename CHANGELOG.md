@@ -14,6 +14,11 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: simplified the public docs so they stay readable and leave live operations elsewhere
 
+## 0.1.69 — 2026-04-27
+
+- Chat: dark-themed the model selector
+- Terminal: actoraOS bumped to `v0.1.69` in the boot text and footer home shortcut
+
 ## 0.1.68 — 2026-04-27
 
 - Chat: fixed the model selector closing immediately when clicked
