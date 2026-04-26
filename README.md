@@ -2,7 +2,7 @@
 
 A personal site with a terminal for a front door.
 
-It has projects, experiments, a chat bot, a shared wall, and a few hidden corners. Some parts are polished. Some parts are deliberately strange. Some parts are just things computment wanted to make and leave online.
+Projects, experiments, a chat bot, a shared wall, and a few hidden corners.
 
 Visit it here: https://actora.art
 
