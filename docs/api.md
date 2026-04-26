@@ -614,3 +614,6 @@ Clears the active chat thread for the current signed-in account or guest browser
 ```js
 { ok: true, deleted: boolean, messages: [], signedIn: boolean }
 ```
+
+
+Signed-in chat requests include the public account username and display name in the server-side bot context. Guest chats are labeled as guests.
