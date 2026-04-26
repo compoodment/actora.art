@@ -37,6 +37,7 @@ export default function ChatIsland() {
   const [resetAt, setResetAt] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [model, setModel] = useState<ChatModelChoice>('fast');
+  const [modelMenuOpen, setModelMenuOpen] = useState(false);
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const loadRef = useRef<Promise<void> | null>(null);
@@ -196,10 +197,23 @@ export default function ChatIsland() {
           {remaining !== null && resetAt !== null && (
             <span class="chat-meta">{remaining} left — {formatResetTime(resetAt)}</span>
           )}
-          <select class="chat-model" value={model} onClick={(e) => e.stopPropagation()} onChange={(e) => setModel((e.target as HTMLSelectElement).value as ChatModelChoice)} disabled={loading} aria-label="chat model">
-            <option value="fast">fast</option>
-            <option value="smart">smart</option>
-          </select>
+          <div class="chat-model-wrap" onClick={(e) => e.stopPropagation()}>
+            <button type="button" class="chat-model" onClick={() => setModelMenuOpen(open => !open)} disabled={loading} aria-expanded={modelMenuOpen} aria-label="chat model">{model}</button>
+            {modelMenuOpen && (
+              <div class="chat-model-menu" role="menu">
+                {(['fast', 'smart'] as ChatModelChoice[]).map((choice) => (
+                  <button
+                    key={choice}
+                    type="button"
+                    class={`chat-model-option${model === choice ? ' active' : ''}`}
+                    onClick={() => { setModel(choice); setModelMenuOpen(false); }}
+                  >
+                    {choice}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           <button type="button" class="chat-reset" onClick={resetThread} disabled={loading || messages.length === 0}>reset</button>
         </div>
       </div>
