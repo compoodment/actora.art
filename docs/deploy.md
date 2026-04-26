@@ -1,36 +1,24 @@
-# Deploy
+# Hosting
 
-Role: public static-frontend deploy guide; keep private infrastructure, health checks, and ops procedures out.
+actora.art is a static Astro frontend with interactive features provided by same-origin `/api/*` routes.
 
-This repo builds the static frontend for actora.art.
+This page explains the shape the frontend expects. It is not an operations runbook.
 
-## What this repo does
+## Frontend output
 
-- `npm run build` produces the static site in `dist/`.
-- Pages and client-side UI ship from this repo.
-- Interactive features do not live in this repo.
+The site builds to static files: HTML, CSS, JavaScript, images, and generated metadata. Any host serving the frontend needs to serve those files as normal static assets.
 
-## Interactive features need a separate backend
+## Interactive routes
 
-Chat, wall, and auth flows require a separate Node backend that exposes the public routes documented in [api.md](api.md).
+Chat, wall, account, and passkey screens expect a backend on the same origin with the routes documented in [api.md](api.md).
 
-The frontend expects that backend to:
+The frontend assumes:
 
-- serve the documented `/api/*` routes
-- run on the same origin as the site, or be reverse-proxied there
-- manage guest/auth cookies server-side so browser requests keep identity state
+- `/api/*` routes return the documented JSON shapes
+- visitor identity is cookie-backed
+- account and guest state are managed server-side
+- static pages can still load even if interactive routes are unavailable
 
-If that backend is absent, the site can still render, but chat, wall, account, and passkey features will not work.
+## Not covered here
 
-## Basic frontend deploy flow
-
-```bash
-npm install
-npm run build
-```
-
-Then host the generated `dist/` output with any static hosting setup that also routes the documented `/api/*` requests to the separate backend.
-
-## Scope Note
-
-This doc is intentionally public-safe. It does not describe private infrastructure layout, health checks, admin routes, or operational auth details.
+Live operations are handled outside this repo.

@@ -1,6 +1,6 @@
 # Testing
 
-Role: public owner for safe, visitor-facing manual QA checklists. Use this for tests that can be shared openly with friends or contributors. Sensitive QA, admin surfaces, backend behavior, abuse cases, and pentest-style checklists belong in private docs.
+Manual checks for visitor-facing behavior.
 
 The goal is not to test every item every time. Pick the smallest section that matches the change, and write down anything that feels wrong, delayed, confusing, or inconsistent.
 

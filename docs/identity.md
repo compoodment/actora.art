@@ -1,7 +1,5 @@
 # Identity
 
-Role: product identity note; keep site intent and taste here, with experiments and privacy handled in their own docs.
-
 actora.art is a personal site. It should feel like a place, not a portfolio.
 
 ## What it is

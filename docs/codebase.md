@@ -1,7 +1,5 @@
 # Codebase
 
-Role: frontend codebase guide; API shape belongs in `api.md`, deploy shape in `deploy.md`, and private backend details stay private.
-
 How the frontend is organized.
 
 ## Top-level structure
@@ -57,6 +55,6 @@ All frontend calls to `/api/*` are centralized in [`src/lib/api.ts`](../src/lib/
 
 The public contract for those routes is documented in [api.md](api.md). Interactive behavior assumes a separate backend exposes that contract and manages cookie-backed visitor identity.
 
-## Public vs private knowledge
+## Boundaries
 
-This file describes the frontend codebase and public-facing structure only. Operational backend details, infrastructure, and admin internals are documented privately.
+This file stays focused on frontend structure. API shapes are in [api.md](api.md), and hosting expectations are in [deploy.md](deploy.md).

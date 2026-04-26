@@ -1,7 +1,5 @@
 # Experiments
 
-Role: public lab guide. Keep this visitor-facing and concise; product identity belongs in `identity.md`, and maintenance notes belong outside the public docs.
-
 The lab is for public experiments, ideas still taking shape, and weird things worth trying. It is not a dumping ground for unfinished junk.
 
 ## Chat
