@@ -8,11 +8,11 @@ Visit it here: https://actora.art
 
 ## Places
 
-- **terminal** — the homepage, command line, and main way in
-- **projects** — things worth pointing at from the site
-- **chat** — a public chat bot for visitors
-- **lab** — experiments, prototypes, and unfinished ideas
-- **wall** — a shared text wall with paint, erase, fading, colors, and undo
+- **terminal** — the homepage
+- **projects** — external projects
+- **chat** — a chat bot
+- **lab** — experiments, prototypes, & unfinished ideas
+- **wall** — a shared text & ASCII wall to draw on
 - **particles** — a small interactive visual toy
 
 ## Notes
