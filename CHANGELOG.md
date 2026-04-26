@@ -14,9 +14,14 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: simplified the public docs so they stay readable and leave live operations elsewhere
 
+## 0.1.63 — 2026-04-26
+
+- Chat: short burst limit is now 20 messages/minute per account or guest identity
+- Terminal: actoraOS bumped to `v0.1.63` in the boot text and footer home shortcut
+
 ## 0.1.62 — 2026-04-26
 
-- Chat: daily limit is now 300 messages per account or guest identity on a rolling 24-hour window; the short burst limit remains 10 messages/minute per IP
+- Chat: daily limit is now 300 messages per account or guest identity on a rolling 24-hour window; the short burst limit is now 20 messages/minute per account or guest identity
 - Terminal: actoraOS bumped to `v0.1.62` in the boot text and footer home shortcut
 
 ## 0.1.59 — 2026-04-26
@@ -354,7 +359,7 @@ Product-level changes visible to visitors and developers.
 
 ## 0.1.2 — 2026-04-21
 
-- Chat: per-minute rate limit (10 messages/minute per IP)
+- Chat: per-minute rate limit (now 20 messages/minute per account or guest identity)
 - Chat: Gemini API rate limit errors now show a friendly message instead of a generic error
 - Chat: 429 responses include `detail` field with explanation
 - Terminal: removed greeting easter eggs (hi, hey, hello) to avoid confusion with chat
