@@ -14,6 +14,11 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: simplified the public docs so they stay readable and leave live operations elsewhere
 
+## 0.1.62 — 2026-04-26
+
+- Chat: daily limit is now 300 messages per account or guest identity on a rolling 24-hour window; the short burst limit remains 10 messages/minute per IP
+- Terminal: actoraOS bumped to `v0.1.62` in the boot text and footer home shortcut
+
 ## 0.1.59 — 2026-04-26
 
 - Wall: added undo and redo controls for recent confirmed paint/erase actions and drag strokes, with ownership-safe stack checks and authoritative budget/refund updates from the backend

@@ -126,6 +126,8 @@ Current error responses:
 { error: 'forbidden', message: 'access denied' }
 { error: 'chat_paused', message: 'computment decided to pause the chat bot momentarily :(' }
 { error: 'daily_limit_reached', message: 'daily message limit reached', remaining: 0, resetAt: number }
+
+Daily chat limit: 300 messages per account or guest identity per rolling 24-hour window. The short burst limit remains 10 messages per minute per IP.
 { error: 'minute_limit_reached', message: 'slow down — you talk too much, leave me alone', detail: string, remaining: 0 }
 { error: 'api_rate_limited', message: 'you talk too much, leave me alone', detail: string }
 { error: 'invalid_message' }
