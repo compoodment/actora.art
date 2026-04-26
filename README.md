@@ -1,43 +1,22 @@
 # actora.art
 
-A personal site that behaves more like a place than a portfolio.
+A personal site with a terminal for a front door.
 
-You arrive at a terminal. It answers, misdirects, opens doors, and sometimes lets the stranger parts of the site leak through. From there, actora.art branches into projects, experiments, a public chat bot, a shared wall, and whatever else computment decides to leave glowing in the corners.
+It has projects, experiments, a chat bot, a shared wall, and a few hidden corners. Some parts are polished. Some parts are deliberately strange. Some parts are just things computment wanted to make and leave online.
 
-## What lives here
+Visit it here: https://actora.art
 
-- **terminal homepage** — the front door, command surface, and hiding place for small weirdness
-- **projects** — public traces of larger work
-- **chat** — a visitor-facing chat bot with memory only where the product explicitly allows it
-- **lab** — unfinished, playful, and experimental surfaces
-- **wall** — collaborative text graffiti with budgets, fading, erasing, color, undo/redo, and other tiny acts of public vandalism
-- **particles** — a visual experiment, currently more toy than tool
+## Places
 
-## What this repo is
+- **terminal** — the homepage, command line, and main way in
+- **projects** — things worth pointing at from the site
+- **chat** — a public chat bot for visitors
+- **lab** — experiments, prototypes, and unfinished ideas
+- **wall** — a shared text wall with paint, erase, fading, colors, and undo
+- **particles** — a small interactive visual toy
 
-This is the public frontend codebase for actora.art.
+## Notes
 
-It contains the Astro site, Preact islands, CSS, visitor-facing API contract docs, public changelog, and public-safe project notes. It does **not** contain backend source, deployment config, admin procedures, moderation mechanics, credentials, private infrastructure details, or operational runbooks.
+This repo is the public frontend for the site. The deeper documentation starts at [docs/index.md](docs/index.md), and release notes live in [CHANGELOG.md](CHANGELOG.md).
 
-If a detail would help someone understand the public site, it belongs here. If a detail would mostly help someone operate, attack, recover, or administer the site, it belongs in the private repo instead.
-
-## Map
-
-- [Docs Index](docs/index.md) — public documentation map
-- [Changelog](CHANGELOG.md) — product-level release notes
-- [API Contract](docs/api.md) — public frontend/backend contract for same-origin `/api/*` routes
-- [Codebase](docs/codebase.md) — frontend structure and conventions
-- [Roadmap](docs/roadmap.md) — public-facing planned work and known follow-ups
-
-## Stack
-
-- [Astro](https://astro.build)
-- [Preact](https://preactjs.com)
-- plain CSS
-- a separate private Node.js backend exposed to the browser through same-origin `/api/*` routes
-
-## Boundary
-
-This repo is intentionally public. Keep it useful, readable, and safe.
-
-Public docs should explain what visitors can experience and what contributors can understand from the frontend. Private docs own live deployment, health checks, admin behavior, moderation operations, restore steps, secrets handling, and infrastructure-specific details.
+Built with Astro, Preact, and plain CSS.
