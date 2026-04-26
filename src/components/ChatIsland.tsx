@@ -182,15 +182,21 @@ export default function ChatIsland() {
     }
   };
 
+  const focusInputFromShell = (event: MouseEvent) => {
+    const target = event.target as HTMLElement | null;
+    if (target?.closest('button, input, select, textarea, a')) return;
+    inputRef.current?.focus();
+  };
+
   return (
-    <div class="chat-container" onClick={() => inputRef.current?.focus()}>
+    <div class="chat-container" onClick={focusInputFromShell}>
       <div class="chat-header">
         <span class="chat-title">chat bot</span>
         <div class="chat-header-actions">
           {remaining !== null && resetAt !== null && (
             <span class="chat-meta">{remaining} left — {formatResetTime(resetAt)}</span>
           )}
-          <select class="chat-model" value={model} onChange={(e) => setModel((e.target as HTMLSelectElement).value as ChatModelChoice)} disabled={loading} aria-label="chat model">
+          <select class="chat-model" value={model} onClick={(e) => e.stopPropagation()} onChange={(e) => setModel((e.target as HTMLSelectElement).value as ChatModelChoice)} disabled={loading} aria-label="chat model">
             <option value="fast">fast</option>
             <option value="smart">smart</option>
           </select>
