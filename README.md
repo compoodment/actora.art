@@ -1,55 +1,43 @@
 # actora.art
 
-Role: repo front door; use it for the public orientation and send detailed docs boundaries to `docs/`.
+A personal site that behaves more like a place than a portfolio.
 
-A small personal site for projects, experiments, and computment.
+You arrive at a terminal. It answers, misdirects, opens doors, and sometimes lets the stranger parts of the site leak through. From there, actora.art branches into projects, experiments, a public chat bot, a shared wall, and whatever else computment decides to leave glowing in the corners.
 
-The homepage is a terminal. From there you can browse pages, talk to the chat bot, draw on a shared wall, or find your way into stranger corners. The site is built around the idea that a personal site should feel like a place, not a portfolio.
+## What lives here
 
-## What's on the site
-
-- **homepage** — a terminal-style landing page with hidden routes and easter eggs
-- **projects** — links to external projects
-  - **actora** — a long-form systems project
-- **chat** — a public chat bot page
-- **lab** — experiments and unfinished things
-  - **wall** — a collaborative text-based graffiti wall with daily budgets, fading, and erase mechanics
-  - **particles** — an interactive visual experiment
+- **terminal homepage** — the front door, command surface, and hiding place for small weirdness
+- **projects** — public traces of larger work
+- **chat** — a visitor-facing chat bot with memory only where the product explicitly allows it
+- **lab** — unfinished, playful, and experimental surfaces
+- **wall** — collaborative text graffiti with budgets, fading, erasing, color, undo/redo, and other tiny acts of public vandalism
+- **particles** — a visual experiment, currently more toy than tool
 
 ## What this repo is
 
-This is the public codebase for the site frontend. It contains the Astro site, interactive components, and public documentation. It does not contain backend logic, deployment config, or operational details.
+This is the public frontend codebase for actora.art.
 
-## Docs
+It contains the Astro site, Preact islands, CSS, visitor-facing API contract docs, public changelog, and public-safe project notes. It does **not** contain backend source, deployment config, admin procedures, moderation mechanics, credentials, private infrastructure details, or operational runbooks.
 
-See the [Docs Index](docs/index.md) for a map of the public-safe documentation (identity, codebase, API contract, and deploy requirements).
+If a detail would help someone understand the public site, it belongs here. If a detail would mostly help someone operate, attack, recover, or administer the site, it belongs in the private repo instead.
 
-Public docs explain product intent, frontend structure, and visitor-facing behavior. They do not explain deployment internals, admin behavior, moderation mechanics, or secrets handling.
+## Map
 
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for product-level release notes.
-
-## Local development
-
-```bash
-npm install
-npm run dev
-```
-
-Build for production:
-
-```bash
-npm run build
-```
+- [Docs Index](docs/index.md) — public documentation map
+- [Changelog](CHANGELOG.md) — product-level release notes
+- [API Contract](docs/api.md) — public frontend/backend contract for same-origin `/api/*` routes
+- [Codebase](docs/codebase.md) — frontend structure and conventions
+- [Roadmap](docs/roadmap.md) — public-facing planned work and known follow-ups
 
 ## Stack
 
 - [Astro](https://astro.build)
 - [Preact](https://preactjs.com)
 - plain CSS
-- a separate Node.js backend for interactive features, exposed to the frontend as same-origin `/api/*` routes
+- a separate private Node.js backend exposed to the browser through same-origin `/api/*` routes
 
-## Note on documentation
+## Boundary
 
-This repo intentionally keeps public documentation focused on the project, the codebase, and user-facing behavior. Operational details, moderation processes, and infrastructure specifics belong in private docs, not here.
+This repo is intentionally public. Keep it useful, readable, and safe.
+
+Public docs should explain what visitors can experience and what contributors can understand from the frontend. Private docs own live deployment, health checks, admin behavior, moderation operations, restore steps, secrets handling, and infrastructure-specific details.
