@@ -140,7 +140,7 @@ Current error responses:
 
 Returns the public wall state plus ownership flags for the current visitor.
 
-Wall coordinates are stored server-side as capped layer stacks. Public wall responses expose only the visible top layer as `WallCell | null`; hidden layers, owner keys, owner labels, and IP metadata are never included.
+Wall coordinates are layered server-side. Public wall responses expose only the visible top layer as `WallCell | null`; internal ownership data is not included.
 
 ```ts
 type GetWallResponse = {
@@ -178,7 +178,7 @@ type WallPatchEvent = {
 };
 
 type WallRefetchEvent = {
-  reason: 'cleanup' | 'admin_clear_owner' | 'admin_clear_all' | 'owner_claim' | string;
+  reason: string;
 };
 ```
 

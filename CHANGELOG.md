@@ -1,14 +1,12 @@
 # CHANGELOG
 
-Role: public product changelog; keep documentation maintenance brief and leave private ops history elsewhere.
-
 Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
 - Docs: kept the public experiments guide visitor-facing after private per-experiment owner docs were split out for maintenance planning
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
-- Docs: added top-level role notes to public Markdown docs so repo, product, API, deploy, experiment, privacy, and changelog boundaries are explicit
+- Docs: simplified the public docs so they stay readable and leave live operations elsewhere
 
 ## 0.1.59 — 2026-04-26
 
@@ -331,7 +329,7 @@ Product-level changes visible to visitors and developers.
 
 ## 0.1.4 — 2026-04-21
 
-- Admin: removed `cd admin` from the homepage terminal
+- Terminal: removed an internal-only command from the homepage terminal
 - Admin: basic auth now rate-limited to 3 failed attempts per IP per 60 minutes
 
 ## 0.1.3 — 2026-04-21
