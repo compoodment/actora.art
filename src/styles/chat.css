@@ -46,7 +46,8 @@
 }
 
 .chat-sidebar-head,
-.chat-session-label {
+.chat-session-label,
+.chat-sidebar-actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -73,6 +74,14 @@
 .chat-mini-btn {
   font-size: 0.7rem;
   padding: 0.2rem 0.45rem;
+}
+
+.chat-toggle {
+  display: none;
+}
+
+.chat-sidebar-body {
+  display: block;
 }
 
 .chat-storage-note {
@@ -386,9 +395,30 @@
   .chat-sidebar {
     border-right: 0;
     border-bottom: 1px solid var(--color-text-dim);
+    overflow: visible;
     padding-right: 0;
     padding-bottom: 0.75rem;
-    max-height: 12rem;
+    max-height: none;
+  }
+
+  .chat-toggle {
+    display: inline-block;
+  }
+
+  .chat-sidebar-body {
+    display: none;
+  }
+
+  .chat-sidebar.open .chat-sidebar-body {
+    display: block;
+    max-height: 42vh;
+    overflow-y: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .chat-sidebar.open .chat-toggle {
+    color: #fff;
+    border-color: var(--color-text);
   }
 
   .chat-container {

@@ -62,6 +62,7 @@ export default function ChatIsland() {
   const [error, setError] = useState<string | null>(null);
   const [model, setModel] = useState<ChatModelChoice>('fast');
   const [modelMenuOpen, setModelMenuOpen] = useState(false);
+  const [sessionPanelOpen, setSessionPanelOpen] = useState(false);
   const [renaming, setRenaming] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -227,6 +228,16 @@ export default function ChatIsland() {
     }
   }, [loading]);
 
+  const openSession = useCallback(async (sessionId: string, archived = false) => {
+    await runSessionAction(() => selectChatSession(sessionId), archived ? 'could not open archived chat' : 'could not open chat');
+    setSessionPanelOpen(false);
+  }, [runSessionAction]);
+
+  const startNewSession = useCallback(async () => {
+    await runSessionAction(newChatSession, 'could not start chat');
+    setSessionPanelOpen(false);
+  }, [runSessionAction]);
+
   const renameCurrent = useCallback(async () => {
     if (!currentSessionId || loading) return;
     const current = sessions.active.find((session) => session.id === currentSessionId);
@@ -268,44 +279,49 @@ export default function ChatIsland() {
   return (
     <div class={`chat-shell${signedIn ? ' signed-in' : ''}`} onClick={focusInputFromShell}>
       {signedIn && (
-        <aside class="chat-sidebar" onClick={(e) => e.stopPropagation()}>
+        <aside class={`chat-sidebar${sessionPanelOpen ? ' open' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div class="chat-sidebar-head">
             <span>chats</span>
-            <button type="button" class="chat-mini-btn" onClick={() => runSessionAction(newChatSession, 'could not start chat')} disabled={loading}>new</button>
+            <div class="chat-sidebar-actions">
+              <button type="button" class="chat-mini-btn chat-toggle" onClick={() => setSessionPanelOpen(open => !open)} aria-expanded={sessionPanelOpen}>list</button>
+              <button type="button" class="chat-mini-btn" onClick={startNewSession} disabled={loading}>new</button>
+            </div>
           </div>
-          <p class="chat-storage-note">stored on your account. archived chats are read-only.</p>
-          <div class="chat-session-group">
-            <span class="chat-session-label">active</span>
-            {sessions.active.length === 0 && <span class="chat-session-empty">none</span>}
-            {sessions.active.map((session) => (
-              <button
-                key={session.id}
-                type="button"
-                class={`chat-session${session.id === currentSessionId ? ' current' : ''}`}
-                onClick={() => runSessionAction(() => selectChatSession(session.id), 'could not open chat')}
-                disabled={loading}
-              >
-                <span>{session.title || 'new chat'}</span>
-                <small>{session.messageCount}</small>
-              </button>
-            ))}
-          </div>
-          <div class="chat-session-group">
-            <span class="chat-session-label">archived</span>
-            {sessions.archived.length === 0 && <span class="chat-session-empty">none</span>}
-            {sessions.archived.map((session) => (
-              <button
-                key={session.id}
-                type="button"
-                class={`chat-session archived${session.id === currentSessionId ? ' current' : ''}`}
-                onClick={() => runSessionAction(() => selectChatSession(session.id), 'could not open archived chat')}
-                disabled={loading}
-                title="open archived chat"
-              >
-                <span>{session.title || 'archived chat'}</span>
-                <small>{session.messageCount}</small>
-              </button>
-            ))}
+          <div class="chat-sidebar-body">
+            <p class="chat-storage-note">stored on your account. archived chats are read-only.</p>
+            <div class="chat-session-group">
+              <span class="chat-session-label">active</span>
+              {sessions.active.length === 0 && <span class="chat-session-empty">none</span>}
+              {sessions.active.map((session) => (
+                <button
+                  key={session.id}
+                  type="button"
+                  class={`chat-session${session.id === currentSessionId ? ' current' : ''}`}
+                  onClick={() => openSession(session.id)}
+                  disabled={loading}
+                >
+                  <span>{session.title || 'new chat'}</span>
+                  <small>{session.messageCount}</small>
+                </button>
+              ))}
+            </div>
+            <div class="chat-session-group">
+              <span class="chat-session-label">archived</span>
+              {sessions.archived.length === 0 && <span class="chat-session-empty">none</span>}
+              {sessions.archived.map((session) => (
+                <button
+                  key={session.id}
+                  type="button"
+                  class={`chat-session archived${session.id === currentSessionId ? ' current' : ''}`}
+                  onClick={() => openSession(session.id, true)}
+                  disabled={loading}
+                  title="open archived chat"
+                >
+                  <span>{session.title || 'archived chat'}</span>
+                  <small>{session.messageCount}</small>
+                </button>
+              ))}
+            </div>
           </div>
         </aside>
       )}
