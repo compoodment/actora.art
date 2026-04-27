@@ -655,7 +655,7 @@ Clears the active chat thread for the current signed-in account or guest browser
 ```
 
 
-Signed-in chat requests include the public account username and display name in the server-side bot context. Guest chats are labeled as guests.
+Signed-in chat requests include the public account username, display name, and stored role in the server-side bot context. Guest chats are labeled as guests. Passkeys, login sessions, moderation state, account ids, and admin-only details are not included.
 
 
 ### Chat model choices

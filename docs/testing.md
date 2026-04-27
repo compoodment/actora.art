@@ -4,6 +4,37 @@ Manual checks for visitor-facing behavior.
 
 The goal is not to test every item every time. Pick the smallest section that matches the change, and write down anything that feels wrong, delayed, confusing, or inconsistent.
 
+## Chat
+
+Manual QA checklist for `/chat`.
+
+### Guest pass
+
+1. Open `/chat` while signed out.
+   - Expected: the page opens on the current conversation, not a saved-history sidebar.
+   - Expected: the empty state says guest chat stays in this browser.
+2. Send a harmless message.
+   - Expected: Aurora replies and the input remains usable.
+3. Reload the page in the same browser.
+   - Expected: the guest conversation restores.
+
+### Signed-in session pass
+
+1. Sign in, then open `/chat`.
+   - Expected: the signed-in chat history control is labeled `chats`.
+   - Expected on desktop: the chat rail starts collapsed as a narrow left rail, not a top strip, and compact active-chat buttons remain selectable.
+   - Expected on mobile/narrow screens: the list is tucked behind a compact top control so the current chat stays primary.
+2. Use the sidebar glyph.
+   - Expected: collapsed shows `◧` with `open sidebar`; expanded shows `◨` with `close sidebar`.
+   - Expected: `new` stays visible on the left of the glyph in both states.
+3. Start a new chat, then switch between chats.
+   - Expected: the rail keeps your chosen open/collapsed state.
+   - Expected: the first message auto-generates a short title, while manual rename can be longer.
+4. Open `edit`.
+   - Expected: rename/archive/delete/copy/reset actions are behind `edit`, not always visible in the header.
+5. Archive a chat, open the archived section, and select the archived chat.
+   - Expected: archived chats are read-only until unarchived.
+
 ## Wall
 
 Manual QA checklist for `/lab/wall`. Use this when testing with one person, two people, or a phone nearby. API contract details belong in `api.md`.

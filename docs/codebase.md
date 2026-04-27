@@ -24,7 +24,9 @@ src/
 
 ## Layouts
 
-`Base.astro` is the shared page shell — document head, canonical/social metadata, fonts, common framing, and the normal footer back link. Fullscreen experiences can opt out when they need their own layout.
+`Base.astro` is the shared page shell — document head, canonical/social metadata, fonts, common framing, standard content width, and the persistent footer. Fullscreen experiences can opt out when they need their own layout.
+
+Most standard content pages use the shared `80rem` canvas from `global.css`. `/chat` uses a route-specific full-height shell in `chat.css`, also capped at `80rem`, because signed-in history needs a rail/sidebar beside the conversation. The homepage terminal stays intentionally narrower in `terminal.css`.
 
 ## Pages
 
@@ -45,9 +47,9 @@ src/
 
 | File | Purpose |
 |------|---------|
-| `global.css` | Shared tokens and global styling |
-| `chat.css` | Chat page styling |
-| `terminal.css` | Terminal-specific styling |
+| `global.css` | Shared tokens, standard page shell, footer, page lists, and global styling |
+| `chat.css` | Chat page styling, including the signed-in `chats` rail/sidebar and mobile collapse behavior |
+| `terminal.css` | Terminal-specific homepage styling and narrow terminal width |
 
 ## Frontend API boundary
 
