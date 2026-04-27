@@ -369,7 +369,7 @@ Current error responses:
 
 ### `POST /api/wall/undo`
 
-Undoes the current owner's most recent confirmed paint or erase action/stroke when the affected cell stacks still match the expected before/after state. Cells with intervening visible or hidden-stack changes are skipped instead of clobbered. Paint undo refunds the budget units that actually applied. Erase undo restores the erased layer only when the resulting budget charge is safe.
+Undoes the current owner's most recent confirmed paint or erase action/stroke when the affected cell stacks still match the expected before/after state. Cells with intervening visible or hidden-stack changes are skipped instead of clobbered. Paint undo behaves like an erase for budget purposes: the placed layer must still be under 24 hours old and refund quota must be available, then it refunds paint budget and consumes erase refund allowance. Erase undo restores the erased layer only when the resulting budget charge is safe.
 
 Success response:
 
@@ -381,7 +381,7 @@ type WallUndoResponse = WallBudget & {
 
 ### `POST /api/wall/redo`
 
-Redoes the current owner's most recently undone Wall action/stroke with the same ownership-safe stack checks. Redo applies budget/refund deltas only for cells that actually change. Erase redo is skipped if the restored top layer has aged past the 24-hour erase window.
+Redoes the current owner's most recently undone Wall action/stroke with the same ownership-safe stack checks. Redo applies budget/refund deltas only for cells that actually change. Paint redo spends paint budget again. Erase redo is skipped if the restored top layer has aged past the 24-hour erase window.
 
 Success response:
 

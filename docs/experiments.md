@@ -12,7 +12,7 @@ It is part of the site itself.
 
 A shared text and ASCII wall.
 
-Visitors get a daily character budget, paint on a grid, erase their own visible marks, and undo or redo recent confirmed actions. Marks can be overwritten, older unexpired marks can reappear, and content fades over time.
+Visitors get a daily character budget, paint on a grid, erase their own visible marks, and undo or redo recent confirmed actions. Undoing paint uses the same fresh-cell refund allowance as erase. Marks can be overwritten, older unexpired marks can reappear, and content fades over time.
 
 It is meant to feel alive and temporary.
 

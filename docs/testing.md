@@ -17,7 +17,7 @@ Use this when you only have one browser/device.
    - Expected: the cell changes immediately.
    - Expected: character budget decreases by 1.
 3. Use undo, then redo.
-   - Expected: undo removes the painted character and restores the character budget.
+   - Expected: undo removes the painted character, restores 1 character budget, and spends 1 refund.
    - Expected: redo restores the character and spends the character budget again.
 4. Switch to erase and erase that same character.
    - Expected: the cell clears or reveals the previous layer.
@@ -71,8 +71,9 @@ Use this when checking ownership boundaries.
 
 1. Paint as a guest.
 2. Sign in in the same browser.
-   - Expected: your guest wall layers become owned by the signed-in account.
-   - Expected: the cells remain erasable by you after sign-in.
+   - Expected: your guest wall layers stay guest-owned instead of becoming account-owned.
+   - Expected: those guest cells are no longer erasable by the signed-in account.
+   - Expected: guest wall budget does not merge into or replace the account wall budget.
 3. Paint as signed-in.
 4. Open a separate guest/private browser.
    - Expected: signed-in cells are visible but not erasable by the guest.
@@ -111,7 +112,9 @@ Use this when paint/erase accounting changed.
 4. If testing with old/restored state, try to erase an owned cell older than 24 hours.
    - Expected: the cell stays visible, and chars/refunds do not change.
 5. Undo and redo the paint/erase sequence.
-   - Expected: chars and refunds return to the matching action state each time.
+   - Expected: paint undo spends refund allowance and restores character budget only while the painted layer is still within the 24-hour erase window.
+   - Expected: paint redo spends character budget again.
+   - Expected: erase undo/redo return chars and refunds to the matching erase action state when budget allows.
 6. Try to erase someone else's visible cell.
    - Expected: nothing happens; refunds should not decrease.
 7. Try to paint after budget is exhausted if practical.

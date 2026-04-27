@@ -4,6 +4,9 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+- Wall: undoing a paint now uses the same fresh-cell refund allowance as erase, so undo removes the layer only within the 24-hour window, refunds one char, and spends one refund
+- Wall: signing in no longer claims guest Wall layers or guest Wall budget into the account; guest Wall state stays guest-scoped while future signed-in actions use account state
+- Terminal: actoraOS bumped to `v0.1.91` in the boot text and footer home shortcut
 - Account: tightened passkey removal copy and styled the remove action as a quieter destructive button
 - Auth: `/account` can now remove linked passkeys after confirmation, while keeping the last passkey protected from removal
 - Auth: added account recovery guidance near linked passkeys so users know to keep more than one passkey
