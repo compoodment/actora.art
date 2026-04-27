@@ -35,7 +35,7 @@ Manual QA checklist for `/chat`.
    - Expected: rename/archive/delete/copy/reset actions are behind `edit`, not always visible in the header.
 5. Archive a chat, open the archived section, and select the archived chat.
    - Expected: archived chats are read-only until unarchived.
-   - Expected: the chat help hint says archived chats auto-delete after 7 days and that admins cannot read chat contents.
+   - Expected: the chat help hint says archived chats auto-delete after 7 days and does not mention internal site roles.
 6. Try starting a new chat after reaching the saved-chat cap.
    - Expected: the error tells you to delete a chat first and that archived chats count too.
    - Expected on mobile: if `new` is triggered inside the `chats` sheet, the sheet closes so the error is visible.

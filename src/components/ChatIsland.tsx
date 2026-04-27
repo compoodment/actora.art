@@ -400,7 +400,7 @@ export default function ChatIsland() {
               <button type="button" class="chat-help-toggle" onClick={() => { setModelMenuOpen(false); setEditPanelOpen(false); setHelpOpen(open => !open); }} aria-expanded={helpOpen} aria-label="chat hint" title="chat hint">hint</button>
               {helpOpen && (
                 <div class="chat-help-menu">
-                  Guests keep one browser chat. Signed-in users get multiple chats. Archived chats are read-only and auto-delete after 7 days. Admins cannot read chat contents.
+                  Guests keep one browser chat. Signed-in users get multiple chats. Archived chats are read-only and auto-delete after 7 days.
                 </div>
               )}
             </div>

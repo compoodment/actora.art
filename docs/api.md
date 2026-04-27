@@ -147,7 +147,7 @@ type PostChatResponse = {
 
 Signed-in session actions:
 
-- `POST /api/chat/new`: create a new active empty session and select it. Signed-in saved-chat caps count active plus archived sessions after backend cleanup: stored-role `user` gets 5 total, stored-role `friend` and `admin` get 10 total, and owner accounts configured through `ADMIN_USER_IDS` are unlimited. Guests do not use this saved-history route.
+- `POST /api/chat/new`: create a new active empty session and select it. Signed-in saved-chat caps count active plus archived sessions after backend cleanup: standard users get 5 total, trusted/elevated accounts get 10 total, and configured owner accounts are unlimited. Guests do not use this saved-history route.
 - `POST /api/chat/select`: open an active session, or open an archived session read-only without replacing the selected active session.
 - `POST /api/chat/rename`: rename one owned session.
 - `POST /api/chat/archive`: move one active session into the read-only archived list.
@@ -662,7 +662,7 @@ Clears the active chat thread for the current signed-in account or guest browser
 ```
 
 
-Signed-in chat requests include the public account username, display name, and stored role in the server-side bot context. Guest chats are labeled as guests. Passkeys, login sessions, moderation state, account ids, and admin-only details are not included.
+Signed-in chat requests include the public account username, display name, and stored role in the server-side bot context. Guest chats are labeled as guests. Passkeys, login sessions, moderation state, account ids, and private operational details are not included.
 
 
 ### Chat model choices
