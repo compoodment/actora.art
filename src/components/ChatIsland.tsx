@@ -290,7 +290,7 @@ export default function ChatIsland() {
       {signedIn && (
         <aside class={`chat-sidebar${sessionPanelOpen ? ' open' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div class="chat-sidebar-head">
-            <span>saved chats</span>
+            <span>chats</span>
             <div class="chat-sidebar-actions">
               <button type="button" class="chat-mini-btn chat-toggle" onClick={() => setSessionPanelOpen(open => !open)} aria-expanded={sessionPanelOpen}>{sessionPanelOpen ? 'hide' : 'show'}</button>
               <button type="button" class="chat-mini-btn" onClick={startNewSession} disabled={loading}>new</button>

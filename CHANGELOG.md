@@ -14,6 +14,11 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: simplified the public docs so they stay readable and leave live operations elsewhere
 
+## 0.1.75 — 2026-04-27
+
+- Chat: renamed `saved chats` back to `chats` and kept the collapsed desktop chat rail anchored in the same sidebar position as the expanded list
+- Terminal: actoraOS bumped to `v0.1.75` in the boot text and footer home shortcut
+
 ## 0.1.74 — 2026-04-27
 
 - Chat: made saved chats collapsed by default across layouts, moved chat management actions behind `edit`, and tucked archived chats behind an archived reveal
