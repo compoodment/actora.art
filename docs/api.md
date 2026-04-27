@@ -37,6 +37,16 @@ type ChatMessage = {
   content: string;
 };
 
+type ChatSessionSummary = {
+  id: string;
+  title: string;
+  status: 'active' | 'archived';
+  messageCount: number;
+  createdAt: number | null;
+  updatedAt: number | null;
+  archivedAt: number | null;
+};
+
 type WallCell = {
   char: string;
   color: WallColor;
@@ -82,12 +92,17 @@ type CredentialPayload = {
 
 ### `GET /api/chat`
 
-Bootstraps the current guest-or-user chat thread.
+Bootstraps the current guest chat or the signed-in user's selected chat session.
 
 ```ts
 type GetChatResponse = {
   messages: ChatMessage[];
   signedIn: boolean;
+  currentSessionId?: string | null;
+  sessions?: {
+    active: ChatSessionSummary[];
+    archived: ChatSessionSummary[];
+  } | null;
 };
 ```
 
@@ -106,6 +121,8 @@ Request:
 ```ts
 type PostChatRequest = {
   message: string; // required, max length 4000
+  sessionId?: string; // signed-in only
+  model?: 'fast' | 'smart';
 };
 ```
 
@@ -115,10 +132,28 @@ Success response:
 type PostChatResponse = {
   reply: string;
   signedIn: boolean;
+  sessionId?: string;
+  currentSessionId?: string | null;
+  sessions?: {
+    active: ChatSessionSummary[];
+    archived: ChatSessionSummary[];
+  } | null;
   remaining: number;
   resetAt: number;
 };
 ```
+
+Signed-in session actions:
+
+- `POST /api/chat/new`: create a new active empty session and select it.
+- `POST /api/chat/select`: open an active session, or open an archived session read-only without replacing the selected active session.
+- `POST /api/chat/rename`: rename one owned session.
+- `POST /api/chat/archive`: move one active session into the read-only archived list.
+- `POST /api/chat/unarchive`: restore one archived session into the active list without overwriting another active session.
+- `POST /api/chat/delete`: delete one owned session.
+- `POST /api/chat/reset`: clear the current account/guest chat context.
+
+Daily chat limit: 300 messages per account or guest identity per rolling 24-hour window. The short burst limit is 20 messages per minute per account or guest identity.
 
 Current error responses:
 
@@ -126,10 +161,11 @@ Current error responses:
 { error: 'forbidden', message: 'access denied' }
 { error: 'chat_paused', message: 'computment decided to pause the chat bot momentarily :(' }
 { error: 'daily_limit_reached', message: 'daily message limit reached', remaining: 0, resetAt: number }
-
-Daily chat limit: 300 messages per account or guest identity per rolling 24-hour window. The short burst limit is 20 messages per minute per account or guest identity.
+{ error: 'chat_generation_in_flight', message: 'a reply is already running for this chat owner', detail: string }
 { error: 'minute_limit_reached', message: 'slow down — you talk too much, leave me alone', detail: string, remaining: 0 }
 { error: 'api_rate_limited', message: 'you talk too much, leave me alone', detail: string }
+{ error: 'session_not_found' }
+{ error: 'session_archived', message: 'archived chats are read-only' }
 { error: 'invalid_message' }
 { error: 'body_too_large' }
 { error: 'bad_request' }
@@ -621,4 +657,4 @@ Signed-in chat requests include the public account username and display name in 
 
 ### Chat model choices
 
-`POST /api/chat` accepts an optional `model` field: `fast` for Gemini 2.5 Flash or `smart` for Gemini 3.1 Pro Preview. The choice is stored on the current account/guest thread.
+`POST /api/chat` accepts an optional `model` field: `fast` for Gemini 2.5 Flash or `smart` for Gemini 3.1 Pro Preview. The choice is stored on the current account/guest chat session.

@@ -4,7 +4,7 @@ The lab is where actora.art keeps the odd stuff: public experiments, prototypes,
 
 ## Chat
 
-A public chat bot for visitors. It has message limits and can restore a recent thread in the same browser/device.
+A public chat bot for visitors. Guests get one current browser chat; signed-in users can keep named active and archived chats.
 
 It is part of the site itself.
 

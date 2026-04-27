@@ -14,6 +14,12 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: simplified the public docs so they stay readable and leave live operations elsewhere
 
+## 0.1.71 — 2026-04-27
+
+- Chat: signed-in users now get a session sidebar with active and archived chats, rename/archive/unarchive/delete actions, and client-side copy
+- Chat: new signed-in chats start as empty sessions and auto-title from the first prompt, while guests keep one simple current browser chat
+- Terminal: actoraOS bumped to `v0.1.71` in the boot text and footer home shortcut
+
 ## 0.1.70 — 2026-04-27
 
 - Chat: replaced the native model dropdown with a dark custom menu

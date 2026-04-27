@@ -69,9 +69,27 @@ export interface ChatMessage {
 
 export type ChatModelChoice = 'fast' | 'smart';
 
+export interface ChatSessionSummary {
+  id: string;
+  title: string;
+  status: 'active' | 'archived';
+  messageCount: number;
+  createdAt: number | null;
+  updatedAt: number | null;
+  archivedAt: number | null;
+  model?: string;
+}
+
+export interface ChatSessionLists {
+  active: ChatSessionSummary[];
+  archived: ChatSessionSummary[];
+}
+
 export interface ChatBootstrapResponse {
   messages: ChatMessage[];
   signedIn: boolean;
+  sessions?: ChatSessionLists | null;
+  currentSessionId?: string | null;
   model?: string;
   modelLabel?: string;
 }
@@ -79,6 +97,10 @@ export interface ChatBootstrapResponse {
 export interface ChatReplyResponse {
   reply: string;
   signedIn: boolean;
+  sessionId?: string;
+  session?: ChatSessionSummary | null;
+  sessions?: ChatSessionLists | null;
+  currentSessionId?: string | null;
   remaining: number;
   resetAt: number;
   model?: string;
@@ -90,6 +112,18 @@ export interface ChatResetResponse {
   deleted: boolean;
   messages: ChatMessage[];
   signedIn: boolean;
+  sessions?: ChatSessionLists | null;
+  currentSessionId?: string | null;
+}
+
+export interface ChatSessionActionResponse {
+  ok: true;
+  messages?: ChatMessage[];
+  session?: ChatSessionSummary;
+  sessions?: ChatSessionLists;
+  currentSessionId?: string | null;
+  model?: string;
+  modelLabel?: string;
 }
 
 export interface WallCell {
@@ -243,12 +277,36 @@ export function fetchChatBootstrap(): Promise<JsonApiResponse<ChatBootstrapRespo
   return requestJson<ChatBootstrapResponse>('/api/chat');
 }
 
-export function sendChatMessage(message: string, model?: ChatModelChoice): Promise<JsonApiResponse<ChatReplyResponse>> {
-  return postJson<ChatReplyResponse>('/api/chat', { message, model });
+export function sendChatMessage(message: string, model?: ChatModelChoice, sessionId?: string | null): Promise<JsonApiResponse<ChatReplyResponse>> {
+  return postJson<ChatReplyResponse>('/api/chat', { message, model, sessionId });
 }
 
 export function resetChatThread(): Promise<JsonApiResponse<ChatResetResponse>> {
   return postJson<ChatResetResponse>('/api/chat/reset');
+}
+
+export function newChatSession(): Promise<JsonApiResponse<ChatSessionActionResponse>> {
+  return postJson<ChatSessionActionResponse>('/api/chat/new');
+}
+
+export function selectChatSession(sessionId: string): Promise<JsonApiResponse<ChatSessionActionResponse>> {
+  return postJson<ChatSessionActionResponse>('/api/chat/select', { sessionId });
+}
+
+export function renameChatSession(sessionId: string, title: string): Promise<JsonApiResponse<ChatSessionActionResponse>> {
+  return postJson<ChatSessionActionResponse>('/api/chat/rename', { sessionId, title });
+}
+
+export function archiveChatSession(sessionId: string): Promise<JsonApiResponse<ChatSessionActionResponse>> {
+  return postJson<ChatSessionActionResponse>('/api/chat/archive', { sessionId });
+}
+
+export function unarchiveChatSession(sessionId: string): Promise<JsonApiResponse<ChatSessionActionResponse>> {
+  return postJson<ChatSessionActionResponse>('/api/chat/unarchive', { sessionId });
+}
+
+export function deleteChatSession(sessionId: string): Promise<JsonApiResponse<ChatSessionActionResponse>> {
+  return postJson<ChatSessionActionResponse>('/api/chat/delete', { sessionId });
 }
 
 export function fetchWallState(): Promise<JsonApiResponse<WallStateResponse>> {
