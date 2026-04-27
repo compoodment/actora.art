@@ -116,6 +116,9 @@
 
 .chat-toggle {
   display: inline-block;
+  font-size: 0.85rem;
+  line-height: 1;
+  text-align: center;
 }
 
 .chat-sidebar-body {
