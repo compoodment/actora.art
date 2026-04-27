@@ -7,6 +7,8 @@ export interface ApiErrorResponse {
   remaining?: number;
   refundsLeft?: number;
   maxDaily?: number;
+  max?: number;
+  sessionCount?: number;
   resetAt?: number;
   nextResetAt?: number;
 }

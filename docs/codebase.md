@@ -48,7 +48,7 @@ Most standard content pages use the shared `80rem` canvas from `global.css`. `/c
 | File | Purpose |
 |------|---------|
 | `global.css` | Shared tokens, standard page shell, footer, page lists, and global styling |
-| `chat.css` | Chat page styling, including the signed-in `chats` rail/sidebar and mobile collapse behavior |
+| `chat.css` | Chat page styling, including the desktop signed-in `chats` rail/sidebar and mobile full-screen `chats` sheet |
 | `terminal.css` | Terminal-specific homepage styling and narrow terminal width |
 
 ## Frontend API boundary

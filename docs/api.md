@@ -18,6 +18,8 @@ type ApiError = {
   remaining?: number;
   refundsLeft?: number;
   maxDaily?: number;
+  max?: number;
+  sessionCount?: number;
   resetAt?: number;
   nextResetAt?: number;
 };
@@ -145,7 +147,7 @@ type PostChatResponse = {
 
 Signed-in session actions:
 
-- `POST /api/chat/new`: create a new active empty session and select it.
+- `POST /api/chat/new`: create a new active empty session and select it. Signed-in saved-chat caps count active plus archived sessions after backend cleanup: stored-role `user` gets 5 total, stored-role `friend` and `admin` get 10 total, and owner accounts configured through `ADMIN_USER_IDS` are unlimited. Guests do not use this saved-history route.
 - `POST /api/chat/select`: open an active session, or open an archived session read-only without replacing the selected active session.
 - `POST /api/chat/rename`: rename one owned session.
 - `POST /api/chat/archive`: move one active session into the read-only archived list.
@@ -154,6 +156,8 @@ Signed-in session actions:
 - `POST /api/chat/reset`: clear the current account/guest chat context.
 
 Daily chat limit: 300 messages per account or guest identity per rolling 24-hour window. The short burst limit is 20 messages per minute per account or guest identity.
+
+Session retention: signed-in empty active sessions are backend-pruned after 6 hours, and signed-in archived sessions are backend-pruned after 7 days. Public chat hint copy should mention the 7-day archive behavior, but not the empty-session cleanup.
 
 Current error responses:
 
@@ -164,6 +168,7 @@ Current error responses:
 { error: 'chat_generation_in_flight', message: 'a reply is already running for this chat owner', detail: string }
 { error: 'minute_limit_reached', message: 'slow down — you talk too much, leave me alone', detail: string, remaining: 0 }
 { error: 'api_rate_limited', message: 'you talk too much, leave me alone', detail: string }
+{ error: 'chat_session_limit_reached', message: string, detail: string, max: number, sessionCount: number }
 { error: 'session_not_found' }
 { error: 'session_archived', message: 'archived chats are read-only' }
 { error: 'invalid_message' }
@@ -171,6 +176,8 @@ Current error responses:
 { error: 'bad_request' }
 { error: 'api_error', message: 'Failed to get response' }
 ```
+
+`chat_session_limit_reached` means the signed-in user must delete a chat before starting a new one. Archived chats count toward the cap until they auto-delete; the backend does not auto-delete or auto-archive to make room.
 
 ## Wall
 

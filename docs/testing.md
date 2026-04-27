@@ -23,7 +23,7 @@ Manual QA checklist for `/chat`.
 1. Sign in, then open `/chat`.
    - Expected: the signed-in chat history control is labeled `chats`.
    - Expected on desktop: the chat rail starts collapsed as a narrow left rail, not a top strip, and compact active-chat buttons remain selectable.
-   - Expected on mobile/narrow screens: the list is tucked behind a compact top control so the current chat stays primary.
+   - Expected on mobile/narrow screens: the list opens as a full-screen sheet from `chats` so the current chat stays primary.
 2. Use the sidebar glyph.
    - Expected: collapsed shows `◧` with `open sidebar`; expanded shows `◨` with `close sidebar`.
    - Expected: `new` stays visible on the left of the glyph in both states.
@@ -34,6 +34,9 @@ Manual QA checklist for `/chat`.
    - Expected: rename/archive/delete/copy/reset actions are behind `edit`, not always visible in the header.
 5. Archive a chat, open the archived section, and select the archived chat.
    - Expected: archived chats are read-only until unarchived.
+   - Expected: the chat help hint says archived chats auto-delete after 7 days and that admins cannot read chat contents.
+6. Try starting a new chat after reaching the saved-chat cap.
+   - Expected: the error tells you to delete a chat first and that archived chats count too.
 
 ## Wall
 

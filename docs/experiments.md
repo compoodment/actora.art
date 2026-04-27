@@ -4,7 +4,7 @@ The lab is where actora.art keeps the odd stuff: public experiments, prototypes,
 
 ## Chat
 
-A public chat bot for visitors. Guests get one current browser chat; signed-in users can keep named active and archived chats.
+A public chat bot for visitors. Guests get one current browser chat; signed-in users can keep named active and archived chats within saved-chat caps. Archived chats are read-only and auto-delete after 7 days.
 
 It is part of the site itself.
 

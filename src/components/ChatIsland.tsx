@@ -63,8 +63,10 @@ export default function ChatIsland() {
   const [model, setModel] = useState<ChatModelChoice>('fast');
   const [modelMenuOpen, setModelMenuOpen] = useState(false);
   const [sessionPanelOpen, setSessionPanelOpen] = useState(false);
+  const [mobileSessionsOpen, setMobileSessionsOpen] = useState(false);
   const [archivedPanelOpen, setArchivedPanelOpen] = useState(false);
   const [editPanelOpen, setEditPanelOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
   const [renaming, setRenaming] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -214,7 +216,7 @@ export default function ChatIsland() {
   }, [bootstrapped, currentSessionId, input, loadThread, loading, model]);
 
   const runSessionAction = useCallback(async (action: () => Promise<{ response: Response; data: unknown }>, fallback: string) => {
-    if (loading) return;
+    if (loading) return false;
     setError(null);
     setNotice(null);
     setLoading(true);
@@ -222,25 +224,33 @@ export default function ChatIsland() {
       const { response, data } = await action();
       if (!response.ok) {
         setError(getApiErrorMessage(data, fallback));
-        return;
+        return false;
       }
       applySessionResponse(data as { messages?: unknown; sessions?: ChatSessionLists; currentSessionId?: string | null; model?: string });
       setEditPanelOpen(false);
+      return true;
     } catch {
       setError('connection failed');
+      return false;
     } finally {
       setLoading(false);
     }
   }, [loading]);
 
   const openSession = useCallback(async (sessionId: string, archived = false) => {
-    await runSessionAction(() => selectChatSession(sessionId), archived ? 'could not open archived chat' : 'could not open chat');
-    setEditPanelOpen(false);
+    const ok = await runSessionAction(() => selectChatSession(sessionId), archived ? 'could not open archived chat' : 'could not open chat');
+    if (ok) {
+      setEditPanelOpen(false);
+      setMobileSessionsOpen(false);
+    }
   }, [runSessionAction]);
 
   const startNewSession = useCallback(async () => {
-    await runSessionAction(newChatSession, 'could not start chat');
-    setEditPanelOpen(false);
+    const ok = await runSessionAction(newChatSession, 'could not start chat');
+    if (ok) {
+      setEditPanelOpen(false);
+      setMobileSessionsOpen(false);
+    }
   }, [runSessionAction]);
 
   const renameCurrent = useCallback(async () => {
@@ -282,6 +292,45 @@ export default function ChatIsland() {
     : null;
   const readOnly = !!archivedSelected;
   const canEdit = !!currentSession || !!archivedSelected || messages.length > 0;
+  const renderActiveSessions = () => (
+    <div class="chat-session-group">
+      {sessions.active.length === 0 && <span class="chat-session-empty">none</span>}
+      {sessions.active.map((session) => (
+        <button
+          key={session.id}
+          type="button"
+          class={`chat-session${session.id === currentSessionId ? ' current' : ''}`}
+          onClick={() => openSession(session.id)}
+          disabled={loading}
+          title={session.title || 'new chat'}
+          aria-label={`open ${session.title || 'new chat'}`}
+        >
+          <span>{session.title || 'new chat'}</span>
+          <small>{session.messageCount}</small>
+        </button>
+      ))}
+    </div>
+  );
+  const renderArchivedSessions = () => sessions.archived.length > 0 && (
+    <div class="chat-session-group archived-group">
+      <button type="button" class="chat-archive-toggle" onClick={() => setArchivedPanelOpen(open => !open)} aria-expanded={archivedPanelOpen}>
+        {archivedPanelOpen ? 'hide archived' : `archived (${sessions.archived.length})`}
+      </button>
+      {archivedPanelOpen && sessions.archived.map((session) => (
+        <button
+          key={session.id}
+          type="button"
+          class={`chat-session archived${session.id === currentSessionId ? ' current' : ''}`}
+          onClick={() => openSession(session.id, true)}
+          disabled={loading}
+          title="open archived chat"
+        >
+          <span>{session.title || 'archived chat'}</span>
+          <small>{session.messageCount}</small>
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <div class={`chat-shell${signedIn ? ' signed-in' : ''}${sessionPanelOpen ? ' chat-panel-open' : ''}`} onClick={focusInputFromShell}>
@@ -295,56 +344,48 @@ export default function ChatIsland() {
             </div>
           </div>
           <div class="chat-sidebar-body">
-            <div class="chat-session-group">
-              {sessions.active.length === 0 && <span class="chat-session-empty">none</span>}
-              {sessions.active.map((session) => (
-                <button
-                  key={session.id}
-                  type="button"
-                  class={`chat-session${session.id === currentSessionId ? ' current' : ''}`}
-                  onClick={() => openSession(session.id)}
-                  disabled={loading}
-                  title={session.title || 'new chat'}
-                  aria-label={`open ${session.title || 'new chat'}`}
-                >
-                  <span>{session.title || 'new chat'}</span>
-                  <small>{session.messageCount}</small>
-                </button>
-              ))}
-            </div>
-            {sessions.archived.length > 0 && (
-              <div class="chat-session-group archived-group">
-                <button type="button" class="chat-archive-toggle" onClick={() => setArchivedPanelOpen(open => !open)} aria-expanded={archivedPanelOpen}>
-                  {archivedPanelOpen ? 'hide archived' : `archived (${sessions.archived.length})`}
-                </button>
-                {archivedPanelOpen && sessions.archived.map((session) => (
-                  <button
-                    key={session.id}
-                    type="button"
-                    class={`chat-session archived${session.id === currentSessionId ? ' current' : ''}`}
-                    onClick={() => openSession(session.id, true)}
-                    disabled={loading}
-                    title="open archived chat"
-                  >
-                    <span>{session.title || 'archived chat'}</span>
-                    <small>{session.messageCount}</small>
-                  </button>
-                ))}
-              </div>
-            )}
+            {renderActiveSessions()}
+            {renderArchivedSessions()}
           </div>
         </aside>
+      )}
+
+      {signedIn && mobileSessionsOpen && (
+        <div class="chat-mobile-sheet" role="dialog" aria-modal="true" aria-label="chats" onClick={(e) => e.stopPropagation()}>
+          <div class="chat-mobile-sheet-head">
+            <span class="chat-sidebar-title">chats</span>
+            <div class="chat-sidebar-actions">
+              <button type="button" class="chat-mini-btn chat-new" onClick={startNewSession} disabled={loading} aria-label="new chat">new</button>
+              <button type="button" class="chat-mini-btn" onClick={() => setMobileSessionsOpen(false)} aria-label="close chats">close</button>
+            </div>
+          </div>
+          <div class="chat-mobile-sheet-body">
+            {renderActiveSessions()}
+            {renderArchivedSessions()}
+          </div>
+        </div>
       )}
 
       <div class="chat-container">
         <div class="chat-header">
           <span class="chat-title">{signedIn ? currentSession?.title || archivedSelected?.title || 'new chat' : 'Aurora'}</span>
           <div class="chat-header-actions">
+            {signedIn && (
+              <button type="button" class="chat-mobile-chats" onClick={() => setMobileSessionsOpen(true)} disabled={loading} aria-label="open chats">chats</button>
+            )}
             {remaining !== null && resetAt !== null && (
               <span class="chat-meta">{remaining} left - {formatResetTime(resetAt)}</span>
             )}
+            <div class="chat-help-wrap" onClick={(e) => e.stopPropagation()}>
+              <button type="button" class="chat-help-toggle" onClick={() => { setModelMenuOpen(false); setEditPanelOpen(false); setHelpOpen(open => !open); }} aria-expanded={helpOpen} aria-label="chat help">?</button>
+              {helpOpen && (
+                <div class="chat-help-menu">
+                  Guests keep one browser chat. Signed-in users get multiple chats. Archived chats are read-only and auto-delete after 7 days. Admins cannot read chat contents.
+                </div>
+              )}
+            </div>
             <div class="chat-model-wrap" onClick={(e) => e.stopPropagation()}>
-              <button type="button" class="chat-model" onClick={() => { setEditPanelOpen(false); setModelMenuOpen(open => !open); }} disabled={loading || readOnly} aria-expanded={modelMenuOpen} aria-label="chat model">{model}</button>
+              <button type="button" class="chat-model" onClick={() => { setEditPanelOpen(false); setHelpOpen(false); setModelMenuOpen(open => !open); }} disabled={loading || readOnly} aria-expanded={modelMenuOpen} aria-label="chat model">{model}</button>
               {modelMenuOpen && (
                 <div class="chat-model-menu" role="menu">
                   {(['fast', 'smart'] as ChatModelChoice[]).map((choice) => (
@@ -362,7 +403,7 @@ export default function ChatIsland() {
             </div>
             {canEdit && (
               <div class="chat-edit-wrap" onClick={(e) => e.stopPropagation()}>
-                <button type="button" class="chat-edit-toggle" onClick={() => { setModelMenuOpen(false); setEditPanelOpen(open => !open); }} disabled={loading} aria-expanded={editPanelOpen}>edit</button>
+                <button type="button" class="chat-edit-toggle" onClick={() => { setModelMenuOpen(false); setHelpOpen(false); setEditPanelOpen(open => !open); }} disabled={loading} aria-expanded={editPanelOpen}>edit</button>
                 {editPanelOpen && (
                   <div class="chat-edit-menu">
                     {signedIn && currentSession && (
