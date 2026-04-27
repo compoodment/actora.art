@@ -332,6 +332,8 @@ Current error responses:
 
 Erases visible top layers owned by the current visitor. Erase requests dedupe coordinates and count only coordinates whose current visible top layer is owned by the resolved visitor before refund-limit enforcement. Erasing removes only that top layer; an older unexpired layer underneath may become visible. Non-owned, empty, invalid, or duplicate cells are ignored.
 
+Only cells erased within 24 hours of their original placement refund 1 character and consume 1 refund. Older owned cells can still be erased, but they do not change character budget or refund count.
+
 Budget and `canUndo`/`canRedo` fields returned by success and `refund_limit_reached` responses are authoritative for the client HUD.
 
 Request:
@@ -351,6 +353,7 @@ Success response:
 ```ts
 type EraseWallResponse = WallBudget & {
   erased: number;
+  refunded: number;
 };
 ```
 

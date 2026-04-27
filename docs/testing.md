@@ -105,14 +105,16 @@ Use this when paint/erase accounting changed.
 1. Note starting `chars` and `refunds` values.
 2. Paint 3 cells.
    - Expected: chars decrease by 3.
-3. Erase those 3 visible owned cells.
+3. Erase those 3 visible owned cells while they are under 24 hours old.
    - Expected: chars increase by 3, up to the daily max.
    - Expected: refunds decrease by 3.
-4. Undo and redo the paint/erase sequence.
+4. If testing with old/restored state, erase an owned cell older than 24 hours.
+   - Expected: the cell erases, but chars and refunds do not change.
+5. Undo and redo the paint/erase sequence.
    - Expected: chars and refunds return to the matching action state each time.
-5. Try to erase someone else's visible cell.
+6. Try to erase someone else's visible cell.
    - Expected: nothing happens; refunds should not decrease.
-6. Try to paint after budget is exhausted if practical.
+7. Try to paint after budget is exhausted if practical.
    - Expected: the UI shows the no-chars message and rolls back failed optimistic cells.
 
 ### Realtime/reconnect pass

@@ -14,6 +14,12 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: simplified the public docs so they stay readable and leave live operations elsewhere
 
+## 0.1.88 — 2026-04-27
+
+- Wall: limited erase refunds to cells erased within 24 hours of placement; older owned cells can still be erased without refunding budget
+- Docs: updated Wall API/testing notes for fresh-cell-only erase refunds
+- Terminal: actoraOS bumped to `v0.1.88` in the boot text and footer home shortcut
+
 ## 0.1.87 — 2026-04-27
 
 - Wall: made characters fade continuously over their 3-day lifetime instead of stepping down after one day

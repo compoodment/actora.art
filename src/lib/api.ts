@@ -168,6 +168,7 @@ export interface WallPaintResponse extends WallBudgetResponse {
 
 export interface WallEraseResponse extends WallBudgetResponse {
   erased: number;
+  refunded: number;
 }
 
 export interface WallHistoryResponse extends WallBudgetResponse {

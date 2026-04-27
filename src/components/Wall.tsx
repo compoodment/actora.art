@@ -68,10 +68,11 @@ const COLS = 80;
 const ROWS = 24;
 const WALL_RECOVERY_MS = 15000;
 const WALL_FADE_TICK_MS = 60 * 1000;
+const WALL_REFUND_MS = 24 * 60 * 60 * 1000;
 const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
 const MIN_WALL_OPACITY = 0.08;
 
-type PendingWallCell = { x: number; y: number; char?: string; color?: string; previousCell?: Cell | null; actionId?: string };
+type PendingWallCell = { x: number; y: number; char?: string; color?: string; previousCell?: Cell | null; actionId?: string; refundable?: boolean };
 type WallPreferenceOwner = 'unknown' | 'guest' | 'account';
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
@@ -348,9 +349,10 @@ export default function Wall() {
   }, []);
 
   const getPendingPaintCount = () => pendingRef.current.filter(({ char }) => char !== undefined).length;
-  const getPendingEraseCount = () => pendingRef.current.length - getPendingPaintCount();
+  const getPendingRefundableEraseCount = () => pendingRef.current.filter(({ char, refundable }) => char === undefined && refundable).length;
+  const getRefundableEraseCount = (cells: PendingWallCell[]) => cells.filter(({ char, refundable }) => char === undefined && refundable).length;
   const getReservedPaintCount = () => getPendingPaintCount() + reservedPaintRef.current;
-  const getReservedEraseCount = () => getPendingEraseCount() + reservedEraseRef.current;
+  const getReservedEraseCount = () => getPendingRefundableEraseCount() + reservedEraseRef.current;
 
   const commitCells = async (cells: PendingWallCell[], commitMode: 'paint' | 'erase') => {
     if (cells.length === 0) return;
@@ -388,7 +390,7 @@ export default function Wall() {
       shouldRefetchWall = true;
     } finally {
       if (isErase) {
-        reservedEraseRef.current = Math.max(0, reservedEraseRef.current - cells.length);
+        reservedEraseRef.current = Math.max(0, reservedEraseRef.current - getRefundableEraseCount(cells));
       } else {
         reservedPaintRef.current = Math.max(0, reservedPaintRef.current - cells.length);
       }
@@ -443,7 +445,7 @@ export default function Wall() {
   const enqueueCommit = (cells: PendingWallCell[], commitMode: 'paint' | 'erase') => {
     if (cells.length === 0) return;
     if (commitMode === 'erase') {
-      reservedEraseRef.current += cells.length;
+      reservedEraseRef.current += getRefundableEraseCount(cells);
     } else {
       reservedPaintRef.current += cells.length;
     }
@@ -505,8 +507,10 @@ export default function Wall() {
     } else {
       const cell = grid[y]?.[x];
       if (!cell || !cell.isMine) return; // only erase your visible cells
-      if (!budget || budget.refundsLeft - getReservedEraseCount() <= 0) return;
-      pendingRef.current.push({ x, y, previousCell: cell, actionId: dragActionIdRef.current || undefined });
+      if (!budget) return;
+      const refundable = isCellRefundable(cell);
+      if (refundable && budget.refundsLeft - getReservedEraseCount() <= 0) return;
+      pendingRef.current.push({ x, y, previousCell: cell, actionId: dragActionIdRef.current || undefined, refundable });
       dragKeysRef.current.add(key);
       refreshPendingDisplay();
       retainPendingKey(x, y);
@@ -665,8 +669,10 @@ export default function Wall() {
     };
   }, []);
 
+  const getCellAge = (cell: Cell) => Math.max(0, wallTime - cell.placedAt);
+  const isCellRefundable = (cell: Cell) => getCellAge(cell) < WALL_REFUND_MS;
   const getCellColor = (cell: Cell): string => {
-    const age = Math.max(0, wallTime - cell.placedAt);
+    const age = getCellAge(cell);
     const base = LEGACY_COLORS[cell.color] || (isAllowedWallColor(cell.color) ? cell.color : LEGACY_COLORS.white);
     const fadeProgress = Math.min(age / EXPIRE_MS, 1);
     const opacity = 1 - fadeProgress * (1 - MIN_WALL_OPACITY);
@@ -726,7 +732,7 @@ export default function Wall() {
             <div class="wall-info-title" id="wall-info-title">the wall</div>
             <p>a shared wall to draw on with ASCII, leave behind kind remarks, or write over existing stuff :P</p>
             <p><strong>budget:</strong> 100 chars per day. resets every 24 hours.</p>
-            <p><strong>erase:</strong> you can erase your own visible cells. each erase gives 1 char back, up to 200 refunds per reset.</p>
+            <p><strong>erase:</strong> you can erase your own visible cells. fresh cells give 1 char back for the first day, up to 200 refunds per reset.</p>
             <p><strong>decay:</strong> chars gradually fade for 3 days, then disappear.</p>
             <p><strong>controls:</strong> click or drag to place. type to select letters/numbers and characters. use paint/erase to place chars and remove chars. undo/redo can reverse recent confirmed actions.</p>
             <button type="button" class="wall-info-close" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>got it</button>
