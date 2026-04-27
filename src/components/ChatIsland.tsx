@@ -36,6 +36,11 @@ function normalizeSessions(value: unknown): ChatSessionLists {
   };
 }
 
+function normalizeModelChoice(value: unknown): ChatModelChoice {
+  if (value === 'smart' || value === 'gemini-3.1-pro-preview') return 'smart';
+  return 'fast';
+}
+
 function formatResetTime(resetAt: number): string {
   const ms = resetAt - Date.now();
   if (ms <= 0) return 'resets soon';
@@ -120,7 +125,7 @@ export default function ChatIsland() {
         setSignedIn(!!payload.signedIn);
         setSessions(payload.signedIn ? normalizeSessions(payload.sessions) : EMPTY_SESSIONS);
         setCurrentSessionId(payload.signedIn ? payload.currentSessionId || null : null);
-        setModel(payload.model === 'gemini-3.1-pro-preview' ? 'smart' : 'fast');
+        setModel(normalizeModelChoice(payload.model));
         setError(null);
       } catch {
         // Keep local state as-is if bootstrap fails.
@@ -159,7 +164,7 @@ export default function ChatIsland() {
     if ('messages' in data) setMessages(normalizeMessages(data.messages));
     if (data.sessions) setSessions(normalizeSessions(data.sessions));
     if ('currentSessionId' in data) setCurrentSessionId(data.currentSessionId || null);
-    if (data.model) setModel(data.model === 'gemini-3.1-pro-preview' ? 'smart' : 'fast');
+    if (data.model) setModel(normalizeModelChoice(data.model));
   };
 
   const resetThread = useCallback(async () => {

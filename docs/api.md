@@ -47,6 +47,7 @@ type ChatSessionSummary = {
   createdAt: number | null;
   updatedAt: number | null;
   archivedAt: number | null;
+  model: 'fast' | 'smart';
 };
 
 type WallCell = {
@@ -105,6 +106,7 @@ type GetChatResponse = {
     active: ChatSessionSummary[];
     archived: ChatSessionSummary[];
   } | null;
+  model: 'fast' | 'smart';
 };
 ```
 
@@ -142,6 +144,7 @@ type PostChatResponse = {
   } | null;
   remaining: number;
   resetAt: number;
+  model: 'fast' | 'smart';
 };
 ```
 
@@ -256,7 +259,7 @@ Returns the signed-in user's saved wall tool preference. Signed-out callers rece
 
 ```ts
 type WallToolPreference = {
-  char: string; // exactly one character; alphabetic chars are uppercase
+  char: string; // exactly one non-control/non-format character; alphabetic chars are uppercase
   color: WallColor;
   mode: 'paint' | 'erase';
   savedColors?: Array<WallColor | null>; // signed-in preferences only; exactly 4 slots when returned
@@ -299,7 +302,7 @@ Current error responses:
 
 ### `POST /api/wall/paint`
 
-Places characters on the wall. Painting a coordinate pushes a new visible top layer. If the coordinate is already at the server-side stack cap, the oldest hidden layer is dropped. Paint requests validate cells before budget enforcement; daily paint budget is charged only for valid cells that pass bounds, one-character char, uppercase normalization, and color validation, including valid paints over existing cells. Invalid cells are ignored and not charged.
+Places characters on the wall. Painting a coordinate pushes a new visible top layer. If the coordinate is already at the server-side stack cap, the oldest hidden layer is dropped. Paint requests validate all cells before budget enforcement; any malformed, out-of-bounds, invalid-character, or invalid-color cell rejects the whole batch with `invalid_cells` and applies nothing. Daily paint budget is charged only after the whole batch is valid, including valid paints over existing cells.
 
 Budget and `canUndo`/`canRedo` fields returned by success and `budget_exhausted` responses are authoritative for the client HUD.
 
@@ -311,7 +314,7 @@ type PaintWallRequest = {
   cells: Array<{
     x: number;
     y: number;
-    char: string; // exactly one character; alphabetic chars are stored uppercase
+    char: string; // exactly one non-control/non-format character; alphabetic chars are stored uppercase
     color?: WallColor;
   }>;
 };
@@ -551,7 +554,6 @@ Current error responses:
 ```ts
 { error: 'invalid_username' }
 { error: 'invalid_display_name' }
-{ error: 'username_taken' }
 { error: 'registration_start_failed' }
 { error: 'body_too_large' }
 { error: 'bad_request' }
@@ -584,7 +586,7 @@ Current error responses:
 ```ts
 { error: 'registration_not_started' }
 { error: 'invalid_credential' }
-{ error: 'username_taken' }
+{ error: 'registration_unavailable' }
 { error: 'credential_exists' }
 { error: 'registration_state_mismatch' }
 { error: 'registration_verification_failed' }
@@ -662,9 +664,9 @@ Clears the active chat thread for the current signed-in account or guest browser
 ```
 
 
-Signed-in chat requests include the public account username, display name, and stored role in the server-side bot context. Guest chats are labeled as guests. Passkeys, login sessions, moderation state, account ids, and private operational details are not included.
+Signed-in chat requests include minimal public account context server-side; guest chats are labeled as guests. Passkeys, login sessions, moderation state, account ids, raw model/provider identifiers, and private operational details are not included.
 
 
 ### Chat model choices
 
-`POST /api/chat` accepts an optional `model` field: `fast` for Gemini 2.5 Flash or `smart` for Gemini 3.1 Pro Preview. The choice is stored on the current account/guest chat session.
+`POST /api/chat` accepts an optional public `model` field: `fast` for the default quick mode or `smart` for the slower higher-capability mode. The same public `fast` / `smart` value is returned in chat responses and stored on the current account/guest chat session.

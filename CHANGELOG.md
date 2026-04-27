@@ -4,6 +4,13 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.95 — 2026-04-27
+
+- Chat: restored the model toggle from public `fast` / `smart` API state while retaining legacy raw-model compatibility
+- Wall: documented strict all-or-nothing paint validation for invalid cells
+- Auth: documented generic passkey registration failures for unavailable usernames
+- Terminal: actoraOS bumped to `v0.1.95` in the boot text and footer home shortcut
+
 ## 0.1.94 — 2026-04-27
 
 - Chat: removed internal-role wording from the public chat hint
@@ -155,7 +162,7 @@ Product-level changes visible to visitors and developers.
 
 ## 0.1.66 — 2026-04-27
 
-- Chat: admin can switch the bot between Gemini 2.5 Flash and Gemini 3.1 Pro Preview
+- Chat: admin can switch the bot between fast and smart model modes
 - Terminal: actoraOS bumped to `v0.1.66` in the boot text and footer home shortcut
 
 ## 0.1.65 — 2026-04-26

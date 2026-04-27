@@ -93,7 +93,6 @@ export interface ChatBootstrapResponse {
   sessions?: ChatSessionLists | null;
   currentSessionId?: string | null;
   model?: string;
-  modelLabel?: string;
 }
 
 export interface ChatReplyResponse {
@@ -106,7 +105,6 @@ export interface ChatReplyResponse {
   remaining: number;
   resetAt: number;
   model?: string;
-  modelLabel?: string;
 }
 
 export interface ChatResetResponse {
@@ -125,7 +123,6 @@ export interface ChatSessionActionResponse {
   sessions?: ChatSessionLists;
   currentSessionId?: string | null;
   model?: string;
-  modelLabel?: string;
 }
 
 export interface WallCell {
@@ -231,6 +228,9 @@ async function postJson<T>(path: string, body?: unknown): Promise<JsonApiRespons
 
 export function getApiErrorMessage(value: unknown, fallback: string): string {
   const data = (value && typeof value === 'object' ? value : {}) as ApiErrorResponse;
+  if (data.error === 'registration_unavailable' || data.error === 'username_taken') {
+    return 'Registration could not be completed.';
+  }
   if (data.message && data.detail && data.message !== data.detail) return `${data.message}\n${data.detail}`;
   return data.detail || data.message || data.error || fallback;
 }
