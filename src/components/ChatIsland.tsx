@@ -292,8 +292,8 @@ export default function ChatIsland() {
           <div class="chat-sidebar-head">
             <span class="chat-sidebar-title">chats</span>
             <div class="chat-sidebar-actions">
+              <button type="button" class="chat-mini-btn chat-new" onClick={startNewSession} disabled={loading} aria-label="new chat">new</button>
               <button type="button" class="chat-mini-btn chat-toggle" onClick={() => setSessionPanelOpen(open => !open)} aria-expanded={sessionPanelOpen} aria-label={sessionPanelOpen ? 'close sidebar' : 'open sidebar'} title={sessionPanelOpen ? 'close sidebar' : 'open sidebar'}>{sessionPanelOpen ? '◨' : '◧'}</button>
-              <button type="button" class="chat-mini-btn chat-new" onClick={startNewSession} disabled={loading} aria-label="new chat">{sessionPanelOpen ? 'new' : '+'}</button>
             </div>
           </div>
           <div class="chat-sidebar-body">

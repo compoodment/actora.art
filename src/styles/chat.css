@@ -87,8 +87,13 @@
   width: 100%;
 }
 
-.chat-sidebar:not(.open) .chat-toggle,
 .chat-sidebar:not(.open) .chat-new {
+  flex: 0 0 auto;
+  min-width: 2.35rem;
+  width: 2.35rem;
+}
+
+.chat-sidebar:not(.open) .chat-toggle {
   flex: 0 0 auto;
   min-width: 1.55rem;
   width: 1.55rem;
