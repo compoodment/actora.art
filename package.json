@@ -1,7 +1,7 @@
 {
   "name": "actora.art",
   "type": "module",
-  "version": "0.1.84",
+  "version": "0.1.85",
   "engines": {
     "node": ">=22.12.0"
   },

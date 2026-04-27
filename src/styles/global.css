@@ -15,7 +15,7 @@
   --spacing-md: 1rem;
   --spacing-lg: 2rem;
   --spacing-xl: 4rem;
-  --max-width: 48rem;
+  --max-width: 80rem;
   --site-footer-height: 3.5rem;
   --site-footer-safe-area: env(safe-area-inset-bottom, 0px);
   --site-footer-overlay-offset: calc(var(--site-footer-height) + 1.7rem + var(--site-footer-safe-area));
