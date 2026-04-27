@@ -13,6 +13,7 @@ Manual QA checklist for `/chat`.
 1. Open `/chat` while signed out.
    - Expected: the page opens on the current conversation, not a saved-history sidebar.
    - Expected: the empty state says guest chat stays in this browser.
+   - Expected: a visible `hint` control opens the chat behavior/privacy hint.
 2. Send a harmless message.
    - Expected: Aurora replies and the input remains usable.
 3. Reload the page in the same browser.
@@ -23,7 +24,7 @@ Manual QA checklist for `/chat`.
 1. Sign in, then open `/chat`.
    - Expected: the signed-in chat history control is labeled `chats`.
    - Expected on desktop: the chat rail starts collapsed as a narrow left rail, not a top strip, and compact active-chat buttons remain selectable.
-   - Expected on mobile/narrow screens: the list opens as a full-screen sheet from `chats` so the current chat stays primary.
+   - Expected on mobile/narrow screens: the list opens as a full-screen sheet from `chats` so the current chat stays primary and the persistent footer does not sit above the sheet.
 2. Use the sidebar glyph.
    - Expected: collapsed shows `◧` with `open sidebar`; expanded shows `◨` with `close sidebar`.
    - Expected: `new` stays visible on the left of the glyph in both states.
@@ -37,6 +38,7 @@ Manual QA checklist for `/chat`.
    - Expected: the chat help hint says archived chats auto-delete after 7 days and that admins cannot read chat contents.
 6. Try starting a new chat after reaching the saved-chat cap.
    - Expected: the error tells you to delete a chat first and that archived chats count too.
+   - Expected on mobile: if `new` is triggered inside the `chats` sheet, the sheet closes so the error is visible.
 
 ## Wall
 

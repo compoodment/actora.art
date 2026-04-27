@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.93 — 2026-04-27
+
+- Chat: made the chat hint visibly labeled, fixed mobile `chats` sheet stacking/error visibility, and preserved full cap-error context
+- Chat: kept guest chat claiming from pushing signed-in accounts over their saved-chat cap
+- Terminal: actoraOS bumped to `v0.1.93` in the boot text and footer home shortcut
+
 - Chat: signed-in saved chats now enforce active-plus-archived caps, archived chats auto-delete after 7 days, mobile uses a full-screen `chats` sheet, and the chat help hint explains guest/signed-in/archive/admin privacy behavior
 - Wall: undoing a paint now uses the same fresh-cell refund allowance as erase, so undo removes the layer only within the 24-hour window, refunds one char, and spends one refund
 - Wall: signing in no longer claims guest Wall layers or guest Wall budget into the account; guest Wall state stays guest-scoped while future signed-in actions use account state

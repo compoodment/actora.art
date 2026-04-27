@@ -231,6 +231,7 @@ async function postJson<T>(path: string, body?: unknown): Promise<JsonApiRespons
 
 export function getApiErrorMessage(value: unknown, fallback: string): string {
   const data = (value && typeof value === 'object' ? value : {}) as ApiErrorResponse;
+  if (data.message && data.detail && data.message !== data.detail) return `${data.message}\n${data.detail}`;
   return data.detail || data.message || data.error || fallback;
 }
 

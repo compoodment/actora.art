@@ -157,7 +157,7 @@ Signed-in session actions:
 
 Daily chat limit: 300 messages per account or guest identity per rolling 24-hour window. The short burst limit is 20 messages per minute per account or guest identity.
 
-Session retention: signed-in empty active sessions are backend-pruned after 6 hours, and signed-in archived sessions are backend-pruned after 7 days. Public chat hint copy should mention the 7-day archive behavior, but not the empty-session cleanup.
+Session retention: signed-in empty active sessions are backend-pruned after 6 hours, and signed-in archived sessions are backend-pruned after 7 days. Public chat hint copy should mention the 7-day archive behavior, but not the empty-session cleanup. Guest chat claiming during sign-in must not push a signed-in account over its saved-chat cap.
 
 Current error responses:
 

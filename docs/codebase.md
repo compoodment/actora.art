@@ -18,7 +18,7 @@ src/
 | Component | Purpose |
 |-----------|---------|
 | `TerminalHero.tsx` | Terminal-style homepage interface |
-| `ChatIsland.tsx` | Chat bot UI — messages, replies, session history |
+| `ChatIsland.tsx` | Chat bot UI — messages, replies, visible hint, and session history |
 | `Wall.tsx` | Collaborative wall UI — grid, paint/erase, budget display |
 | `ParticleFlow.tsx` | Interactive visual experiment |
 

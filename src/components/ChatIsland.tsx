@@ -81,6 +81,28 @@ export default function ChatIsland() {
     if (messagesRef.current) messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
   }, [messages, loading]);
 
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setMobileSessionsOpen(false);
+      setHelpOpen(false);
+      setModelMenuOpen(false);
+      setEditPanelOpen(false);
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
+
+  useEffect(() => {
+    if (!mobileSessionsOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileSessionsOpen]);
+
   const loadThread = useCallback(async () => {
     if (loadRef.current) return loadRef.current;
 
@@ -246,11 +268,9 @@ export default function ChatIsland() {
   }, [runSessionAction]);
 
   const startNewSession = useCallback(async () => {
-    const ok = await runSessionAction(newChatSession, 'could not start chat');
-    if (ok) {
-      setEditPanelOpen(false);
-      setMobileSessionsOpen(false);
-    }
+    await runSessionAction(newChatSession, 'could not start chat');
+    setEditPanelOpen(false);
+    setMobileSessionsOpen(false);
   }, [runSessionAction]);
 
   const renameCurrent = useCallback(async () => {
@@ -377,7 +397,7 @@ export default function ChatIsland() {
               <span class="chat-meta">{remaining} left - {formatResetTime(resetAt)}</span>
             )}
             <div class="chat-help-wrap" onClick={(e) => e.stopPropagation()}>
-              <button type="button" class="chat-help-toggle" onClick={() => { setModelMenuOpen(false); setEditPanelOpen(false); setHelpOpen(open => !open); }} aria-expanded={helpOpen} aria-label="chat help">?</button>
+              <button type="button" class="chat-help-toggle" onClick={() => { setModelMenuOpen(false); setEditPanelOpen(false); setHelpOpen(open => !open); }} aria-expanded={helpOpen} aria-label="chat hint" title="chat hint">hint</button>
               {helpOpen && (
                 <div class="chat-help-menu">
                   Guests keep one browser chat. Signed-in users get multiple chats. Archived chats are read-only and auto-delete after 7 days. Admins cannot read chat contents.
