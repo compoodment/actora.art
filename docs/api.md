@@ -332,7 +332,7 @@ Current error responses:
 
 Erases visible top layers owned by the current visitor. Erase requests dedupe coordinates and count only coordinates whose current visible top layer is owned by the resolved visitor before refund-limit enforcement. Erasing removes only that top layer; an older unexpired layer underneath may become visible. Non-owned, empty, invalid, or duplicate cells are ignored.
 
-Only cells erased within 24 hours of their original placement refund 1 character and consume 1 refund. Older owned cells can still be erased, but they do not change character budget or refund count.
+Only owned visible cells under 24 hours old can be erased. Erasing one refunds 1 character and consumes 1 refund. Older owned cells are ignored by erase requests and remain visible until overwritten or expired.
 
 Budget and `canUndo`/`canRedo` fields returned by success and `refund_limit_reached` responses are authoritative for the client HUD.
 
@@ -381,7 +381,7 @@ type WallUndoResponse = WallBudget & {
 
 ### `POST /api/wall/redo`
 
-Redoes the current owner's most recently undone Wall action/stroke with the same ownership-safe stack checks. Redo applies budget/refund deltas only for cells that actually change.
+Redoes the current owner's most recently undone Wall action/stroke with the same ownership-safe stack checks. Redo applies budget/refund deltas only for cells that actually change. Erase redo is skipped if the restored top layer has aged past the 24-hour erase window.
 
 Success response:
 

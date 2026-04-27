@@ -108,8 +108,8 @@ Use this when paint/erase accounting changed.
 3. Erase those 3 visible owned cells while they are under 24 hours old.
    - Expected: chars increase by 3, up to the daily max.
    - Expected: refunds decrease by 3.
-4. If testing with old/restored state, erase an owned cell older than 24 hours.
-   - Expected: the cell erases, but chars and refunds do not change.
+4. If testing with old/restored state, try to erase an owned cell older than 24 hours.
+   - Expected: the cell stays visible, and chars/refunds do not change.
 5. Undo and redo the paint/erase sequence.
    - Expected: chars and refunds return to the matching action state each time.
 6. Try to erase someone else's visible cell.

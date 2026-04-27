@@ -507,10 +507,8 @@ export default function Wall() {
     } else {
       const cell = grid[y]?.[x];
       if (!cell || !cell.isMine) return; // only erase your visible cells
-      if (!budget) return;
-      const refundable = isCellRefundable(cell);
-      if (refundable && budget.refundsLeft - getReservedEraseCount() <= 0) return;
-      pendingRef.current.push({ x, y, previousCell: cell, actionId: dragActionIdRef.current || undefined, refundable });
+      if (!budget || !isCellRefundable(cell) || budget.refundsLeft - getReservedEraseCount() <= 0) return;
+      pendingRef.current.push({ x, y, previousCell: cell, actionId: dragActionIdRef.current || undefined, refundable: true });
       dragKeysRef.current.add(key);
       refreshPendingDisplay();
       retainPendingKey(x, y);
@@ -732,7 +730,7 @@ export default function Wall() {
             <div class="wall-info-title" id="wall-info-title">the wall</div>
             <p>a shared wall to draw on with ASCII, leave behind kind remarks, or write over existing stuff :P</p>
             <p><strong>budget:</strong> 100 chars per day. resets every 24 hours.</p>
-            <p><strong>erase:</strong> you can erase your own visible cells. fresh cells give 1 char back for the first day, up to 200 refunds per reset.</p>
+            <p><strong>erase:</strong> you can erase your own visible cells for the first day after placing them. each erase gives 1 char back, up to 200 refunds per reset.</p>
             <p><strong>decay:</strong> chars gradually fade for 3 days, then disappear.</p>
             <p><strong>controls:</strong> click or drag to place. type to select letters/numbers and characters. use paint/erase to place chars and remove chars. undo/redo can reverse recent confirmed actions.</p>
             <button type="button" class="wall-info-close" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>got it</button>
