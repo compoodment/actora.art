@@ -63,6 +63,8 @@ export default function ChatIsland() {
   const [model, setModel] = useState<ChatModelChoice>('fast');
   const [modelMenuOpen, setModelMenuOpen] = useState(false);
   const [sessionPanelOpen, setSessionPanelOpen] = useState(false);
+  const [archivedPanelOpen, setArchivedPanelOpen] = useState(false);
+  const [editPanelOpen, setEditPanelOpen] = useState(false);
   const [renaming, setRenaming] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -151,6 +153,7 @@ export default function ChatIsland() {
         return;
       }
       applySessionResponse(data as { messages?: unknown; sessions?: ChatSessionLists; currentSessionId?: string | null });
+      setEditPanelOpen(false);
       setBootstrapped(true);
     } catch {
       setError('connection failed');
@@ -167,6 +170,7 @@ export default function ChatIsland() {
     setInput('');
     setError(null);
     setNotice(null);
+    setEditPanelOpen(false);
     setMessages(prev => [...prev, { role: 'user', content: text }]);
     setLoading(true);
 
@@ -221,6 +225,7 @@ export default function ChatIsland() {
         return;
       }
       applySessionResponse(data as { messages?: unknown; sessions?: ChatSessionLists; currentSessionId?: string | null; model?: string });
+      setEditPanelOpen(false);
     } catch {
       setError('connection failed');
     } finally {
@@ -231,11 +236,13 @@ export default function ChatIsland() {
   const openSession = useCallback(async (sessionId: string, archived = false) => {
     await runSessionAction(() => selectChatSession(sessionId), archived ? 'could not open archived chat' : 'could not open chat');
     setSessionPanelOpen(false);
+    setEditPanelOpen(false);
   }, [runSessionAction]);
 
   const startNewSession = useCallback(async () => {
     await runSessionAction(newChatSession, 'could not start chat');
     setSessionPanelOpen(false);
+    setEditPanelOpen(false);
   }, [runSessionAction]);
 
   const renameCurrent = useCallback(async () => {
@@ -252,6 +259,7 @@ export default function ChatIsland() {
     try {
       await navigator.clipboard.writeText(exportText(messages));
       setNotice('copied chat');
+      setEditPanelOpen(false);
     } catch {
       setError('could not copy chat');
     }
@@ -275,9 +283,10 @@ export default function ChatIsland() {
     ? sessions.archived.find((session) => session.id === currentSessionId) || null
     : null;
   const readOnly = !!archivedSelected;
+  const canEdit = !!currentSession || !!archivedSelected || messages.length > 0;
 
   return (
-    <div class={`chat-shell${signedIn ? ' signed-in' : ''}`} onClick={focusInputFromShell}>
+    <div class={`chat-shell${signedIn ? ' signed-in' : ''}${sessionPanelOpen ? ' chat-panel-open' : ''}`} onClick={focusInputFromShell}>
       {signedIn && (
         <aside class={`chat-sidebar${sessionPanelOpen ? ' open' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div class="chat-sidebar-head">
@@ -289,7 +298,6 @@ export default function ChatIsland() {
           </div>
           <div class="chat-sidebar-body">
             <div class="chat-session-group">
-              <span class="chat-session-label">active</span>
               {sessions.active.length === 0 && <span class="chat-session-empty">none</span>}
               {sessions.active.map((session) => (
                 <button
@@ -304,23 +312,26 @@ export default function ChatIsland() {
                 </button>
               ))}
             </div>
-            <div class="chat-session-group">
-              <span class="chat-session-label">archived</span>
-              {sessions.archived.length === 0 && <span class="chat-session-empty">none</span>}
-              {sessions.archived.map((session) => (
-                <button
-                  key={session.id}
-                  type="button"
-                  class={`chat-session archived${session.id === currentSessionId ? ' current' : ''}`}
-                  onClick={() => openSession(session.id, true)}
-                  disabled={loading}
-                  title="open archived chat"
-                >
-                  <span>{session.title || 'archived chat'}</span>
-                  <small>{session.messageCount}</small>
+            {sessions.archived.length > 0 && (
+              <div class="chat-session-group archived-group">
+                <button type="button" class="chat-archive-toggle" onClick={() => setArchivedPanelOpen(open => !open)} aria-expanded={archivedPanelOpen}>
+                  {archivedPanelOpen ? 'hide archived' : `archived (${sessions.archived.length})`}
                 </button>
-              ))}
-            </div>
+                {archivedPanelOpen && sessions.archived.map((session) => (
+                  <button
+                    key={session.id}
+                    type="button"
+                    class={`chat-session archived${session.id === currentSessionId ? ' current' : ''}`}
+                    onClick={() => openSession(session.id, true)}
+                    disabled={loading}
+                    title="open archived chat"
+                  >
+                    <span>{session.title || 'archived chat'}</span>
+                    <small>{session.messageCount}</small>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </aside>
       )}
@@ -333,7 +344,7 @@ export default function ChatIsland() {
               <span class="chat-meta">{remaining} left - {formatResetTime(resetAt)}</span>
             )}
             <div class="chat-model-wrap" onClick={(e) => e.stopPropagation()}>
-              <button type="button" class="chat-model" onClick={() => setModelMenuOpen(open => !open)} disabled={loading || readOnly} aria-expanded={modelMenuOpen} aria-label="chat model">{model}</button>
+              <button type="button" class="chat-model" onClick={() => { setEditPanelOpen(false); setModelMenuOpen(open => !open); }} disabled={loading || readOnly} aria-expanded={modelMenuOpen} aria-label="chat model">{model}</button>
               {modelMenuOpen && (
                 <div class="chat-model-menu" role="menu">
                   {(['fast', 'smart'] as ChatModelChoice[]).map((choice) => (
@@ -349,25 +360,34 @@ export default function ChatIsland() {
                 </div>
               )}
             </div>
-            {signedIn && currentSession && (
-              <>
-                <button type="button" class="chat-reset" onClick={renameCurrent} disabled={loading || renaming}>rename</button>
-                <button type="button" class="chat-reset" onClick={() => runSessionAction(() => archiveChatSession(currentSession.id), 'could not archive chat')} disabled={loading}>archive</button>
-                <button type="button" class="chat-reset" onClick={() => {
-                  if (window.confirm('delete this chat?')) void runSessionAction(() => deleteChatSession(currentSession.id), 'could not delete chat');
-                }} disabled={loading}>delete</button>
-              </>
+            {canEdit && (
+              <div class="chat-edit-wrap" onClick={(e) => e.stopPropagation()}>
+                <button type="button" class="chat-edit-toggle" onClick={() => { setModelMenuOpen(false); setEditPanelOpen(open => !open); }} disabled={loading} aria-expanded={editPanelOpen}>edit</button>
+                {editPanelOpen && (
+                  <div class="chat-edit-menu">
+                    {signedIn && currentSession && (
+                      <>
+                        <button type="button" class="chat-edit-action" onClick={renameCurrent} disabled={loading || renaming}>rename</button>
+                        <button type="button" class="chat-edit-action" onClick={() => runSessionAction(() => archiveChatSession(currentSession.id), 'could not archive chat')} disabled={loading}>archive</button>
+                        <button type="button" class="chat-edit-action" onClick={() => {
+                          if (window.confirm('delete this chat?')) void runSessionAction(() => deleteChatSession(currentSession.id), 'could not delete chat');
+                        }} disabled={loading}>delete</button>
+                      </>
+                    )}
+                    {signedIn && archivedSelected && (
+                      <>
+                        <button type="button" class="chat-edit-action" onClick={() => runSessionAction(() => unarchiveChatSession(archivedSelected.id), 'could not unarchive chat')} disabled={loading}>unarchive</button>
+                        <button type="button" class="chat-edit-action" onClick={() => {
+                          if (window.confirm('delete this archived chat?')) void runSessionAction(() => deleteChatSession(archivedSelected.id), 'could not delete chat');
+                        }} disabled={loading}>delete</button>
+                      </>
+                    )}
+                    {messages.length > 0 && <button type="button" class="chat-edit-action" onClick={copyChat}>copy</button>}
+                    {!readOnly && messages.length > 0 && <button type="button" class="chat-edit-action" onClick={resetThread} disabled={loading}>reset</button>}
+                  </div>
+                )}
+              </div>
             )}
-            {signedIn && archivedSelected && (
-              <>
-                <button type="button" class="chat-reset" onClick={() => runSessionAction(() => unarchiveChatSession(archivedSelected.id), 'could not unarchive chat')} disabled={loading}>unarchive</button>
-                <button type="button" class="chat-reset" onClick={() => {
-                  if (window.confirm('delete this archived chat?')) void runSessionAction(() => deleteChatSession(archivedSelected.id), 'could not delete chat');
-                }} disabled={loading}>delete</button>
-              </>
-            )}
-            <button type="button" class="chat-reset" onClick={copyChat} disabled={messages.length === 0}>copy</button>
-            <button type="button" class="chat-reset" onClick={resetThread} disabled={loading || messages.length === 0 || readOnly}>reset</button>
           </div>
         </div>
 
