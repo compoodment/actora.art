@@ -67,8 +67,9 @@ const PICKER_MAX_COLOR_VALUE = 0.93;
 const COLS = 80;
 const ROWS = 24;
 const WALL_RECOVERY_MS = 15000;
-const FADE_MS = 1 * 24 * 60 * 60 * 1000;
+const WALL_FADE_TICK_MS = 60 * 1000;
 const EXPIRE_MS = 3 * 24 * 60 * 60 * 1000;
+const MIN_WALL_OPACITY = 0.08;
 
 type PendingWallCell = { x: number; y: number; char?: string; color?: string; previousCell?: Cell | null; actionId?: string };
 type WallPreferenceOwner = 'unknown' | 'guest' | 'account';
@@ -188,6 +189,7 @@ export default function Wall() {
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [, setPendingDisplayRevision] = useState(0);
+  const [wallTime, setWallTime] = useState(() => Date.now());
   const [historyBusy, setHistoryBusy] = useState(false);
   const [showInfo, setShowInfo] = useState(() => {
     if (typeof window === 'undefined') return false;
@@ -651,6 +653,11 @@ export default function Wall() {
   }, [mode, preferenceOwner, savedColors, selectedChar, selectedColor]);
 
   useEffect(() => {
+    const timer = window.setInterval(() => setWallTime(Date.now()), WALL_FADE_TICK_MS);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
     return () => {
       if (preferenceSaveTimerRef.current !== null) {
         window.clearTimeout(preferenceSaveTimerRef.current);
@@ -659,14 +666,11 @@ export default function Wall() {
   }, []);
 
   const getCellColor = (cell: Cell): string => {
-    const age = Date.now() - cell.placedAt;
+    const age = Math.max(0, wallTime - cell.placedAt);
     const base = LEGACY_COLORS[cell.color] || (isAllowedWallColor(cell.color) ? cell.color : LEGACY_COLORS.white);
-    if (age > FADE_MS) {
-      const fadeProgress = Math.min((age - FADE_MS) / (EXPIRE_MS - FADE_MS), 1);
-      const opacity = 0.8 - fadeProgress * 0.6;
-      return base + Math.round(opacity * 255).toString(16).padStart(2, '0');
-    }
-    return base;
+    const fadeProgress = Math.min(age / EXPIRE_MS, 1);
+    const opacity = 1 - fadeProgress * (1 - MIN_WALL_OPACITY);
+    return base + Math.round(opacity * 255).toString(16).padStart(2, '0');
   };
   const getToolColor = (color: string) => LEGACY_COLORS[color] || (isAllowedWallColor(color) ? color : LEGACY_COLORS.white);
   const chooseColor = (color: string) => {
@@ -723,7 +727,7 @@ export default function Wall() {
             <p>a shared wall to draw on with ASCII, leave behind kind remarks, or write over existing stuff :P</p>
             <p><strong>budget:</strong> 100 chars per day. resets every 24 hours.</p>
             <p><strong>erase:</strong> you can erase your own visible cells. each erase gives 1 char back, up to 200 refunds per reset.</p>
-            <p><strong>decay:</strong> chars fade after 1 day and disappear after 3.</p>
+            <p><strong>decay:</strong> chars gradually fade for 3 days, then disappear.</p>
             <p><strong>controls:</strong> click or drag to place. type to select letters/numbers and characters. use paint/erase to place chars and remove chars. undo/redo can reverse recent confirmed actions.</p>
             <button type="button" class="wall-info-close" onClick={() => { setShowInfo(false); localStorage.setItem('wall-info-seen', '1'); }}>got it</button>
           </div>
