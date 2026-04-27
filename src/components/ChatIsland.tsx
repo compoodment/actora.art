@@ -290,10 +290,10 @@ export default function ChatIsland() {
       {signedIn && (
         <aside class={`chat-sidebar${sessionPanelOpen ? ' open' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div class="chat-sidebar-head">
-            <span>chats</span>
+            <span class="chat-sidebar-title">chats</span>
             <div class="chat-sidebar-actions">
-              <button type="button" class="chat-mini-btn chat-toggle" onClick={() => setSessionPanelOpen(open => !open)} aria-expanded={sessionPanelOpen}>{sessionPanelOpen ? 'hide' : 'show'}</button>
-              <button type="button" class="chat-mini-btn" onClick={startNewSession} disabled={loading}>new</button>
+              <button type="button" class="chat-mini-btn chat-toggle" onClick={() => setSessionPanelOpen(open => !open)} aria-expanded={sessionPanelOpen} aria-label={sessionPanelOpen ? 'hide chats' : 'show chats'}>{sessionPanelOpen ? 'hide' : 'chats'}</button>
+              <button type="button" class="chat-mini-btn chat-new" onClick={startNewSession} disabled={loading} aria-label="new chat">{sessionPanelOpen ? 'new' : '+'}</button>
             </div>
           </div>
           <div class="chat-sidebar-body">

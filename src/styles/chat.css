@@ -34,15 +34,23 @@
   padding: 1.5rem 1.5rem calc(3.5rem + var(--site-footer-height));
 }
 
-.chat-shell.signed-in,
+.chat-shell.signed-in {
+  grid-template-columns: 6.25rem minmax(0, 1fr);
+}
+
 .chat-shell.signed-in.chat-panel-open {
   grid-template-columns: 14rem minmax(0, 1fr);
 }
 
 .chat-sidebar {
   min-height: 0;
-  overflow-y: auto;
+  overflow: visible;
   border-right: 1px solid var(--color-text-dim);
+  padding-right: 0.75rem;
+}
+
+.chat-sidebar.open {
+  overflow-y: auto;
   padding-right: 1rem;
 }
 
@@ -58,9 +66,32 @@
 }
 
 .chat-sidebar-head {
+  min-height: 3.35rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-text-dim);
   margin-bottom: 0;
+}
+
+.chat-sidebar:not(.open) .chat-sidebar-head {
+  justify-content: flex-start;
+}
+
+.chat-sidebar:not(.open) .chat-sidebar-title {
+  display: none;
+}
+
+.chat-sidebar:not(.open) .chat-sidebar-actions {
+  flex: 1;
+  gap: 0.35rem;
+}
+
+.chat-sidebar:not(.open) .chat-toggle {
+  flex: 1;
+}
+
+.chat-sidebar:not(.open) .chat-new {
+  flex: 0 0 auto;
+  min-width: 1.75rem;
 }
 
 .chat-sidebar.open .chat-sidebar-head {
@@ -174,9 +205,10 @@
 
 .chat-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  min-height: 3.35rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-text-dim);
   margin-bottom: 1rem;
@@ -451,7 +483,8 @@
 
 @media (max-width: 720px) {
   .chat-shell,
-  .chat-shell.signed-in {
+  .chat-shell.signed-in,
+  .chat-shell.signed-in.chat-panel-open {
     display: flex;
     flex-direction: column;
     height: auto;
@@ -460,6 +493,7 @@
   }
 
   .chat-sidebar,
+  .chat-sidebar.open,
   .chat-panel-open .chat-sidebar {
     border-right: 0;
     border-bottom: 1px solid var(--color-text-dim);
@@ -467,6 +501,32 @@
     padding-right: 0;
     padding-bottom: 0.75rem;
     max-height: none;
+  }
+
+  .chat-sidebar:not(.open) .chat-sidebar-head,
+  .chat-sidebar.open .chat-sidebar-head {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .chat-sidebar:not(.open) .chat-sidebar-title {
+    text-align: left;
+  }
+
+  .chat-sidebar:not(.open) .chat-sidebar-actions {
+    align-items: center;
+    flex: 0 0 auto;
+    flex-direction: row;
+  }
+
+  .chat-sidebar:not(.open) .chat-toggle,
+  .chat-sidebar:not(.open) .chat-new {
+    flex: 0 0 auto;
+  }
+
+  .chat-sidebar:not(.open) .chat-mini-btn {
+    width: auto;
   }
 
   .chat-toggle {
