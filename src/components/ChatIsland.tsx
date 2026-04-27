@@ -235,13 +235,11 @@ export default function ChatIsland() {
 
   const openSession = useCallback(async (sessionId: string, archived = false) => {
     await runSessionAction(() => selectChatSession(sessionId), archived ? 'could not open archived chat' : 'could not open chat');
-    setSessionPanelOpen(false);
     setEditPanelOpen(false);
   }, [runSessionAction]);
 
   const startNewSession = useCallback(async () => {
     await runSessionAction(newChatSession, 'could not start chat');
-    setSessionPanelOpen(false);
     setEditPanelOpen(false);
   }, [runSessionAction]);
 

@@ -14,6 +14,12 @@ Product-level changes visible to visitors and developers.
 - Docs: synced Wall API and experiment docs with the current v0.1.52 tool behavior: unrestricted hex colors, no black quick color, symbol-only clickable palette, and four signed-in saved color slots
 - Docs: simplified the public docs so they stay readable and leave live operations elsewhere
 
+## 0.1.81 — 2026-04-27
+
+- Chat: kept the saved-chat sidebar open or collapsed according to the user's current preference when switching chats or starting a new chat
+- Chat: made Aurora more playful, swear-friendly, and willing to riff with harmless jokes while keeping crisis and safety boundaries
+- Terminal: actoraOS bumped to `v0.1.81` in the boot text and footer home shortcut
+
 ## 0.1.80 — 2026-04-27
 
 - Chat: kept `new` visible in the collapsed chat rail and moved the sidebar toggle to the right edge of the rail controls
