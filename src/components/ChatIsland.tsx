@@ -281,14 +281,13 @@ export default function ChatIsland() {
       {signedIn && (
         <aside class={`chat-sidebar${sessionPanelOpen ? ' open' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div class="chat-sidebar-head">
-            <span>chats</span>
+            <span>saved chats</span>
             <div class="chat-sidebar-actions">
-              <button type="button" class="chat-mini-btn chat-toggle" onClick={() => setSessionPanelOpen(open => !open)} aria-expanded={sessionPanelOpen}>list</button>
+              <button type="button" class="chat-mini-btn chat-toggle" onClick={() => setSessionPanelOpen(open => !open)} aria-expanded={sessionPanelOpen}>{sessionPanelOpen ? 'hide' : 'show'}</button>
               <button type="button" class="chat-mini-btn" onClick={startNewSession} disabled={loading}>new</button>
             </div>
           </div>
           <div class="chat-sidebar-body">
-            <p class="chat-storage-note">stored on your account. archived chats are read-only.</p>
             <div class="chat-session-group">
               <span class="chat-session-label">active</span>
               {sessions.active.length === 0 && <span class="chat-session-empty">none</span>}
@@ -374,7 +373,7 @@ export default function ChatIsland() {
 
         <div class="chat-messages" ref={messagesRef} role="log" aria-live="polite" aria-relevant="additions text" aria-busy={loading}>
           {messages.length === 0 && (
-            <div class="chat-empty">{readOnly ? 'archived chat (read-only)' : signedIn ? 'say something' : 'say something — guest chat is stored for this browser'}</div>
+            <div class="chat-empty">{readOnly ? 'read-only archive' : signedIn ? 'say something' : 'guest chat stays in this browser'}</div>
           )}
           {messages.map((msg, i) => (
             <div key={i} class={`chat-msg chat-${msg.role}`}>
