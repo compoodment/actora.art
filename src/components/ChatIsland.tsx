@@ -306,6 +306,8 @@ export default function ChatIsland() {
                   class={`chat-session${session.id === currentSessionId ? ' current' : ''}`}
                   onClick={() => openSession(session.id)}
                   disabled={loading}
+                  title={session.title || 'new chat'}
+                  aria-label={`open ${session.title || 'new chat'}`}
                 >
                   <span>{session.title || 'new chat'}</span>
                   <small>{session.messageCount}</small>
