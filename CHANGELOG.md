@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.99 — 2026-04-28
+
+- Lab: added one chandelier to `/lab/liminal` as the room's intentional light source
+- Lab: added Shift sprinting and Space jumping to the empty-room movement base
+- Terminal: actoraOS bumped to `v0.1.99` in the footer home shortcut
+
 ## 0.1.98 — 2026-04-28
 
 - Lab: reset `/lab/liminal` to a clean empty-room first-person base instead of a decorative mood scene

@@ -179,8 +179,8 @@ Manual QA checklist for `/lab/liminal`.
    - Expected: the persistent footer remains available, and there is no duplicate in-page back button.
 2. Click `enter`, move the mouse, then press Escape.
    - Expected: pointer lock starts, mouse look works, and Escape opens the minimal options menu.
-3. Use W A S D while entered.
-   - Expected: the camera moves around the empty room and stays within the room.
+3. Use W A S D, Shift, and Space while entered.
+   - Expected: the camera moves around the empty room, Shift increases movement speed, Space jumps, and movement stays within the room.
 4. In the options menu, adjust mouse sensitivity, resume, then exit to lab.
    - Expected: sensitivity changes mouse-look speed, resume returns to the room, and exit navigates to `/lab`.
 5. Test a browser/device without WebGL if practical.

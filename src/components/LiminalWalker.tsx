@@ -3,7 +3,10 @@ import * as THREE from 'three';
 
 type MoveKey = 'forward' | 'backward' | 'left' | 'right';
 
-const MOVE_SPEED = 3.2;
+const WALK_SPEED = 3.2;
+const SPRINT_MULTIPLIER = 1.65;
+const JUMP_SPEED = 4.8;
+const GRAVITY = 13.5;
 const BASE_LOOK_SPEED = 0.0022;
 const CAMERA_HEIGHT = 1.62;
 const ROOM_LIMIT_X = 6.6;
@@ -53,6 +56,9 @@ export default function LiminalWalker() {
     left: false,
     right: false,
   });
+  const sprintRef = useRef(false);
+  const verticalVelocityRef = useRef(0);
+  const groundedRef = useRef(true);
   const yawRef = useRef(0);
   const pitchRef = useRef(0);
   const sensitivityRef = useRef(1);
@@ -120,6 +126,14 @@ export default function LiminalWalker() {
       metalness: 0.01,
     });
     const seamMaterial = new THREE.MeshBasicMaterial({ color: 0x3a3d39 });
+    const metalMaterial = new THREE.MeshStandardMaterial({ color: 0x171814, roughness: 0.58, metalness: 0.45 });
+    const bulbMaterial = new THREE.MeshStandardMaterial({
+      color: 0xf0d9a4,
+      emissive: 0xf0c873,
+      emissiveIntensity: 1.45,
+      roughness: 0.18,
+      metalness: 0.02,
+    });
 
     function addBox(size: [number, number, number], position: [number, number, number], material: THREE.Material) {
       const mesh = new THREE.Mesh(new THREE.BoxGeometry(size[0], size[1], size[2]), material);
@@ -142,10 +156,30 @@ export default function LiminalWalker() {
     addBox([14.6, 0.05, 0.05], [0, 4.05, -8.34], seamMaterial);
     addBox([14.6, 0.05, 0.05], [0, 4.05, 8.34], seamMaterial);
 
-    const ambient = new THREE.HemisphereLight(0xd6dad2, 0x2f332f, 1.15);
+    const chandelier = new THREE.Group();
+    chandelier.position.set(0, 3.15, 0);
+    scene.add(chandelier);
+
+    const ceilingPlate = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.08, 32), metalMaterial);
+    ceilingPlate.position.y = 0.93;
+    chandelier.add(ceilingPlate);
+
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.86, 16), metalMaterial);
+    stem.position.y = 0.48;
+    chandelier.add(stem);
+
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.025, 12, 48), metalMaterial);
+    ring.rotation.x = Math.PI / 2;
+    chandelier.add(ring);
+
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.18, 24, 16), bulbMaterial);
+    bulb.position.y = -0.16;
+    chandelier.add(bulb);
+
+    const ambient = new THREE.HemisphereLight(0xbec2b8, 0x262a26, 0.55);
     scene.add(ambient);
-    const roomLight = new THREE.PointLight(0xdde0d4, 7, 18, 1.4);
-    roomLight.position.set(0, 3.4, 1.5);
+    const roomLight = new THREE.PointLight(0xf0d28d, 15, 19, 1.45);
+    roomLight.position.set(0, 2.95, 0);
     scene.add(roomLight);
 
     const clock = new THREE.Clock();
@@ -180,10 +214,21 @@ export default function LiminalWalker() {
       if (keys.left) move.sub(side);
       if (keys.right) move.add(side);
       if (move.lengthSq() > 0 && document.pointerLockElement === renderer.domElement) {
-        move.normalize().multiplyScalar(MOVE_SPEED * delta);
+        const speed = WALK_SPEED * (sprintRef.current ? SPRINT_MULTIPLIER : 1);
+        move.normalize().multiplyScalar(speed * delta);
         camera.position.add(move);
         camera.position.x = THREE.MathUtils.clamp(camera.position.x, -ROOM_LIMIT_X, ROOM_LIMIT_X);
         camera.position.z = THREE.MathUtils.clamp(camera.position.z, -ROOM_LIMIT_Z, ROOM_LIMIT_Z);
+      }
+
+      if (document.pointerLockElement === renderer.domElement || camera.position.y > CAMERA_HEIGHT) {
+        verticalVelocityRef.current -= GRAVITY * delta;
+        camera.position.y += verticalVelocityRef.current * delta;
+        if (camera.position.y <= CAMERA_HEIGHT) {
+          camera.position.y = CAMERA_HEIGHT;
+          verticalVelocityRef.current = 0;
+          groundedRef.current = true;
+        }
       }
 
       renderer.render(scene, camera);
@@ -195,6 +240,17 @@ export default function LiminalWalker() {
         if (hasEnteredRef.current) setMenuOpen(true);
         return;
       }
+      if (event.key === 'Shift') sprintRef.current = true;
+      if (event.code === 'Space') {
+        if (document.pointerLockElement === renderer.domElement) {
+          event.preventDefault();
+          if (!event.repeat && groundedRef.current) {
+            groundedRef.current = false;
+            verticalVelocityRef.current = JUMP_SPEED;
+          }
+        }
+        return;
+      }
       if (event.repeat) return;
       if (event.key === 'w' || event.key === 'ArrowUp') keysRef.current.forward = true;
       if (event.key === 's' || event.key === 'ArrowDown') keysRef.current.backward = true;
@@ -203,6 +259,7 @@ export default function LiminalWalker() {
     }
 
     function onKeyUp(event: KeyboardEvent) {
+      if (event.key === 'Shift') sprintRef.current = false;
       if (event.key === 'w' || event.key === 'ArrowUp') keysRef.current.forward = false;
       if (event.key === 's' || event.key === 'ArrowDown') keysRef.current.backward = false;
       if (event.key === 'a' || event.key === 'ArrowLeft') keysRef.current.left = false;
@@ -222,6 +279,7 @@ export default function LiminalWalker() {
       setIsLocked(locked);
       if (!locked && hasEnteredRef.current) {
         keysRef.current = { forward: false, backward: false, left: false, right: false };
+        sprintRef.current = false;
         setMenuOpen(true);
       }
     }
@@ -256,6 +314,8 @@ export default function LiminalWalker() {
       wallMaterial.dispose();
       ceilingMaterial.dispose();
       seamMaterial.dispose();
+      metalMaterial.dispose();
+      bulbMaterial.dispose();
       scene.traverse((object) => {
         if (object instanceof THREE.Mesh) {
           object.geometry.dispose();
@@ -302,14 +362,14 @@ export default function LiminalWalker() {
       <div ref={mountRef} class="liminal-viewport" aria-hidden="true" />
       <section class="liminal-access" aria-label="Experiment controls">
         <h1>liminal</h1>
-        <p>Empty room. Click enter, use W A S D to move, mouse to look, and Escape for options.</p>
+        <p>Empty room. Click enter, use W A S D to move, Shift to sprint, Space to jump, mouse to look, and Escape for options.</p>
       </section>
       {!menuOpen && isLocked && <div class="liminal-corner-note">esc</div>}
       {menuOpen && (
         <section class="liminal-menu" aria-labelledby="liminal-menu-title" role="dialog" aria-modal={hasEntered ? 'true' : 'false'}>
           <p class="liminal-kicker">lab / liminal</p>
           <h1 id="liminal-menu-title">empty room</h1>
-          <p class="liminal-menu-copy">W A S D moves. Mouse looks. Escape opens this menu.</p>
+          <p class="liminal-menu-copy">W A S D moves. Shift sprints. Space jumps. Mouse looks. Escape opens this menu.</p>
           <div class="liminal-menu-actions">
             <button type="button" class="liminal-button" onClick={enterRoom}>
               {hasEntered ? 'resume' : 'enter'}
