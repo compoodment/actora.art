@@ -175,14 +175,14 @@ Use this when checking SSE or network behavior.
 Manual QA checklist for `/lab/liminal`.
 
 1. Open `/lab/liminal`.
-   - Expected: the foggy concrete chamber renders without a full-page error.
+   - Expected: an empty concrete room renders without a full-page error.
    - Expected: the persistent footer remains available, and there is no duplicate in-page back button.
-2. Click `start`, move the mouse, then press Escape.
-   - Expected: pointer lock starts, mouse look works, and Escape releases it normally.
-3. Use W A S D or arrow keys.
-   - Expected: the camera moves around the chamber and stays within the room.
-4. On a phone or narrow touch viewport, drag to look and use the arrow controls.
-   - Expected: touch controls move the camera without scrolling the immersive page.
+2. Click `enter`, move the mouse, then press Escape.
+   - Expected: pointer lock starts, mouse look works, and Escape opens the minimal options menu.
+3. Use W A S D while entered.
+   - Expected: the camera moves around the empty room and stays within the room.
+4. In the options menu, adjust mouse sensitivity, resume, then exit to lab.
+   - Expected: sensitivity changes mouse-look speed, resume returns to the room, and exit navigates to `/lab`.
 5. Test a browser/device without WebGL if practical.
    - Expected: fallback copy explains that WebGL is required instead of showing a blank canvas.
 

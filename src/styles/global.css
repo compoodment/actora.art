@@ -1023,9 +1023,7 @@ body.immersive-page-particles .particle-hint {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(179, 184, 176, 0.18), transparent 34rem),
-    #4f5552;
+  background: #555954;
   touch-action: none;
 }
 
@@ -1037,100 +1035,88 @@ body.immersive-page-particles .particle-hint {
 }
 
 .liminal-viewport canvas {
-  cursor: grab;
+  cursor: crosshair;
 }
 
-.liminal-viewport canvas:active {
-  cursor: grabbing;
-}
-
-.liminal-overlay {
-  position: absolute;
-  inset: 1rem 1rem auto;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.75rem 1rem;
-  align-items: start;
-  max-width: 42rem;
-  color: rgba(236, 236, 228, 0.9);
-  font-size: 0.72rem;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.liminal-overlay-quiet {
-  opacity: 0.54;
-}
-
-.liminal-status,
-.liminal-help {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 0.9rem;
-  text-transform: lowercase;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
-}
-
-.liminal-status {
-  grid-column: 1;
-  font-weight: 500;
-}
-
-.liminal-help {
-  grid-column: 1 / -1;
-  color: rgba(232, 232, 224, 0.66);
-}
-
-.liminal-start {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  min-width: 5.25rem;
-  padding: 0.55rem 0.85rem;
-  border: 1px solid rgba(238, 238, 226, 0.32);
-  border-radius: 0;
-  background: rgba(14, 15, 14, 0.56);
-  color: rgba(246, 246, 236, 0.92);
-  font: inherit;
-  text-transform: lowercase;
-  cursor: pointer;
-  pointer-events: auto;
-}
-
-.liminal-start:hover {
-  border-color: rgba(246, 246, 236, 0.72);
-  background: rgba(18, 19, 18, 0.72);
-}
-
-.liminal-touch-controls {
+.liminal-corner-note {
   position: absolute;
   right: 1rem;
-  bottom: calc(1rem + var(--site-footer-overlay-offset));
+  top: 1rem;
   z-index: 2;
-  display: none;
-  grid-template-rows: auto auto;
-  justify-items: center;
-  gap: 0.35rem;
+  color: rgba(238, 238, 226, 0.48);
+  font-size: 0.72rem;
+  text-transform: lowercase;
+  pointer-events: none;
 }
 
-.liminal-touch-controls div {
+.liminal-menu {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: min(calc(100% - 2rem), 24rem);
+  transform: translate(-50%, -50%);
+  padding: 1.15rem;
+  border: 1px solid rgba(238, 238, 226, 0.2);
+  background: rgba(10, 11, 10, 0.78);
+  color: rgba(238, 238, 226, 0.9);
+  box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.38);
+}
+
+.liminal-menu h1 {
+  margin: 0.2rem 0 0.65rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.liminal-menu-copy {
+  margin: 0 0 1rem;
+  color: rgba(238, 238, 226, 0.64);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.liminal-menu-actions {
   display: flex;
-  gap: 0.35rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.liminal-touch-controls button {
-  width: 2.8rem;
-  aspect-ratio: 1;
-  border: 1px solid rgba(238, 238, 226, 0.28);
+.liminal-button {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgba(238, 238, 226, 0.36);
   border-radius: 0;
-  background: rgba(12, 13, 12, 0.48);
-  color: rgba(246, 246, 236, 0.9);
-  font: 1rem/1 var(--font-mono);
-  touch-action: none;
+  background: rgba(238, 238, 226, 0.1);
+  color: rgba(246, 246, 236, 0.92);
+  font: inherit;
+  font-size: 0.78rem;
+  text-transform: lowercase;
+  cursor: pointer;
 }
 
-.liminal-touch-controls button:active {
-  background: rgba(232, 232, 218, 0.18);
+.liminal-button:hover,
+.liminal-button:focus-visible {
+  border-color: rgba(246, 246, 236, 0.72);
+  background: rgba(238, 238, 226, 0.16);
+}
+
+.liminal-button-secondary {
+  color: rgba(238, 238, 226, 0.7);
+}
+
+.liminal-setting {
+  display: grid;
+  gap: 0.45rem;
+  color: rgba(238, 238, 226, 0.58);
+  font-size: 0.72rem;
+  text-transform: lowercase;
+}
+
+.liminal-setting input {
+  width: 100%;
+  accent-color: #d8d8ca;
 }
 
 .liminal-access {
@@ -1178,15 +1164,10 @@ body.immersive-page-particles .particle-hint {
 }
 
 .liminal-kicker {
+  margin: 0;
   color: rgba(235, 235, 226, 0.52);
   font-size: 0.7rem;
   text-transform: lowercase;
-}
-
-@media (hover: none), (pointer: coarse) {
-  .liminal-touch-controls {
-    display: grid;
-  }
 }
 
 @media (min-width: 900px) {

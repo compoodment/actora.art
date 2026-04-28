@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.98 — 2026-04-28
+
+- Lab: reset `/lab/liminal` to a clean empty-room first-person base instead of a decorative mood scene
+- Lab: replaced the cluttered control overlay with a minimal enter/options menu, Escape pause, resume, exit-to-lab, and mouse sensitivity setting
+- Terminal: actoraOS bumped to `v0.1.98` in the footer home shortcut
+
 ## 0.1.97 — 2026-04-28
 
 - Lab: cleaned up `/lab/liminal` so the concrete chamber is open, with floor/ceiling seams instead of accidental divider walls

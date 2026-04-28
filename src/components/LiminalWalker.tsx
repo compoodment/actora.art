@@ -3,11 +3,11 @@ import * as THREE from 'three';
 
 type MoveKey = 'forward' | 'backward' | 'left' | 'right';
 
-const MOVE_SPEED = 3.1;
-const LOOK_SPEED = 0.0022;
+const MOVE_SPEED = 3.2;
+const BASE_LOOK_SPEED = 0.0022;
 const CAMERA_HEIGHT = 1.62;
-const CHAMBER_LIMIT_X = 7.1;
-const CHAMBER_LIMIT_Z = 8.6;
+const ROOM_LIMIT_X = 6.6;
+const ROOM_LIMIT_Z = 7.6;
 
 function supportsWebGL() {
   try {
@@ -26,29 +26,14 @@ function makeConcreteTexture() {
 
   if (!ctx) return null;
 
-  ctx.fillStyle = '#7a7c78';
+  ctx.fillStyle = '#777a74';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  for (let i = 0; i < 9000; i += 1) {
-    const shade = 88 + Math.floor(Math.random() * 60);
-    const alpha = 0.04 + Math.random() * 0.09;
+  for (let i = 0; i < 6500; i += 1) {
+    const shade = 82 + Math.floor(Math.random() * 58);
+    const alpha = 0.025 + Math.random() * 0.06;
     ctx.fillStyle = `rgba(${shade}, ${shade + 1}, ${shade - 2}, ${alpha})`;
     ctx.fillRect(Math.random() * 256, Math.random() * 256, 1 + Math.random() * 2, 1 + Math.random() * 2);
-  }
-
-  ctx.strokeStyle = 'rgba(48, 49, 47, 0.24)';
-  ctx.lineWidth = 1;
-  for (let x = 0; x <= 256; x += 64) {
-    ctx.beginPath();
-    ctx.moveTo(x + 0.5, 0);
-    ctx.lineTo(x + 0.5, 256);
-    ctx.stroke();
-  }
-  for (let y = 0; y <= 256; y += 64) {
-    ctx.beginPath();
-    ctx.moveTo(0, y + 0.5);
-    ctx.lineTo(256, y + 0.5);
-    ctx.stroke();
   }
 
   const texture = new THREE.CanvasTexture(canvas);
@@ -68,13 +53,15 @@ export default function LiminalWalker() {
     left: false,
     right: false,
   });
-  const pointerRef = useRef({ active: false, x: 0, y: 0 });
   const yawRef = useRef(0);
   const pitchRef = useRef(0);
+  const sensitivityRef = useRef(1);
+  const hasEnteredRef = useRef(false);
   const [webglOk, setWebglOk] = useState(true);
   const [isLocked, setIsLocked] = useState(false);
-  const [started, setStarted] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
+  const [hasEntered, setHasEntered] = useState(false);
+  const [sensitivity, setSensitivity] = useState(1);
 
   useEffect(() => {
     if (!supportsWebGL()) {
@@ -85,15 +72,12 @@ export default function LiminalWalker() {
     const mount = mountRef.current;
     if (!mount) return;
 
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x555a57);
-    scene.fog = new THREE.FogExp2(0x777c77, 0.044);
+    scene.background = new THREE.Color(0x555954);
+    scene.fog = new THREE.Fog(0x555954, 8, 26);
 
     const camera = new THREE.PerspectiveCamera(68, 1, 0.04, 80);
-    camera.position.set(0, CAMERA_HEIGHT, 6.2);
+    camera.position.set(0, CAMERA_HEIGHT, 5.8);
 
     let renderer: THREE.WebGLRenderer;
     try {
@@ -105,33 +89,37 @@ export default function LiminalWalker() {
       setWebglOk(false);
       return;
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.setClearColor(0x5d625f, 1);
+    renderer.setClearColor(0x555954, 1);
     mount.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     const concreteTexture = makeConcreteTexture();
+    const floorTexture = concreteTexture?.clone() ?? null;
+    const wallTexture = concreteTexture?.clone() ?? null;
+    floorTexture?.repeat.set(5, 6);
+    wallTexture?.repeat.set(4, 2);
+
     const floorMaterial = new THREE.MeshStandardMaterial({
-      color: 0x666b66,
-      map: concreteTexture ?? undefined,
-      roughness: 0.98,
-      metalness: 0.02,
-    });
-    const concreteMaterial = new THREE.MeshStandardMaterial({
-      color: 0x868a83,
-      map: concreteTexture ?? undefined,
-      roughness: 0.96,
-      metalness: 0.02,
-    });
-    const darkConcrete = new THREE.MeshStandardMaterial({
-      color: 0x4d514d,
+      color: 0x6f746c,
+      map: floorTexture ?? undefined,
       roughness: 0.98,
       metalness: 0.01,
     });
-    const seamMaterial = new THREE.MeshBasicMaterial({ color: 0x30312f });
-    const glowMaterial = new THREE.MeshBasicMaterial({ color: 0xf1d8b2 });
-    const blackMaterial = new THREE.MeshStandardMaterial({ color: 0x0f1010, roughness: 0.7 });
+    const wallMaterial = new THREE.MeshStandardMaterial({
+      color: 0x858980,
+      map: wallTexture ?? undefined,
+      roughness: 0.96,
+      metalness: 0.01,
+    });
+    const ceilingMaterial = new THREE.MeshStandardMaterial({
+      color: 0x5d625d,
+      roughness: 0.98,
+      metalness: 0.01,
+    });
+    const seamMaterial = new THREE.MeshBasicMaterial({ color: 0x3a3d39 });
 
     function addBox(size: [number, number, number], position: [number, number, number], material: THREE.Material) {
       const mesh = new THREE.Mesh(new THREE.BoxGeometry(size[0], size[1], size[2]), material);
@@ -140,42 +128,25 @@ export default function LiminalWalker() {
       return mesh;
     }
 
-    addBox([16, 0.2, 20], [0, -0.1, 0], floorMaterial);
-    addBox([16, 0.35, 20], [0, 4.25, 0], darkConcrete);
-    addBox([0.25, 4.4, 20], [-8, 2.1, 0], concreteMaterial);
-    addBox([0.25, 4.4, 20], [8, 2.1, 0], concreteMaterial);
-    addBox([16, 4.4, 0.25], [0, 2.1, -10], concreteMaterial);
-    addBox([16, 4.4, 0.25], [0, 2.1, 10], concreteMaterial);
+    addBox([15, 0.2, 17], [0, -0.1, 0], floorMaterial);
+    addBox([15, 0.24, 17], [0, 4.18, 0], ceilingMaterial);
+    addBox([0.24, 4.4, 17], [-7.5, 2.1, 0], wallMaterial);
+    addBox([0.24, 4.4, 17], [7.5, 2.1, 0], wallMaterial);
+    addBox([15, 4.4, 0.24], [0, 2.1, -8.5], wallMaterial);
+    addBox([15, 4.4, 0.24], [0, 2.1, 8.5], wallMaterial);
 
-    for (const x of [-4, 0, 4]) {
-      addBox([0.04, 0.035, 20], [x, 0.02, 0], seamMaterial);
-      addBox([0.035, 0.04, 20], [x, 4.06, 0], seamMaterial);
-    }
-    for (const z of [-5, 0, 5]) {
-      addBox([16, 0.04, 0.05], [0, 0.015, z], seamMaterial);
-      addBox([16, 0.05, 0.05], [0, 4.05, z], seamMaterial);
-    }
-    addBox([0.08, 0.08, 19.5], [-7.82, 0.08, 0], seamMaterial);
-    addBox([0.08, 0.08, 19.5], [7.82, 0.08, 0], seamMaterial);
-    addBox([15.5, 0.08, 0.08], [0, 0.08, -9.82], seamMaterial);
-    addBox([15.5, 0.06, 0.08], [0, 4.02, -9.82], seamMaterial);
+    addBox([0.05, 0.06, 16.6], [-7.34, 0.05, 0], seamMaterial);
+    addBox([0.05, 0.06, 16.6], [7.34, 0.05, 0], seamMaterial);
+    addBox([14.6, 0.06, 0.05], [0, 0.05, -8.34], seamMaterial);
+    addBox([14.6, 0.06, 0.05], [0, 0.05, 8.34], seamMaterial);
+    addBox([14.6, 0.05, 0.05], [0, 4.05, -8.34], seamMaterial);
+    addBox([14.6, 0.05, 0.05], [0, 4.05, 8.34], seamMaterial);
 
-    addBox([1.15, 3.2, 1.15], [-5.9, 1.6, -3.8], darkConcrete);
-    addBox([1.15, 3.2, 1.15], [5.9, 1.6, 3.8], darkConcrete);
-    addBox([2.2, 2.85, 0.18], [0, 1.42, -9.82], blackMaterial);
-    addBox([0.12, 2.85, 0.08], [0, 1.62, -9.66], glowMaterial);
-    addBox([3.8, 0.1, 0.08], [0, 3.08, -9.64], glowMaterial);
-    addBox([4.2, 0.1, 0.08], [0, 0.28, -9.64], glowMaterial);
-    addBox([6.8, 0.06, 0.08], [0, 0.04, -7.1], glowMaterial);
-
-    const light = new THREE.HemisphereLight(0xd8ddd7, 0x282a28, 1.2);
-    scene.add(light);
-    const slitLight = new THREE.PointLight(0xf1d8b2, 18, 9, 1.5);
-    slitLight.position.set(0, 2.1, -8.9);
-    scene.add(slitLight);
-    const weakLight = new THREE.PointLight(0xb7d1cf, 4, 11, 1.9);
-    weakLight.position.set(-5.5, 2.6, 4.5);
-    scene.add(weakLight);
+    const ambient = new THREE.HemisphereLight(0xd6dad2, 0x2f332f, 1.15);
+    scene.add(ambient);
+    const roomLight = new THREE.PointLight(0xdde0d4, 7, 18, 1.4);
+    roomLight.position.set(0, 3.4, 1.5);
+    scene.add(roomLight);
 
     const clock = new THREE.Clock();
 
@@ -208,16 +179,11 @@ export default function LiminalWalker() {
       if (keys.backward) move.sub(direction);
       if (keys.left) move.sub(side);
       if (keys.right) move.add(side);
-      if (move.lengthSq() > 0) {
+      if (move.lengthSq() > 0 && document.pointerLockElement === renderer.domElement) {
         move.normalize().multiplyScalar(MOVE_SPEED * delta);
         camera.position.add(move);
-        camera.position.x = THREE.MathUtils.clamp(camera.position.x, -CHAMBER_LIMIT_X, CHAMBER_LIMIT_X);
-        camera.position.z = THREE.MathUtils.clamp(camera.position.z, -CHAMBER_LIMIT_Z, CHAMBER_LIMIT_Z);
-      }
-
-      if (!mediaQuery.matches) {
-        const elapsed = clock.elapsedTime;
-        slitLight.intensity = 15.5 + Math.sin(elapsed * 1.7) * 2.2;
+        camera.position.x = THREE.MathUtils.clamp(camera.position.x, -ROOM_LIMIT_X, ROOM_LIMIT_X);
+        camera.position.z = THREE.MathUtils.clamp(camera.position.z, -ROOM_LIMIT_Z, ROOM_LIMIT_Z);
       }
 
       renderer.render(scene, camera);
@@ -225,6 +191,11 @@ export default function LiminalWalker() {
     }
 
     function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        if (hasEnteredRef.current) setMenuOpen(true);
+        return;
+      }
+      if (event.repeat) return;
       if (event.key === 'w' || event.key === 'ArrowUp') keysRef.current.forward = true;
       if (event.key === 's' || event.key === 'ArrowDown') keysRef.current.backward = true;
       if (event.key === 'a' || event.key === 'ArrowLeft') keysRef.current.left = true;
@@ -240,43 +211,19 @@ export default function LiminalWalker() {
 
     function onMouseMove(event: MouseEvent) {
       if (document.pointerLockElement !== renderer.domElement) return;
-      yawRef.current -= event.movementX * LOOK_SPEED;
-      pitchRef.current = THREE.MathUtils.clamp(pitchRef.current - event.movementY * LOOK_SPEED, -1.24, 1.24);
+      const lookSpeed = BASE_LOOK_SPEED * sensitivityRef.current;
+      yawRef.current -= event.movementX * lookSpeed;
+      pitchRef.current = THREE.MathUtils.clamp(pitchRef.current - event.movementY * lookSpeed, -1.22, 1.22);
       applyLook();
-    }
-
-    function onPointerDown(event: PointerEvent) {
-      if (document.pointerLockElement === renderer.domElement) return;
-      pointerRef.current = { active: true, x: event.clientX, y: event.clientY };
-      renderer.domElement.setPointerCapture(event.pointerId);
-      setStarted(true);
-    }
-
-    function onPointerMove(event: PointerEvent) {
-      const pointer = pointerRef.current;
-      if (!pointer.active || document.pointerLockElement === renderer.domElement) return;
-      yawRef.current -= (event.clientX - pointer.x) * LOOK_SPEED * 0.8;
-      pitchRef.current = THREE.MathUtils.clamp(
-        pitchRef.current - (event.clientY - pointer.y) * LOOK_SPEED * 0.8,
-        -1.24,
-        1.24,
-      );
-      pointer.x = event.clientX;
-      pointer.y = event.clientY;
-      applyLook();
-    }
-
-    function onPointerUp(event: PointerEvent) {
-      pointerRef.current.active = false;
-      if (renderer.domElement.hasPointerCapture(event.pointerId)) {
-        renderer.domElement.releasePointerCapture(event.pointerId);
-      }
     }
 
     function onPointerLockChange() {
       const locked = document.pointerLockElement === renderer.domElement;
       setIsLocked(locked);
-      if (locked) setStarted(true);
+      if (!locked && hasEnteredRef.current) {
+        keysRef.current = { forward: false, backward: false, left: false, right: false };
+        setMenuOpen(true);
+      }
     }
 
     function onResize() {
@@ -284,14 +231,9 @@ export default function LiminalWalker() {
       renderer.render(scene, camera);
     }
 
-    function onReducedMotionChange(event: MediaQueryListEvent) {
-      setPrefersReducedMotion(event.matches);
-    }
-
     resize();
     applyLook();
     renderer.render(scene, camera);
-
     step();
 
     window.addEventListener('keydown', onKeyDown);
@@ -299,11 +241,6 @@ export default function LiminalWalker() {
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('resize', onResize);
     document.addEventListener('pointerlockchange', onPointerLockChange);
-    renderer.domElement.addEventListener('pointerdown', onPointerDown);
-    renderer.domElement.addEventListener('pointermove', onPointerMove);
-    renderer.domElement.addEventListener('pointerup', onPointerUp);
-    renderer.domElement.addEventListener('pointercancel', onPointerUp);
-    mediaQuery.addEventListener('change', onReducedMotionChange);
 
     return () => {
       window.cancelAnimationFrame(frameRef.current);
@@ -312,18 +249,13 @@ export default function LiminalWalker() {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('resize', onResize);
       document.removeEventListener('pointerlockchange', onPointerLockChange);
-      renderer.domElement.removeEventListener('pointerdown', onPointerDown);
-      renderer.domElement.removeEventListener('pointermove', onPointerMove);
-      renderer.domElement.removeEventListener('pointerup', onPointerUp);
-      renderer.domElement.removeEventListener('pointercancel', onPointerUp);
-      mediaQuery.removeEventListener('change', onReducedMotionChange);
       concreteTexture?.dispose();
+      floorTexture?.dispose();
+      wallTexture?.dispose();
       floorMaterial.dispose();
-      concreteMaterial.dispose();
-      darkConcrete.dispose();
+      wallMaterial.dispose();
+      ceilingMaterial.dispose();
       seamMaterial.dispose();
-      glowMaterial.dispose();
-      blackMaterial.dispose();
       scene.traverse((object) => {
         if (object instanceof THREE.Mesh) {
           object.geometry.dispose();
@@ -334,17 +266,23 @@ export default function LiminalWalker() {
     };
   }, []);
 
-  function requestLock() {
+  function enterRoom() {
     const canvas = rendererRef.current?.domElement;
-    setStarted(true);
+    hasEnteredRef.current = true;
+    setHasEntered(true);
+    setMenuOpen(false);
     if (canvas?.requestPointerLock) {
       canvas.requestPointerLock();
     }
   }
 
-  function setMoveKey(key: MoveKey, value: boolean) {
-    keysRef.current[key] = value;
-    setStarted(true);
+  function exitRoom() {
+    window.location.href = '/lab';
+  }
+
+  function updateSensitivity(value: number) {
+    sensitivityRef.current = value;
+    setSensitivity(value);
   }
 
   if (!webglOk) {
@@ -353,85 +291,48 @@ export default function LiminalWalker() {
         <section class="liminal-fallback-panel" aria-labelledby="liminal-fallback-title">
           <p class="liminal-kicker">lab / liminal</p>
           <h1 id="liminal-fallback-title">webgl unavailable</h1>
-          <p>
-            This experiment needs WebGL to render the foggy test chamber. Try a browser or device with hardware
-            acceleration enabled.
-          </p>
+          <p>This experiment needs WebGL to render the room. Try a browser with hardware acceleration enabled.</p>
         </section>
       </main>
     );
   }
 
   return (
-    <main class="liminal-shell" aria-label="Liminal concrete chamber walker">
+    <main class="liminal-shell" aria-label="Liminal empty room walker">
       <div ref={mountRef} class="liminal-viewport" aria-hidden="true" />
       <section class="liminal-access" aria-label="Experiment controls">
         <h1>liminal</h1>
-        <p>
-          Foggy concrete chamber. Explore only. Use W A S D or arrow keys to move, drag to look, or click start for
-          mouse look. Escape releases the pointer.
-        </p>
+        <p>Empty room. Click enter, use W A S D to move, mouse to look, and Escape for options.</p>
       </section>
-      <div class={`liminal-overlay ${started ? 'liminal-overlay-quiet' : ''}`}>
-        <div class="liminal-status">
-          <span>liminal</span>
-          <span>{prefersReducedMotion ? 'motion reduced' : isLocked ? 'mouse look locked' : 'drag to look'}</span>
-        </div>
-        <button type="button" class="liminal-start" onClick={requestLock}>
-          {isLocked ? 'locked' : 'start'}
-        </button>
-        <div class="liminal-help">
-          <span>WASD / arrows move</span>
-          <span>mouse drag looks</span>
-          <span>Escape exits lock</span>
-        </div>
-      </div>
-      <div class="liminal-touch-controls" aria-label="Touch movement controls">
-        <button
-          type="button"
-          aria-label="Move forward"
-          onPointerDown={() => setMoveKey('forward', true)}
-          onPointerUp={() => setMoveKey('forward', false)}
-          onPointerCancel={() => setMoveKey('forward', false)}
-          onPointerLeave={() => setMoveKey('forward', false)}
-        >
-          ↑
-        </button>
-        <div>
-          <button
-            type="button"
-            aria-label="Move left"
-            onPointerDown={() => setMoveKey('left', true)}
-            onPointerUp={() => setMoveKey('left', false)}
-            onPointerCancel={() => setMoveKey('left', false)}
-            onPointerLeave={() => setMoveKey('left', false)}
-          >
-            ←
-          </button>
-          <button
-            type="button"
-            aria-label="Move backward"
-            onPointerDown={() => setMoveKey('backward', true)}
-            onPointerUp={() => setMoveKey('backward', false)}
-            onPointerCancel={() => setMoveKey('backward', false)}
-            onPointerLeave={() => setMoveKey('backward', false)}
-          >
-            ↓
-          </button>
-          <button
-            type="button"
-            aria-label="Move right"
-            onPointerDown={() => setMoveKey('right', true)}
-            onPointerUp={() => setMoveKey('right', false)}
-            onPointerCancel={() => setMoveKey('right', false)}
-            onPointerLeave={() => setMoveKey('right', false)}
-          >
-            →
-          </button>
-        </div>
-      </div>
+      {!menuOpen && isLocked && <div class="liminal-corner-note">esc</div>}
+      {menuOpen && (
+        <section class="liminal-menu" aria-labelledby="liminal-menu-title" role="dialog" aria-modal={hasEntered ? 'true' : 'false'}>
+          <p class="liminal-kicker">lab / liminal</p>
+          <h1 id="liminal-menu-title">empty room</h1>
+          <p class="liminal-menu-copy">W A S D moves. Mouse looks. Escape opens this menu.</p>
+          <div class="liminal-menu-actions">
+            <button type="button" class="liminal-button" onClick={enterRoom}>
+              {hasEntered ? 'resume' : 'enter'}
+            </button>
+            <button type="button" class="liminal-button liminal-button-secondary" onClick={exitRoom}>
+              exit to lab
+            </button>
+          </div>
+          <label class="liminal-setting">
+            <span>mouse sensitivity</span>
+            <input
+              type="range"
+              min="0.5"
+              max="1.8"
+              step="0.1"
+              value={sensitivity}
+              onInput={(event) => updateSensitivity(Number((event.currentTarget as HTMLInputElement).value))}
+            />
+          </label>
+        </section>
+      )}
       <noscript>
-        <p class="liminal-noscript">This experiment needs JavaScript and WebGL to render the chamber.</p>
+        <p class="liminal-noscript">This experiment needs JavaScript and WebGL to render the room.</p>
       </noscript>
     </main>
   );
