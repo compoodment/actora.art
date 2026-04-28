@@ -4,6 +4,13 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.104 — 2026-04-28
+
+- Lab: replaced `/lab/liminal`'s simple overlay with a diegetic projected options panel with Resume/Enter, Restart, Settings, Help, and Exit to Lab entries
+- Lab: made the Liminal menu a full pause state, added local-only persisted mouse sensitivity/render scale settings, and kept Restart limited to player position/look
+- Lab: normalized the empty room's edge treatment while preserving the one-chandelier direction
+- Terminal: actoraOS bumped to `v0.1.104` in the footer home shortcut
+
 ## 0.1.103 — 2026-04-28
 
 - Lab: bug-swept `/lab/liminal` pointer-lock entry so the menu only closes after lock succeeds and blocked/unavailable pointer lock shows an error instead of a blank non-movable room

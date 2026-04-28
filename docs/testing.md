@@ -178,14 +178,20 @@ Manual QA checklist for `/lab/liminal`.
    - Expected: an empty concrete room renders without a full-page error.
    - Expected: the persistent footer remains available, and there is no duplicate in-page back button.
 2. Click `enter`, move the mouse, then press Escape.
-   - Expected: pointer lock starts, mouse look works, and Escape opens the minimal options menu.
+   - Expected: pointer lock starts, mouse look works, pointer-lock release opens the projected options menu, and Escape fully pauses gameplay with no movement, jump, or falling updates while the menu is visible.
 3. Use W A S D, Shift, and Space while entered.
    - Expected: the camera moves around the empty room, Shift only increases movement speed while a movement key is held, pressing/releasing Shift while W is held does not interrupt forward movement, Space jumps, and movement stays within the room.
-4. In the options menu, adjust mouse sensitivity, resume, then exit to lab.
-   - Expected: sensitivity changes mouse-look speed, resume returns to the room, focus returns to the menu when it opens, and exit navigates to `/lab`.
-5. Test pointer lock denial/unavailability if practical.
+4. In the options menu, use `restart`, then `resume`.
+   - Expected: restart resets only player position/look and does not reset settings.
+5. Open Settings and switch through Controls, Graphics, Audio, Accessibility, and Gameplay.
+   - Expected: Controls has a functional mouse sensitivity slider, Graphics has a functional render scale slider, the values persist in `localStorage` under `actora.liminal.settings.v1` after reload, and the other tabs show disabled/coming-later rows rather than fake controls.
+6. Open Help.
+   - Expected: help uses in-world control labels such as `locomotion: W A S D`, `modifier: Shift`, `vertical impulse: Space`, `orientation: Mouse`, and `options interrupt: Escape`.
+7. Resume, then exit to lab.
+   - Expected: resume returns to the room, focus returns to the menu when it opens, menu controls work while pointer lock is released, and exit navigates to `/lab`.
+8. Test pointer lock denial/unavailability if practical.
    - Expected: the menu stays visible and shows a pointer-lock error instead of leaving a blank non-movable room.
-6. Test a browser/device without WebGL if practical.
+9. Test a browser/device without WebGL if practical.
    - Expected: fallback copy explains that WebGL is required instead of showing a blank canvas.
 
 ## What to report

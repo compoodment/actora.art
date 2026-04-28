@@ -11,6 +11,50 @@ const BASE_LOOK_SPEED = 0.0022;
 const CAMERA_HEIGHT = 1.62;
 const ROOM_LIMIT_X = 6.6;
 const ROOM_LIMIT_Z = 7.6;
+const SETTINGS_STORAGE_KEY = 'actora.liminal.settings.v1';
+
+type LiminalSettings = {
+  sensitivity: number;
+  renderScale: number;
+};
+
+type MenuPanel = 'main' | 'settings' | 'help';
+type SettingsTab = 'controls' | 'graphics' | 'audio' | 'accessibility' | 'gameplay';
+
+const DEFAULT_SETTINGS: LiminalSettings = {
+  sensitivity: 1,
+  renderScale: 1,
+};
+
+const SETTINGS_TABS: SettingsTab[] = ['controls', 'graphics', 'audio', 'accessibility', 'gameplay'];
+
+function clampSetting(value: unknown, fallback: number, min: number, max: number) {
+  return typeof value === 'number' && Number.isFinite(value) ? THREE.MathUtils.clamp(value, min, max) : fallback;
+}
+
+function loadSettings(): LiminalSettings {
+  if (typeof window === 'undefined') return DEFAULT_SETTINGS;
+
+  try {
+    const raw = window.localStorage.getItem(SETTINGS_STORAGE_KEY);
+    if (!raw) return DEFAULT_SETTINGS;
+    const parsed = JSON.parse(raw) as Partial<LiminalSettings>;
+    return {
+      sensitivity: clampSetting(parsed.sensitivity, DEFAULT_SETTINGS.sensitivity, 0.5, 1.8),
+      renderScale: clampSetting(parsed.renderScale, DEFAULT_SETTINGS.renderScale, 0.7, 1.6),
+    };
+  } catch {
+    return DEFAULT_SETTINGS;
+  }
+}
+
+function saveSettings(settings: LiminalSettings) {
+  try {
+    window.localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+  } catch {
+    // Local-only preference persistence is best effort.
+  }
+}
 
 function supportsWebGL() {
   try {
@@ -49,7 +93,7 @@ function makeConcreteTexture() {
 export default function LiminalWalker() {
   const mountRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const menuRef = useRef<HTMLElement>(null);
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const primaryButtonRef = useRef<HTMLButtonElement>(null);
   const frameRef = useRef<number>(0);
   const heldKeysRef = useRef<Set<string>>(new Set());
@@ -58,17 +102,31 @@ export default function LiminalWalker() {
   const yawRef = useRef(0);
   const pitchRef = useRef(0);
   const sensitivityRef = useRef(1);
+  const renderScaleRef = useRef(1);
+  const menuOpenRef = useRef(true);
   const hasEnteredRef = useRef(false);
   const [webglOk, setWebglOk] = useState(true);
   const [isLocked, setIsLocked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(true);
   const [hasEntered, setHasEntered] = useState(false);
   const [pointerLockError, setPointerLockError] = useState('');
-  const [sensitivity, setSensitivity] = useState(1);
+  const [settings, setSettings] = useState<LiminalSettings>(() => loadSettings());
+  const [menuPanel, setMenuPanel] = useState<MenuPanel>('main');
+  const [settingsTab, setSettingsTab] = useState<SettingsTab>('controls');
+
+  function setPaused(open: boolean) {
+    menuOpenRef.current = open;
+    setMenuOpen(open);
+  }
 
   function clearMovement() {
     heldKeysRef.current.clear();
   }
+
+  useEffect(() => {
+    sensitivityRef.current = settings.sensitivity;
+    renderScaleRef.current = settings.renderScale;
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -90,6 +148,7 @@ export default function LiminalWalker() {
 
     const camera = new THREE.PerspectiveCamera(68, 1, 0.04, 80);
     camera.position.set(0, CAMERA_HEIGHT, 5.8);
+    cameraRef.current = camera;
 
     let renderer: THREE.WebGLRenderer;
     try {
@@ -102,7 +161,7 @@ export default function LiminalWalker() {
       return;
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, renderScaleRef.current));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setClearColor(0x555954, 1);
     mount.appendChild(renderer.domElement);
@@ -131,7 +190,7 @@ export default function LiminalWalker() {
       roughness: 0.98,
       metalness: 0.01,
     });
-    const seamMaterial = new THREE.MeshBasicMaterial({ color: 0x3a3d39 });
+    const seamMaterial = new THREE.MeshBasicMaterial({ color: 0x4b4f49 });
     const metalMaterial = new THREE.MeshStandardMaterial({ color: 0x171814, roughness: 0.58, metalness: 0.45 });
     const bulbMaterial = new THREE.MeshStandardMaterial({
       color: 0xf0d9a4,
@@ -155,12 +214,18 @@ export default function LiminalWalker() {
     addBox([15, 4.4, 0.24], [0, 2.1, -8.5], wallMaterial);
     addBox([15, 4.4, 0.24], [0, 2.1, 8.5], wallMaterial);
 
-    addBox([0.05, 0.06, 16.6], [-7.34, 0.05, 0], seamMaterial);
-    addBox([0.05, 0.06, 16.6], [7.34, 0.05, 0], seamMaterial);
-    addBox([14.6, 0.06, 0.05], [0, 0.05, -8.34], seamMaterial);
-    addBox([14.6, 0.06, 0.05], [0, 0.05, 8.34], seamMaterial);
-    addBox([14.6, 0.05, 0.05], [0, 4.05, -8.34], seamMaterial);
-    addBox([14.6, 0.05, 0.05], [0, 4.05, 8.34], seamMaterial);
+    addBox([0.045, 0.045, 16.55], [-7.34, 0.06, 0], seamMaterial);
+    addBox([0.045, 0.045, 16.55], [7.34, 0.06, 0], seamMaterial);
+    addBox([14.55, 0.045, 0.045], [0, 0.06, -8.34], seamMaterial);
+    addBox([14.55, 0.045, 0.045], [0, 0.06, 8.34], seamMaterial);
+    addBox([0.045, 0.045, 16.55], [-7.34, 4.03, 0], seamMaterial);
+    addBox([0.045, 0.045, 16.55], [7.34, 4.03, 0], seamMaterial);
+    addBox([14.55, 0.045, 0.045], [0, 4.03, -8.34], seamMaterial);
+    addBox([14.55, 0.045, 0.045], [0, 4.03, 8.34], seamMaterial);
+    addBox([0.045, 4, 0.045], [-7.34, 2.04, -8.34], seamMaterial);
+    addBox([0.045, 4, 0.045], [7.34, 2.04, -8.34], seamMaterial);
+    addBox([0.045, 4, 0.045], [-7.34, 2.04, 8.34], seamMaterial);
+    addBox([0.045, 4, 0.045], [7.34, 2.04, 8.34], seamMaterial);
 
     const chandelier = new THREE.Group();
     chandelier.position.set(0, 3.15, 0);
@@ -193,6 +258,7 @@ export default function LiminalWalker() {
     function resize() {
       const width = mount.clientWidth;
       const height = mount.clientHeight;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, renderScaleRef.current));
       camera.aspect = width / Math.max(height, 1);
       camera.updateProjectionMatrix();
       renderer.setSize(width, height, false);
@@ -206,6 +272,12 @@ export default function LiminalWalker() {
 
     function step() {
       const delta = Math.min(clock.getDelta(), 0.05);
+      if (menuOpenRef.current) {
+        renderer.render(scene, camera);
+        frameRef.current = window.requestAnimationFrame(step);
+        return;
+      }
+
       const direction = new THREE.Vector3();
       const side = new THREE.Vector3();
       camera.getWorldDirection(direction);
@@ -245,11 +317,11 @@ export default function LiminalWalker() {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         clearMovement();
-        if (hasEnteredRef.current) setMenuOpen(true);
+        if (hasEnteredRef.current) setPaused(true);
         return;
       }
 
-      if (document.pointerLockElement !== renderer.domElement) return;
+      if (menuOpenRef.current || document.pointerLockElement !== renderer.domElement) return;
 
       if (!MOVEMENT_CODES.has(event.code)) return;
       event.preventDefault();
@@ -270,7 +342,7 @@ export default function LiminalWalker() {
     }
 
     function onMouseMove(event: MouseEvent) {
-      if (document.pointerLockElement !== renderer.domElement) return;
+      if (menuOpenRef.current || document.pointerLockElement !== renderer.domElement) return;
       const lookSpeed = BASE_LOOK_SPEED * sensitivityRef.current;
       yawRef.current -= event.movementX * lookSpeed;
       pitchRef.current = THREE.MathUtils.clamp(pitchRef.current - event.movementY * lookSpeed, -1.22, 1.22);
@@ -284,19 +356,20 @@ export default function LiminalWalker() {
         hasEnteredRef.current = true;
         setHasEntered(true);
         setPointerLockError('');
-        setMenuOpen(false);
+        setPaused(false);
         return;
       }
       if (hasEnteredRef.current) {
         clearMovement();
-        setMenuOpen(true);
+        setMenuPanel('main');
+        setPaused(true);
       }
     }
 
     function onPointerLockError() {
       clearMovement();
       setPointerLockError('Pointer lock was blocked. Click enter again, or try a desktop browser.');
-      setMenuOpen(true);
+      setPaused(true);
     }
 
     function onWindowBlur() {
@@ -352,6 +425,8 @@ export default function LiminalWalker() {
       });
       renderer.dispose();
       renderer.domElement.remove();
+      rendererRef.current = null;
+      cameraRef.current = null;
     };
   }, []);
 
@@ -362,7 +437,7 @@ export default function LiminalWalker() {
 
     if (!canvas?.requestPointerLock) {
       setPointerLockError('Pointer lock is unavailable in this browser. Try a desktop browser.');
-      setMenuOpen(true);
+      setPaused(true);
       return;
     }
 
@@ -372,12 +447,27 @@ export default function LiminalWalker() {
         request.catch(() => {
           clearMovement();
           setPointerLockError('Pointer lock was blocked. Click enter again, or try a desktop browser.');
-          setMenuOpen(true);
+          setPaused(true);
         });
       }
     } catch {
       setPointerLockError('Pointer lock was blocked. Click enter again, or try a desktop browser.');
-      setMenuOpen(true);
+      setPaused(true);
+    }
+  }
+
+  function restartRoom() {
+    const camera = cameraRef.current;
+    clearMovement();
+    verticalVelocityRef.current = 0;
+    groundedRef.current = true;
+    yawRef.current = 0;
+    pitchRef.current = 0;
+    if (camera) {
+      camera.position.set(0, CAMERA_HEIGHT, 5.8);
+      camera.rotation.order = 'YXZ';
+      camera.rotation.y = 0;
+      camera.rotation.x = 0;
     }
   }
 
@@ -385,9 +475,17 @@ export default function LiminalWalker() {
     window.location.href = '/lab';
   }
 
-  function updateSensitivity(value: number) {
-    sensitivityRef.current = value;
-    setSensitivity(value);
+  function updateSettings(next: LiminalSettings) {
+    sensitivityRef.current = next.sensitivity;
+    renderScaleRef.current = next.renderScale;
+    const renderer = rendererRef.current;
+    const mount = mountRef.current;
+    if (renderer) {
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, next.renderScale));
+      if (mount) renderer.setSize(mount.clientWidth, mount.clientHeight, false);
+    }
+    setSettings(next);
+    saveSettings(next);
   }
 
   if (!webglOk) {
@@ -411,30 +509,111 @@ export default function LiminalWalker() {
       </section>
       {!menuOpen && isLocked && <div class="liminal-corner-note">esc</div>}
       {menuOpen && (
-        <section ref={menuRef} class="liminal-menu" aria-labelledby="liminal-menu-title" role="dialog" aria-modal={hasEntered ? 'true' : 'false'}>
-          <p class="liminal-kicker">lab / liminal</p>
-          <h1 id="liminal-menu-title">empty room</h1>
-          <p class="liminal-menu-copy">W A S D moves. Shift sprints. Space jumps. Mouse looks. Escape opens this menu.</p>
+        <section class="liminal-menu" aria-labelledby="liminal-menu-title" role="dialog" aria-modal={hasEntered ? 'true' : 'false'}>
+          <div class="liminal-menu-scanline" aria-hidden="true" />
+          <p class="liminal-kicker">test menu / liminal</p>
+          <h1 id="liminal-menu-title">projected options</h1>
           {pointerLockError && <p class="liminal-menu-error">{pointerLockError}</p>}
-          <div class="liminal-menu-actions">
-            <button ref={primaryButtonRef} type="button" class="liminal-button" onClick={enterRoom}>
-              {hasEntered ? 'resume' : 'enter'}
-            </button>
-            <button type="button" class="liminal-button liminal-button-secondary" onClick={exitRoom}>
-              exit to lab
-            </button>
-          </div>
-          <label class="liminal-setting">
-            <span>mouse sensitivity</span>
-            <input
-              type="range"
-              min="0.5"
-              max="1.8"
-              step="0.1"
-              value={sensitivity}
-              onInput={(event) => updateSensitivity(Number((event.currentTarget as HTMLInputElement).value))}
-            />
-          </label>
+          {menuPanel === 'main' && (
+            <div class="liminal-menu-actions">
+              <button ref={primaryButtonRef} type="button" class="liminal-button" onClick={enterRoom}>
+                {hasEntered ? 'resume' : 'enter'}
+              </button>
+              <button type="button" class="liminal-button" onClick={restartRoom}>
+                restart
+              </button>
+              <button type="button" class="liminal-button" onClick={() => setMenuPanel('settings')}>
+                settings
+              </button>
+              <button type="button" class="liminal-button" onClick={() => setMenuPanel('help')}>
+                help
+              </button>
+              <button type="button" class="liminal-button liminal-button-secondary" onClick={exitRoom}>
+                exit to lab
+              </button>
+            </div>
+          )}
+          {menuPanel === 'settings' && (
+            <div class="liminal-menu-panel">
+              <div class="liminal-tab-row" role="tablist" aria-label="Settings sections">
+                {SETTINGS_TABS.map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    class={`liminal-tab${settingsTab === tab ? ' is-active' : ''}`}
+                    role="tab"
+                    aria-selected={settingsTab === tab ? 'true' : 'false'}
+                    onClick={() => setSettingsTab(tab)}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+              {settingsTab === 'controls' && (
+                <label class="liminal-setting">
+                  <span>mouse sensitivity</span>
+                  <output>{settings.sensitivity.toFixed(1)}</output>
+                  <input
+                    type="range"
+                    min="0.5"
+                    max="1.8"
+                    step="0.1"
+                    value={settings.sensitivity}
+                    onInput={(event) => updateSettings({ ...settings, sensitivity: Number((event.currentTarget as HTMLInputElement).value) })}
+                  />
+                </label>
+              )}
+              {settingsTab === 'graphics' && (
+                <label class="liminal-setting">
+                  <span>render scale</span>
+                  <output>{settings.renderScale.toFixed(2)}</output>
+                  <input
+                    type="range"
+                    min="0.7"
+                    max="1.6"
+                    step="0.05"
+                    value={settings.renderScale}
+                    onInput={(event) => updateSettings({ ...settings, renderScale: Number((event.currentTarget as HTMLInputElement).value) })}
+                  />
+                </label>
+              )}
+              {settingsTab === 'audio' && <p class="liminal-disabled-row">audio channels unavailable in this test build</p>}
+              {settingsTab === 'accessibility' && <p class="liminal-disabled-row">accessibility overrides unavailable in this test build</p>}
+              {settingsTab === 'gameplay' && <p class="liminal-disabled-row">gameplay parameters unavailable in this test build</p>}
+              <button type="button" class="liminal-button liminal-button-secondary" onClick={() => setMenuPanel('main')}>
+                back
+              </button>
+            </div>
+          )}
+          {menuPanel === 'help' && (
+            <div class="liminal-menu-panel">
+              <dl class="liminal-help-list">
+                <div>
+                  <dt>locomotion</dt>
+                  <dd>W A S D</dd>
+                </div>
+                <div>
+                  <dt>modifier</dt>
+                  <dd>Shift</dd>
+                </div>
+                <div>
+                  <dt>vertical impulse</dt>
+                  <dd>Space</dd>
+                </div>
+                <div>
+                  <dt>orientation</dt>
+                  <dd>Mouse</dd>
+                </div>
+                <div>
+                  <dt>options interrupt</dt>
+                  <dd>Escape</dd>
+                </div>
+              </dl>
+              <button type="button" class="liminal-button liminal-button-secondary" onClick={() => setMenuPanel('main')}>
+                back
+              </button>
+            </div>
+          )}
         </section>
       )}
       <noscript>
