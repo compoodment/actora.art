@@ -235,19 +235,28 @@ export default function LiminalWalker() {
       frameRef.current = window.requestAnimationFrame(step);
     }
 
+    function clearMovement() {
+      keysRef.current = { forward: false, backward: false, left: false, right: false };
+      sprintRef.current = false;
+    }
+
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         if (hasEnteredRef.current) setMenuOpen(true);
         return;
       }
-      if (event.key === 'Shift') sprintRef.current = true;
+
+      if (document.pointerLockElement !== renderer.domElement) return;
+
+      if (event.key === 'Shift') {
+        sprintRef.current = true;
+        return;
+      }
       if (event.code === 'Space') {
-        if (document.pointerLockElement === renderer.domElement) {
-          event.preventDefault();
-          if (!event.repeat && groundedRef.current) {
-            groundedRef.current = false;
-            verticalVelocityRef.current = JUMP_SPEED;
-          }
+        event.preventDefault();
+        if (!event.repeat && groundedRef.current) {
+          groundedRef.current = false;
+          verticalVelocityRef.current = JUMP_SPEED;
         }
         return;
       }
@@ -278,10 +287,17 @@ export default function LiminalWalker() {
       const locked = document.pointerLockElement === renderer.domElement;
       setIsLocked(locked);
       if (!locked && hasEnteredRef.current) {
-        keysRef.current = { forward: false, backward: false, left: false, right: false };
-        sprintRef.current = false;
+        clearMovement();
         setMenuOpen(true);
       }
+    }
+
+    function onWindowBlur() {
+      clearMovement();
+    }
+
+    function onVisibilityChange() {
+      if (document.hidden) clearMovement();
     }
 
     function onResize() {
@@ -298,6 +314,8 @@ export default function LiminalWalker() {
     window.addEventListener('keyup', onKeyUp);
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('resize', onResize);
+    window.addEventListener('blur', onWindowBlur);
+    document.addEventListener('visibilitychange', onVisibilityChange);
     document.addEventListener('pointerlockchange', onPointerLockChange);
 
     return () => {
@@ -306,6 +324,8 @@ export default function LiminalWalker() {
       window.removeEventListener('keyup', onKeyUp);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('resize', onResize);
+      window.removeEventListener('blur', onWindowBlur);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       document.removeEventListener('pointerlockchange', onPointerLockChange);
       concreteTexture?.dispose();
       floorTexture?.dispose();

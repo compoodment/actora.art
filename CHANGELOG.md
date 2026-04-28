@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.100 — 2026-04-28
+
+- Lab: fixed `/lab/liminal` sprint input so Shift is only a movement-speed modifier while pointer-locked, not an action that can carry stale movement state forward
+- Lab: clears held movement state when pointer lock, window focus, or page visibility changes
+- Terminal: actoraOS bumped to `v0.1.100` in the footer home shortcut
+
 ## 0.1.99 — 2026-04-28
 
 - Lab: added one chandelier to `/lab/liminal` as the room's intentional light source
