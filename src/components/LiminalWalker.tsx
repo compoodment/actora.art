@@ -119,6 +119,8 @@ export default function LiminalWalker() {
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const resizeRendererRef = useRef<(() => void) | null>(null);
   const primaryButtonRef = useRef<HTMLButtonElement>(null);
+  const settingsFirstControlRef = useRef<HTMLButtonElement>(null);
+  const helpBackButtonRef = useRef<HTMLButtonElement>(null);
   const frameRef = useRef<number>(0);
   const heldKeysRef = useRef<Set<string>>(new Set());
   const playerPositionRef = useRef(new THREE.Vector3(0, CAMERA_HEIGHT, 5.8));
@@ -129,6 +131,7 @@ export default function LiminalWalker() {
   const headBobEnabledRef = useRef(true);
   const headBobPhaseRef = useRef(0);
   const headBobViewOffsetRef = useRef(new THREE.Vector3());
+  const pointerLockFailureKeepsMenuClosedRef = useRef(false);
   const sensitivityRef = useRef(1);
   const renderScaleRef = useRef(1);
   const fisheyeEnabledRef = useRef(true);
@@ -169,8 +172,18 @@ export default function LiminalWalker() {
 
   useEffect(() => {
     if (!menuOpen) return;
-    window.setTimeout(() => primaryButtonRef.current?.focus(), 0);
-  }, [menuOpen]);
+    window.setTimeout(() => {
+      if (menuPanel === 'settings') {
+        settingsFirstControlRef.current?.focus();
+        return;
+      }
+      if (menuPanel === 'help') {
+        helpBackButtonRef.current?.focus();
+        return;
+      }
+      primaryButtonRef.current?.focus();
+    }, 0);
+  }, [menuOpen, menuPanel]);
 
   useEffect(() => {
     if (!supportsWebGL()) {
@@ -509,6 +522,7 @@ export default function LiminalWalker() {
       const locked = document.pointerLockElement === renderer.domElement;
       setIsLocked(locked);
       if (locked) {
+        pointerLockFailureKeepsMenuClosedRef.current = false;
         hasEnteredRef.current = true;
         setHasEntered(true);
         setPointerLockError('');
@@ -525,7 +539,7 @@ export default function LiminalWalker() {
     function onPointerLockError() {
       clearMovement();
       setPointerLockError('Mouse look did not start. Click resume again.');
-      setPaused(true);
+      if (!pointerLockFailureKeepsMenuClosedRef.current) setPaused(true);
     }
 
     function onWindowBlur() {
@@ -593,11 +607,12 @@ export default function LiminalWalker() {
   function enterRoom(options: { keepClosedOnFailure?: boolean } = {}) {
     const canvas = rendererRef.current?.domElement;
     clearMovement();
+    pointerLockFailureKeepsMenuClosedRef.current = options.keepClosedOnFailure === true;
     setPointerLockError('');
 
     if (!canvas?.requestPointerLock) {
       setPointerLockError('Mouse look is unavailable in this browser.');
-      setPaused(true);
+      if (!options.keepClosedOnFailure) setPaused(true);
       return;
     }
 
@@ -718,6 +733,7 @@ export default function LiminalWalker() {
                 {SETTINGS_TABS.map((tab) => (
                   <button
                     key={tab}
+                    ref={tab === 'controls' ? settingsFirstControlRef : undefined}
                     type="button"
                     class={`liminal-tab${settingsTab === tab ? ' is-active' : ''}`}
                     role="tab"
@@ -831,7 +847,7 @@ export default function LiminalWalker() {
                   <dd>Escape</dd>
                 </div>
               </dl>
-              <button type="button" class="liminal-button liminal-button-secondary" onClick={() => setPanel('main')}>
+              <button ref={helpBackButtonRef} type="button" class="liminal-button liminal-button-secondary" onClick={() => setPanel('main')}>
                 back
               </button>
             </div>

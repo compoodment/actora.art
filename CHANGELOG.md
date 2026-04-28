@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.114 — 2026-04-28
+
+- Lab: fixed the `/lab/liminal` Esc-resume failure path so a pointer-lock error no longer reopens the main options menu after Esc closes it
+- Lab: restored menu focus when switching into Settings/Help and when backing out to the main options menu
+- Terminal: actoraOS bumped to `v0.1.114` in the footer home shortcut
+
 ## 0.1.113 — 2026-04-28
 
 - Lab: fixed `/lab/liminal` Escape behavior so pressing Esc from the main options menu closes the menu immediately before trying to reacquire mouse look

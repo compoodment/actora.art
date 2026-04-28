@@ -182,7 +182,7 @@ Manual QA checklist for `/lab/liminal`.
 3. Use W A S D, Shift, and Space while entered.
    - Expected: the camera moves around the empty room, Shift only increases movement speed while a movement key is held, pressing/releasing Shift while W is held does not interrupt forward movement, Space jumps, movement stays within the room, and short active render/frame stalls do not feel like rollback to an older position.
 4. In Settings or Help, press Escape, then press Escape again from the main options menu.
-   - Expected: first Escape backs out to the main options menu; second Escape closes the menu immediately when already in-game and attempts to reacquire mouse look.
+   - Expected: first Escape backs out to the main options menu with focus restored to `resume`; second Escape closes the menu immediately when already in-game and attempts to reacquire mouse look without reopening the menu if the browser denies pointer lock.
 5. Open Settings and switch through Controls, Graphics, Audio, Accessibility, and Gameplay.
    - Expected: Controls has a functional mouse sensitivity slider, Graphics has functional Lens, render scale, fisheye, and fisheye strength controls, Gameplay has a functional head bob toggle, render scale can lower or supersample the scene, the values persist in `localStorage` under `actora.liminal.settings.v1` after reload, and Audio/Accessibility show disabled/coming-later rows rather than fake controls.
    - Expected: fisheye is enabled by default for new or old missing settings, the fisheye strength slider changes true barrel distortion on the WebGL room canvas without distorting the HTML menu/footer, the frame stays filled without black tunnel-vision edges, and Lens remains a separate field-of-view control.
