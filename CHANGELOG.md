@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.111 — 2026-04-28
+
+- Lab: adjusted `/lab/liminal` fisheye so the bodycam lens bends the image while filling the frame instead of producing black tunnel-vision edges
+- Lab: changed `/lab/liminal` head bob from positional camera offsets to small pitch/roll view rhythm, reducing the snap-back feeling while preserving a scale-based step cadence
+- Terminal: actoraOS bumped to `v0.1.111` in the footer home shortcut
+
 ## 0.1.110 — 2026-04-28
 
 - Lab: added true bodycam-style fisheye barrel distortion to `/lab/liminal` Graphics settings, enabled by default with a separate strength slider

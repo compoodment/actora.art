@@ -11,8 +11,8 @@ const BASE_LOOK_SPEED = 0.0022;
 const CAMERA_HEIGHT = 1.62;
 const HEAD_BOB_WALK_STRIDE = 0.78;
 const HEAD_BOB_SPRINT_STRIDE = 1.05;
-const HEAD_BOB_VERTICAL_AMPLITUDE = 0.045;
-const HEAD_BOB_SIDE_AMPLITUDE = 0.015;
+const HEAD_BOB_PITCH_AMPLITUDE = 0.014;
+const HEAD_BOB_ROLL_AMPLITUDE = 0.007;
 const HEAD_BOB_SETTLE_RATE = 14;
 const ROOM_LIMIT_X = 6.6;
 const ROOM_LIMIT_Z = 7.6;
@@ -126,7 +126,7 @@ export default function LiminalWalker() {
   const pitchRef = useRef(0);
   const headBobEnabledRef = useRef(true);
   const headBobPhaseRef = useRef(0);
-  const headBobVisualOffsetRef = useRef(new THREE.Vector3());
+  const headBobViewOffsetRef = useRef(new THREE.Vector3());
   const sensitivityRef = useRef(1);
   const renderScaleRef = useRef(1);
   const fisheyeEnabledRef = useRef(true);
@@ -235,15 +235,10 @@ export default function LiminalWalker() {
           vec2 centered = vUv * 2.0 - 1.0;
           vec2 aspectCorrected = vec2(centered.x * aspect, centered.y);
           float radiusSquared = dot(aspectCorrected, aspectCorrected);
-          float barrel = 1.0 + strength * 0.58 * radiusSquared + strength * 0.14 * radiusSquared * radiusSquared;
-          vec2 sampleUv = (centered * barrel + 1.0) * 0.5;
+          float barrel = 1.0 + strength * 0.42 * radiusSquared + strength * 0.08 * radiusSquared * radiusSquared;
+          vec2 sampleUv = (centered / barrel + 1.0) * 0.5;
 
-          if (sampleUv.x < 0.0 || sampleUv.x > 1.0 || sampleUv.y < 0.0 || sampleUv.y > 1.0) {
-            gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
-            return;
-          }
-
-          gl_FragColor = texture2D(tDiffuse, sampleUv);
+          gl_FragColor = texture2D(tDiffuse, clamp(sampleUv, vec2(0.0), vec2(1.0)));
         }
       `,
     });
@@ -355,12 +350,17 @@ export default function LiminalWalker() {
       camera.rotation.order = 'YXZ';
       camera.rotation.y = yawRef.current;
       camera.rotation.x = pitchRef.current;
+      camera.rotation.z = 0;
     }
 
     function renderFrame() {
-      const visualOffset = headBobVisualOffsetRef.current;
+      const viewOffset = headBobViewOffsetRef.current;
       const shouldApplyFisheye = fisheyeEnabledRef.current && fisheyeStrengthRef.current > 0.001;
-      camera.position.copy(playerPositionRef.current).add(visualOffset);
+      camera.position.copy(playerPositionRef.current);
+      camera.rotation.order = 'YXZ';
+      camera.rotation.y = yawRef.current;
+      camera.rotation.x = THREE.MathUtils.clamp(pitchRef.current + viewOffset.y, -1.22, 1.22);
+      camera.rotation.z = viewOffset.x;
       fisheyeMaterial.uniforms.strength.value = fisheyeStrengthRef.current;
 
       if (shouldApplyFisheye) {
@@ -374,10 +374,13 @@ export default function LiminalWalker() {
       }
 
       camera.position.copy(playerPositionRef.current);
+      camera.rotation.y = yawRef.current;
+      camera.rotation.x = pitchRef.current;
+      camera.rotation.z = 0;
     }
 
     function settleHeadBob(delta: number) {
-      const offset = headBobVisualOffsetRef.current;
+      const offset = headBobViewOffsetRef.current;
       if (offset.lengthSq() > 0.000001) {
         offset.x = THREE.MathUtils.damp(offset.x, 0, HEAD_BOB_SETTLE_RATE, delta);
         offset.y = THREE.MathUtils.damp(offset.y, 0, HEAD_BOB_SETTLE_RATE, delta);
@@ -440,9 +443,9 @@ export default function LiminalWalker() {
       if (shouldBob) {
         const strideLength = sprinting ? HEAD_BOB_SPRINT_STRIDE : HEAD_BOB_WALK_STRIDE;
         headBobPhaseRef.current += (horizontalDistance / strideLength) * Math.PI * 2;
-        const sideSway = Math.sin(headBobPhaseRef.current * 0.5) * HEAD_BOB_SIDE_AMPLITUDE;
-        headBobVisualOffsetRef.current.copy(side).multiplyScalar(sideSway);
-        headBobVisualOffsetRef.current.y = Math.sin(headBobPhaseRef.current) * HEAD_BOB_VERTICAL_AMPLITUDE;
+        const roll = Math.sin(headBobPhaseRef.current * 0.5) * HEAD_BOB_ROLL_AMPLITUDE;
+        const pitch = Math.sin(headBobPhaseRef.current) * HEAD_BOB_PITCH_AMPLITUDE;
+        headBobViewOffsetRef.current.set(roll, pitch, 0);
       } else {
         settleHeadBob(delta);
       }
@@ -615,7 +618,7 @@ export default function LiminalWalker() {
     pitchRef.current = 0;
     playerPositionRef.current.set(0, CAMERA_HEIGHT, 5.8);
     headBobPhaseRef.current = 0;
-    headBobVisualOffsetRef.current.set(0, 0, 0);
+    headBobViewOffsetRef.current.set(0, 0, 0);
     if (camera) {
       camera.position.set(0, CAMERA_HEIGHT, 5.8);
       camera.rotation.order = 'YXZ';
