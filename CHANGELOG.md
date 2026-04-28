@@ -4,6 +4,13 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.105 — 2026-04-28
+
+- Lab: normalized `/lab/liminal` help/menu wording to plain game labels like Move, Sprint, Jump, Look, and Menu/Back
+- Lab: made Escape go back from Settings/Help to the main options menu and resume from the main menu when already in-game
+- Lab: removed interior fog from the room and softened the pointer-lock failure copy shown after Resume
+- Terminal: actoraOS bumped to `v0.1.105` in the footer home shortcut
+
 ## 0.1.104 — 2026-04-28
 
 - Lab: replaced `/lab/liminal`'s simple overlay with a diegetic projected options panel with Resume/Enter, Restart, Settings, Help, and Exit to Lab entries

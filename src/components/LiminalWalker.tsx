@@ -144,7 +144,6 @@ export default function LiminalWalker() {
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x555954);
-    scene.fog = new THREE.Fog(0x555954, 8, 26);
 
     const camera = new THREE.PerspectiveCamera(68, 1, 0.04, 80);
     camera.position.set(0, CAMERA_HEIGHT, 5.8);
@@ -316,7 +315,16 @@ export default function LiminalWalker() {
 
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
+        event.preventDefault();
         clearMovement();
+        if (menuOpenRef.current) {
+          if (menuPanel !== 'main') {
+            setMenuPanel('main');
+            return;
+          }
+          if (hasEnteredRef.current) enterRoom();
+          return;
+        }
         if (hasEnteredRef.current) setPaused(true);
         return;
       }
@@ -368,7 +376,7 @@ export default function LiminalWalker() {
 
     function onPointerLockError() {
       clearMovement();
-      setPointerLockError('Pointer lock was blocked. Click enter again, or try a desktop browser.');
+      setPointerLockError('Mouse look did not start. Click resume again.');
       setPaused(true);
     }
 
@@ -436,7 +444,7 @@ export default function LiminalWalker() {
     setPointerLockError('');
 
     if (!canvas?.requestPointerLock) {
-      setPointerLockError('Pointer lock is unavailable in this browser. Try a desktop browser.');
+      setPointerLockError('Mouse look is unavailable in this browser.');
       setPaused(true);
       return;
     }
@@ -446,12 +454,12 @@ export default function LiminalWalker() {
       if (request && 'catch' in request) {
         request.catch(() => {
           clearMovement();
-          setPointerLockError('Pointer lock was blocked. Click enter again, or try a desktop browser.');
+          setPointerLockError('Mouse look did not start. Click resume again.');
           setPaused(true);
         });
       }
     } catch {
-      setPointerLockError('Pointer lock was blocked. Click enter again, or try a desktop browser.');
+      setPointerLockError('Mouse look did not start. Click resume again.');
       setPaused(true);
     }
   }
@@ -505,14 +513,14 @@ export default function LiminalWalker() {
       <div ref={mountRef} class="liminal-viewport" aria-hidden="true" />
       <section class="liminal-access" aria-label="Experiment controls">
         <h1>liminal</h1>
-        <p>Empty room. Click enter, use W A S D to move, Shift to sprint, Space to jump, mouse to look, and Escape for options.</p>
+        <p>Empty room. Click enter, use W A S D to move, Shift to sprint, Space to jump, mouse to look, and Escape for menu/back.</p>
       </section>
       {!menuOpen && isLocked && <div class="liminal-corner-note">esc</div>}
       {menuOpen && (
         <section class="liminal-menu" aria-labelledby="liminal-menu-title" role="dialog" aria-modal={hasEntered ? 'true' : 'false'}>
           <div class="liminal-menu-scanline" aria-hidden="true" />
-          <p class="liminal-kicker">test menu / liminal</p>
-          <h1 id="liminal-menu-title">projected options</h1>
+          <p class="liminal-kicker">liminal</p>
+          <h1 id="liminal-menu-title">options</h1>
           {pointerLockError && <p class="liminal-menu-error">{pointerLockError}</p>}
           {menuPanel === 'main' && (
             <div class="liminal-menu-actions">
@@ -589,23 +597,23 @@ export default function LiminalWalker() {
             <div class="liminal-menu-panel">
               <dl class="liminal-help-list">
                 <div>
-                  <dt>locomotion</dt>
+                  <dt>move</dt>
                   <dd>W A S D</dd>
                 </div>
                 <div>
-                  <dt>modifier</dt>
+                  <dt>sprint</dt>
                   <dd>Shift</dd>
                 </div>
                 <div>
-                  <dt>vertical impulse</dt>
+                  <dt>jump</dt>
                   <dd>Space</dd>
                 </div>
                 <div>
-                  <dt>orientation</dt>
+                  <dt>look</dt>
                   <dd>Mouse</dd>
                 </div>
                 <div>
-                  <dt>options interrupt</dt>
+                  <dt>menu / back</dt>
                   <dd>Escape</dd>
                 </div>
               </dl>
