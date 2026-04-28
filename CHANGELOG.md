@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.106 — 2026-04-28
+
+- Lab: added an editable Lens field-of-view setting to `/lab/liminal` graphics settings for a fisheye-like wide-angle view
+- Lab: persists the Lens setting with the existing local Liminal settings
+- Terminal: actoraOS bumped to `v0.1.106` in the footer home shortcut
+
 ## 0.1.105 — 2026-04-28
 
 - Lab: normalized `/lab/liminal` help/menu wording to plain game labels like Move, Sprint, Jump, Look, and Menu/Back

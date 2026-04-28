@@ -1150,6 +1150,11 @@ body.immersive-page-particles .particle-hint {
   color: rgba(238, 244, 233, 0.68);
 }
 
+.liminal-setting-group {
+  display: grid;
+  gap: 0.85rem;
+}
+
 .liminal-setting {
   display: grid;
   grid-template-columns: 1fr auto;

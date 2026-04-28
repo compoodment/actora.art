@@ -16,6 +16,7 @@ const SETTINGS_STORAGE_KEY = 'actora.liminal.settings.v1';
 type LiminalSettings = {
   sensitivity: number;
   renderScale: number;
+  lensFov: number;
 };
 
 type MenuPanel = 'main' | 'settings' | 'help';
@@ -24,6 +25,7 @@ type SettingsTab = 'controls' | 'graphics' | 'audio' | 'accessibility' | 'gamepl
 const DEFAULT_SETTINGS: LiminalSettings = {
   sensitivity: 1,
   renderScale: 1,
+  lensFov: 68,
 };
 
 const SETTINGS_TABS: SettingsTab[] = ['controls', 'graphics', 'audio', 'accessibility', 'gameplay'];
@@ -42,6 +44,7 @@ function loadSettings(): LiminalSettings {
     return {
       sensitivity: clampSetting(parsed.sensitivity, DEFAULT_SETTINGS.sensitivity, 0.5, 1.8),
       renderScale: clampSetting(parsed.renderScale, DEFAULT_SETTINGS.renderScale, 0.7, 1.6),
+      lensFov: clampSetting(parsed.lensFov, DEFAULT_SETTINGS.lensFov, 60, 115),
     };
   } catch {
     return DEFAULT_SETTINGS;
@@ -145,7 +148,7 @@ export default function LiminalWalker() {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x555954);
 
-    const camera = new THREE.PerspectiveCamera(68, 1, 0.04, 80);
+    const camera = new THREE.PerspectiveCamera(settings.lensFov, 1, 0.04, 80);
     camera.position.set(0, CAMERA_HEIGHT, 5.8);
     cameraRef.current = camera;
 
@@ -487,7 +490,12 @@ export default function LiminalWalker() {
     sensitivityRef.current = next.sensitivity;
     renderScaleRef.current = next.renderScale;
     const renderer = rendererRef.current;
+    const camera = cameraRef.current;
     const mount = mountRef.current;
+    if (camera) {
+      camera.fov = next.lensFov;
+      camera.updateProjectionMatrix();
+    }
     if (renderer) {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, next.renderScale));
       if (mount) renderer.setSize(mount.clientWidth, mount.clientHeight, false);
@@ -572,18 +580,32 @@ export default function LiminalWalker() {
                 </label>
               )}
               {settingsTab === 'graphics' && (
-                <label class="liminal-setting">
-                  <span>render scale</span>
-                  <output>{settings.renderScale.toFixed(2)}</output>
-                  <input
-                    type="range"
-                    min="0.7"
-                    max="1.6"
-                    step="0.05"
-                    value={settings.renderScale}
-                    onInput={(event) => updateSettings({ ...settings, renderScale: Number((event.currentTarget as HTMLInputElement).value) })}
-                  />
-                </label>
+                <div class="liminal-setting-group">
+                  <label class="liminal-setting">
+                    <span>lens</span>
+                    <output>{settings.lensFov.toFixed(0)}°</output>
+                    <input
+                      type="range"
+                      min="60"
+                      max="115"
+                      step="1"
+                      value={settings.lensFov}
+                      onInput={(event) => updateSettings({ ...settings, lensFov: Number((event.currentTarget as HTMLInputElement).value) })}
+                    />
+                  </label>
+                  <label class="liminal-setting">
+                    <span>render scale</span>
+                    <output>{settings.renderScale.toFixed(2)}</output>
+                    <input
+                      type="range"
+                      min="0.7"
+                      max="1.6"
+                      step="0.05"
+                      value={settings.renderScale}
+                      onInput={(event) => updateSettings({ ...settings, renderScale: Number((event.currentTarget as HTMLInputElement).value) })}
+                    />
+                  </label>
+                </div>
               )}
               {settingsTab === 'audio' && <p class="liminal-disabled-row">audio channels unavailable in this test build</p>}
               {settingsTab === 'accessibility' && <p class="liminal-disabled-row">accessibility overrides unavailable in this test build</p>}

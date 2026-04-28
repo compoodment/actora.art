@@ -1,1 +1,1 @@
-export const ACTORA_OS_VERSION = '0.1.105';
+export const ACTORA_OS_VERSION = '0.1.106';

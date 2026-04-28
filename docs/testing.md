@@ -184,7 +184,7 @@ Manual QA checklist for `/lab/liminal`.
 4. In Settings or Help, press Escape, then press Escape again from the main options menu.
    - Expected: first Escape backs out to the main options menu; second Escape resumes the room when already in-game.
 5. Open Settings and switch through Controls, Graphics, Audio, Accessibility, and Gameplay.
-   - Expected: Controls has a functional mouse sensitivity slider, Graphics has a functional render scale slider, the values persist in `localStorage` under `actora.liminal.settings.v1` after reload, and the other tabs show disabled/coming-later rows rather than fake controls.
+   - Expected: Controls has a functional mouse sensitivity slider, Graphics has functional Lens and render scale sliders, the values persist in `localStorage` under `actora.liminal.settings.v1` after reload, and the other tabs show disabled/coming-later rows rather than fake controls.
 6. Open Help.
    - Expected: help uses normal game control labels: `move: W A S D`, `sprint: Shift`, `jump: Space`, `look: Mouse`, and `menu / back: Escape`.
 7. Use `restart`, resume, then exit to lab.
