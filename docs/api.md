@@ -120,6 +120,8 @@ Possible non-200 error:
 
 Sends one user message and returns one assistant reply.
 
+For questions about actora.art's public repo, docs, API contract, frontend code, or changelog/version history, the chat backend may let Aurora consult bounded snippets from tracked public repository files. Replies can cite repo file paths and line numbers when that lookup is used. This does not expose private docs, operational notes, secrets, runtime state, or admin-only internals, and the response shape stays the same.
+
 Request:
 
 ```ts

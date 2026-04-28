@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.115 — 2026-04-28
+
+- Chat: Aurora can now consult tracked public repo docs/code/changelog snippets when answering questions about actora.art's public repository, with file/line citations when used
+- Docs: noted the public-repo lookup behavior in the API/codebase documentation
+- Terminal: actoraOS bumped to `v0.1.115` in the footer home shortcut
+
 ## 0.1.114 — 2026-04-28
 
 - Lab: fixed the `/lab/liminal` Esc-resume failure path so a pointer-lock error no longer reopens the main options menu after Esc closes it
