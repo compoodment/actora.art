@@ -4,6 +4,13 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.110 — 2026-04-28
+
+- Lab: added true bodycam-style fisheye barrel distortion to `/lab/liminal` Graphics settings, enabled by default with a separate strength slider
+- Lab: rebuilt `/lab/liminal` head bob around actual meter-scale ground distance with a light walking rhythm, side sway, and faster sprint cadence
+- Lab: separated physical player position from visual camera bob so movement, collision, jumping, and pause state no longer inherit bob offsets
+- Terminal: actoraOS bumped to `v0.1.110` in the footer home shortcut
+
 ## 0.1.109 — 2026-04-28
 
 - Lab: added a functional head bob toggle to `/lab/liminal` Gameplay settings, enabled by default and persisted with local Liminal settings

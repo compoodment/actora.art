@@ -9,9 +9,10 @@ const JUMP_SPEED = 4.8;
 const GRAVITY = 13.5;
 const BASE_LOOK_SPEED = 0.0022;
 const CAMERA_HEIGHT = 1.62;
-const HEAD_BOB_WALK_FREQUENCY = 9.5;
-const HEAD_BOB_SPRINT_FREQUENCY = 12.5;
-const HEAD_BOB_AMPLITUDE = 0.018;
+const HEAD_BOB_WALK_STRIDE = 0.78;
+const HEAD_BOB_SPRINT_STRIDE = 1.05;
+const HEAD_BOB_VERTICAL_AMPLITUDE = 0.045;
+const HEAD_BOB_SIDE_AMPLITUDE = 0.015;
 const HEAD_BOB_SETTLE_RATE = 14;
 const ROOM_LIMIT_X = 6.6;
 const ROOM_LIMIT_Z = 7.6;
@@ -21,6 +22,8 @@ type LiminalSettings = {
   sensitivity: number;
   renderScale: number;
   lensFov: number;
+  fisheye: boolean;
+  fisheyeStrength: number;
   headBob: boolean;
 };
 
@@ -31,6 +34,8 @@ const DEFAULT_SETTINGS: LiminalSettings = {
   sensitivity: 1,
   renderScale: 1,
   lensFov: 68,
+  fisheye: true,
+  fisheyeStrength: 0.4,
   headBob: true,
 };
 
@@ -51,6 +56,8 @@ function loadSettings(): LiminalSettings {
       sensitivity: clampSetting(parsed.sensitivity, DEFAULT_SETTINGS.sensitivity, 0.5, 1.8),
       renderScale: clampSetting(parsed.renderScale, DEFAULT_SETTINGS.renderScale, 0.7, 1.6),
       lensFov: clampSetting(parsed.lensFov, DEFAULT_SETTINGS.lensFov, 60, 115),
+      fisheye: typeof parsed.fisheye === 'boolean' ? parsed.fisheye : DEFAULT_SETTINGS.fisheye,
+      fisheyeStrength: clampSetting(parsed.fisheyeStrength, DEFAULT_SETTINGS.fisheyeStrength, 0, 1),
       headBob: typeof parsed.headBob === 'boolean' ? parsed.headBob : DEFAULT_SETTINGS.headBob,
     };
   } catch {
@@ -108,18 +115,22 @@ export default function LiminalWalker() {
   const mountRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+  const resizeRendererRef = useRef<(() => void) | null>(null);
   const primaryButtonRef = useRef<HTMLButtonElement>(null);
   const frameRef = useRef<number>(0);
   const heldKeysRef = useRef<Set<string>>(new Set());
+  const playerPositionRef = useRef(new THREE.Vector3(0, CAMERA_HEIGHT, 5.8));
   const verticalVelocityRef = useRef(0);
   const groundedRef = useRef(true);
   const yawRef = useRef(0);
   const pitchRef = useRef(0);
   const headBobEnabledRef = useRef(true);
   const headBobPhaseRef = useRef(0);
-  const headBobOffsetRef = useRef(0);
+  const headBobVisualOffsetRef = useRef(new THREE.Vector3());
   const sensitivityRef = useRef(1);
   const renderScaleRef = useRef(1);
+  const fisheyeEnabledRef = useRef(true);
+  const fisheyeStrengthRef = useRef(0.4);
   const menuOpenRef = useRef(true);
   const menuPanelRef = useRef<MenuPanel>('main');
   const hasEnteredRef = useRef(false);
@@ -149,6 +160,8 @@ export default function LiminalWalker() {
   useEffect(() => {
     sensitivityRef.current = settings.sensitivity;
     renderScaleRef.current = settings.renderScale;
+    fisheyeEnabledRef.current = settings.fisheye;
+    fisheyeStrengthRef.current = settings.fisheyeStrength;
     headBobEnabledRef.current = settings.headBob;
   }, []);
 
@@ -189,6 +202,53 @@ export default function LiminalWalker() {
     renderer.setClearColor(0x555954, 1);
     mount.appendChild(renderer.domElement);
     rendererRef.current = renderer;
+
+    const fisheyeTarget = new THREE.WebGLRenderTarget(1, 1, {
+      depthBuffer: true,
+      stencilBuffer: false,
+      type: THREE.UnsignedByteType,
+    });
+    fisheyeTarget.texture.colorSpace = THREE.SRGBColorSpace;
+    const fisheyeScene = new THREE.Scene();
+    const fisheyeCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const fisheyeMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        tDiffuse: { value: fisheyeTarget.texture },
+        strength: { value: settings.fisheyeStrength },
+        aspect: { value: 1 },
+      },
+      vertexShader: `
+        varying vec2 vUv;
+
+        void main() {
+          vUv = uv;
+          gl_Position = vec4(position.xy, 0.0, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D tDiffuse;
+        uniform float strength;
+        uniform float aspect;
+        varying vec2 vUv;
+
+        void main() {
+          vec2 centered = vUv * 2.0 - 1.0;
+          vec2 aspectCorrected = vec2(centered.x * aspect, centered.y);
+          float radiusSquared = dot(aspectCorrected, aspectCorrected);
+          float barrel = 1.0 + strength * 0.58 * radiusSquared + strength * 0.14 * radiusSquared * radiusSquared;
+          vec2 sampleUv = (centered * barrel + 1.0) * 0.5;
+
+          if (sampleUv.x < 0.0 || sampleUv.x > 1.0 || sampleUv.y < 0.0 || sampleUv.y > 1.0) {
+            gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+            return;
+          }
+
+          gl_FragColor = texture2D(tDiffuse, sampleUv);
+        }
+      `,
+    });
+    const fisheyeQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), fisheyeMaterial);
+    fisheyeScene.add(fisheyeQuad);
 
     const concreteTexture = makeConcreteTexture();
     const floorTexture = concreteTexture?.clone() ?? null;
@@ -282,10 +342,14 @@ export default function LiminalWalker() {
       const width = mount.clientWidth;
       const height = mount.clientHeight;
       renderer.setPixelRatio(getRenderPixelRatio(renderScaleRef.current));
+      const pixelRatio = renderer.getPixelRatio();
       camera.aspect = width / Math.max(height, 1);
       camera.updateProjectionMatrix();
       renderer.setSize(width, height, false);
+      fisheyeTarget.setSize(Math.max(1, Math.floor(width * pixelRatio)), Math.max(1, Math.floor(height * pixelRatio)));
+      fisheyeMaterial.uniforms.aspect.value = width / Math.max(height, 1);
     }
+    resizeRendererRef.current = resize;
 
     function applyLook() {
       camera.rotation.order = 'YXZ';
@@ -293,20 +357,48 @@ export default function LiminalWalker() {
       camera.rotation.x = pitchRef.current;
     }
 
-    function step() {
-      const delta = Math.min(clock.getDelta(), 0.05);
-      const previousHeadBobOffset = headBobOffsetRef.current;
-      if (previousHeadBobOffset !== 0) {
-        camera.position.y -= previousHeadBobOffset;
-        headBobOffsetRef.current = 0;
+    function renderFrame() {
+      const visualOffset = headBobVisualOffsetRef.current;
+      const shouldApplyFisheye = fisheyeEnabledRef.current && fisheyeStrengthRef.current > 0.001;
+      camera.position.copy(playerPositionRef.current).add(visualOffset);
+      fisheyeMaterial.uniforms.strength.value = fisheyeStrengthRef.current;
+
+      if (shouldApplyFisheye) {
+        renderer.setRenderTarget(fisheyeTarget);
+        renderer.render(scene, camera);
+        renderer.setRenderTarget(null);
+        renderer.render(fisheyeScene, fisheyeCamera);
+      } else {
+        renderer.setRenderTarget(null);
+        renderer.render(scene, camera);
       }
 
+      camera.position.copy(playerPositionRef.current);
+    }
+
+    function settleHeadBob(delta: number) {
+      const offset = headBobVisualOffsetRef.current;
+      if (offset.lengthSq() > 0.000001) {
+        offset.x = THREE.MathUtils.damp(offset.x, 0, HEAD_BOB_SETTLE_RATE, delta);
+        offset.y = THREE.MathUtils.damp(offset.y, 0, HEAD_BOB_SETTLE_RATE, delta);
+        offset.z = THREE.MathUtils.damp(offset.z, 0, HEAD_BOB_SETTLE_RATE, delta);
+      } else {
+        offset.set(0, 0, 0);
+        headBobPhaseRef.current = 0;
+      }
+    }
+
+    function step() {
+      const delta = Math.min(clock.getDelta(), 0.05);
+
       if (menuOpenRef.current) {
-        renderer.render(scene, camera);
+        settleHeadBob(delta);
+        renderFrame();
         frameRef.current = window.requestAnimationFrame(step);
         return;
       }
 
+      const playerPosition = playerPositionRef.current;
       const direction = new THREE.Vector3();
       const side = new THREE.Vector3();
       camera.getWorldDirection(direction);
@@ -323,39 +415,39 @@ export default function LiminalWalker() {
       const isTryingToMove = move.lengthSq() > 0;
       const isPointerLocked = document.pointerLockElement === renderer.domElement;
       const sprinting = heldKeys.has('ShiftLeft') || heldKeys.has('ShiftRight');
-      const previousX = camera.position.x;
-      const previousZ = camera.position.z;
+      const previousX = playerPosition.x;
+      const previousZ = playerPosition.z;
       if (isTryingToMove && isPointerLocked) {
         const speed = WALK_SPEED * (sprinting ? SPRINT_MULTIPLIER : 1);
         move.normalize().multiplyScalar(speed * delta);
-        camera.position.add(move);
-        camera.position.x = THREE.MathUtils.clamp(camera.position.x, -ROOM_LIMIT_X, ROOM_LIMIT_X);
-        camera.position.z = THREE.MathUtils.clamp(camera.position.z, -ROOM_LIMIT_Z, ROOM_LIMIT_Z);
+        playerPosition.add(move);
+        playerPosition.x = THREE.MathUtils.clamp(playerPosition.x, -ROOM_LIMIT_X, ROOM_LIMIT_X);
+        playerPosition.z = THREE.MathUtils.clamp(playerPosition.z, -ROOM_LIMIT_Z, ROOM_LIMIT_Z);
       }
 
-      if (isPointerLocked || camera.position.y > CAMERA_HEIGHT) {
+      if (isPointerLocked || playerPosition.y > CAMERA_HEIGHT) {
         verticalVelocityRef.current -= GRAVITY * delta;
-        camera.position.y += verticalVelocityRef.current * delta;
-        if (camera.position.y <= CAMERA_HEIGHT) {
-          camera.position.y = CAMERA_HEIGHT;
+        playerPosition.y += verticalVelocityRef.current * delta;
+        if (playerPosition.y <= CAMERA_HEIGHT) {
+          playerPosition.y = CAMERA_HEIGHT;
           verticalVelocityRef.current = 0;
           groundedRef.current = true;
         }
       }
 
-      const horizontalDistanceSq = (camera.position.x - previousX) ** 2 + (camera.position.z - previousZ) ** 2;
-      const shouldBob = headBobEnabledRef.current && isPointerLocked && horizontalDistanceSq > 0.000001 && groundedRef.current;
+      const horizontalDistance = Math.hypot(playerPosition.x - previousX, playerPosition.z - previousZ);
+      const shouldBob = headBobEnabledRef.current && isPointerLocked && horizontalDistance > 0.001 && groundedRef.current;
       if (shouldBob) {
-        headBobPhaseRef.current += delta * (sprinting ? HEAD_BOB_SPRINT_FREQUENCY : HEAD_BOB_WALK_FREQUENCY);
-        headBobOffsetRef.current = Math.sin(headBobPhaseRef.current) * HEAD_BOB_AMPLITUDE;
-      } else if (Math.abs(previousHeadBobOffset) > 0.0005) {
-        headBobOffsetRef.current = THREE.MathUtils.damp(previousHeadBobOffset, 0, HEAD_BOB_SETTLE_RATE, delta);
+        const strideLength = sprinting ? HEAD_BOB_SPRINT_STRIDE : HEAD_BOB_WALK_STRIDE;
+        headBobPhaseRef.current += (horizontalDistance / strideLength) * Math.PI * 2;
+        const sideSway = Math.sin(headBobPhaseRef.current * 0.5) * HEAD_BOB_SIDE_AMPLITUDE;
+        headBobVisualOffsetRef.current.copy(side).multiplyScalar(sideSway);
+        headBobVisualOffsetRef.current.y = Math.sin(headBobPhaseRef.current) * HEAD_BOB_VERTICAL_AMPLITUDE;
       } else {
-        headBobPhaseRef.current = 0;
+        settleHeadBob(delta);
       }
-      camera.position.y += headBobOffsetRef.current;
 
-      renderer.render(scene, camera);
+      renderFrame();
       frameRef.current = window.requestAnimationFrame(step);
     }
 
@@ -436,12 +528,12 @@ export default function LiminalWalker() {
 
     function onResize() {
       resize();
-      renderer.render(scene, camera);
+      renderFrame();
     }
 
     resize();
     applyLook();
-    renderer.render(scene, camera);
+    renderFrame();
     step();
 
     window.addEventListener('keydown', onKeyDown);
@@ -472,6 +564,9 @@ export default function LiminalWalker() {
       seamMaterial.dispose();
       metalMaterial.dispose();
       bulbMaterial.dispose();
+      fisheyeTarget.dispose();
+      fisheyeMaterial.dispose();
+      fisheyeQuad.geometry.dispose();
       scene.traverse((object) => {
         if (object instanceof THREE.Mesh) {
           object.geometry.dispose();
@@ -481,6 +576,7 @@ export default function LiminalWalker() {
       renderer.domElement.remove();
       rendererRef.current = null;
       cameraRef.current = null;
+      resizeRendererRef.current = null;
     };
   }, []);
 
@@ -517,9 +613,10 @@ export default function LiminalWalker() {
     groundedRef.current = true;
     yawRef.current = 0;
     pitchRef.current = 0;
+    playerPositionRef.current.set(0, CAMERA_HEIGHT, 5.8);
+    headBobPhaseRef.current = 0;
+    headBobVisualOffsetRef.current.set(0, 0, 0);
     if (camera) {
-      headBobPhaseRef.current = 0;
-      headBobOffsetRef.current = 0;
       camera.position.set(0, CAMERA_HEIGHT, 5.8);
       camera.rotation.order = 'YXZ';
       camera.rotation.y = 0;
@@ -534,6 +631,8 @@ export default function LiminalWalker() {
   function updateSettings(next: LiminalSettings) {
     sensitivityRef.current = next.sensitivity;
     renderScaleRef.current = next.renderScale;
+    fisheyeEnabledRef.current = next.fisheye;
+    fisheyeStrengthRef.current = next.fisheyeStrength;
     headBobEnabledRef.current = next.headBob;
     const renderer = rendererRef.current;
     const camera = cameraRef.current;
@@ -545,6 +644,7 @@ export default function LiminalWalker() {
     if (renderer) {
       renderer.setPixelRatio(getRenderPixelRatio(next.renderScale));
       if (mount) renderer.setSize(mount.clientWidth, mount.clientHeight, false);
+      resizeRendererRef.current?.();
     }
     setSettings(next);
     saveSettings(next);
@@ -649,6 +749,26 @@ export default function LiminalWalker() {
                       step="0.05"
                       value={settings.renderScale}
                       onInput={(event) => updateSettings({ ...settings, renderScale: Number((event.currentTarget as HTMLInputElement).value) })}
+                    />
+                  </label>
+                  <label class="liminal-setting liminal-toggle-setting">
+                    <span>fisheye</span>
+                    <input
+                      type="checkbox"
+                      checked={settings.fisheye}
+                      onInput={(event) => updateSettings({ ...settings, fisheye: (event.currentTarget as HTMLInputElement).checked })}
+                    />
+                  </label>
+                  <label class="liminal-setting">
+                    <span>fisheye strength</span>
+                    <output>{settings.fisheyeStrength.toFixed(2)}</output>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.05"
+                      value={settings.fisheyeStrength}
+                      onInput={(event) => updateSettings({ ...settings, fisheyeStrength: Number((event.currentTarget as HTMLInputElement).value) })}
                     />
                   </label>
                 </div>
