@@ -21,6 +21,7 @@ src/
 | `ChatIsland.tsx` | Chat bot UI — messages, replies, visible hint, and session history |
 | `Wall.tsx` | Collaborative wall UI — grid, paint/erase, budget display |
 | `ParticleFlow.tsx` | Interactive visual experiment |
+| `LiminalWalker.tsx` | WebGL first-person lab experiment |
 
 ## Layouts
 
@@ -38,6 +39,7 @@ Most standard content pages use the shared `80rem` canvas from `global.css`. `/c
 | Lab index | `src/pages/lab/index.astro` |
 | Wall | `src/pages/lab/wall.astro` |
 | Particles | `src/pages/lab/particles.astro` |
+| Liminal | `src/pages/lab/liminal.astro` |
 | Info | `src/pages/info/index.astro` |
 | Projects | `src/pages/projects/index.astro` |
 | Actora project | `src/pages/projects/actora.astro` |

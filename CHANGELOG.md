@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.96 — 2026-04-28
+
+- Lab: added `/lab/liminal`, a tiny first-person foggy concrete test chamber walker with keyboard, mouse, touch, and WebGL fallback affordances
+- Lab: added the Liminal route to the public lab index and documented the experiment/testing surface
+- Terminal: actoraOS bumped to `v0.1.96` in the footer home shortcut
+
 ## 0.1.95 — 2026-04-27
 
 - Chat: restored the model toggle from public `fast` / `smart` API state while retaining legacy raw-model compatibility

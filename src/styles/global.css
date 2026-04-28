@@ -994,6 +994,7 @@ body.immersive-page {
 
 body.immersive-page .wall-container,
 body.immersive-page .particle-container,
+body.immersive-page .liminal-shell,
 body.immersive-page .wall-loading {
   min-height: 100vh;
   min-height: 100dvh;
@@ -1015,6 +1016,177 @@ body.immersive-page-wall .wall-palette {
 
 body.immersive-page-particles .particle-hint {
   bottom: calc(1.5rem + var(--site-footer-overlay-offset));
+}
+
+/* liminal experiment */
+.liminal-shell {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(179, 184, 176, 0.18), transparent 34rem),
+    #4f5552;
+  touch-action: none;
+}
+
+.liminal-viewport,
+.liminal-viewport canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.liminal-viewport canvas {
+  cursor: grab;
+}
+
+.liminal-viewport canvas:active {
+  cursor: grabbing;
+}
+
+.liminal-overlay {
+  position: absolute;
+  inset: 1rem 1rem auto;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem 1rem;
+  align-items: start;
+  max-width: 42rem;
+  color: rgba(236, 236, 228, 0.9);
+  font-size: 0.72rem;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.liminal-overlay-quiet {
+  opacity: 0.54;
+}
+
+.liminal-status,
+.liminal-help {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  text-transform: lowercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
+}
+
+.liminal-status {
+  grid-column: 1;
+  font-weight: 500;
+}
+
+.liminal-help {
+  grid-column: 1 / -1;
+  color: rgba(232, 232, 224, 0.66);
+}
+
+.liminal-start {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  min-width: 5.25rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(238, 238, 226, 0.32);
+  border-radius: 0;
+  background: rgba(14, 15, 14, 0.56);
+  color: rgba(246, 246, 236, 0.92);
+  font: inherit;
+  text-transform: lowercase;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.liminal-start:hover {
+  border-color: rgba(246, 246, 236, 0.72);
+  background: rgba(18, 19, 18, 0.72);
+}
+
+.liminal-touch-controls {
+  position: absolute;
+  right: 1rem;
+  bottom: calc(1rem + var(--site-footer-overlay-offset));
+  z-index: 2;
+  display: none;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  gap: 0.35rem;
+}
+
+.liminal-touch-controls div {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.liminal-touch-controls button {
+  width: 2.8rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(238, 238, 226, 0.28);
+  border-radius: 0;
+  background: rgba(12, 13, 12, 0.48);
+  color: rgba(246, 246, 236, 0.9);
+  font: 1rem/1 var(--font-mono);
+  touch-action: none;
+}
+
+.liminal-touch-controls button:active {
+  background: rgba(232, 232, 218, 0.18);
+}
+
+.liminal-access {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.liminal-noscript,
+.liminal-fallback-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(calc(100% - 2rem), 30rem);
+  transform: translate(-50%, -50%);
+  color: rgba(235, 235, 226, 0.86);
+  font-size: 0.82rem;
+}
+
+.liminal-fallback {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  touch-action: auto;
+}
+
+.liminal-fallback-panel {
+  position: static;
+  transform: none;
+  padding: 1.25rem;
+  border: 1px solid rgba(238, 238, 226, 0.2);
+  background: rgba(12, 13, 12, 0.56);
+}
+
+.liminal-fallback-panel h1 {
+  margin: 0.2rem 0 0.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.liminal-kicker {
+  color: rgba(235, 235, 226, 0.52);
+  font-size: 0.7rem;
+  text-transform: lowercase;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .liminal-touch-controls {
+    display: grid;
+  }
 }
 
 @media (min-width: 900px) {

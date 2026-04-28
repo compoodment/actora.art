@@ -19,3 +19,9 @@ It is meant to feel alive and temporary.
 ## Particles
 
 A small interactive visual toy.
+
+## Liminal
+
+A tiny first-person foggy concrete test chamber walker at `/lab/liminal`.
+
+It is explore-only: no enemies, no objective, and no Actora story claims. The slice uses a WebGL client island with keyboard, mouse, and touch movement affordances plus fallback copy when WebGL is unavailable.
