@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.102 — 2026-04-28
+
+- Lab: replaced `/lab/liminal` movement booleans with a held-key set so pressing or releasing Shift while moving no longer blocks forward movement
+- Lab: movement now reads held physical keys every frame, making sprint a true modifier instead of an edge-triggered state patch
+- Terminal: actoraOS bumped to `v0.1.102` in the footer home shortcut
+
 ## 0.1.101 — 2026-04-28
 
 - Lab: hardened `/lab/liminal` key handling so Shift release clears stale movement state and sprint cannot leave the player walking after keys are released

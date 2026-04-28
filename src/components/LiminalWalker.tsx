@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import * as THREE from 'three';
 
-type MoveKey = 'forward' | 'backward' | 'left' | 'right';
+const MOVEMENT_CODES = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ShiftLeft', 'ShiftRight', 'Space']);
 
 const WALK_SPEED = 3.2;
 const SPRINT_MULTIPLIER = 1.65;
@@ -50,13 +50,7 @@ export default function LiminalWalker() {
   const mountRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const frameRef = useRef<number>(0);
-  const keysRef = useRef<Record<MoveKey, boolean>>({
-    forward: false,
-    backward: false,
-    left: false,
-    right: false,
-  });
-  const sprintRef = useRef(false);
+  const heldKeysRef = useRef<Set<string>>(new Set());
   const verticalVelocityRef = useRef(0);
   const groundedRef = useRef(true);
   const yawRef = useRef(0);
@@ -70,8 +64,7 @@ export default function LiminalWalker() {
   const [sensitivity, setSensitivity] = useState(1);
 
   function clearMovement() {
-    keysRef.current = { forward: false, backward: false, left: false, right: false };
-    sprintRef.current = false;
+    heldKeysRef.current.clear();
   }
 
   useEffect(() => {
@@ -213,13 +206,14 @@ export default function LiminalWalker() {
       side.crossVectors(direction, camera.up).normalize();
 
       const move = new THREE.Vector3();
-      const keys = keysRef.current;
-      if (keys.forward) move.add(direction);
-      if (keys.backward) move.sub(direction);
-      if (keys.left) move.sub(side);
-      if (keys.right) move.add(side);
+      const heldKeys = heldKeysRef.current;
+      if (heldKeys.has('KeyW') || heldKeys.has('ArrowUp')) move.add(direction);
+      if (heldKeys.has('KeyS') || heldKeys.has('ArrowDown')) move.sub(direction);
+      if (heldKeys.has('KeyA') || heldKeys.has('ArrowLeft')) move.sub(side);
+      if (heldKeys.has('KeyD') || heldKeys.has('ArrowRight')) move.add(side);
       if (move.lengthSq() > 0 && document.pointerLockElement === renderer.domElement) {
-        const speed = WALK_SPEED * (sprintRef.current ? SPRINT_MULTIPLIER : 1);
+        const sprinting = heldKeys.has('ShiftLeft') || heldKeys.has('ShiftRight');
+        const speed = WALK_SPEED * (sprinting ? SPRINT_MULTIPLIER : 1);
         move.normalize().multiplyScalar(speed * delta);
         camera.position.add(move);
         camera.position.x = THREE.MathUtils.clamp(camera.position.x, -ROOM_LIMIT_X, ROOM_LIMIT_X);
@@ -249,13 +243,9 @@ export default function LiminalWalker() {
 
       if (document.pointerLockElement !== renderer.domElement) return;
 
-      const handledCodes = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ShiftLeft', 'ShiftRight', 'Space']);
-      if (handledCodes.has(event.code)) event.preventDefault();
+      if (!MOVEMENT_CODES.has(event.code)) return;
+      event.preventDefault();
 
-      if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-        sprintRef.current = true;
-        return;
-      }
       if (event.code === 'Space') {
         if (!event.repeat && groundedRef.current) {
           groundedRef.current = false;
@@ -263,22 +253,12 @@ export default function LiminalWalker() {
         }
         return;
       }
-      if (event.repeat) return;
-      if (event.code === 'KeyW' || event.code === 'ArrowUp') keysRef.current.forward = true;
-      if (event.code === 'KeyS' || event.code === 'ArrowDown') keysRef.current.backward = true;
-      if (event.code === 'KeyA' || event.code === 'ArrowLeft') keysRef.current.left = true;
-      if (event.code === 'KeyD' || event.code === 'ArrowRight') keysRef.current.right = true;
+
+      heldKeysRef.current.add(event.code);
     }
 
     function onKeyUp(event: KeyboardEvent) {
-      if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-        clearMovement();
-        return;
-      }
-      if (event.code === 'KeyW' || event.code === 'ArrowUp') keysRef.current.forward = false;
-      if (event.code === 'KeyS' || event.code === 'ArrowDown') keysRef.current.backward = false;
-      if (event.code === 'KeyA' || event.code === 'ArrowLeft') keysRef.current.left = false;
-      if (event.code === 'KeyD' || event.code === 'ArrowRight') keysRef.current.right = false;
+      heldKeysRef.current.delete(event.code);
     }
 
     function onMouseMove(event: MouseEvent) {
