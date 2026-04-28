@@ -1,6 +1,6 @@
 # Experiments
 
-The lab is where actora.art keeps the odd stuff: public experiments, prototypes, and things still taking shape.
+The lab is where actora.art keeps the odd stuff: public experiments, prototypes, and things still wip.
 
 ## Chat
 
