@@ -59,6 +59,10 @@ function saveSettings(settings: LiminalSettings) {
   }
 }
 
+function getRenderPixelRatio(renderScale: number) {
+  return Math.min(window.devicePixelRatio * renderScale, 2.5);
+}
+
 function supportsWebGL() {
   try {
     const canvas = document.createElement('canvas');
@@ -169,7 +173,7 @@ export default function LiminalWalker() {
       return;
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, renderScaleRef.current));
+    renderer.setPixelRatio(getRenderPixelRatio(renderScaleRef.current));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setClearColor(0x555954, 1);
     mount.appendChild(renderer.domElement);
@@ -266,7 +270,7 @@ export default function LiminalWalker() {
     function resize() {
       const width = mount.clientWidth;
       const height = mount.clientHeight;
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, renderScaleRef.current));
+      renderer.setPixelRatio(getRenderPixelRatio(renderScaleRef.current));
       camera.aspect = width / Math.max(height, 1);
       camera.updateProjectionMatrix();
       renderer.setSize(width, height, false);
@@ -503,7 +507,7 @@ export default function LiminalWalker() {
       camera.updateProjectionMatrix();
     }
     if (renderer) {
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, next.renderScale));
+      renderer.setPixelRatio(getRenderPixelRatio(next.renderScale));
       if (mount) renderer.setSize(mount.clientWidth, mount.clientHeight, false);
     }
     setSettings(next);

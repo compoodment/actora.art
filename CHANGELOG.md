@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.108 — 2026-04-28
+
+- Lab: fixed `/lab/liminal` render scale so values above `1.0` can supersample on normal 1x displays instead of being capped at native pixel ratio
+- Lab: made the projected `/lab/liminal` options panel scroll within short viewports so Settings/Help do not clip behind the hidden immersive page overflow
+- Terminal: actoraOS bumped to `v0.1.108` in the footer home shortcut
+
 ## 0.1.107 — 2026-04-28
 
 - Lab: fixed `/lab/liminal` Escape handling so Esc goes back from Settings/Help using the current menu panel state instead of stale initial state

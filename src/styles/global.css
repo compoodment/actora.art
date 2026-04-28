@@ -1055,7 +1055,9 @@ body.immersive-page-particles .particle-hint {
   top: 48%;
   z-index: 3;
   width: min(calc(100% - 2rem), 34rem);
-  min-height: 20rem;
+  min-height: min(20rem, calc(100dvh - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
   transform: translate(-50%, -50%) perspective(42rem) rotateX(1deg);
   padding: 1rem;
   border: 1px solid rgba(218, 230, 214, 0.34);
