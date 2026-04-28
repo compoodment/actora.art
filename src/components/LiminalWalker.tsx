@@ -69,6 +69,11 @@ export default function LiminalWalker() {
   const [hasEntered, setHasEntered] = useState(false);
   const [sensitivity, setSensitivity] = useState(1);
 
+  function clearMovement() {
+    keysRef.current = { forward: false, backward: false, left: false, right: false };
+    sprintRef.current = false;
+  }
+
   useEffect(() => {
     if (!supportsWebGL()) {
       setWebglOk(false);
@@ -235,25 +240,23 @@ export default function LiminalWalker() {
       frameRef.current = window.requestAnimationFrame(step);
     }
 
-    function clearMovement() {
-      keysRef.current = { forward: false, backward: false, left: false, right: false };
-      sprintRef.current = false;
-    }
-
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
+        clearMovement();
         if (hasEnteredRef.current) setMenuOpen(true);
         return;
       }
 
       if (document.pointerLockElement !== renderer.domElement) return;
 
-      if (event.key === 'Shift') {
+      const handledCodes = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ShiftLeft', 'ShiftRight', 'Space']);
+      if (handledCodes.has(event.code)) event.preventDefault();
+
+      if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
         sprintRef.current = true;
         return;
       }
       if (event.code === 'Space') {
-        event.preventDefault();
         if (!event.repeat && groundedRef.current) {
           groundedRef.current = false;
           verticalVelocityRef.current = JUMP_SPEED;
@@ -261,18 +264,21 @@ export default function LiminalWalker() {
         return;
       }
       if (event.repeat) return;
-      if (event.key === 'w' || event.key === 'ArrowUp') keysRef.current.forward = true;
-      if (event.key === 's' || event.key === 'ArrowDown') keysRef.current.backward = true;
-      if (event.key === 'a' || event.key === 'ArrowLeft') keysRef.current.left = true;
-      if (event.key === 'd' || event.key === 'ArrowRight') keysRef.current.right = true;
+      if (event.code === 'KeyW' || event.code === 'ArrowUp') keysRef.current.forward = true;
+      if (event.code === 'KeyS' || event.code === 'ArrowDown') keysRef.current.backward = true;
+      if (event.code === 'KeyA' || event.code === 'ArrowLeft') keysRef.current.left = true;
+      if (event.code === 'KeyD' || event.code === 'ArrowRight') keysRef.current.right = true;
     }
 
     function onKeyUp(event: KeyboardEvent) {
-      if (event.key === 'Shift') sprintRef.current = false;
-      if (event.key === 'w' || event.key === 'ArrowUp') keysRef.current.forward = false;
-      if (event.key === 's' || event.key === 'ArrowDown') keysRef.current.backward = false;
-      if (event.key === 'a' || event.key === 'ArrowLeft') keysRef.current.left = false;
-      if (event.key === 'd' || event.key === 'ArrowRight') keysRef.current.right = false;
+      if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+        clearMovement();
+        return;
+      }
+      if (event.code === 'KeyW' || event.code === 'ArrowUp') keysRef.current.forward = false;
+      if (event.code === 'KeyS' || event.code === 'ArrowDown') keysRef.current.backward = false;
+      if (event.code === 'KeyA' || event.code === 'ArrowLeft') keysRef.current.left = false;
+      if (event.code === 'KeyD' || event.code === 'ArrowRight') keysRef.current.right = false;
     }
 
     function onMouseMove(event: MouseEvent) {
@@ -348,6 +354,7 @@ export default function LiminalWalker() {
 
   function enterRoom() {
     const canvas = rendererRef.current?.domElement;
+    clearMovement();
     hasEnteredRef.current = true;
     setHasEntered(true);
     setMenuOpen(false);
