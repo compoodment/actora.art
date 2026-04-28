@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.97 — 2026-04-28
+
+- Lab: cleaned up `/lab/liminal` so the concrete chamber is open, with floor/ceiling seams instead of accidental divider walls
+- Lab: removed the placeholder floating block and kept the distant glowing slit as the experiment's focal point
+- Terminal: actoraOS bumped to `v0.1.97` in the footer home shortcut
+
 ## 0.1.96 — 2026-04-28
 
 - Lab: added `/lab/liminal`, a tiny first-person foggy concrete test chamber walker with keyboard, mouse, touch, and WebGL fallback affordances

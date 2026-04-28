@@ -89,8 +89,8 @@ export default function LiminalWalker() {
     setPrefersReducedMotion(mediaQuery.matches);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x5d625f);
-    scene.fog = new THREE.FogExp2(0x8b908b, 0.058);
+    scene.background = new THREE.Color(0x555a57);
+    scene.fog = new THREE.FogExp2(0x777c77, 0.044);
 
     const camera = new THREE.PerspectiveCamera(68, 1, 0.04, 80);
     camera.position.set(0, CAMERA_HEIGHT, 6.2);
@@ -112,14 +112,20 @@ export default function LiminalWalker() {
     rendererRef.current = renderer;
 
     const concreteTexture = makeConcreteTexture();
+    const floorMaterial = new THREE.MeshStandardMaterial({
+      color: 0x666b66,
+      map: concreteTexture ?? undefined,
+      roughness: 0.98,
+      metalness: 0.02,
+    });
     const concreteMaterial = new THREE.MeshStandardMaterial({
-      color: 0x82847f,
+      color: 0x868a83,
       map: concreteTexture ?? undefined,
       roughness: 0.96,
       metalness: 0.02,
     });
     const darkConcrete = new THREE.MeshStandardMaterial({
-      color: 0x555852,
+      color: 0x4d514d,
       roughness: 0.98,
       metalness: 0.01,
     });
@@ -134,7 +140,7 @@ export default function LiminalWalker() {
       return mesh;
     }
 
-    addBox([16, 0.2, 20], [0, -0.1, 0], concreteMaterial);
+    addBox([16, 0.2, 20], [0, -0.1, 0], floorMaterial);
     addBox([16, 0.35, 20], [0, 4.25, 0], darkConcrete);
     addBox([0.25, 4.4, 20], [-8, 2.1, 0], concreteMaterial);
     addBox([0.25, 4.4, 20], [8, 2.1, 0], concreteMaterial);
@@ -142,21 +148,25 @@ export default function LiminalWalker() {
     addBox([16, 4.4, 0.25], [0, 2.1, 10], concreteMaterial);
 
     for (const x of [-4, 0, 4]) {
-      addBox([0.05, 4.35, 20], [x, 2.08, 0], seamMaterial);
+      addBox([0.04, 0.035, 20], [x, 0.02, 0], seamMaterial);
+      addBox([0.035, 0.04, 20], [x, 4.06, 0], seamMaterial);
     }
     for (const z of [-5, 0, 5]) {
       addBox([16, 0.04, 0.05], [0, 0.015, z], seamMaterial);
       addBox([16, 0.05, 0.05], [0, 4.05, z], seamMaterial);
     }
+    addBox([0.08, 0.08, 19.5], [-7.82, 0.08, 0], seamMaterial);
+    addBox([0.08, 0.08, 19.5], [7.82, 0.08, 0], seamMaterial);
+    addBox([15.5, 0.08, 0.08], [0, 0.08, -9.82], seamMaterial);
+    addBox([15.5, 0.06, 0.08], [0, 4.02, -9.82], seamMaterial);
 
-    addBox([1.15, 3.2, 1.15], [-4.9, 1.6, -2.6], darkConcrete);
-    addBox([1.15, 3.2, 1.15], [4.9, 1.6, 2.6], darkConcrete);
+    addBox([1.15, 3.2, 1.15], [-5.9, 1.6, -3.8], darkConcrete);
+    addBox([1.15, 3.2, 1.15], [5.9, 1.6, 3.8], darkConcrete);
     addBox([2.2, 2.85, 0.18], [0, 1.42, -9.82], blackMaterial);
-    addBox([0.08, 2.55, 0.07], [0, 1.62, -9.68], glowMaterial);
-    addBox([3.1, 0.08, 0.08], [0, 3.05, -9.65], glowMaterial);
-
-    const impossible = addBox([1.25, 1.25, 1.25], [2.8, 2.2, -5.7], blackMaterial);
-    impossible.rotation.set(0.3, 0.55, 0.12);
+    addBox([0.12, 2.85, 0.08], [0, 1.62, -9.66], glowMaterial);
+    addBox([3.8, 0.1, 0.08], [0, 3.08, -9.64], glowMaterial);
+    addBox([4.2, 0.1, 0.08], [0, 0.28, -9.64], glowMaterial);
+    addBox([6.8, 0.06, 0.08], [0, 0.04, -7.1], glowMaterial);
 
     const light = new THREE.HemisphereLight(0xd8ddd7, 0x282a28, 1.2);
     scene.add(light);
@@ -207,8 +217,6 @@ export default function LiminalWalker() {
 
       if (!mediaQuery.matches) {
         const elapsed = clock.elapsedTime;
-        impossible.rotation.y += delta * 0.16;
-        impossible.position.y = 2.2 + Math.sin(elapsed * 0.65) * 0.04;
         slitLight.intensity = 15.5 + Math.sin(elapsed * 1.7) * 2.2;
       }
 
@@ -310,6 +318,7 @@ export default function LiminalWalker() {
       renderer.domElement.removeEventListener('pointercancel', onPointerUp);
       mediaQuery.removeEventListener('change', onReducedMotionChange);
       concreteTexture?.dispose();
+      floorMaterial.dispose();
       concreteMaterial.dispose();
       darkConcrete.dispose();
       seamMaterial.dispose();
