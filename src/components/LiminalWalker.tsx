@@ -107,6 +107,7 @@ export default function LiminalWalker() {
   const sensitivityRef = useRef(1);
   const renderScaleRef = useRef(1);
   const menuOpenRef = useRef(true);
+  const menuPanelRef = useRef<MenuPanel>('main');
   const hasEnteredRef = useRef(false);
   const [webglOk, setWebglOk] = useState(true);
   const [isLocked, setIsLocked] = useState(false);
@@ -120,6 +121,11 @@ export default function LiminalWalker() {
   function setPaused(open: boolean) {
     menuOpenRef.current = open;
     setMenuOpen(open);
+  }
+
+  function setPanel(panel: MenuPanel) {
+    menuPanelRef.current = panel;
+    setMenuPanel(panel);
   }
 
   function clearMovement() {
@@ -321,8 +327,8 @@ export default function LiminalWalker() {
         event.preventDefault();
         clearMovement();
         if (menuOpenRef.current) {
-          if (menuPanel !== 'main') {
-            setMenuPanel('main');
+          if (menuPanelRef.current !== 'main') {
+            setPanel('main');
             return;
           }
           if (hasEnteredRef.current) enterRoom();
@@ -372,7 +378,7 @@ export default function LiminalWalker() {
       }
       if (hasEnteredRef.current) {
         clearMovement();
-        setMenuPanel('main');
+        setPanel('main');
         setPaused(true);
       }
     }
@@ -538,10 +544,10 @@ export default function LiminalWalker() {
               <button type="button" class="liminal-button" onClick={restartRoom}>
                 restart
               </button>
-              <button type="button" class="liminal-button" onClick={() => setMenuPanel('settings')}>
+              <button type="button" class="liminal-button" onClick={() => setPanel('settings')}>
                 settings
               </button>
-              <button type="button" class="liminal-button" onClick={() => setMenuPanel('help')}>
+              <button type="button" class="liminal-button" onClick={() => setPanel('help')}>
                 help
               </button>
               <button type="button" class="liminal-button liminal-button-secondary" onClick={exitRoom}>
@@ -610,7 +616,7 @@ export default function LiminalWalker() {
               {settingsTab === 'audio' && <p class="liminal-disabled-row">audio channels unavailable in this test build</p>}
               {settingsTab === 'accessibility' && <p class="liminal-disabled-row">accessibility overrides unavailable in this test build</p>}
               {settingsTab === 'gameplay' && <p class="liminal-disabled-row">gameplay parameters unavailable in this test build</p>}
-              <button type="button" class="liminal-button liminal-button-secondary" onClick={() => setMenuPanel('main')}>
+              <button type="button" class="liminal-button liminal-button-secondary" onClick={() => setPanel('main')}>
                 back
               </button>
             </div>
@@ -639,7 +645,7 @@ export default function LiminalWalker() {
                   <dd>Escape</dd>
                 </div>
               </dl>
-              <button type="button" class="liminal-button liminal-button-secondary" onClick={() => setMenuPanel('main')}>
+              <button type="button" class="liminal-button liminal-button-secondary" onClick={() => setPanel('main')}>
                 back
               </button>
             </div>
