@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.113 — 2026-04-28
+
+- Lab: fixed `/lab/liminal` Escape behavior so pressing Esc from the main options menu closes the menu immediately before trying to reacquire mouse look
+- Lab: split movement catch-up and physics delta caps so short active-frame stalls can catch up horizontally without overdriving gravity/jump physics
+- Terminal: actoraOS bumped to `v0.1.113` in the footer home shortcut
+
 ## 0.1.112 — 2026-04-28
 
 - Lab: loosened `/lab/liminal` frame-delta capping so short render/browser stalls do not under-advance movement as aggressively, reducing the feeling of being pulled back to an older position

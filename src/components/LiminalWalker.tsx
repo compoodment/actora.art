@@ -9,7 +9,8 @@ const JUMP_SPEED = 4.8;
 const GRAVITY = 13.5;
 const BASE_LOOK_SPEED = 0.0022;
 const CAMERA_HEIGHT = 1.62;
-const MAX_FRAME_DELTA = 0.12;
+const MAX_MOVEMENT_DELTA = 0.25;
+const MAX_PHYSICS_DELTA = 0.12;
 const HEAD_BOB_WALK_STRIDE = 0.78;
 const HEAD_BOB_SPRINT_STRIDE = 1.05;
 const HEAD_BOB_PITCH_AMPLITUDE = 0.014;
@@ -393,10 +394,12 @@ export default function LiminalWalker() {
     }
 
     function step() {
-      const delta = Math.min(clock.getDelta(), MAX_FRAME_DELTA);
+      const rawDelta = clock.getDelta();
+      const movementDelta = Math.min(rawDelta, MAX_MOVEMENT_DELTA);
+      const physicsDelta = Math.min(rawDelta, MAX_PHYSICS_DELTA);
 
       if (menuOpenRef.current) {
-        settleHeadBob(delta);
+        settleHeadBob(physicsDelta);
         renderFrame();
         frameRef.current = window.requestAnimationFrame(step);
         return;
@@ -423,15 +426,15 @@ export default function LiminalWalker() {
       const previousZ = playerPosition.z;
       if (isTryingToMove && isPointerLocked) {
         const speed = WALK_SPEED * (sprinting ? SPRINT_MULTIPLIER : 1);
-        move.normalize().multiplyScalar(speed * delta);
+        move.normalize().multiplyScalar(speed * movementDelta);
         playerPosition.add(move);
         playerPosition.x = THREE.MathUtils.clamp(playerPosition.x, -ROOM_LIMIT_X, ROOM_LIMIT_X);
         playerPosition.z = THREE.MathUtils.clamp(playerPosition.z, -ROOM_LIMIT_Z, ROOM_LIMIT_Z);
       }
 
       if (isPointerLocked || playerPosition.y > CAMERA_HEIGHT) {
-        verticalVelocityRef.current -= GRAVITY * delta;
-        playerPosition.y += verticalVelocityRef.current * delta;
+        verticalVelocityRef.current -= GRAVITY * physicsDelta;
+        playerPosition.y += verticalVelocityRef.current * physicsDelta;
         if (playerPosition.y <= CAMERA_HEIGHT) {
           playerPosition.y = CAMERA_HEIGHT;
           verticalVelocityRef.current = 0;
@@ -448,7 +451,7 @@ export default function LiminalWalker() {
         const pitch = Math.sin(headBobPhaseRef.current) * HEAD_BOB_PITCH_AMPLITUDE;
         headBobViewOffsetRef.current.set(roll, pitch, 0);
       } else {
-        settleHeadBob(delta);
+        settleHeadBob(physicsDelta);
       }
 
       renderFrame();
@@ -464,7 +467,10 @@ export default function LiminalWalker() {
             setPanel('main');
             return;
           }
-          if (hasEnteredRef.current) enterRoom();
+          if (hasEnteredRef.current) {
+            setPaused(false);
+            enterRoom({ keepClosedOnFailure: true });
+          }
           return;
         }
         if (hasEnteredRef.current) setPaused(true);
@@ -584,7 +590,7 @@ export default function LiminalWalker() {
     };
   }, []);
 
-  function enterRoom() {
+  function enterRoom(options: { keepClosedOnFailure?: boolean } = {}) {
     const canvas = rendererRef.current?.domElement;
     clearMovement();
     setPointerLockError('');
@@ -601,12 +607,12 @@ export default function LiminalWalker() {
         request.catch(() => {
           clearMovement();
           setPointerLockError('Mouse look did not start. Click resume again.');
-          setPaused(true);
+          if (!options.keepClosedOnFailure) setPaused(true);
         });
       }
     } catch {
       setPointerLockError('Mouse look did not start. Click resume again.');
-      setPaused(true);
+      if (!options.keepClosedOnFailure) setPaused(true);
     }
   }
 
@@ -668,7 +674,14 @@ export default function LiminalWalker() {
 
   return (
     <main class="liminal-shell" aria-label="Liminal empty room walker">
-      <div ref={mountRef} class="liminal-viewport" aria-hidden="true" />
+      <div
+        ref={mountRef}
+        class="liminal-viewport"
+        aria-hidden="true"
+        onClick={() => {
+          if (!menuOpen && hasEntered && !isLocked) enterRoom({ keepClosedOnFailure: true });
+        }}
+      />
       <section class="liminal-access" aria-label="Experiment controls">
         <h1>liminal</h1>
         <p>Empty room. Click enter, use W A S D to move, Shift to sprint, Space to jump, mouse to look, and Escape for menu/back.</p>
