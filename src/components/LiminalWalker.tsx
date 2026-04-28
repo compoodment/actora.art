@@ -9,6 +9,7 @@ const JUMP_SPEED = 4.8;
 const GRAVITY = 13.5;
 const BASE_LOOK_SPEED = 0.0022;
 const CAMERA_HEIGHT = 1.62;
+const MAX_FRAME_DELTA = 0.12;
 const HEAD_BOB_WALK_STRIDE = 0.78;
 const HEAD_BOB_SPRINT_STRIDE = 1.05;
 const HEAD_BOB_PITCH_AMPLITUDE = 0.014;
@@ -392,7 +393,7 @@ export default function LiminalWalker() {
     }
 
     function step() {
-      const delta = Math.min(clock.getDelta(), 0.05);
+      const delta = Math.min(clock.getDelta(), MAX_FRAME_DELTA);
 
       if (menuOpenRef.current) {
         settleHeadBob(delta);

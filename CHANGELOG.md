@@ -4,6 +4,11 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.112 — 2026-04-28
+
+- Lab: loosened `/lab/liminal` frame-delta capping so short render/browser stalls do not under-advance movement as aggressively, reducing the feeling of being pulled back to an older position
+- Terminal: actoraOS bumped to `v0.1.112` in the footer home shortcut
+
 ## 0.1.111 — 2026-04-28
 
 - Lab: adjusted `/lab/liminal` fisheye so the bodycam lens bends the image while filling the frame instead of producing black tunnel-vision edges

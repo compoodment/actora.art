@@ -180,7 +180,7 @@ Manual QA checklist for `/lab/liminal`.
 2. Click `enter`, move the mouse, then press Escape.
    - Expected: pointer lock starts, mouse look works, pointer-lock release opens the projected options menu, and Escape fully pauses gameplay with no movement, jump, or falling updates while the menu is visible.
 3. Use W A S D, Shift, and Space while entered.
-   - Expected: the camera moves around the empty room, Shift only increases movement speed while a movement key is held, pressing/releasing Shift while W is held does not interrupt forward movement, Space jumps, and movement stays within the room.
+   - Expected: the camera moves around the empty room, Shift only increases movement speed while a movement key is held, pressing/releasing Shift while W is held does not interrupt forward movement, Space jumps, movement stays within the room, and short render/frame stalls do not feel like rollback to an older position.
 4. In Settings or Help, press Escape, then press Escape again from the main options menu.
    - Expected: first Escape backs out to the main options menu; second Escape resumes the room when already in-game.
 5. Open Settings and switch through Controls, Graphics, Audio, Accessibility, and Gameplay.
