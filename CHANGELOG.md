@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.109 — 2026-04-28
+
+- Lab: added a functional head bob toggle to `/lab/liminal` Gameplay settings, enabled by default and persisted with local Liminal settings
+- Lab: keeps the head bob visual-only, subtle, and active only while moving on the ground with pointer lock engaged
+- Terminal: actoraOS bumped to `v0.1.109` in the footer home shortcut
+
 ## 0.1.108 — 2026-04-28
 
 - Lab: fixed `/lab/liminal` render scale so values above `1.0` can supersample on normal 1x displays instead of being capped at native pixel ratio

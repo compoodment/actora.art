@@ -9,6 +9,10 @@ const JUMP_SPEED = 4.8;
 const GRAVITY = 13.5;
 const BASE_LOOK_SPEED = 0.0022;
 const CAMERA_HEIGHT = 1.62;
+const HEAD_BOB_WALK_FREQUENCY = 9.5;
+const HEAD_BOB_SPRINT_FREQUENCY = 12.5;
+const HEAD_BOB_AMPLITUDE = 0.018;
+const HEAD_BOB_SETTLE_RATE = 14;
 const ROOM_LIMIT_X = 6.6;
 const ROOM_LIMIT_Z = 7.6;
 const SETTINGS_STORAGE_KEY = 'actora.liminal.settings.v1';
@@ -17,6 +21,7 @@ type LiminalSettings = {
   sensitivity: number;
   renderScale: number;
   lensFov: number;
+  headBob: boolean;
 };
 
 type MenuPanel = 'main' | 'settings' | 'help';
@@ -26,6 +31,7 @@ const DEFAULT_SETTINGS: LiminalSettings = {
   sensitivity: 1,
   renderScale: 1,
   lensFov: 68,
+  headBob: true,
 };
 
 const SETTINGS_TABS: SettingsTab[] = ['controls', 'graphics', 'audio', 'accessibility', 'gameplay'];
@@ -45,6 +51,7 @@ function loadSettings(): LiminalSettings {
       sensitivity: clampSetting(parsed.sensitivity, DEFAULT_SETTINGS.sensitivity, 0.5, 1.8),
       renderScale: clampSetting(parsed.renderScale, DEFAULT_SETTINGS.renderScale, 0.7, 1.6),
       lensFov: clampSetting(parsed.lensFov, DEFAULT_SETTINGS.lensFov, 60, 115),
+      headBob: typeof parsed.headBob === 'boolean' ? parsed.headBob : DEFAULT_SETTINGS.headBob,
     };
   } catch {
     return DEFAULT_SETTINGS;
@@ -108,6 +115,9 @@ export default function LiminalWalker() {
   const groundedRef = useRef(true);
   const yawRef = useRef(0);
   const pitchRef = useRef(0);
+  const headBobEnabledRef = useRef(true);
+  const headBobPhaseRef = useRef(0);
+  const headBobOffsetRef = useRef(0);
   const sensitivityRef = useRef(1);
   const renderScaleRef = useRef(1);
   const menuOpenRef = useRef(true);
@@ -139,6 +149,7 @@ export default function LiminalWalker() {
   useEffect(() => {
     sensitivityRef.current = settings.sensitivity;
     renderScaleRef.current = settings.renderScale;
+    headBobEnabledRef.current = settings.headBob;
   }, []);
 
   useEffect(() => {
@@ -284,6 +295,12 @@ export default function LiminalWalker() {
 
     function step() {
       const delta = Math.min(clock.getDelta(), 0.05);
+      const previousHeadBobOffset = headBobOffsetRef.current;
+      if (previousHeadBobOffset !== 0) {
+        camera.position.y -= previousHeadBobOffset;
+        headBobOffsetRef.current = 0;
+      }
+
       if (menuOpenRef.current) {
         renderer.render(scene, camera);
         frameRef.current = window.requestAnimationFrame(step);
@@ -303,8 +320,12 @@ export default function LiminalWalker() {
       if (heldKeys.has('KeyS') || heldKeys.has('ArrowDown')) move.sub(direction);
       if (heldKeys.has('KeyA') || heldKeys.has('ArrowLeft')) move.sub(side);
       if (heldKeys.has('KeyD') || heldKeys.has('ArrowRight')) move.add(side);
-      if (move.lengthSq() > 0 && document.pointerLockElement === renderer.domElement) {
-        const sprinting = heldKeys.has('ShiftLeft') || heldKeys.has('ShiftRight');
+      const isTryingToMove = move.lengthSq() > 0;
+      const isPointerLocked = document.pointerLockElement === renderer.domElement;
+      const sprinting = heldKeys.has('ShiftLeft') || heldKeys.has('ShiftRight');
+      const previousX = camera.position.x;
+      const previousZ = camera.position.z;
+      if (isTryingToMove && isPointerLocked) {
         const speed = WALK_SPEED * (sprinting ? SPRINT_MULTIPLIER : 1);
         move.normalize().multiplyScalar(speed * delta);
         camera.position.add(move);
@@ -312,7 +333,7 @@ export default function LiminalWalker() {
         camera.position.z = THREE.MathUtils.clamp(camera.position.z, -ROOM_LIMIT_Z, ROOM_LIMIT_Z);
       }
 
-      if (document.pointerLockElement === renderer.domElement || camera.position.y > CAMERA_HEIGHT) {
+      if (isPointerLocked || camera.position.y > CAMERA_HEIGHT) {
         verticalVelocityRef.current -= GRAVITY * delta;
         camera.position.y += verticalVelocityRef.current * delta;
         if (camera.position.y <= CAMERA_HEIGHT) {
@@ -321,6 +342,18 @@ export default function LiminalWalker() {
           groundedRef.current = true;
         }
       }
+
+      const horizontalDistanceSq = (camera.position.x - previousX) ** 2 + (camera.position.z - previousZ) ** 2;
+      const shouldBob = headBobEnabledRef.current && isPointerLocked && horizontalDistanceSq > 0.000001 && groundedRef.current;
+      if (shouldBob) {
+        headBobPhaseRef.current += delta * (sprinting ? HEAD_BOB_SPRINT_FREQUENCY : HEAD_BOB_WALK_FREQUENCY);
+        headBobOffsetRef.current = Math.sin(headBobPhaseRef.current) * HEAD_BOB_AMPLITUDE;
+      } else if (Math.abs(previousHeadBobOffset) > 0.0005) {
+        headBobOffsetRef.current = THREE.MathUtils.damp(previousHeadBobOffset, 0, HEAD_BOB_SETTLE_RATE, delta);
+      } else {
+        headBobPhaseRef.current = 0;
+      }
+      camera.position.y += headBobOffsetRef.current;
 
       renderer.render(scene, camera);
       frameRef.current = window.requestAnimationFrame(step);
@@ -485,6 +518,8 @@ export default function LiminalWalker() {
     yawRef.current = 0;
     pitchRef.current = 0;
     if (camera) {
+      headBobPhaseRef.current = 0;
+      headBobOffsetRef.current = 0;
       camera.position.set(0, CAMERA_HEIGHT, 5.8);
       camera.rotation.order = 'YXZ';
       camera.rotation.y = 0;
@@ -499,6 +534,7 @@ export default function LiminalWalker() {
   function updateSettings(next: LiminalSettings) {
     sensitivityRef.current = next.sensitivity;
     renderScaleRef.current = next.renderScale;
+    headBobEnabledRef.current = next.headBob;
     const renderer = rendererRef.current;
     const camera = cameraRef.current;
     const mount = mountRef.current;
@@ -619,7 +655,16 @@ export default function LiminalWalker() {
               )}
               {settingsTab === 'audio' && <p class="liminal-disabled-row">audio channels unavailable in this test build</p>}
               {settingsTab === 'accessibility' && <p class="liminal-disabled-row">accessibility overrides unavailable in this test build</p>}
-              {settingsTab === 'gameplay' && <p class="liminal-disabled-row">gameplay parameters unavailable in this test build</p>}
+              {settingsTab === 'gameplay' && (
+                <label class="liminal-setting liminal-toggle-setting">
+                  <span>head bob</span>
+                  <input
+                    type="checkbox"
+                    checked={settings.headBob}
+                    onInput={(event) => updateSettings({ ...settings, headBob: (event.currentTarget as HTMLInputElement).checked })}
+                  />
+                </label>
+              )}
               <button type="button" class="liminal-button liminal-button-secondary" onClick={() => setPanel('main')}>
                 back
               </button>

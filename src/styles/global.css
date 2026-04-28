@@ -1178,6 +1178,13 @@ body.immersive-page-particles .particle-hint {
   font-variant-numeric: tabular-nums;
 }
 
+.liminal-toggle-setting input {
+  grid-column: auto;
+  justify-self: end;
+  width: 1rem;
+  height: 1rem;
+}
+
 .liminal-tab-row {
   display: flex;
   flex-wrap: wrap;
