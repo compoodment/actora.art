@@ -59,7 +59,7 @@ All frontend calls to `/api/*` are centralized in [`src/lib/api.ts`](../src/lib/
 
 The public contract for those routes is documented in [api.md](api.md). Interactive behavior assumes a separate backend exposes that contract and manages cookie-backed visitor identity.
 
-The chat backend can also answer public-repo questions by searching and reading bounded snippets from tracked files in this public repository. That lookup is read-only, excludes private/ops/runtime material, and is meant for grounded answers about public docs, code, API contracts, changelog, and version history.
+The chat backend can also answer factual actora.art site questions by searching and reading bounded snippets from tracked files in this public repository. That lookup is read-only, excludes private/ops/runtime material, and is meant for grounded answers about pages, features, public docs, code, API contracts, changelog, and version history.
 
 ## Boundaries
 

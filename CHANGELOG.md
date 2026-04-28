@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.116 — 2026-04-28
+
+- Chat: Aurora now uses public repo docs/code context for factual actora.art site questions, not only questions explicitly about the public repository
+- Docs: clarified that the chat backend can ground general actora.art site answers in tracked public repo snippets
+- Terminal: actoraOS bumped to `v0.1.116` in the footer home shortcut
+
 ## 0.1.115 — 2026-04-28
 
 - Chat: Aurora can now consult tracked public repo docs/code/changelog snippets when answering questions about actora.art's public repository, with file/line citations when used
