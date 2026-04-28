@@ -4,6 +4,12 @@ Product-level changes visible to visitors and developers.
 
 ## Unreleased
 
+## 0.1.103 — 2026-04-28
+
+- Lab: bug-swept `/lab/liminal` pointer-lock entry so the menu only closes after lock succeeds and blocked/unavailable pointer lock shows an error instead of a blank non-movable room
+- Lab: added pointer-lock error handling and menu focus recovery for the Liminal options dialog
+- Terminal: actoraOS bumped to `v0.1.103` in the footer home shortcut
+
 ## 0.1.102 — 2026-04-28
 
 - Lab: replaced `/lab/liminal` movement booleans with a held-key set so pressing or releasing Shift while moving no longer blocks forward movement

@@ -49,6 +49,8 @@ function makeConcreteTexture() {
 export default function LiminalWalker() {
   const mountRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const menuRef = useRef<HTMLElement>(null);
+  const primaryButtonRef = useRef<HTMLButtonElement>(null);
   const frameRef = useRef<number>(0);
   const heldKeysRef = useRef<Set<string>>(new Set());
   const verticalVelocityRef = useRef(0);
@@ -61,11 +63,17 @@ export default function LiminalWalker() {
   const [isLocked, setIsLocked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(true);
   const [hasEntered, setHasEntered] = useState(false);
+  const [pointerLockError, setPointerLockError] = useState('');
   const [sensitivity, setSensitivity] = useState(1);
 
   function clearMovement() {
     heldKeysRef.current.clear();
   }
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    window.setTimeout(() => primaryButtonRef.current?.focus(), 0);
+  }, [menuOpen]);
 
   useEffect(() => {
     if (!supportsWebGL()) {
@@ -272,10 +280,23 @@ export default function LiminalWalker() {
     function onPointerLockChange() {
       const locked = document.pointerLockElement === renderer.domElement;
       setIsLocked(locked);
-      if (!locked && hasEnteredRef.current) {
+      if (locked) {
+        hasEnteredRef.current = true;
+        setHasEntered(true);
+        setPointerLockError('');
+        setMenuOpen(false);
+        return;
+      }
+      if (hasEnteredRef.current) {
         clearMovement();
         setMenuOpen(true);
       }
+    }
+
+    function onPointerLockError() {
+      clearMovement();
+      setPointerLockError('Pointer lock was blocked. Click enter again, or try a desktop browser.');
+      setMenuOpen(true);
     }
 
     function onWindowBlur() {
@@ -303,6 +324,7 @@ export default function LiminalWalker() {
     window.addEventListener('blur', onWindowBlur);
     document.addEventListener('visibilitychange', onVisibilityChange);
     document.addEventListener('pointerlockchange', onPointerLockChange);
+    document.addEventListener('pointerlockerror', onPointerLockError);
 
     return () => {
       window.cancelAnimationFrame(frameRef.current);
@@ -313,6 +335,7 @@ export default function LiminalWalker() {
       window.removeEventListener('blur', onWindowBlur);
       document.removeEventListener('visibilitychange', onVisibilityChange);
       document.removeEventListener('pointerlockchange', onPointerLockChange);
+      document.removeEventListener('pointerlockerror', onPointerLockError);
       concreteTexture?.dispose();
       floorTexture?.dispose();
       wallTexture?.dispose();
@@ -335,11 +358,26 @@ export default function LiminalWalker() {
   function enterRoom() {
     const canvas = rendererRef.current?.domElement;
     clearMovement();
-    hasEnteredRef.current = true;
-    setHasEntered(true);
-    setMenuOpen(false);
-    if (canvas?.requestPointerLock) {
-      canvas.requestPointerLock();
+    setPointerLockError('');
+
+    if (!canvas?.requestPointerLock) {
+      setPointerLockError('Pointer lock is unavailable in this browser. Try a desktop browser.');
+      setMenuOpen(true);
+      return;
+    }
+
+    try {
+      const request = canvas.requestPointerLock();
+      if (request && 'catch' in request) {
+        request.catch(() => {
+          clearMovement();
+          setPointerLockError('Pointer lock was blocked. Click enter again, or try a desktop browser.');
+          setMenuOpen(true);
+        });
+      }
+    } catch {
+      setPointerLockError('Pointer lock was blocked. Click enter again, or try a desktop browser.');
+      setMenuOpen(true);
     }
   }
 
@@ -373,12 +411,13 @@ export default function LiminalWalker() {
       </section>
       {!menuOpen && isLocked && <div class="liminal-corner-note">esc</div>}
       {menuOpen && (
-        <section class="liminal-menu" aria-labelledby="liminal-menu-title" role="dialog" aria-modal={hasEntered ? 'true' : 'false'}>
+        <section ref={menuRef} class="liminal-menu" aria-labelledby="liminal-menu-title" role="dialog" aria-modal={hasEntered ? 'true' : 'false'}>
           <p class="liminal-kicker">lab / liminal</p>
           <h1 id="liminal-menu-title">empty room</h1>
           <p class="liminal-menu-copy">W A S D moves. Shift sprints. Space jumps. Mouse looks. Escape opens this menu.</p>
+          {pointerLockError && <p class="liminal-menu-error">{pointerLockError}</p>}
           <div class="liminal-menu-actions">
-            <button type="button" class="liminal-button" onClick={enterRoom}>
+            <button ref={primaryButtonRef} type="button" class="liminal-button" onClick={enterRoom}>
               {hasEntered ? 'resume' : 'enter'}
             </button>
             <button type="button" class="liminal-button liminal-button-secondary" onClick={exitRoom}>
