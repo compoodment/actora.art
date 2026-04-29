@@ -1,0 +1,22 @@
+# local/editor files
+.DS_Store
+.idea/
+
+# never publish local private/operational material
+.backups/
+.env
+.env.*
+/Caddyfile
+/deploy-caddy.sh
+
+# legacy/generated artifacts should not exist in this docs-only repo
+.astro/
+dist/
+node_modules/
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
