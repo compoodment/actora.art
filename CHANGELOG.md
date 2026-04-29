@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is intentionally visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.128 - 2026-04-29
+
+- Fixed an empty chat page feeling like it had extra scroll space.
+
 ## 0.1.127 - 2026-04-29
 
 - Improved Aurora's ability to keep track of longer same-chat conversations.
