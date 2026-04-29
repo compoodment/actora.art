@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is intentionally visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.133 - 2026-04-29
+
+- Made Liminal's options-menu Escape resume try to return directly to mouse-look instead of dropping into an unlocked play state.
+
 ## 0.1.132 - 2026-04-29
 
 - Polished Liminal settings tabs and mouse-look failure guidance.
