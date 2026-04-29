@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is intentionally visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.131 - 2026-04-29
+
+- Fixed Liminal mouse-look failure feedback after closing the options menu.
+
 ## 0.1.130 - 2026-04-29
 
 - Made `/clear` reset Aurora chat without an extra confirmation prompt.
