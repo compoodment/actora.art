@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is intentionally visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.126 - 2026-04-29
+
+- Updated trusted-account chat and Wall allowances.
+- Limited the smart chat model to trusted signed-in accounts.
+- Raised the chat input limit to 4096 characters.
+
 ## 0.1.125 - 2026-04-29
 
 - Changed this repository into a sanitized public documentation surface.
