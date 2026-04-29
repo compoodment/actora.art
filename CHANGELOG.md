@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is intentionally visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.136 - 2026-04-29
+
+- Made Escape close Liminal's main options menu without relying on a focused Resume button.
+
 ## 0.1.135 - 2026-04-29
 
 - Made Liminal's Escape menu close again with Escape while mouse-look is still captured.
