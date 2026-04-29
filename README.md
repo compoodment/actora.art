@@ -2,16 +2,16 @@
 
 Public notes for https://actora.art.
 
-This repository is now a sanitized public documentation surface: visitor-facing notes, privacy copy, public API contracts, and release notes.
+This repository is a sanitized public documentation surface: visitor-facing notes, privacy copy, public behavior notes, and release notes.
 
-The implementation source is private. That boundary is intentional because actora.art is a live service with accounts, chat, admin tooling, and abuse controls.
+The implementation is private. That boundary is intentional because actora.art is a live interactive site, not a reusable public codebase.
 
 ## Start here
 
 - [docs/index.md](docs/index.md) — public docs index
 - [CHANGELOG.md](CHANGELOG.md) — public release notes
 - [docs/privacy.md](docs/privacy.md) — privacy notes
-- [docs/api.md](docs/api.md) — public API contract used by the site frontend
+- [docs/experiments.md](docs/experiments.md) — public notes for the site experiments
 
 ## Site areas
 

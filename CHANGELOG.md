@@ -2,24 +2,21 @@
 
 Public release notes for actora.art.
 
-This changelog is intentionally visitor-facing. Implementation, admin, security operations, and private remediation details are not documented in the public repo.
+This changelog is intentionally visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
 ## 0.1.125 - 2026-04-29
 
-- Changed the public repository boundary: this repo is now sanitized public documentation only.
+- Changed this repository into a sanitized public documentation surface.
 - Moved implementation source out of the public repo.
-- Tightened Aurora's public site lookup so it can answer from public docs/changelog material without reading or quoting source code.
-- Simplified public API docs to describe visitor-facing route behavior without exposing implementation internals.
+- Simplified public docs so they describe visitor-facing behavior instead of implementation details.
 
 ## 0.1.124 - 2026-04-29
 
-- Hardened account registration and passkey flows.
-- Added stricter cache behavior for dynamic JSON API responses.
-- Improved public docs around privacy, API behavior, and testing boundaries.
+- Polished account, chat, and public documentation behavior.
 
 ## 0.1.123 - 2026-04-29
 
-- Taught Aurora to acknowledge the site's rainbow/light-show chat effect when visitors mention seeing it.
+- Aurora now acknowledges the site's rainbow/light-show chat effect when visitors mention seeing it.
 
 ## 0.1.122 - 2026-04-29
 
@@ -52,8 +49,8 @@ This changelog is intentionally visitor-facing. Implementation, admin, security 
 
 ## 0.1.115 - 2026-04-28
 
-- Added bounded public-doc lookup support for Aurora.
+- Added public-doc grounding support for Aurora.
 
 ## Earlier releases
 
-Earlier public release history has been compacted as part of the repository sanitization pass. The live site is the source of current visitor-facing behavior.
+Earlier public release notes were compacted as part of the repository sanitization pass. The live site is the source of current visitor-facing behavior.

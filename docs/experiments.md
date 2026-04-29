@@ -4,7 +4,9 @@ The lab is where actora.art keeps the odd stuff: public experiments, prototypes,
 
 ## Chat
 
-A public chat bot for visitors. Guests get one current browser chat; signed-in users can keep named active and archived chats within saved-chat caps. Archived chats are read-only and auto-delete after 7 days.
+A public chat bot for visitors.
+
+Guests can chat in the current browser. Signed-in visitors can manage saved chats from the public UI.
 
 It is part of the site itself.
 
@@ -12,7 +14,7 @@ It is part of the site itself.
 
 A shared text and ASCII wall.
 
-Visitors get a daily character budget, paint on a grid, erase their own visible marks, and undo or redo recent confirmed actions. Undoing paint uses the same fresh-cell refund allowance as erase. Marks can be overwritten, older unexpired marks can reappear, and content fades over time.
+Visitors can place characters on a grid, edit their own recent marks through the public UI, and watch the wall change over time.
 
 It is meant to feel alive and temporary.
 
@@ -24,4 +26,4 @@ A small interactive visual toy.
 
 A tiny first-person foggy concrete test chamber walker at `/lab/liminal`.
 
-It is explore-only: no enemies, no objective, and no Actora story claims. The slice uses a WebGL client island with keyboard, mouse, and touch movement affordances plus fallback copy when WebGL is unavailable.
+It is explore-only: no enemies, no objective, and no Actora story claims.

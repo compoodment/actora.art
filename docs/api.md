@@ -1,142 +1,39 @@
-# Public API contract
+# Public API boundary
 
-Public `/api/*` behavior used by actora.art's interactive pages.
+actora.art uses same-origin `/api/*` routes for its interactive pages.
 
-This is a visitor/developer-facing contract, not an implementation map. It intentionally omits backend source, private ops details, admin-only routes, storage layout, secrets, and internal error taxonomy.
+This is not a stable third-party API reference. It is a public boundary note for visitors and testers. Implementation details, private operations, storage layout, and internal error details are intentionally private.
 
-## Conventions
+## Public shape
 
-- API routes are same-origin under `https://actora.art/api/*`.
-- Responses are JSON unless a route is unavailable or blocked before it reaches the app.
-- Dynamic JSON responses are sent with no-store cache headers.
-- Visitor identity is cookie-backed and handled server-side.
-- Error bodies are intentionally small. Clients should treat unknown error strings as recoverable failures and show a generic message.
+- Interactive site features talk to same-origin `/api/*` routes.
+- API responses are JSON when a request reaches the app normally.
+- Visitor identity is cookie-backed and handled by the site.
+- Dynamic JSON responses are not meant to be cached.
+- Errors are intentionally small; clients should handle unknown failures generically.
 
-## Chat
+## Interactive areas
 
-### `GET /api/chat/bootstrap`
+### Chat
 
-Returns the current visitor's chat state.
+The chat page sends messages to Aurora and receives visible chat messages back.
 
-Guests get the current browser chat. Signed-in users may get saved active/archived chat summaries in addition to the selected chat.
+Guests use the current browser chat. Signed-in visitors can manage saved chats from the public UI.
 
-### `POST /api/chat`
+Aurora may use sanitized public docs and changelog notes for factual actora.art questions. It cannot access non-public project material.
 
-Sends a message to Aurora and returns the updated visible messages.
+### Wall
 
-Public request shape:
+The wall page loads the visible grid, lets visitors paint visible characters, and supports normal undo/redo/erase behavior from the public UI.
 
-```json
-{
-  "message": "hello",
-  "model": "fast"
-}
-```
+The public wall contract is about what visitors can see and do. Hidden state details are not public documentation.
 
-`model` may be `fast` or `smart`. If omitted, the site uses its default mode for the current chat.
+### Accounts
 
-Aurora may use sanitized public docs/changelog snippets for factual actora.art questions. That lookup cannot read source code, private docs, operational notes, runtime state, secrets, or admin-only internals.
+The account UI supports passkey-based sign-in, sign-out, and user-owned passkey management.
 
-### Signed-in chat actions
+Credential secrets and private account state are not exposed through public docs.
 
-Signed-in chat history uses these public actions:
+## Boundary
 
-- `POST /api/chat/new`
-- `POST /api/chat/select`
-- `POST /api/chat/rename`
-- `POST /api/chat/archive`
-- `POST /api/chat/unarchive`
-- `POST /api/chat/delete`
-- `POST /api/chat/reset`
-
-Guest chats stay browser-scoped instead of using saved-history actions.
-
-Archived signed-in chats are read-only and auto-delete after 7 days.
-
-## Wall
-
-### `GET /api/wall`
-
-Returns the visible wall grid plus ownership hints for the current visitor.
-
-### `GET /api/wall/budget`
-
-Returns the current visitor's available wall budget and recent undo/redo availability.
-
-### `POST /api/wall/paint`
-
-Paints one or more cells when the visitor has enough character budget.
-
-Public request shape:
-
-```json
-{
-  "cells": [
-    { "x": 0, "y": 0, "char": "A", "color": "#ff00aa" }
-  ]
-}
-```
-
-### `POST /api/wall/erase`
-
-Erases the current visitor's own eligible visible cells when the erase/refund rules allow it.
-
-### `POST /api/wall/undo`
-
-Undoes the current visitor's most recent eligible confirmed wall action.
-
-### `POST /api/wall/redo`
-
-Redoes the current visitor's most recent eligible undone wall action.
-
-### `GET /api/wall/preferences`
-
-Returns signed-in wall preferences such as saved colors. Guests use local/browser-only preferences.
-
-### `POST /api/wall/preferences`
-
-Updates signed-in wall preferences.
-
-## Accounts and passkeys
-
-### `GET /api/auth/me`
-
-Returns whether the current visitor is signed in and, if so, their public account display fields.
-
-### `POST /api/auth/logout`
-
-Logs out the current auth session.
-
-### `GET /api/auth/passkeys`
-
-Returns metadata for the signed-in user's own passkeys. It does not expose credential secrets.
-
-### `POST /api/auth/passkeys/rename`
-
-Renames one of the signed-in user's own passkeys.
-
-### `POST /api/auth/passkeys/remove`
-
-Removes one of the signed-in user's own passkeys when account safety rules allow it.
-
-### `POST /api/auth/passkey/register/start`
-
-Starts passkey registration.
-
-Signed-out registration creates a new account. Signed-in registration adds another passkey to the current account. Registration requires WebAuthn user verification.
-
-### `POST /api/auth/passkey/register/finish`
-
-Completes passkey registration and signs in or updates the current account.
-
-### `POST /api/auth/passkey/login/start`
-
-Starts passkey login. Login requires WebAuthn user verification.
-
-### `POST /api/auth/passkey/login/finish`
-
-Completes passkey login and signs the visitor in.
-
-## Public boundary
-
-The public contract covers visitor-facing routes only. Admin routes, operational checks, private source, deployment details, storage files, moderation internals, and recovery procedures are not public API documentation.
+If a route, field, error, or behavior is not needed to understand normal visitor-facing behavior, it belongs outside this public repo.

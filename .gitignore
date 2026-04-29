@@ -2,14 +2,12 @@
 .DS_Store
 .idea/
 
-# never publish local private/operational material
+# private/local material
 .backups/
 .env
 .env.*
-/Caddyfile
-/deploy-caddy.sh
 
-# legacy/generated artifacts should not exist in this docs-only repo
+# generated/dependency artifacts should not exist in this docs-only repo
 .astro/
 dist/
 node_modules/
