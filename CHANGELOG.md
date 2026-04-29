@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is intentionally visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.129 - 2026-04-29
+
+- Added `/clear` in Aurora's chat input.
+- Added up/down input recall to Aurora chat and the homepage terminal.
+
 ## 0.1.128 - 2026-04-29
 
 - Fixed an empty chat page feeling like it had extra scroll space.
