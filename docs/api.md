@@ -2,7 +2,7 @@
 
 actora.art uses same-origin `/api/*` routes for its interactive pages.
 
-This is not a stable third-party API reference. It is a public boundary note for visitors and testers. Implementation details, private operations, storage layout, and internal error details are intentionally private.
+This is not a stable third-party API reference. It is a public boundary note for visitors and testers. Implementation details, private operations, storage layout, and internal error details live in private docs.
 
 ## Public shape
 
@@ -10,7 +10,7 @@ This is not a stable third-party API reference. It is a public boundary note for
 - API responses are JSON when a request reaches the app normally.
 - Visitor identity is cookie-backed and handled by the site.
 - Dynamic JSON responses are not meant to be cached.
-- Errors are intentionally small; clients should handle unknown failures generically.
+- Errors are small; clients should handle unknown failures generically.
 
 ## Interactive areas
 

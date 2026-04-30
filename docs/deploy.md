@@ -12,4 +12,4 @@ This public document explains only the broad visitor-facing shape. It is not an 
 
 ## Not public
 
-Deployment details, source paths, server configuration, non-public routes, secrets, logs, recovery steps, and operational procedures are intentionally private.
+Deployment details, source paths, server configuration, non-public routes, secrets, logs, recovery steps, and operational procedures live in private docs.

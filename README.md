@@ -4,7 +4,7 @@ Public notes for https://actora.art.
 
 This repository is a sanitized public documentation surface: visitor-facing notes, privacy copy, public behavior notes, and release notes.
 
-The implementation is private. That boundary is intentional because actora.art is a live interactive site, not a reusable public codebase.
+Implementation source and operational docs live in the private actora.art repo.
 
 ## Start here
 
