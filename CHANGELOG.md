@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.144 - 2026-04-30
+
+- Updated Aurora's account-aware chat context so account access details stay private unless they are relevant to the signed-in user's own access.
+
 ## 0.1.143 - 2026-04-30
 
 - Removed the public access-level page; account capability context is now handled privately by Aurora instead of documented publicly.
