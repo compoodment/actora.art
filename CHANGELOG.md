@@ -4,9 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.142 - 2026-04-30
+
+- Tightened access-level wording so public docs explain guest, signed-in, and trusted access without exposing private owner/admin role details.
+
 ## 0.1.141 - 2026-04-30
 
-- Added a public access-level note so Aurora can answer normal questions about guest, signed-in, trusted, admin, and owner differences without treating them as secrets.
+- Added a public access-level note so Aurora can answer normal questions about guest, signed-in, and trusted access without treating them as secrets.
 
 ## 0.1.140 - 2026-04-30
 
