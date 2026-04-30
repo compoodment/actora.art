@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.147 - 2026-04-30
+
+- Refined private admin boundaries while keeping public visitor behavior unchanged.
+
 ## 0.1.146 - 2026-04-30
 
 - Refined private Aurora prompt tooling so account-aware chat context can be managed more directly.
