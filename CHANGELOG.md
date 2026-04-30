@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is intentionally visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.137 - 2026-04-30
+
+- Added direct Resume actions inside Liminal's Settings and Help panels so returning to mouse-look no longer requires backing out to the main options menu first.
+
 ## 0.1.136 - 2026-04-29
 
 - Made Escape close Liminal's main options menu without relying on a focused Resume button.
