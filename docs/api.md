@@ -18,9 +18,9 @@ This is not a stable third-party API reference. It is a public boundary note for
 
 The chat page sends messages to Aurora and receives visible chat messages back.
 
-Guests use the current browser chat. Signed-in visitors can manage saved chats from the public UI.
+Guests use the current browser chat. Signed-in visitors can manage saved chats from the public UI. Access levels are summarized in [access levels](access.md).
 
-Aurora may use sanitized public docs and changelog notes for factual actora.art questions. It cannot access non-public project material.
+Aurora may use sanitized public docs and changelog notes for factual actora.art questions, including public access-level questions. It cannot access non-public project material.
 
 ### Wall
 
