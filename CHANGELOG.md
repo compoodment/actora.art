@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.143 - 2026-04-30
+
+- Removed the public access-level page; account capability context is now handled privately by Aurora instead of documented publicly.
+
 ## 0.1.142 - 2026-04-30
 
 - Tightened access-level wording so public docs explain guest, signed-in, and trusted access without exposing private owner/admin role details.
