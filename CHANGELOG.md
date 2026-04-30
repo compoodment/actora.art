@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.139 - 2026-04-30
+
+- Made Aurora lean harder into imagination-led creative freedom for harmless play.
+
 ## 0.1.138 - 2026-04-30
 
 - Made Aurora more willing to stay playful and in-character for harmless bits, roleplay, performance, and impossible-action prompts.
