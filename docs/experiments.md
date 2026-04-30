@@ -24,6 +24,6 @@ A small interactive visual toy.
 
 ## Liminal
 
-A tiny first-person foggy concrete test chamber walker at `/lab/liminal`.
+A tiny first-person concrete test chamber walker at `/lab/liminal`.
 
 It is explore-only: no enemies, no objective, and no Actora story claims.

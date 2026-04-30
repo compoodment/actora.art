@@ -6,6 +6,7 @@ This changelog is intentionally visitor-facing. Private implementation, operatio
 
 ## 0.1.137 - 2026-04-30
 
+- Aligned public Liminal docs with the current concrete test-chamber direction.
 - Added direct Resume actions inside Liminal's Settings and Help panels so returning to mouse-look no longer requires backing out to the main options menu first.
 
 ## 0.1.136 - 2026-04-29
