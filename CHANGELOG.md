@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.151 - 2026-05-01
+
+- Tightened the private prompt-history layout so snapshot actions sit together.
+
 ## 0.1.150 - 2026-05-01
 
 - Stopped private admin pages from auto-refreshing while people are reading, opening details, or editing prompts.
