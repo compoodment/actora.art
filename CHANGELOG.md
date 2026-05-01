@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.152 - 2026-05-01
+
+- Fixed Wall erase bursts so rapid guest erasing keeps the character budget in sync.
+
 ## 0.1.151 - 2026-05-01
 
 - Tightened the private prompt-history layout so snapshot actions sit together.
