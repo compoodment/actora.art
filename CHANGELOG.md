@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.149 - 2026-05-01
+
+- Fixed private admin refresh behavior so collaborator-admin prompt and people panels keep rendering when one admin data read fails.
+
 ## 0.1.148 - 2026-04-30
 
 - Refined private Aurora prompt tooling while keeping public visitor behavior unchanged.
