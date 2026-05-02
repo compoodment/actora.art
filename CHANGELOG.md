@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.157 - 2026-05-02
+
+- Tightened `/lab/orbits` camera feel and UI wording: right-drag look now moves the expected way, Focus/Follow frame the selected body itself, the selected halo is smaller, the step button is gone, the body list can collapse, and future-path/readout wording is less cluttered.
+
 ## 0.1.156 - 2026-05-02
 
 - Reworked `/lab/orbits` navigation around mouse-first space movement, an integrated body list, explicit Focus/Follow actions, default-off labels, parent-relative trails, and a less cluttered control panel.
