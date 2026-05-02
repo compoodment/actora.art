@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.167 - 2026-05-02
+
+- Widened `/lab/orbits` focused-camera zoom-out so focus lock no longer stops at the old close inspection ceiling.
+
 ## 0.1.166 - 2026-05-02
 
 - Softened `/lab/orbits` orbit trails so the trailing end fades out instead of ending as a visibly clipped arc.
