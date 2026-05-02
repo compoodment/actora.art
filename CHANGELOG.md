@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.160 - 2026-05-02
+
+- Changed `/lab/orbits` Focus into a persistent body-following camera lock, removed the separate Follow action, and made focused looking/zooming orbit around the focused body without breaking on drag or empty-space clicks.
+
 ## 0.1.159 - 2026-05-02
 
 - Reworked `/lab/orbits` orbit trails into period-aware parent-relative orbit traces with off/short/full/long modes and softer age-darkened paths.
