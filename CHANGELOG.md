@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.171 - 2026-05-02
+
+- Fixed focused `/lab/orbits` trail rendering so unrelated Solar-System-scale trails no longer cut across local moon/planet views.
+
 ## 0.1.170 - 2026-05-02
 
 - Changed `/lab/orbits` time to show the simulated Solar System date/time from the source epoch.
