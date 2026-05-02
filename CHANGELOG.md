@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.176 - 2026-05-02
+
+- Fixed `/lab/orbits` future paths so they refresh after playback and stay aligned while inspecting focused/local systems.
+- Hardened `/lab/orbits` controls and accessibility state for sliders, body selection, the bodies panel, pointer-cancel handling, and numeric edit fields.
+- Corrected public `/lab/orbits` experiment wording now that detailed diagnostics are internal guardrails rather than default visible UI.
+
 ## 0.1.175 - 2026-05-02
 
 - Fixed focused-body orbit trails so the selected body's own trail remains attached to the body while other trails still avoid drawing through it.
