@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.161 - 2026-05-02
+
+- Changed `/lab/orbits` body rendering to use true relative radii in the active view, with focus-locked local scaling so Earth/Moon can be inspected without inflating the whole Solar System overview.
+
 ## 0.1.160 - 2026-05-02
 
 - Changed `/lab/orbits` Focus into a persistent body-following camera lock, removed the separate Follow action, and made focused looking/zooming orbit around the focused body without breaking on drag or empty-space clicks.
@@ -26,7 +30,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 ## 0.1.155 - 2026-05-02
 
-- Made `/lab/orbits` bodies less oversized, kept Solar System distances linear so the Moon no longer appears inside Earth, and added empty-space click to clear body selection.
+- Made `/lab/orbits` bodies less oversized, kept Solar System distances linear, and added empty-space click to clear body selection.
 
 ## 0.1.154 - 2026-05-02
 
