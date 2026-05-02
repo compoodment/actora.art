@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.158 - 2026-05-02
+
+- Fixed `/lab/orbits` right-drag vertical look direction so looking up/down follows normal mouse-look expectations.
+
 ## 0.1.157 - 2026-05-02
 
 - Tightened `/lab/orbits` camera feel and UI wording: right-drag look now moves the expected way, Focus/Follow frame the selected body itself, the selected halo is smaller, the step button is gone, the body list can collapse, and future-path/readout wording is less cluttered.
