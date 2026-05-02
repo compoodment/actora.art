@@ -26,7 +26,7 @@ A small interactive visual toy.
 
 An early universe-sandbox orbital mechanics prototype at `/lab/orbits`.
 
-It simulates Newtonian gravity between Solar System bodies, starts from a named NASA/JPL Horizons DE441 epoch, and exposes softened orbit trails, future-path controls, a separate hierarchical bodies panel, a focus/unfocus camera lock with precise close zoom and wide zoom-out, true-relative body radii in the active view, default-off spatial dots, and compact diagnostics so the simulation can be inspected while it evolves.
+It simulates Newtonian gravity between Solar System bodies, starts from a named NASA/JPL Horizons DE441 epoch, and exposes softened orbit trails, future-path controls, a separate hierarchical bodies panel, free-flight zoom across wider close/far scales, a focus/unfocus camera lock with precise close zoom and wide zoom-out, true-relative body radii in the active view, default-off spatial dots, and compact diagnostics so the simulation can be inspected while it evolves.
 
 ## Liminal
 

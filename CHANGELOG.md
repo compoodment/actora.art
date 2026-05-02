@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.164 - 2026-05-02
+
+- Improved `/lab/orbits` free-camera wheel and middle-drag zoom so unfocused flight can move smoothly across close and wide Solar System scales without switching into an invisible orbit target.
+
 ## 0.1.163 - 2026-05-02
 
 - Tightened `/lab/orbits` around the Solar System baseline: the public UI now presents Solar System only, displays the ecliptic plane horizontally, and keeps optional spatial dots off by default.
