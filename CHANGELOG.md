@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.182 - 2026-05-03
+
+- Added Uranus's headline moons — Miranda, Ariel, Umbriel, Titania, and Oberon — to `/lab/orbits` as sourced Solar System bodies with nested body-list relationships and Uranus-relative trails/focus behavior.
+
 ## 0.1.181 - 2026-05-03
 
 - Raised `/lab/orbits` high-speed physics frame budget and frame-paced live advance so `10,000,000x` remains an editable Newtonian simulation while avoiding false clamp warnings on normal frames.
