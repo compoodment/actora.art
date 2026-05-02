@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.159 - 2026-05-02
+
+- Reworked `/lab/orbits` orbit trails into period-aware parent-relative orbit traces with off/short/full/long modes and softer age-darkened paths.
+
 ## 0.1.158 - 2026-05-02
 
 - Fixed `/lab/orbits` right-drag vertical look direction so looking up/down follows normal mouse-look expectations.
