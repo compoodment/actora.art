@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.154 - 2026-05-02
+
+- Fixed `/lab/orbits` prediction controls so longer future horizons visibly extend while paused.
+- Changed `/lab/orbits` selection feedback to use a visual halo instead of enlarging the selected body, and suppressed right-click browser menus on the simulation surface.
+
 ## 0.1.153 - 2026-05-02
 
 - Added `/lab/orbits`, an early universe-sandbox orbital mechanics prototype with live gravity simulation, presets, camera controls, trails, prediction controls, and diagnostics.

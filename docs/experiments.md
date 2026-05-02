@@ -26,7 +26,7 @@ A small interactive visual toy.
 
 An early universe-sandbox orbital mechanics prototype at `/lab/orbits`.
 
-It simulates Newtonian gravity between bodies, includes a few presets, and exposes trails, prediction controls, and diagnostics so the simulation can be inspected while it evolves.
+It simulates Newtonian gravity between bodies, includes a few presets, and exposes trails, prediction controls, selected-body halos, and diagnostics so the simulation can be inspected while it evolves.
 
 ## Liminal
 
