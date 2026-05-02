@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.162 - 2026-05-02
+
+- Updated `/lab/orbits` Solar System starts to use named NASA/JPL Horizons DE441 vectors for epoch `2026-May-02 00:00 TDB`, followed by the lab's simplified live gravity simulation.
+- Improved focused camera zoom so wheel and middle-drag movement stays quick at distance while allowing finer close inspection of bodies.
+- Split the bodies list into its own hierarchy panel, nested the Moon under Earth, and removed the selected-body scene halo.
+
 ## 0.1.161 - 2026-05-02
 
 - Changed `/lab/orbits` body rendering to use true relative radii in the active view, with focus-locked local scaling so Earth/Moon can be inspected without inflating the whole Solar System overview.
