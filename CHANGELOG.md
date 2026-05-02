@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.156 - 2026-05-02
+
+- Reworked `/lab/orbits` navigation around mouse-first space movement, an integrated body list, explicit Focus/Follow actions, default-off labels, parent-relative trails, and a less cluttered control panel.
+
 ## 0.1.155 - 2026-05-02
 
 - Made `/lab/orbits` bodies less oversized, kept Solar System distances linear so the Moon no longer appears inside Earth, and added empty-space click to clear body selection.
