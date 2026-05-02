@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.168 - 2026-05-02
+
+- Added a Home camera action on `/lab/orbits` so visitors can return to the Solar System overview without resetting the simulation.
+- Changed orbit trails to a length slider and made long future-path forecasts less laggy while dragging.
+
 ## 0.1.167 - 2026-05-02
 
 - Widened `/lab/orbits` focused-camera zoom-out so focus lock no longer stops at the old close inspection ceiling.
