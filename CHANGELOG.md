@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.170 - 2026-05-02
+
+- Changed `/lab/orbits` time to show the simulated Solar System date/time from the source epoch.
+- Smoothed Pluto's orbit trail now that Charon is included, so the trail follows the Pluto-system path around the Sun instead of jittering from Pluto/Charon wobble.
+
 ## 0.1.169 - 2026-05-02
 
 - Added Phobos, Deimos, Pluto, and Charon to `/lab/orbits` as sourced Solar System bodies with nested body-list relationships.
