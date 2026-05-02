@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.172 - 2026-05-02
+
+- Improved `/lab/orbits` free-camera zoom movement so it keeps moving through space instead of bottoming out at a minimum zoom scalar.
+- Made focused orbit trails less cluttered by showing only the focused body's local trail when appropriate, and made spatial dots follow the free camera as a navigation aid.
+
 ## 0.1.171 - 2026-05-02
 
 - Fixed focused `/lab/orbits` trail rendering so unrelated Solar-System-scale trails no longer cut across local moon/planet views.

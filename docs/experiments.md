@@ -26,7 +26,7 @@ A small interactive visual toy.
 
 An early universe-sandbox orbital mechanics prototype at `/lab/orbits`.
 
-It simulates Newtonian gravity between sourced Solar System bodies including the main planets, Earth's Moon, Mars's Phobos and Deimos, and Pluto/Charon. It starts from a named NASA/JPL Horizons epoch, shows time as a date offset from that epoch, and exposes a Home camera action, scoped orbit-trail and default-off future-path sliders, a separate hierarchical bodies panel, free-flight zoom across wider close/far scales, a focus/unfocus camera lock with precise close zoom and broad zoom-out, true-relative body radii in the active view, default-off spatial dots, and compact diagnostics so the simulation can be inspected while it evolves.
+It simulates Newtonian gravity between sourced Solar System bodies including the main planets, Earth's Moon, Mars's Phobos and Deimos, and Pluto/Charon. It starts from a named NASA/JPL Horizons epoch, shows time as a date offset from that epoch, and exposes a Home camera action, scoped orbit-trail and default-off future-path sliders, a separate hierarchical bodies panel, free-flight camera movement across wider close/far scales, a focus/unfocus camera lock with precise close zoom and broad zoom-out, true-relative body radii in the active view, camera-local default-off spatial dots, and compact diagnostics so the simulation can be inspected while it evolves.
 
 ## Liminal
 
