@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.178 - 2026-05-02
+
+- Added a centered Credits section to `/info`, crediting computment as owner/creator of actora.art and X00D-1001 for contributing to Aurora, the site chat bot.
+
 ## 0.1.177 - 2026-05-02
 
 - Added Jupiter's Galilean moons — Io, Europa, Ganymede, and Callisto — to `/lab/orbits` as sourced Solar System bodies with nested body-list relationships and Jupiter-relative trails/focus behavior.

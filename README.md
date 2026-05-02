@@ -18,6 +18,7 @@ Implementation source and operational docs live in the private actora.art repo.
 - **terminal** — the homepage
 - **projects** — project links and notes
 - **chat** — Aurora, the site chat bot
+- **info** — public links/contact plus site credits
 - **lab** — experiments and prototypes
 - **wall** — a shared text/ASCII wall
 - **particles** — a small interactive visual toy
