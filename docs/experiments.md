@@ -22,6 +22,12 @@ It is meant to feel alive and temporary.
 
 A small interactive visual toy.
 
+## Orbits
+
+An early universe-sandbox orbital mechanics prototype at `/lab/orbits`.
+
+It simulates Newtonian gravity between bodies, includes a few presets, and exposes trails, prediction controls, and diagnostics so the simulation can be inspected while it evolves.
+
 ## Liminal
 
 A tiny first-person concrete test chamber walker at `/lab/liminal`.
