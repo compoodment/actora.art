@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.163 - 2026-05-02
+
+- Tightened `/lab/orbits` around the Solar System baseline: the public UI now presents Solar System only, displays the ecliptic plane horizontally, and keeps optional spatial dots off by default.
+- Made Focus toggle back to free camera mode for the focused selected body, smoothed focused orbit/zoom feel, and allowed much wider focused zoom-out.
+- Reduced the live simulation timestep for smoother local-body motion while keeping the Solar System source posture explicit.
+
 ## 0.1.162 - 2026-05-02
 
 - Updated `/lab/orbits` Solar System starts to use named NASA/JPL Horizons DE441 vectors for epoch `2026-May-02 00:00 TDB`, followed by the lab's simplified live gravity simulation.
@@ -16,7 +22,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 ## 0.1.160 - 2026-05-02
 
-- Changed `/lab/orbits` Focus into a persistent body-following camera lock, removed the separate Follow action, and made focused looking/zooming orbit around the focused body without breaking on drag or empty-space clicks.
+- Changed `/lab/orbits` Focus into a persistent body-following camera lock and made focused looking/zooming orbit around the focused body without breaking on drag or empty-space clicks.
 
 ## 0.1.159 - 2026-05-02
 
@@ -28,11 +34,11 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 ## 0.1.157 - 2026-05-02
 
-- Tightened `/lab/orbits` camera feel and UI wording: right-drag look now moves the expected way, Focus/Follow frame the selected body itself, the selected halo is smaller, the step button is gone, the body list can collapse, and future-path/readout wording is less cluttered.
+- Tightened `/lab/orbits` camera feel and UI wording: right-drag look now moves the expected way, camera actions frame the selected body itself, selection feedback is lighter, the step button is gone, the body list can collapse, and future-path/readout wording is less cluttered.
 
 ## 0.1.156 - 2026-05-02
 
-- Reworked `/lab/orbits` navigation around mouse-first space movement, an integrated body list, explicit Focus/Follow actions, default-off labels, parent-relative trails, and a less cluttered control panel.
+- Reworked `/lab/orbits` navigation around mouse-first space movement, an integrated body list, explicit camera actions, default-off labels, parent-relative trails, and a less cluttered control panel.
 
 ## 0.1.155 - 2026-05-02
 
