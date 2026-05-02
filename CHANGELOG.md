@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.175 - 2026-05-02
+
+- Fixed focused-body orbit trails so the selected body's own trail remains attached to the body while other trails still avoid drawing through it.
+
+## 0.1.174 - 2026-05-02
+
+- Fixed Pluto's stabilized orbit trail so it stays visually anchored to Pluto instead of starting from the Pluto-system barycenter.
+
 ## 0.1.173 - 2026-05-02
 
 - Restored full orbit-trail context while focused in `/lab/orbits`, while preventing trails from drawing through the focused body.
