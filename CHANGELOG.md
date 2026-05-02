@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.173 - 2026-05-02
+
+- Restored full orbit-trail context while focused in `/lab/orbits`, while preventing trails from drawing through the focused body.
+- Labeled Pluto as a dwarf planet in the body panel.
+
 ## 0.1.172 - 2026-05-02
 
 - Improved `/lab/orbits` free-camera zoom movement so it keeps moving through space instead of bottoming out at a minimum zoom scalar.
