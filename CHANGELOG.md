@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.169 - 2026-05-02
+
+- Added Phobos, Deimos, Pluto, and Charon to `/lab/orbits` as sourced Solar System bodies with nested body-list relationships.
+- Changed the future-path control to start and reset as `off`, so prediction lines stay hidden until visitors raise the slider.
+
 ## 0.1.168 - 2026-05-02
 
 - Added a Home camera action on `/lab/orbits` so visitors can return to the Solar System overview without resetting the simulation.
