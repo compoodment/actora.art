@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.166 - 2026-05-02
+
+- Softened `/lab/orbits` orbit trails so the trailing end fades out instead of ending as a visibly clipped arc.
+
 ## 0.1.165 - 2026-05-02
 
 - Removed the empty selected-body inspector placeholder on `/lab/orbits`; the inspector now appears only after selecting a body.
