@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.192 - 2026-05-03
+
+- Changed `/lab/orbits` Follow to smoothly move into the selected body's tracking position instead of snapping there instantly.
+
 ## 0.1.191 - 2026-05-03
 
 - Changed `/lab/orbits` orbit trails to default to `0.3` and use numeric trail-length labels.
