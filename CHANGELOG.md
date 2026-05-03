@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.203 - 2026-05-03
+
+- Added Ceres, Pallas, Vesta, and Hygiea to `/lab/orbits` as sourced Solar System bodies with body-list relationships and Sun-relative trails/focus behavior.
+
 ## 0.1.202 - 2026-05-03
 
 - Removed the overly technical model row from `/lab/orbits` and rewrote the source note in plainer language.
