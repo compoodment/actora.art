@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.189 - 2026-05-03
+
+- Changed `/lab/orbits` focused views to preserve full Solar System orbit-trail context as a separate background layer while local systems stay inspectable.
+
 ## 0.1.188 - 2026-05-03
 
 - Rolled `/lab/orbits` trail fading back after the previous visibility adjustment did not resolve the distant focused-view trail patchiness.
