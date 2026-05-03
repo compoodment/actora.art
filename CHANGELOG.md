@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.206 - 2026-05-03
+
+- Standardized selected-body mass display and editing in `/lab/orbits` to Earth masses (`Mearth`) instead of mixing Earth masses and raw kilograms.
+
 ## 0.1.205 - 2026-05-03
 
 - Removed the step/trust rows from `/lab/orbits` so the default panel stays focused on controls, time, and actionable warnings.
