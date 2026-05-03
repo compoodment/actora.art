@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.191 - 2026-05-03
+
+- Changed `/lab/orbits` orbit trails to default to `0.3` and use numeric trail-length labels.
+- Added a Follow action that locks onto the selected body from the current camera distance/direction instead of zoom-framing it.
+
 ## 0.1.190 - 2026-05-03
 
 - Rolled `/lab/orbits` focused-view context trail layer back after it placed full-system trail context into the focused local view instead of preserving correct distant context.
