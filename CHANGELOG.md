@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.196 - 2026-05-03
+
+- Changed `/lab/orbits` Follow zoom to allow the same close-range body-relative zoom freedom as Focus while staying in freecam tracking mode.
+
 ## 0.1.195 - 2026-05-03
 
 - Reworked `/lab/orbits` Follow as freecam tracking: it centers and tracks the selected body from the current camera distance/direction without using Focus/local framing.
