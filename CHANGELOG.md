@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.205 - 2026-05-03
+
+- Removed the step/trust rows from `/lab/orbits` so the default panel stays focused on controls, time, and actionable warnings.
+
 ## 0.1.204 - 2026-05-03
 
 - Added Eris, Haumea, and Makemake to `/lab/orbits` as sourced Solar System dwarf planets with body-list relationships and Sun-relative trails/focus behavior.
