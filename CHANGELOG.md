@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.207 - 2026-05-03
+
+- Fixed `/lab/orbits` selected-body mass units so the Sun uses Solar masses (`Msol`) while planets, moons, dwarf planets, and small bodies use Earth masses (`Mearth`).
+
 ## 0.1.206 - 2026-05-03
 
 - Standardized selected-body mass display and editing in `/lab/orbits` to Earth masses (`Mearth`) instead of mixing Earth masses and raw kilograms.
