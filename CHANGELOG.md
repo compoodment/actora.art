@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.187 - 2026-05-03
+
+- Adjusted `/lab/orbits` orbit trail fading so distant trails keep more visible continuity while inspecting focused local views.
+
 ## 0.1.186 - 2026-05-03
 
 - Rolled `/lab/orbits` trail rendering back to the last less-broken baseline after the wide-line trail experiments made distant focused-view trails look worse.
