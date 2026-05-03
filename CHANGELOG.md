@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.201 - 2026-05-03
+
+- Added a compact simulation trust readout to `/lab/orbits` showing the seeded/editable model, fixed-step status, and nominal/caution/clamped state without surfacing the full internal diagnostics panel.
+
 ## 0.1.200 - 2026-05-03
 
 - Added Neptune moons — Triton, Naiad, Thalassa, Despina, Galatea, Larissa, and Proteus — to `/lab/orbits` as sourced Solar System bodies with nested body-list relationships and Neptune-relative trails/focus behavior.
