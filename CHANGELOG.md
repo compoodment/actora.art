@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.199 - 2026-05-03
+
+- Changed `/lab/orbits` default time scale to `5,000x` so the scene is moving visibly on first load.
+
 ## 0.1.198 - 2026-05-03
 
 - Renamed `/lab/orbits` Follow to Track/Untrack so the action better matches its freecam tracking behavior.
