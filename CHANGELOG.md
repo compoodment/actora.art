@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.213 - 2026-05-04
+
+- Made `/lab/orbits` set-orbit distances easier to understand by showing the AU value as km/million-km text, explaining that 1 AU is the Earth-Sun distance, and showing the local trusted distance limit when available.
+
 ## 0.1.212 - 2026-05-04
 
 - Fixed `/lab/orbits` set-orbit behavior so broad planet-centered orbit requests that live gravity would tear away now warn/disable instead of pretending they will hold, while Sun, Moon/Earth, and compact giant-planet moon orbit starts remain available.
