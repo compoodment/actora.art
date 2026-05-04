@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.219 - 2026-05-04
+
+- Fixed `/lab/orbits` lag from the new bodies tree by caching current-system hierarchy work and avoiding repeated dominance calculations during rendering/trails.
+
 ## 0.1.218 - 2026-05-04
 
 - Cleaned up `/lab/orbits` body controls: factual asteroid labels, a collapsible current-system bodies tree, separate body/system visibility hiding that keeps gravity active, better same-system Track zoom, a collapsible main controls panel, and no spatial dots for now.
