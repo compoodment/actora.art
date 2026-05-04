@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.216 - 2026-05-04
+
+- Added the first `/lab/orbits` create-body checkpoint: players can spawn a small body, moon, or planet around a chosen reference with gravity-aware validation, generated names, readable distance notes, and live N-body insertion.
+
 ## 0.1.215 - 2026-05-04
 
 - Renamed the `/lab/orbits` selected-body `advanced edit` button back to plain `edit` while keeping the paused, stable editing behavior.
