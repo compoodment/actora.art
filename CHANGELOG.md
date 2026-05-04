@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.214 - 2026-05-04
+
+- Fixed `/lab/orbits` advanced edit fields so opening advanced edit pauses time and mass/position/velocity values stay editable while typing instead of snapping back to the live readout.
+
 ## 0.1.213 - 2026-05-04
 
 - Made `/lab/orbits` set-orbit distances easier to understand by showing the AU value as km/million-km text, explaining that 1 AU is the Earth-Sun distance, and showing the local trusted distance limit when available.
