@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.210 - 2026-05-04
+
+- Added a first `/lab/orbits` orbit-intent editor: selected bodies can choose a temporary reference body, distance, direction, and optional child carrying, then apply a circular state-vector edit while gravity remains all-to-all.
+
 ## 0.1.209 - 2026-05-04
 
 - Renamed `/lab/orbits` selected-body editing to `raw edit`, clarified that parent/reference labels do not constrain all-to-all gravity, and added optional child carrying for parent position/velocity raw edits.
