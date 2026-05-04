@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.212 - 2026-05-04
+
+- Fixed `/lab/orbits` set-orbit behavior so broad planet-centered orbit requests that live gravity would tear away now warn/disable instead of pretending they will hold, while Sun, Moon/Earth, and compact giant-planet moon orbit starts remain available.
+
 ## 0.1.211 - 2026-05-04
 
 - Reworded `/lab/orbits` selected-body editing to player-facing `set orbit` and `advanced edit` controls, and tightened the orbit setter so it avoids self-orbit choices and too-small starting distances.
