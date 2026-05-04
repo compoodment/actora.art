@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.215 - 2026-05-04
+
+- Renamed the `/lab/orbits` selected-body `advanced edit` button back to plain `edit` while keeping the paused, stable editing behavior.
+
 ## 0.1.214 - 2026-05-04
 
 - Fixed `/lab/orbits` advanced edit fields so opening advanced edit pauses time and mass/position/velocity values stay editable while typing instead of snapping back to the live readout.
