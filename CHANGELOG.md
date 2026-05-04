@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.223 - 2026-05-04
+
+- Removed the stale `/lab/orbits` Home camera button now that Focus and Track cover the useful navigation controls.
+
 ## 0.1.222 - 2026-05-04
 
 - Moved the `/lab/orbits` exit control to the left side of the main controls panel header so it is no longer grouped beside the collapse button.
