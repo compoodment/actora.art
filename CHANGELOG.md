@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.209 - 2026-05-04
+
+- Renamed `/lab/orbits` selected-body editing to `raw edit`, clarified that parent/reference labels do not constrain all-to-all gravity, and added optional child carrying for parent position/velocity raw edits.
+
 ## 0.1.208 - 2026-05-04
 
 - Moved `/lab/orbits` selected-body edit fields behind an explicit inspector edit toggle so the default body readout stays cleaner.
