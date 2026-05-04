@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.221 - 2026-05-04
+
+- Redesigned `/lab/orbits` bodies panel into cleaner single-line tree rows with compact expand and visibility controls, moved system hide/show into the selected-body inspector, and made panel/section collapse controls visually consistent.
+
 ## 0.1.220 - 2026-05-04
 
 - Improved `/lab/orbits` body-panel readability with clearer button styling and secondary hide controls, and made orbit trails follow the current displayed/dominant parent for edited systems such as Pallas around Earth.
