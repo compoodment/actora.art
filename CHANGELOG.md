@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.224 - 2026-05-05
+
+- Polished the homepage terminal with clearer startup/help copy, command and page typo suggestions, and shell-like Tab completion.
+
 ## 0.1.223 - 2026-05-04
 
 - Removed the stale `/lab/orbits` Home camera button now that Focus and Track cover the useful navigation controls.
