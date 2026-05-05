@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.229 - 2026-05-05
+
+- Fixed terminal autocomplete typing lag while suggestions are open.
+
 ## 0.1.228 - 2026-05-05
 
 - Made the terminal autocomplete panel size to its suggestions instead of stretching across the terminal.
