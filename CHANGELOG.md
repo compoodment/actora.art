@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.231 - 2026-05-05
+
+- Added a soft cat-meow sound to the terminal `meow` easter egg.
+
 ## 0.1.230 - 2026-05-05
 
 - Removed the terminal `cat readme` pseudo-file so `cat` suggestions only show real page targets.
