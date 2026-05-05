@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.225 - 2026-05-05
+
+- Replaced the homepage terminal startup line with cleaner command-hint copy.
+
 ## 0.1.224 - 2026-05-05
 
 - Polished the homepage terminal with clearer startup/help copy, command and page typo suggestions, and shell-like Tab completion.
