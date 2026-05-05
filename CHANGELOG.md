@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.228 - 2026-05-05
+
+- Made the terminal autocomplete panel size to its suggestions instead of stretching across the terminal.
+
 ## 0.1.227 - 2026-05-05
 
 - Changed terminal completions to open automatically while typing, with arrow-key selection and Tab accepting the active completion while Enter still submits the typed command.
