@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.230 - 2026-05-05
+
+- Removed the terminal `cat readme` pseudo-file so `cat` suggestions only show real page targets.
+
 ## 0.1.229 - 2026-05-05
 
 - Fixed terminal autocomplete typing lag while suggestions are open.
