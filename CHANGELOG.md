@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.2 - 2026-05-07
+
+- Hid `coda` and `moon` from terminal help/autocomplete while keeping them runnable as easter eggs.
+
 ## 0.2.1 - 2026-05-07
 
 - Added `coda` and `moon` homepage terminal commands.
