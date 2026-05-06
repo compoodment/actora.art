@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.240 - 2026-05-06
+
+- Added Coda to the `/info` credits.
+
 ## 0.1.239 - 2026-05-06
 
 - Added the selected dark contour artwork between the `/info` contact links and credits, using a clean single-design crop.
