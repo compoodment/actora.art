@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.250 - 2026-05-06
+
+- Adjusted the `/info` Discord copy row so the username sits with the copy button.
+
 ## 0.1.249 - 2026-05-06
 
 - Adjusted the `/info` Discord username copy row so the username sits with its label instead of centered.
