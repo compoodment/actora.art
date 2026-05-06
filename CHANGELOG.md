@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.237 - 2026-05-06
+
+- Added the selected dark contour artwork as a header on `/info`.
+
 ## 0.1.236 - 2026-05-06
 
 - Replaced the browser-tab favicon with a cleaner transparent `A` mark derived from the approved full-scale logo direction.
