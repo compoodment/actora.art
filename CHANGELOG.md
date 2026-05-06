@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.241 - 2026-05-06
+
+- Updated Coda's `/info` credit to mention the OpenClaw AI assistant role.
+
 ## 0.1.240 - 2026-05-06
 
 - Added Coda to the `/info` credits.
