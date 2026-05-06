@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.246 - 2026-05-06
+
+- Updated the public README and replaced the `/info` GitHub link with a richer site repository preview card.
+
 ## 0.1.245 - 2026-05-06
 
 - Updated the `/lab` and `/projects` list pages with compact rows that show their latest public update metadata.

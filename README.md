@@ -1,25 +1,52 @@
+<div align="center">
+
 # actora.art
 
-Public notes for https://actora.art.
+**experiments, projects, notes, and small web systems**
 
-This repository is a sanitized public documentation surface: visitor-facing notes, privacy copy, public behavior notes, and release notes.
+[site](https://www.actora.art/) · [changelog](CHANGELOG.md) · [docs](docs/index.md)
 
-Implementation source and operational docs live in the private actora.art repo.
+![stack](https://img.shields.io/badge/stack-Astro%20%2F%20TypeScript%20%2F%20Preact%20%2F%20Three.js-0a0a0a?style=flat-square)
+![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
 
-## Start here
+</div>
 
-- [docs/index.md](docs/index.md) — public docs index
-- [CHANGELOG.md](CHANGELOG.md) — public release notes
-- [docs/privacy.md](docs/privacy.md) — privacy notes
-- [docs/experiments.md](docs/experiments.md) — public notes for the site experiments
+## Site
 
-## Site areas
-
-- **terminal** — the homepage
-- **projects** — project links and notes
-- **chat** — Aurora, the site chat bot
-- **info** — public links/contact plus site credits
+- **terminal** — homepage command interface
 - **lab** — experiments and prototypes
-- **wall** — a shared text/ASCII wall
-- **particles** — a small interactive visual toy
-- **liminal** — a first-person browser experiment
+- **orbits** — Newtonian gravity playground
+- **liminal** — first-person concrete test chamber
+- **particles** — interactive visual toy
+- **wall** — shared text/ASCII wall
+- **chat** — Aurora, the site chat bot
+- **projects** — external projects
+- **info** — links, contact, credits
+
+## Stack
+
+- Astro
+- TypeScript
+- Preact
+- Three.js
+- Node.js
+- OpenClaw
+
+## Docs
+
+- [docs/index.md](docs/index.md)
+- [CHANGELOG.md](CHANGELOG.md)
+- [docs/experiments.md](docs/experiments.md)
+- [docs/privacy.md](docs/privacy.md)
+
+## Privacy
+
+No analytics scripts. No ads. No cross-site tracking.
+
+Interactive surfaces keep only the state they need to work. See [docs/privacy.md](docs/privacy.md).
+
+## License
+
+No open-source license is granted unless a file says otherwise.
+
+Copyright © computment. All rights reserved.
