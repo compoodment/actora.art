@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.245 - 2026-05-06
+
+- Updated the `/lab` and `/projects` list pages with compact rows that show their latest public update metadata.
+
 ## 0.1.244 - 2026-05-06
 
 - Replaced the `/info` header raster with the approved SVG trace of the selected artwork.
