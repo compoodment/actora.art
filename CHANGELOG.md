@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.235 - 2026-05-06
+
+- Replaced the browser-tab favicon with a transparent pixel-style `A` mark so it reads better at 16px without a background tile.
+
 ## 0.1.234 - 2026-05-06
 
 - Made the browser-tab favicon visibly readable at tab size.
