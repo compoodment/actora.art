@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.234 - 2026-05-06
+
+- Made the browser-tab favicon visibly readable at tab size.
+
 ## 0.1.233 - 2026-05-06
 
 - Made the homepage tab-title gap animation easier to see in browser tabs.
