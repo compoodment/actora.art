@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.247 - 2026-05-06
+
+- Simplified the `/info` GitHub preview card and compacted the Discord copy contact.
+
 ## 0.1.246 - 2026-05-06
 
 - Updated the public README and replaced the `/info` GitHub link with a richer site repository preview card.
