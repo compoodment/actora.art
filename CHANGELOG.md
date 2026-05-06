@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.1.233 - 2026-05-06
+
+- Made the homepage tab-title gap animation easier to see in browser tabs.
+
 ## 0.1.232 - 2026-05-06
 
 - Added the approved actora.art brand mark across favicons, app icons, link previews, and the homepage tab-title gap animation.
