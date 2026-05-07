@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.28 - 2026-05-07
+
+- Reworked the Aurora chat status band into a thinner pulse-rail design across idle, typing, thinking, and error states.
+
 ## 0.2.27 - 2026-05-07
 
 - Fixed the Aurora chat status band to visibly fill the full desktop typing width.
