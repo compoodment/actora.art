@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.20 - 2026-05-07
+
+- Reworked the hidden `coda` terminal command into rotating tiny signal-transmission text.
+
 ## 0.2.19 - 2026-05-07
 
 - Tuned terminal command feedback: hidden easter eggs respond faster, `meow` replies immediately, normal delayed commands show working dots, and `coda` gets a cat reaction.
