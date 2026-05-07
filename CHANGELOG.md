@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.23 - 2026-05-07
+
+- Smoothed terminal cat reaction timing so shocked, coda, meow, and success faces linger instead of snapping away.
+
 ## 0.2.22 - 2026-05-07
 
 - Smoothed terminal `working...` feedback so delayed command output does not replace it too abruptly.
