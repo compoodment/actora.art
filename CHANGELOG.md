@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.34 - 2026-05-07
+
+- Reduced `/lab/orbits` render load on high-DPR devices with a conservative render-scale cap/adaptive downgrade, and added the current render scale to the compact performance readout.
+
 ## 0.2.33 - 2026-05-07
 
 - Added a compact `/lab/orbits` performance readout with FPS, body/gravity-pair count, physics substeps, clamp status, and grouping timing for low-end-device tuning.
