@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.26 - 2026-05-07
+
+- Extended the Aurora chat status band so it spans the full typing bar on desktop.
+
 ## 0.2.25 - 2026-05-07
 
 - Moved the Aurora visual into a subtle two-line status band below the chat typing bar.
