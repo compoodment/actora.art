@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.29 - 2026-05-07
+
+- Made the Aurora typing rail stop shortly after keyboard input stops, even when draft text remains.
+
 ## 0.2.28 - 2026-05-07
 
 - Reworked the Aurora chat status band into a thinner pulse-rail design across idle, typing, thinking, and error states.
