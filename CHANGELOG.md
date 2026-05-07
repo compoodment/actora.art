@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.7 - 2026-05-07
+
+- Made terminal navigation messages appear immediately and animate their trailing dots during the page-load delay.
+
 ## 0.2.6 - 2026-05-07
 
 - Tuned terminal cat delays so normal commands return quickly, easter eggs pause briefly, and page navigation shows the loading state longer.
