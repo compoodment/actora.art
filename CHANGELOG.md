@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.19 - 2026-05-07
+
+- Tuned terminal command feedback: hidden easter eggs respond faster, `meow` replies immediately, normal delayed commands show working dots, and `coda` gets a cat reaction.
+
 ## 0.2.18 - 2026-05-07
 
 - Added a first-use chat hint for guests and signed-in users, while keeping it available from the `hint` control afterward.
