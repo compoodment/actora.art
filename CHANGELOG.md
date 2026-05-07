@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.11 - 2026-05-07
+
+- Stabilized terminal autocomplete height so filtering suggestions does not jump the scroll position.
+
 ## 0.2.10 - 2026-05-07
 
 - Made terminal autocomplete keep the full suggestion list in view below the prompt while typing.
