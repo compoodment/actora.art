@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.35 - 2026-05-07
+
+- Restored `/lab/orbits` render quality by removing the adaptive render-scale downgrade added in `0.2.34`.
+
 ## 0.2.34 - 2026-05-07
 
 - Reduced `/lab/orbits` render load on high-DPR devices with a conservative render-scale cap/adaptive downgrade, and added the current render scale to the compact performance readout.
