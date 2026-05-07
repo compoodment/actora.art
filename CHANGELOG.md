@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.41 - 2026-05-08
+
+- Added pass-1 `/lab/orbits` Sun texture rendering with a subtle glow.
+
 ## 0.2.40 - 2026-05-08
 
 - Improved `/lab/orbits` Earth/Moon lighting so textured bodies have a clearer dark side.
