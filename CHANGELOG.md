@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.13 - 2026-05-07
+
+- Added special terminal cat animations for `clear` and `meow`.
+
 ## 0.2.12 - 2026-05-07
 
 - Added subtle blinking/looping eye animation to the homepage terminal cat states.
