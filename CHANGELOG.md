@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.37 - 2026-05-07
+
+- Improved `/lab/orbits` trail performance without changing trail quality by reusing stable trail geometry buffers.
+
 ## 0.2.36 - 2026-05-07
 
 - Improved `/lab/orbits` performance without lowering visual quality by reducing panel/readout re-render work during playback.
