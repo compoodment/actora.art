@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.33 - 2026-05-07
+
+- Added a compact `/lab/orbits` performance readout with FPS, body/gravity-pair count, physics substeps, clamp status, and grouping timing for low-end-device tuning.
+
 ## 0.2.32 - 2026-05-07
 
 - Removed the baseline asteroid set and non-Pluto dwarf planets from `/lab/orbits` to improve performance on lower-end devices while keeping Pluto and Charon.
