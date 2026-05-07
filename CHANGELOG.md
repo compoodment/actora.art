@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.44 - 2026-05-08
+
+- Made the `/lab/orbits` Sun corona visible again as a wider pale-gold halo.
+
 ## 0.2.43 - 2026-05-08
 
 - Tuned `/lab/orbits` Sun glow to be less saturated orange.
