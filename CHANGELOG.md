@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.9 - 2026-05-07
+
+- Moved the homepage construction note to the footer and simplified terminal autocomplete panel scrolling.
+
 ## 0.2.8 - 2026-05-07
 
 - Rebalanced the `/info` contact and recent changes columns so the changelog has more room.
