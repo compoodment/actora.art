@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.31 - 2026-05-07
+
+- Removed the pending Aurora label from the chat transcript while the status rail is thinking.
+
 ## 0.2.30 - 2026-05-07
 
 - Removed duplicate `...` thinking indicators from Aurora chat while the status rail is active.
