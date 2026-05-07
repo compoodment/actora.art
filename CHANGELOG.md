@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.40 - 2026-05-08
+
+- Improved `/lab/orbits` Earth/Moon lighting so textured bodies have a clearer dark side.
+
 ## 0.2.39 - 2026-05-07
 
 - Added pass-1 `/lab/orbits` textures for Earth and Moon, including Earth clouds and dark-side city lights.
