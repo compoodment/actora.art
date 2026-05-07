@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.38 - 2026-05-07
+
+- Made `/lab/orbits` raw edit fields easier to type into and nudge with keyboard arrows.
+
 ## 0.2.37 - 2026-05-07
 
 - Improved `/lab/orbits` trail performance without changing trail quality by reusing stable trail geometry buffers.
