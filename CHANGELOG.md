@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.16 - 2026-05-07
+
+- Hardened small frontend lifecycle and local-storage edge cases across the footer, terminal, and Wall.
+
 ## 0.2.15 - 2026-05-07
 
 - Made the `/info` Discord copy feedback stay stable across rapid repeat clicks.
