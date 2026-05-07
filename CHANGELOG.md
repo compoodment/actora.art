@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.18 - 2026-05-07
+
+- Added a first-use chat hint for guests and signed-in users, while keeping it available from the `hint` control afterward.
+
 ## 0.2.17 - 2026-05-07
 
 - Hardened small browser API and storage edge cases in terminal history, Wall info state, and the particles canvas.
