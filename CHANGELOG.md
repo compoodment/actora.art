@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.64 - 2026-05-08
+
+- Added generated, source-guided texture maps for Uranus's main moons in `/lab/orbits`.
+
 ## 0.2.63 - 2026-05-08
 
 - Added generated, source-guided texture maps for Mimas and Tethys in `/lab/orbits`.
