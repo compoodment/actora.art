@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.75 - 2026-05-08
+
+- Rolled back the `/lab/orbits` orientation pass while it is redesigned.
+
 ## 0.2.73 - 2026-05-08
 
 - Fixed `/lab/orbits` procedural sky stars drawing through planets.
