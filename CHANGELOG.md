@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.58 - 2026-05-08
+
+- Added `/lab/orbits` texture maps for Enceladus, Dione, Rhea, Iapetus, and Titan.
+
 ## 0.2.57 - 2026-05-08
 
 - Added `/lab/orbits` texture maps for Io, Europa, Ganymede, and Callisto.
