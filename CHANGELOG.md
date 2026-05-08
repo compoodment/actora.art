@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.101 - 2026-05-09
+
+- Gave `/lab/orbits` orbit trails a small gap before each body so trails no longer run into the body center.
+
 ## 0.2.100 - 2026-05-09
 
 - Removed the `/lab/orbits` future-path prediction prototype to reduce prototype weight and keep spawning/editing performance simpler.
