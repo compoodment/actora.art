@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.95 - 2026-05-08
+
+- Lowered Uranus ring opacity in `/lab/orbits` to `0.20`.
+
 ## 0.2.94 - 2026-05-08
 
 - Lowered Uranus ring opacity in `/lab/orbits` to keep it visible but more realistic/subordinate.
