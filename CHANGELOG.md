@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.99 - 2026-05-09
+
+- Changed the `/lab/orbits` bodies list default so the Sun starts expanded while other systems start collapsed.
+
 ## 0.2.98 - 2026-05-09
 
 - Moved `/lab/orbits` control hints from the scene footer into a `hints` tab on the left control panel.
