@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.69 - 2026-05-08
+
+- Replaced the `/lab/orbits` skybox with a more readable generated Stars + Milky Way candidate.
+
 ## 0.2.68 - 2026-05-08
 
 - Swapped `/lab/orbits` Earth to a 2K SolarSystemScope texture set for comparison.
