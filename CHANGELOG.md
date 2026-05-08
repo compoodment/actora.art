@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.90 - 2026-05-08
+
+- Retuned Uranus and Neptune rings in `/lab/orbits` using Saturn's ring texture style as the visual anchor.
+
 ## 0.2.89 - 2026-05-08
 
 - Reworked Jupiter, Uranus, and Neptune rings in `/lab/orbits` for a more consistent visible ring-asset style below Saturn's prominence.
