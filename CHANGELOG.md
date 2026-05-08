@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.86 - 2026-05-08
+
+- Added source-backed near-side yaw calibration for Europa, Ganymede, Callisto, and Titan in `/lab/orbits`.
+
 ## 0.2.85 - 2026-05-08
 
 - Completed the first `/lab/orbits` moon tidal-lock audit pass by adding Neptune's inner moons to the parent-facing visual orientation set.
