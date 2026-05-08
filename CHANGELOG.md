@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.88 - 2026-05-08
+
+- Replaced Jupiter's procedural ring overlay with source-guided textured ring assets in `/lab/orbits` while preserving its faint dusty character.
+
 ## 0.2.87 - 2026-05-08
 
 - Added a moon axis realism pass in `/lab/orbits`, aligning represented parent-facing moons to their current parent-relative orbit normals.
