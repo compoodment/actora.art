@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.82 - 2026-05-08
+
+- Added an adaptive `/lab/orbits` skybox fallback so lower-end contexts can use the 2K Stars + Milky Way texture while capable systems keep the 8K sky.
+
 ## 0.2.81 - 2026-05-08
 
 - Tried the SolarSystemScope Stars + Milky Way 8K texture as the `/lab/orbits` sky background.
