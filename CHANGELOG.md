@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.50 - 2026-05-08
+
+- Made `/lab/orbits` Uranus rings easier to see.
+
 ## 0.2.49 - 2026-05-08
 
 - Added pass-1 `/lab/orbits` textures for Jupiter, Saturn, Uranus, Neptune, and Pluto, including simple Saturn/Uranus rings.
