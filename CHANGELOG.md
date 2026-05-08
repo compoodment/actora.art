@@ -4,9 +4,9 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
-## 0.2.52 - 2026-05-08
+## 0.2.53 - 2026-05-08
 
-- Improved `/lab/orbits` close Track trail stability, kept trails from drawing through focused/tracked planets, made Jupiter read clearer, and removed misleading Jupiter/Neptune prototype ring overlays.
+- Rolled back the `/lab/orbits` 0.2.52 visual patch to restore Jupiter/Neptune ring overlays and attached trail behavior while the trail fix is redesigned.
 
 ## 0.2.51 - 2026-05-08
 
