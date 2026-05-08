@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.79 - 2026-05-08
+
+- Added the first `/lab/orbits` visual obliquity calibration set and moved spin onto the dedicated spinning-surface layer.
+
 ## 0.2.78 - 2026-05-08
 
 - Refactored `/lab/orbits` body visuals into separate orientation, spinning-surface, and ring layers for safer future tilt/texture calibration.
