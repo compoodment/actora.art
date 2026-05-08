@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.100 - 2026-05-09
+
+- Removed the `/lab/orbits` future-path prediction prototype to reduce prototype weight and keep spawning/editing performance simpler.
+
 ## 0.2.99 - 2026-05-09
 
 - Changed the `/lab/orbits` bodies list default so the Sun starts expanded while other systems start collapsed.
