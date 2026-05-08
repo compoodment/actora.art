@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.62 - 2026-05-08
+
+- Cache-busted the generated Triton and Charon texture files so browsers fetch the fixed maps instead of immutable cached older assets.
+
 ## 0.2.61 - 2026-05-08
 
 - Replaced Triton and Charon placeholder maps with cleaner generated seamless texture maps.
