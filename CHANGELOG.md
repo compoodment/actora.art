@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.56 - 2026-05-08
+
+- Increased `/lab/orbits` Jupiter ring visibility while keeping the rings faint and non-Saturn-like.
+
 ## 0.2.55 - 2026-05-08
 
 - Refined `/lab/orbits` Jupiter and Neptune prototype rings so they follow their source ring structures more closely while staying faint and non-Saturn-like.
