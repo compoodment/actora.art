@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.83 - 2026-05-08
+
+- Added first calibrated tidal-lock visual behavior for the Moon and Charon in `/lab/orbits`.
+
 ## 0.2.82 - 2026-05-08
 
 - Added an adaptive `/lab/orbits` skybox fallback so lower-end contexts can use the 2K Stars + Milky Way texture while capable systems keep the 8K sky.
