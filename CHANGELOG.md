@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.97 - 2026-05-09
+
+- Pulled Earth night-lights brightness back slightly in `/lab/orbits` after the first SolarSystemScope night-map tuning.
+
 ## 0.2.96 - 2026-05-08
 
 - Brightened Earth night lights in `/lab/orbits` for the current SolarSystemScope Earth texture set.
