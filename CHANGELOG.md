@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.67 - 2026-05-08
+
+- Added a subtle Stars + Milky Way background to `/lab/orbits`.
+
 ## 0.2.66 - 2026-05-08
 
 - Added irregular mesh geometry for Phobos and Deimos in `/lab/orbits`.
