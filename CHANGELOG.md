@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.80 - 2026-05-08
+
+- Removed retired `/lab/orbits` skybox bitmap assets after the procedural sky replaced them.
+
 ## 0.2.79 - 2026-05-08
 
 - Added the first `/lab/orbits` visual obliquity calibration set and moved spin onto the dedicated spinning-surface layer.
