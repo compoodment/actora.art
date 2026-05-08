@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.84 - 2026-05-08
+
+- Extended calibrated tidal-lock visual behavior to the current default `/lab/orbits` moon systems.
+
 ## 0.2.83 - 2026-05-08
 
 - Added first calibrated tidal-lock visual behavior for the Moon and Charon in `/lab/orbits`.
