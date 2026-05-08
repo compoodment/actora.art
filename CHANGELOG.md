@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.72 - 2026-05-08
+
+- Retuned the `/lab/orbits` procedural Milky Way-style star band to look less uniform and less like a straight line.
+
 ## 0.2.71 - 2026-05-08
 
 - Replaced the blurry `/lab/orbits` bitmap skybox with a crisp procedural starfield and denser Milky Way-style star band.
