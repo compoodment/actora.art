@@ -22,11 +22,11 @@ It is meant to feel alive and temporary.
 
 A small interactive visual toy.
 
-## Orbits
+## Space
 
-An early universe-sandbox orbital mechanics prototype at `/lab/orbits`.
+An early universe-sandbox orbital mechanics prototype at `/lab/space`.
 
-It simulates Newtonian gravity between sourced Solar System bodies including the main planets, Earth's Moon, Mars's Phobos and Deimos, Jupiter's Galilean moons, Saturn's headline moons, Uranus's headline moons, Neptune's headline moons, and Pluto with Charon. Asteroids and non-Pluto dwarf planets are intentionally excluded from the baseline for lower-end device performance. It starts from a named NASA/JPL Horizons epoch, shows time as a date offset from that epoch, includes a compact FPS/performance readout for low-end-device tuning, avoids re-rendering the full UI panels on every animation frame during playback, reuses stable trail geometry buffers, and exposes Focus, Track, set-orbit, create-body, easier raw edit fields, Sun/Mercury/Venus/Earth/Moon/Mars/Phobos/Deimos/Jupiter/Saturn/Uranus/Neptune/Pluto pass-1 textures with simple Saturn/Uranus rings, prototype Jupiter/Neptune rings, brighter Uranus visibility, more visible Sun surface detail and a wider pale-gold corona, clearer dark-side lighting, orbit-trail, and default-off future-path controls. The separate hierarchical bodies panel uses current visual/dominant grouping for navigation and scene visibility, while hidden bodies stay in the live gravity simulation.
+It simulates Newtonian gravity between sourced Solar System bodies including the main planets, Earth's Moon, Mars's Phobos and Deimos, Jupiter's Galilean moons, Saturn's headline moons, Uranus's headline moons, Neptune's headline moons, and Pluto with Charon. Asteroids and non-Pluto dwarf planets are intentionally excluded from the baseline for lower-end device performance. It shows time as a simulated date, supports body labels and trails, exposes Track as the selected-body camera action, includes account-only autosave/manual save slots for signed-in users, and keeps body visibility separate from live gravity.
 
 ## Liminal
 
