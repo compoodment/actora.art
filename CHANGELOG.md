@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.127 - 2026-05-10
+
+- Fixed `/lab/space` ISS C Track centering so the camera targets the rendered station.
+
 ## 0.2.126 - 2026-05-10
 
 - Swapped `/lab/space` ISS rendering to NASA 3D Resources ISS (C) High Res source for testing before optimization.
