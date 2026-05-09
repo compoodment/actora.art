@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.117 - 2026-05-09
+
+- Matched the `/lab/space` bodies panel width to the selected-body inspector for a more consistent right-side layout.
+
 ## 0.2.116 - 2026-05-09
 
 - Cleaned `/lab/space` time/menu copy so time rates switch to hours at 60 minutes, the time readout drops `TDB`, and the game menu removes redundant helper text.
