@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.116 - 2026-05-09
+
+- Cleaned `/lab/space` time/menu copy so time rates switch to hours at 60 minutes, the time readout drops `TDB`, and the game menu removes redundant helper text.
+
 ## 0.2.115 - 2026-05-09
 
 - Polished `/lab/space` panel controls so hint/menu/collapse ordering, hamburger selection, pause width, spawn toggle centering, and save-slot action buttons feel cleaner.
