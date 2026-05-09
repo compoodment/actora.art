@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.121 - 2026-05-09
+
+- Added the International Space Station to `/lab/space` as an Earth-orbiting spacecraft with a lightweight NASA 3D Resources model.
+
 ## 0.2.120 - 2026-05-09
 
 - Added baseline mobile touch camera controls to `/lab/space`: one-finger drag looks around, pinch zooms, and two-finger vertical drag follows the existing dolly behavior.
