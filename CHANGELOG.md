@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.113 - 2026-05-09
+
+- Changed `/lab/space` time controls from raw `Nx` multipliers to human labels like `real time`, `1 min/s`, and `1.2 year/s`, with an approximate effective rate shown when the browser cannot keep up.
+
 ## 0.2.112 - 2026-05-09
 
 - Refreshed `/lab/space` documentation and added a browser smoke check covering the game menu, Space pause, stale Focus/edit wording, in-panel menu behavior, and body-relative Track switching.
