@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.114 - 2026-05-09
+
+- Stabilized the `/lab/space` time-rate readout so it shows requested speed first with the effective speed in parentheses when needed, and changed Space/chat hint buttons to `?` for consistency with Wall.
+
 ## 0.2.113 - 2026-05-09
 
 - Changed `/lab/space` time controls from raw `Nx` multipliers to human labels like `real time`, `1 min/s`, and `1.2 year/s`, with an approximate effective rate shown when the browser cannot keep up.
