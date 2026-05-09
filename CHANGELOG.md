@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.112 - 2026-05-09
+
+- Refreshed `/lab/space` documentation and added a browser smoke check covering the game menu, Space pause, stale Focus/edit wording, in-panel menu behavior, and body-relative Track switching.
+
 ## 0.2.111 - 2026-05-09
 
 - Fixed the lab page Space card update text so it reflects recent `/lab/space` changes instead of stale `/lab/orbits` notes.
