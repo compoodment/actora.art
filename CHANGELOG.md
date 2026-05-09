@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.119 - 2026-05-09
+
+- Fixed a phone-width `/lab/space` layout bug where selecting a body made the selected-body inspector overlap the bodies panel.
+
 ## 0.2.118 - 2026-05-09
 
 - Fixed `/lab/space` body visibility while tracking so hiding and then unhiding a tracked body restores Track instead of leaving the body feeling lost.
