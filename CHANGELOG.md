@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.105 - 2026-05-09
+
+- Tightened `/lab/space` selected-body inspector sizing, moved exit and spawn-body controls into the hamburger menu, and added Spacebar play/pause.
+
 ## 0.2.104 - 2026-05-09
 
 - Fixed `/lab/space` responsive panel sizing so controls and sliders remain clickable on narrower screens.
