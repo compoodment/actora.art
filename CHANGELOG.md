@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.108 - 2026-05-09
+
+- Fixed the `/lab/space` hamburger menu UX so the save/load menu opens in the left panel flow and hides the main controls instead of overlaying the sliders.
+
 ## 0.2.107 - 2026-05-09
 
 - Reworked the `/lab/space` hamburger into a native details menu so save/load, exit, and spawn controls reliably expand from the menu button.
