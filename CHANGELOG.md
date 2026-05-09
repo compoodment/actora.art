@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.123 - 2026-05-10
+
+- Fixed the ISS visual scale in `/lab/space` so it no longer renders absurdly larger than major bodies.
+
 ## 0.2.122 - 2026-05-10
 
 - Shortened the `/lab/space` display name for the International Space Station to `ISS` so it fits better in the mobile inspector.
