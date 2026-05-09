@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.115 - 2026-05-09
+
+- Polished `/lab/space` panel controls so hint/menu/collapse ordering, hamburger selection, pause width, spawn toggle centering, and save-slot action buttons feel cleaner.
+
 ## 0.2.114 - 2026-05-09
 
 - Stabilized the `/lab/space` time-rate readout so it shows requested speed first with the effective speed in parentheses when needed, and changed Space/chat hint buttons to `?` for consistency with Wall.
