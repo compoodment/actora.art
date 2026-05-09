@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.124 - 2026-05-10
+
+- Restored realistic ISS visual scaling in `/lab/space`; it no longer uses artificial render inflation.
+
 ## 0.2.123 - 2026-05-10
 
 - Fixed the ISS visual scale in `/lab/space` so it no longer renders absurdly larger than major bodies.
