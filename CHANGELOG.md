@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.111 - 2026-05-09
+
+- Fixed the lab page Space card update text so it reflects recent `/lab/space` changes instead of stale `/lab/orbits` notes.
+
 ## 0.2.110 - 2026-05-09
 
 - Changed `/lab/space` Track switching to preserve body-relative visual framing when moving from one tracked body to another.
