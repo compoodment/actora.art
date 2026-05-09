@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.104 - 2026-05-09
+
+- Fixed `/lab/space` responsive panel sizing so controls and sliders remain clickable on narrower screens.
+
 ## 0.2.103 - 2026-05-09
 
 - Added `/lab/space` as the user-facing space sandbox route, moved selected-body camera controls to Track-only, simplified the visible readouts, and added signed-in autosave plus three manual save slots.
