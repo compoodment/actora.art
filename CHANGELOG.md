@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.109 - 2026-05-09
+
+- Reorganized the `/lab/space` game menu into clear Game, Create, and Saves sections; renamed reset to reset simulation; and added Spacebar pause to hints.
+
 ## 0.2.108 - 2026-05-09
 
 - Fixed the `/lab/space` hamburger menu UX so the save/load menu opens in the left panel flow and hides the main controls instead of overlaying the sliders.
