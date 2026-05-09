@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.107 - 2026-05-09
+
+- Reworked the `/lab/space` hamburger into a native details menu so save/load, exit, and spawn controls reliably expand from the menu button.
+
 ## 0.2.106 - 2026-05-09
 
 - Made the `/lab/space` selected-body inspector more compact with inline title/action controls and tighter readout rows.
