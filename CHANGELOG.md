@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.135 - 2026-05-11
+
+- Made Character Creation the required `/lab/actora` entry flow before play, with identity, location, appearance, questionnaire/manual creation modes, review, and adult game-state creation instead of starting as a random child.
+
 ## 0.2.134 - 2026-05-11
 
 - Expanded `/lab/actora` with a richer local-only prototype loop: human identity, appearance, location, canonical stats/attributes, trait sleep modifiers, month-by-month advancement, pending choices, meeting-generated social links, Hang out actions, relationship state, and fuller profile/history surfaces.
