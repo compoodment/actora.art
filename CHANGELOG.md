@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.138 - 2026-05-11
+
+- Removed gender-identity copy from `/lab/actora` character creation entirely; creation now shows only the actual creation identity fields while lifecycle identity choices remain in play.
+
 ## 0.2.137 - 2026-05-11
 
 - Corrected `/lab/actora` creation so gender identity is not chosen during character creation; new local lives begin at birth and preserve the teen identity popup flow.
