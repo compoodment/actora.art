@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.136 - 2026-05-11
+
+- Updated `/lab/actora` character creation so its questionnaire uses the full prototype question set and closer prototype stat/trait behavior before play starts.
+
 ## 0.2.135 - 2026-05-11
 
 - Made Character Creation the required `/lab/actora` entry flow before play, with identity, location, appearance, questionnaire/manual creation modes, review, and adult game-state creation instead of starting as a random child.
