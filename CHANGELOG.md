@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.142 - 2026-05-12
+
+- Changed `/lab/actora` actions and monthly events to use source-shaped outcome objects, matching the Actora prototype event contract more closely.
+- Kept existing local saves compatible while preparing the local loop for fuller event and relationship consequences.
+
 ## 0.2.141 - 2026-05-12
 
 - Added source-shaped startup family scaffolding to `/lab/actora`: new local lives now create mother/father family roles separately from social relationship tiers.
