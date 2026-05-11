@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.141 - 2026-05-12
+
+- Added source-shaped startup family scaffolding to `/lab/actora`: new local lives now create mother/father family roles separately from social relationship tiers.
+- Moved browser save keys forward for the updated local game-state shape.
+
 ## 0.2.140 - 2026-05-12
 
 - Corrected `/lab/actora` local game startup timing so new lives begin on the prototype Year 1 / Month 1 timeline at age 0 / Infant.
