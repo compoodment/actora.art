@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.140 - 2026-05-12
+
+- Corrected `/lab/actora` local game startup timing so new lives begin on the prototype Year 1 / Month 1 timeline at age 0 / Infant.
+- Moved browser save keys forward so older local saves with the previous date model do not load into the corrected timeline.
+
 ## 0.2.139 - 2026-05-12
 
 - Expanded `/lab/actora` character creation geography to the current Actora prototype set: 12 countries and 43 cities.
