@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.134 - 2026-05-11
+
+- Expanded `/lab/actora` with a richer local-only prototype loop: human identity, appearance, location, canonical stats/attributes, trait sleep modifiers, month-by-month advancement, pending choices, meeting-generated social links, Hang out actions, relationship state, and fuller profile/history surfaces.
+
 ## 0.2.133 - 2026-05-11
 
 - Switched `/lab/actora` to a dark desktop-friendly game surface while keeping the local interactive life loop.
