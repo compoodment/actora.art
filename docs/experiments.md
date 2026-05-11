@@ -32,7 +32,7 @@ It simulates Newtonian gravity between sourced Solar System bodies including the
 
 A static web shell for the Actora game at `/lab/actora`.
 
-It is a separate game-mode surface rather than a generic site experiment panel. The current public version is a simplified fixed-viewport life screen using canonical placeholder surfaces: current actor, Life View, Actions, Profile, Relationships, History, Advance month, and Skip time. It is not connected to account saves or the full Actora simulation yet.
+It is a separate game-mode surface rather than a generic site experiment panel. The current public version is a local interactive life loop with saved local state, primary stats, event history, action queue, month advancement, skip-time presets, and Life/Actions/Profile/Relationships/History tabs. It is not connected to account saves or the full Actora simulation yet.
 
 ## Liminal
 
