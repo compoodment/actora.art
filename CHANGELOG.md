@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.133 - 2026-05-11
+
+- Switched `/lab/actora` to a dark desktop-friendly game surface while keeping the local interactive life loop.
+
 ## 0.2.132 - 2026-05-11
 
 - Replaced the static `/lab/actora` mock with a local interactive life loop: saved local state, primary stats, event history, action queue, month advancement, skip-time presets, and Life/Actions/Profile/Relationships/History tabs.
