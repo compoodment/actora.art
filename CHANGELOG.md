@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.145 - 2026-05-12
+
+- Added source-backed monthly family birth simulation to `/lab/actora`; eligible families can now welcome later younger siblings during month advancement.
+- Later sibling births create real generated child actors, family links, birth records, and a sibling-only player-facing event when relevant.
+
 ## 0.2.144 - 2026-05-12
 
 - Added source-shaped startup older siblings to `/lab/actora`; eligible new lives can now include real sibling family actors and family links.
