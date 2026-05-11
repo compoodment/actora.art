@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.130 - 2026-05-11
+
+- Cleaned `/lab/actora` dashboard mock copy so it uses canonical placeholder surfaces instead of invented stats, lore, relationship scores, tone labels, or cryptic controls.
+
 ## 0.2.129 - 2026-05-11
 
 - Redesigned `/lab/actora` from a scrollable web shell into a fixed-viewport game dashboard with a compact run header, current-life card, action cards, actor state, relation/history surfaces, bottom tabs, and month controls.
