@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.143 - 2026-05-12
+
+- Updated `/lab/actora` monthly events to use the full current source-backed human event table, including age/stage, trait, and family-role gates.
+- Parent family events can now arise from startup mother/father links while sibling events remain blocked until older siblings exist.
+
 ## 0.2.142 - 2026-05-12
 
 - Changed `/lab/actora` actions and monthly events to use source-shaped outcome objects, matching the Actora prototype event contract more closely.
