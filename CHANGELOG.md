@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.137 - 2026-05-11
+
+- Corrected `/lab/actora` creation so gender identity is not chosen during character creation; new local lives begin at birth and preserve the teen identity popup flow.
+
 ## 0.2.136 - 2026-05-11
 
 - Updated `/lab/actora` character creation so its questionnaire uses the full prototype question set and closer prototype stat/trait behavior before play starts.
