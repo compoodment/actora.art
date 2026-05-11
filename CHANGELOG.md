@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.129 - 2026-05-11
+
+- Redesigned `/lab/actora` from a scrollable web shell into a fixed-viewport game dashboard with a compact run header, current-life card, action cards, actor state, relation/history surfaces, bottom tabs, and month controls.
+
 ## 0.2.128 - 2026-05-11
 
 - Added the first static `/lab/actora` game-mode shell with start/save-lite controls, actor HUD, time controls, action cards, queue, event feed, city context, and Profile/Relationships/History navigation cards.
