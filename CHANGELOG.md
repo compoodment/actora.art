@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.144 - 2026-05-12
+
+- Added source-shaped startup older siblings to `/lab/actora`; eligible new lives can now include real sibling family actors and family links.
+- Sibling-gated monthly events can now become eligible when startup sibling links exist.
+
 ## 0.2.143 - 2026-05-12
 
 - Updated `/lab/actora` monthly events to use the full current source-backed human event table, including age/stage, trait, and family-role gates.
