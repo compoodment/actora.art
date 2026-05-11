@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.139 - 2026-05-12
+
+- Expanded `/lab/actora` character creation geography to the current Actora prototype set: 12 countries and 43 cities.
+- Added source-backed parity checks for the ongoing Actora web port so future work is measured against the Python prototype instead of partial manual copies.
+
 ## 0.2.138 - 2026-05-11
 
 - Removed gender-identity copy from `/lab/actora` character creation entirely; creation now shows only the actual creation identity fields while lifecycle identity choices remain in play.
