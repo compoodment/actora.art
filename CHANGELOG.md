@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.131 - 2026-05-11
+
+- Simplified `/lab/actora` toward a calmer BitLife-like life screen with fewer panels, lighter visuals, clearer controls, and less visual noise.
+
 ## 0.2.130 - 2026-05-11
 
 - Cleaned `/lab/actora` dashboard mock copy so it uses canonical placeholder surfaces instead of invented stats, lore, relationship scores, tone labels, or cryptic controls.
