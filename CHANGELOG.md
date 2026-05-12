@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.151 - 2026-05-12
+
+- Expanded `/lab/actora` death/continuation state with source-shaped continuity candidate fields plus death overlay life summary and recent records.
+
 ## 0.2.150 - 2026-05-12
 
 - Added source-shaped social grief effects to `/lab/actora`: active friend deaths can now lower happiness and create grief events/records.
