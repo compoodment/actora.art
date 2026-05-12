@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.149 - 2026-05-12
+
+- Added first-pass death and continuation handling to `/lab/actora`: actors can become dead through old-age mortality, death records are written, and dead focused lives block further advancement.
+- Added a continuation overlay for choosing a living linked actor and continuing with a `New Life` marker.
+
 ## 0.2.148 - 2026-05-12
 
 - Added custom skip-month input to `/lab/actora`, matching the prototype's numeric custom skip path alongside presets.
