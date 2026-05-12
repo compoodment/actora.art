@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.156 - 2026-05-12
+
+- Updated `/lab/actora` so local saves persist a source-shaped event log backing History and Live feed while keeping existing browser saves compatible.
+
 ## 0.2.155 - 2026-05-12
 
 - Reworked `/lab/actora` Profile into a compact source-backed card dashboard with drillable details, honest Mood/Needs/Skills placeholders, Relationships tab handoff, and filtered recent records.
