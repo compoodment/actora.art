@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.148 - 2026-05-12
+
+- Added custom skip-month input to `/lab/actora`, matching the prototype's numeric custom skip path alongside presets.
+- Custom skip accepts up to four digits, rejects `0`, and advances through the normal month-by-month local simulation path.
+
 ## 0.2.147 - 2026-05-12
 
 - Updated `/lab/actora` Hang out and monthly social decay so social relationship changes sync into normalized world links instead of only local relationship rows.
