@@ -11,18 +11,17 @@
 
 </div>
 
-## Site Map
+## Site
 
-- **terminal** - homepage command interface
-- **chat** - Aurora, the site chat bot
-- **projects** - external projects and notes
-- **info** - links, contact, and credits
-- **lab** - experiments and prototypes
-- **space** - Newtonian universe sandbox at `/lab/space`
-- **actora** - static game shell prototype at `/lab/actora`
-- **liminal** - first-person concrete test chamber
-- **particles** - interactive visual toy
-- **wall** - shared text/ASCII wall
+- **terminal** — homepage command interface
+- **lab** — experiments and prototypes
+- **orbits** — Newtonian gravity playground
+- **liminal** — first-person concrete test chamber
+- **particles** — interactive visual toy
+- **wall** — shared text/ASCII wall
+- **chat** — Aurora, the site chat bot
+- **projects** — external projects
+- **info** — links, contact, credits
 
 ## Read First
 
