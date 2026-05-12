@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.146 - 2026-05-12
+
+- Updated `/lab/actora` meeting choices so introduced NPCs are source-shaped actors with culture-aware names, source age/stat rules, actor records, and social links.
+- Added parity/smoke coverage for meeting-generated NPCs.
+
 ## 0.2.145 - 2026-05-12
 
 - Added source-backed monthly family birth simulation to `/lab/actora`; eligible families can now welcome later younger siblings during month advancement.
