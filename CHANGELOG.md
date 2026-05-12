@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.154 - 2026-05-12
+
+- Improved `/lab/actora` History and Relationships browsing with year headers/year jump, source-style relationship filters/search, and cleaner player-facing recent record summaries.
+
 ## 0.2.153 - 2026-05-12
 
 - Added source-shaped relationship inspect detail to `/lab/actora` for linked family/social/dead lives, including status, dates, core stats, and recent records.
