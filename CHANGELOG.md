@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.147 - 2026-05-12
+
+- Updated `/lab/actora` Hang out and monthly social decay so social relationship changes sync into normalized world links instead of only local relationship rows.
+- Hang out now writes source-shaped spend-time event records; drift marks social world links as former when closeness reaches zero.
+
 ## 0.2.146 - 2026-05-12
 
 - Updated `/lab/actora` meeting choices so introduced NPCs are source-shaped actors with culture-aware names, source age/stat rules, actor records, and social links.
