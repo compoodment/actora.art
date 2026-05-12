@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.150 - 2026-05-12
+
+- Added source-shaped social grief effects to `/lab/actora`: active friend deaths can now lower happiness and create grief events/records.
+
 ## 0.2.149 - 2026-05-12
 
 - Added first-pass death and continuation handling to `/lab/actora`: actors can become dead through old-age mortality, death records are written, and dead focused lives block further advancement.
