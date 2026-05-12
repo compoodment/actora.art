@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.157 - 2026-05-12
+
+- Updated `/lab/actora` action queue behavior so local saves normalize queued actions more like the prototype, Hang out blocks duplicate/dead targets, and queued actions resolve only in the first advanced month.
+- Added source-shaped personal action records and tightened Hang out/social decay link syncing for active, dead, and drifted social relationships.
+
 ## 0.2.156 - 2026-05-12
 
 - Updated `/lab/actora` so local saves persist a source-shaped event log backing History and Live feed while keeping existing browser saves compatible.
