@@ -11,12 +11,6 @@
 
 </div>
 
-## What This Repo Is
-
-This is the sanitized public documentation surface for actora.art.
-
-It contains visitor-facing notes, privacy copy, public behavior notes, short public-safe testing prompts, and release notes. Implementation source, live operations, admin controls, moderation details, infrastructure, runtime state, and secrets stay private.
-
 ## Site Map
 
 - **terminal** - homepage command interface
