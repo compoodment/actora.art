@@ -2,42 +2,53 @@
 
 # actora.art
 
-**experiments, projects, notes, and small web systems**
+**public notes for experiments, projects, and small web systems**
 
-[site](https://www.actora.art/) · [changelog](CHANGELOG.md) · [docs](docs/index.md)
+[site](https://www.actora.art/) · [docs](docs/index.md) · [changelog](CHANGELOG.md) · [privacy](docs/privacy.md)
 
-![stack](https://img.shields.io/badge/stack-Astro%20%2F%20TypeScript%20%2F%20Preact%20%2F%20Three.js-0a0a0a?style=flat-square)
+![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
 
 </div>
 
-## Site
+## What This Repo Is
 
-- **terminal** — homepage command interface
-- **lab** — experiments and prototypes
-- **orbits** — Newtonian gravity playground
-- **liminal** — first-person concrete test chamber
-- **particles** — interactive visual toy
-- **wall** — shared text/ASCII wall
-- **chat** — Aurora, the site chat bot
-- **projects** — external projects
-- **info** — links, contact, credits
+This is the sanitized public documentation surface for actora.art.
 
-## Stack
+It contains visitor-facing notes, privacy copy, public behavior notes, short public-safe testing prompts, and release notes. Implementation source, live operations, admin controls, moderation details, infrastructure, runtime state, and secrets stay private.
+
+## Site Map
+
+- **terminal** - homepage command interface
+- **chat** - Aurora, the site chat bot
+- **projects** - external projects and notes
+- **info** - links, contact, and credits
+- **lab** - experiments and prototypes
+- **space** - Newtonian universe sandbox at `/lab/space`
+- **actora** - static game shell prototype at `/lab/actora`
+- **liminal** - first-person concrete test chamber
+- **particles** - interactive visual toy
+- **wall** - shared text/ASCII wall
+
+## Read First
+
+- [docs/index.md](docs/index.md) - public docs index
+- [docs/identity.md](docs/identity.md) - site shape and tone
+- [docs/experiments.md](docs/experiments.md) - public experiment notes
+- [docs/privacy.md](docs/privacy.md) - privacy notes
+- [docs/api.md](docs/api.md) - public API boundary
+- [docs/testing.md](docs/testing.md) - public-safe manual checks
+- [docs/codebase.md](docs/codebase.md) - source boundary
+- [docs/deploy.md](docs/deploy.md) - hosting boundary
+- [CHANGELOG.md](CHANGELOG.md) - public release notes
+
+## Site Stack
 
 - Astro
 - TypeScript
 - Preact
 - Three.js
-- Node.js
-- OpenClaw
-
-## Docs
-
-- [docs/index.md](docs/index.md)
-- [CHANGELOG.md](CHANGELOG.md)
-- [docs/experiments.md](docs/experiments.md)
-- [docs/privacy.md](docs/privacy.md)
+- Node.js backend for interactive site-owned APIs
 
 ## Privacy
 
