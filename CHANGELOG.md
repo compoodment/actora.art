@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.153 - 2026-05-12
+
+- Added source-shaped relationship inspect detail to `/lab/actora` for linked family/social/dead lives, including status, dates, core stats, and recent records.
+
 ## 0.2.152 - 2026-05-12
 
 - Expanded `/lab/actora` Profile, Relationships, and History tabs so death/continuation state remains visible after handoff.
