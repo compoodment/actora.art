@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.163 - 2026-05-14
+
+- Smoothed `/lab/space` close Track motion at low and mid time rates so ISS/Earth views advance every rendered frame instead of jumping by one-minute chunks, and removed the close-pass timestep warning from the normal player panel.
+- Fixed the `/lab/space` smoke check's mobile reload/touch-camera coverage so the guardrail is reliable again.
+
 ## 0.2.162 - 2026-05-14
 
 - Updated `/lab/world-of-war` with versioned higher-resolution generated map assets and same-source reference borders so close zoom has less texture pixelation and less visible border/land mismatch.
