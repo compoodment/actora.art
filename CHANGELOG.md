@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.160 - 2026-05-14
+
+- Restored `/lab/world-of-war` with a real-data Natural Earth globe shell: 1:10m-derived country/coast/admin outlines, generated land texture, small zoom-gated labels/city dots, and deeper globe inspection controls before gameplay work.
+
 ## 0.2.159 - 2026-05-14
 
 - Removed the `/lab/world-of-war` globe-shell checkpoint from the live Lab after visual review; the experiment is returning to map-data/design review before another public prototype.
