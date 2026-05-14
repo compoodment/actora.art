@@ -28,12 +28,6 @@ An early universe-sandbox orbital mechanics prototype at `/lab/space`.
 
 It simulates Newtonian gravity between sourced Solar System bodies including the main planets, Earth's Moon, Mars's Phobos and Deimos, Jupiter's Galilean moons, Saturn's headline moons, Uranus's headline moons, Neptune's headline moons, and Pluto with Charon. Asteroids and non-Pluto dwarf planets are intentionally excluded from the baseline for lower-end device performance. It shows time as a simulated date, supports body labels and trails, exposes Track as the selected-body camera action, includes account-only autosave/manual save slots for signed-in users, and keeps body visibility separate from live gravity.
 
-## World of War
-
-A clean-room globe-first strategy experiment at `/lab/world-of-war`.
-
-The current version is only a proof-of-feel shell: a rotatable/zoomable shaded globe with approximate hand-authored Western/Central Europe theater lines, city/capital markers, labels, and notes about the intended country/region/city direction. It does not include conquest mechanics, diplomacy, AI, real map data, account saves, or multiplayer yet.
-
 ## Actora
 
 A static web shell for the Actora game at `/lab/actora`.

@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.159 - 2026-05-14
+
+- Removed the `/lab/world-of-war` globe-shell checkpoint from the live Lab after visual review; the experiment is returning to map-data/design review before another public prototype.
+
 ## 0.2.158 - 2026-05-14
 
 - Added the first `/lab/world-of-war` globe-shell checkpoint: a clean-room proof-of-feel for a future real-Earth territory-control experiment with rotate/zoom globe interaction, hand-authored approximate Europe theater lines, city/capital markers, and clear scope notes before conquest systems.
