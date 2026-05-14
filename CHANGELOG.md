@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.161 - 2026-05-14
+
+- Cleaned `/lab/world-of-war` into a quieter map-surface checkpoint: removed debug/status chrome and footer overlay, reduced city dots to a sparse reference set, filtered Baikonur-style lease markers from overlays, and kept the static globe ready for future dynamic gameplay layers.
+
 ## 0.2.160 - 2026-05-14
 
 - Restored `/lab/world-of-war` with a real-data Natural Earth globe shell: 1:10m-derived country/coast/admin outlines, generated land texture, small zoom-gated labels/city dots, and deeper globe inspection controls before gameplay work.
