@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.158 - 2026-05-14
+
+- Added the first `/lab/world-of-war` globe-shell checkpoint: a clean-room proof-of-feel for a future real-Earth territory-control experiment with rotate/zoom globe interaction, hand-authored approximate Europe theater lines, city/capital markers, and clear scope notes before conquest systems.
+
 ## 0.2.157 - 2026-05-12
 
 - Updated `/lab/actora` action queue behavior so local saves normalize queued actions more like the prototype, Hang out blocks duplicate/dead targets, and queued actions resolve only in the first advanced month.
