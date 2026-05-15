@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.164 - 2026-05-15
+
+- Prepared stricter public security headers and cleaned static build output handling for the next Caddy reload.
+- Improved private admin maintenance controls for account moderation and stale guest cleanup.
+
 ## 0.2.163 - 2026-05-14
 
 - Smoothed `/lab/space` close Track motion at low and mid time rates so ISS/Earth views advance every rendered frame instead of jumping by one-minute chunks, and removed the close-pass timestep warning from the normal player panel.
