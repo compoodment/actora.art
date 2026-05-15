@@ -6,8 +6,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 ## 0.2.164 - 2026-05-15
 
-- Prepared stricter public security headers and cleaned static build output handling for the next Caddy reload.
-- Improved private admin maintenance controls for account moderation and stale guest cleanup.
+- Maintenance update for site hardening and reliability.
 
 ## 0.2.163 - 2026-05-14
 
