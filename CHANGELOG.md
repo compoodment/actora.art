@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.177 - 2026-05-16
+
+- Fixed Aurora chat unarchive behavior so the chat you unarchive stays open instead of jumping to another active chat.
+
 ## 0.2.176 - 2026-05-16
 
 - Corrected `/lab/space` ISS orientation so the station tracks its low-Earth orbit direction with a steadier Earth-relative attitude.
