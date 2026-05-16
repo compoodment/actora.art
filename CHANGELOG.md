@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.169 - 2026-05-16
+
+- Improved `/lab/space` Track navigation so selecting bodies from the whole-system view lands at a readable close distance instead of staying far away.
+
 ## 0.2.168 - 2026-05-16
 
 - Darkened the ISS Earth-shadow view in `/lab/space` so it no longer looks sunlit while behind Earth.
