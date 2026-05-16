@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.174 - 2026-05-16
+
+- Removed the redundant `change body` button from the `/lab/space` phone selected-body sheet.
+
 ## 0.2.173 - 2026-05-16
 
 - Fixed `/lab/space` mobile touch handling so one-finger swipes rotate/look instead of zooming.
