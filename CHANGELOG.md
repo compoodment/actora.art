@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.168 - 2026-05-16
+
+- Darkened the ISS Earth-shadow view in `/lab/space` so it no longer looks sunlit while behind Earth.
+
 ## 0.2.167 - 2026-05-16
 
 - Updated `/lab/space` so the ISS model follows its orbit frame and darkens when Earth blocks sunlight.
