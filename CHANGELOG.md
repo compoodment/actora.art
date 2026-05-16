@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.166 - 2026-05-16
+
+- Swapped `/lab/space` to a small official NASA ISS model trial so the International Space Station can be judged live before later real-world orientation work.
+
 ## 0.2.165 - 2026-05-16
 
 - Maintenance update for frontend dependencies and the site terminal help command.
