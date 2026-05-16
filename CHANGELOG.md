@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.170 - 2026-05-16
+
+- Reduced `/lab/space` mobile panel obstruction by opening phone-width views with compact controls and a smaller selected-body inspector.
+
 ## 0.2.169 - 2026-05-16
 
 - Improved `/lab/space` Track navigation so selecting bodies from the whole-system view lands at a readable close distance instead of staying far away.
