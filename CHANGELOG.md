@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.171 - 2026-05-16
+
+- Moved the collapsed `/lab/space` mobile bodies bar out of the middle of the screen when no body is selected.
+
 ## 0.2.170 - 2026-05-16
 
 - Reduced `/lab/space` mobile panel obstruction by opening phone-width views with compact controls and a smaller selected-body inspector.
