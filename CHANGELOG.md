@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.192 - 2026-05-18
+
+- Improved Wall shortcut focus handling and blank-character validation, and avoided creating Wall budget records for invalid or no-op Wall actions.
+
 ## 0.2.191 - 2026-05-18
 
 - Disabled footer forward navigation when the browser cannot confirm forward history, and tightened chat request validation before limit handling.
