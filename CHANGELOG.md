@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.189 - 2026-05-18
+
+- Moved the `see whole system` explanation into the left controls, placed the camera button next to pause, and improved distant free-roam zoom scaling.
+
 ## 0.2.188 - 2026-05-18
 
 - Improved `/lab/space` free-roam camera behavior near bodies and added a `see whole system` action that tracks the Sun from a whole-system distance.
