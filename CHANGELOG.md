@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.180 - 2026-05-18
+
+- Reworked the `/lab/space` asteroid belt so distant views show a faint haze, closer views reveal dust, and the grains drift slowly around the Sun.
+
 ## 0.2.179 - 2026-05-18
 
 - Tuned the `/lab/space` asteroid belt so it is dimmer from far away and stays faintly visible longer while zooming in.
