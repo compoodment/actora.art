@@ -2,12 +2,6 @@
 
 The lab is where actora.art keeps the odd stuff: public experiments, prototypes, and things still wip.
 
-## World of War
-
-A clean-room globe-first strategy experiment at `/lab/world-of-war`.
-
-The current version is a real-data map shell: a rotatable/zoomable Three.js globe generated from versioned Natural Earth 1:10m-derived countries, same-source reference borders, admin-1 lines, and sparse reference places. It is meant to test whether the map/camera/label foundation feels worth continuing before adding territory conquest and later dynamic borders, political colors, cities, ports, camps, influence, and fronts. It does not include gameplay, conquest, diplomacy, AI, multiplayer, account saves, or backend state yet.
-
 ## Chat
 
 A public chat bot for visitors.
