@@ -35,6 +35,15 @@ These are for normal product QA. Anything probing non-public controls, account e
 4. Try from a second browser/device if practical.
    - Expected: the wall feels live enough for casual collaboration.
 
+## Space
+
+1. Open `/lab/space`.
+   - Expected: the 3D scene loads with the Solar System visible or shows a clear WebGL fallback.
+2. Check the Objects panel.
+   - Expected: it includes an Asteroid belt visual-layer row, and hiding/showing it changes the faint dust belt without changing selected-body controls.
+3. Track a planet or moon, then untrack.
+   - Expected: Track keeps the object readable and normal camera movement returns after untracking.
+
 ## Liminal
 
 1. Open `/lab/liminal`.
