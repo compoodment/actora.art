@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.193 - 2026-05-18
+
+- Improved terminal and account-page auth status handling so failed auth actions surface as errors instead of settling as successful UI states.
+
 ## 0.2.192 - 2026-05-18
 
 - Improved Wall shortcut focus handling and blank-character validation, and avoided creating Wall budget records for invalid or no-op Wall actions.
