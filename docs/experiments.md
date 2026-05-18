@@ -32,7 +32,7 @@ A small interactive visual toy.
 
 An early universe-sandbox orbital mechanics prototype at `/lab/space`.
 
-It simulates Newtonian gravity between sourced Solar System bodies including the main planets, Earth's Moon, Mars's Phobos and Deimos, Jupiter's Galilean moons, Saturn's headline moons, Uranus's headline moons, Neptune's headline moons, and Pluto with Charon. Asteroid bodies and non-Pluto dwarf planets are intentionally excluded from the baseline for lower-end device performance, while a faint slowly drifting asteroid belt dust layer gives visual context without adding simulated asteroids. It shows time as a simulated date, supports body labels and trails, exposes Track as the selected-body camera action, includes account-only autosave/manual save slots for signed-in users, and keeps body/object visibility separate from live gravity through the Objects panel.
+It simulates Newtonian gravity between sourced Solar System bodies including the main planets, Earth's Moon, Mars's Phobos and Deimos, Jupiter's Galilean moons, Saturn's headline moons, Uranus's headline moons, Neptune's headline moons, and Pluto with Charon. Asteroid bodies and non-Pluto dwarf planets are intentionally excluded from the baseline for lower-end device performance, while a faint slowly drifting asteroid belt dust layer gives visual context without adding simulated asteroids. It shows time as a simulated date, supports body labels and trails, exposes Track as the selected-body camera action, includes account-only autosave/manual save slots for signed-in users, keeps body/object visibility separate from live gravity through the Objects panel, and renders close-up spherical bodies with smooth silhouettes and Earth night lights under the cloud layer.
 
 ## Actora
 
