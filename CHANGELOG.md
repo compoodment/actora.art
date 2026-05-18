@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.182 - 2026-05-18
+
+- Tuned `/lab/space` close-up Earth night rendering so the nighttime texture seam is hidden and city lights read less blue.
+
 ## 0.2.181 - 2026-05-18
 
 - Improved `/lab/space` close-up body rendering so Earth night lights sit on the surface under the cloud layer and spherical planets/moons have smoother silhouettes.
