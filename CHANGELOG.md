@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.188 - 2026-05-18
+
+- Improved `/lab/space` free-roam camera behavior near bodies and added a `see whole system` action that tracks the Sun from a whole-system distance.
+
 ## 0.2.187 - 2026-05-18
 
 - Lowered `/lab/space` Earth's floating night-light overlay to just above the surface.
