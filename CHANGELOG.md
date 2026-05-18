@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.195 - 2026-05-18
+
+- Regenerated favicon ICO assets and made favicon generation reproducible from frontend dependencies.
+
 ## 0.2.194 - 2026-05-18
 
 - Improved Liminal, Wall, and Orbits lifecycle handling around pointer lock, saved Wall tool preferences, and late ISS model loads.
