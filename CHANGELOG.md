@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.187 - 2026-05-18
+
+- Lowered `/lab/space` Earth's floating night-light overlay to just above the surface.
+
 ## 0.2.186 - 2026-05-18
 
 - Lowered `/lab/space` Earth's floating night-light overlay another small step toward the surface.
