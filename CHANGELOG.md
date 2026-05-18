@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.183 - 2026-05-18
+
+- Restored `/lab/space` Earth night lights to the older night-map source and removed the seam mask that caused a black line.
+
 ## 0.2.182 - 2026-05-18
 
 - Tuned `/lab/space` close-up Earth night rendering so the nighttime texture seam is hidden and city lights read less blue.
