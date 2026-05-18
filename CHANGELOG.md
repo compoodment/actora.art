@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.191 - 2026-05-18
+
+- Disabled footer forward navigation when the browser cannot confirm forward history, and tightened chat request validation before limit handling.
+
 ## 0.2.190 - 2026-05-18
 
 - Fixed account-page logout failure handling so the page stays on the account screen and shows an error if logout does not complete.
