@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.190 - 2026-05-18
+
+- Fixed account-page logout failure handling so the page stays on the account screen and shows an error if logout does not complete.
+
 ## 0.2.189 - 2026-05-18
 
 - Moved the `see whole system` explanation into the left controls, placed the camera button next to pause, and improved distant free-roam zoom scaling.
