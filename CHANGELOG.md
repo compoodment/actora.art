@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.184 - 2026-05-18
+
+- Restored `/lab/space` Earth night lights to the previous floating overlay above the surface and below the cloud layer.
+
 ## 0.2.183 - 2026-05-18
 
 - Restored `/lab/space` Earth night lights to the older night-map source and removed the seam mask that caused a black line.
