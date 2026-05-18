@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.185 - 2026-05-18
+
+- Lowered `/lab/space` Earth's floating night-light overlay slightly toward the surface while keeping it separate from the surface material.
+
 ## 0.2.184 - 2026-05-18
 
 - Restored `/lab/space` Earth night lights to the previous floating overlay above the surface and below the cloud layer.
