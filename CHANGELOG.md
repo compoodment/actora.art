@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.198 - 2026-05-18
+
+- Made `/lab/space` object-name labels follow moving bodies smoothly.
+
 ## 0.2.197 - 2026-05-18
 
 - Removed a retired prototype from the live Lab.
