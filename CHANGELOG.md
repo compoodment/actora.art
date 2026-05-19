@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.212 - 2026-05-19
+
+- Added SolarSystemScope Venus surface and atmosphere textures to `/lab/space` quality modes.
+
 ## 0.2.211 - 2026-05-19
 
 - Switched `/lab/space` Mars color rendering to SolarSystemScope 8K in `high` quality and 2K in `low` quality.
