@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.228 - 2026-05-19
+
+- Removed an accidental hidden terminal alias.
+
 ## 0.2.227 - 2026-05-19
 
 - Hid private utility shortcuts from the terminal help/autocomplete surface while keeping them runnable.
