@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.207 - 2026-05-19
+
+- Restored the original Sun texture in `/lab/space` for both quality modes.
+
 ## 0.2.206 - 2026-05-19
 
 - Tightened the `/lab/space` `quality` dropdown so it renders as a compact inline control.
