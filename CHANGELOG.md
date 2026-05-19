@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.221 - 2026-05-19
+
+- Added a stronger fuzzy red-orange Sun edge fringe and denser limb haze around the `/lab/space` corona.
+
 ## 0.2.220 - 2026-05-19
 
 - Added irregular near-surface Sun corona wisps and subtle plasma dust around the `/lab/space` prominence arcs.
