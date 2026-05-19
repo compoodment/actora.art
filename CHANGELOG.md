@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.205 - 2026-05-19
+
+- Replaced the `/lab/space` optimization-mode checkbox with a `quality` dropdown offering `high` and `low`.
+
 ## 0.2.204 - 2026-05-19
 
 - Added a `/lab/space` optimization mode control for switching primary body and sky textures between high-detail and lower-bandwidth variants.
