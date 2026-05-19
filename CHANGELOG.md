@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.201 - 2026-05-19
+
+- Fixed `/lab/space` trail tails so they fade transparent instead of darkening into a black line over bright bodies.
+
 ## 0.2.200 - 2026-05-19
 
 - Fixed short `/lab/space` trail settings so tiny close-orbit bodies such as Mars's moons and ISS keep visible trail arcs instead of disappearing.
