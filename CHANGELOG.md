@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.226 - 2026-05-19
+
+- Added a `dicky` terminal command that opens Dicky's Sound Forge site.
+
 ## 0.2.225 - 2026-05-19
 
 - Restored the `/lab/space` Asteroid belt row qualifier as `visual` instead of the longer `visual layer` copy.
