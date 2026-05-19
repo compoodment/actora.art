@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.220 - 2026-05-19
+
+- Added irregular near-surface Sun corona wisps and subtle plasma dust around the `/lab/space` prominence arcs.
+
 ## 0.2.219 - 2026-05-19
 
 - Reduced the largest `/lab/space` Sun prominence arcs so the corona scale sits closer to the surface.
