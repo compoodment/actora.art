@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.224 - 2026-05-19
+
+- Removed the visible `visual layer` subtitle from the `/lab/space` Asteroid belt row.
+
 ## 0.2.223 - 2026-05-19
 
 - Removed the broad spherical Sun outer corona shells and anchored `/lab/space` prominence arcs into the surface.
