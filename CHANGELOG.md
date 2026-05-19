@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.204 - 2026-05-19
+
+- Added a `/lab/space` optimization mode control for switching primary body and sky textures between high-detail and lower-bandwidth variants.
+
 ## 0.2.203 - 2026-05-19
 
 - Switched `/lab/space` Moon and Sun rendering to SolarSystemScope 8K texture assets.
