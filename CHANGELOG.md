@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.230 - 2026-05-20
+
+- Added slow Earth cloud drift to `/lab/space`, giving the cloud layer gentle motion independent from the planet surface.
+
 ## 0.2.229 - 2026-05-20
 
 - Fixed tidal-lock moon orientation: Phobos, Deimos, and other tidally locked moons no longer appear to rotate with the camera when tracking and orbiting them.
