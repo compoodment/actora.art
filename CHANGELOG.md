@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.203 - 2026-05-19
+
+- Switched `/lab/space` Moon and Sun rendering to SolarSystemScope 8K texture assets.
+
 ## 0.2.202 - 2026-05-19
 
 - Switched `/lab/space` Earth rendering to SolarSystemScope 8K day, night, normal, specular, and cloud textures.
