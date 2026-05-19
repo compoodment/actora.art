@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.199 - 2026-05-19
+
+- Made `/lab/space` object-name labels collapse child objects into their leading body at distant views, reducing Moon/ISS and large moon-system label clutter until the camera is close enough.
+
 ## 0.2.198 - 2026-05-18
 
 - Made `/lab/space` object-name labels follow moving bodies smoothly.
