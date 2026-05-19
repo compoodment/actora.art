@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.202 - 2026-05-19
+
+- Switched `/lab/space` Earth rendering to SolarSystemScope 8K day, night, normal, specular, and cloud textures.
+
 ## 0.2.201 - 2026-05-19
 
 - Fixed `/lab/space` trail tails so they fade transparent instead of darkening into a black line over bright bodies.
