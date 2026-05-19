@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.209 - 2026-05-19
+
+- Right-aligned the `/lab/space` controls-panel readout values so `time` lines up with the other right-edge controls.
+
 ## 0.2.208 - 2026-05-19
 
 - Moved the `/lab/space` object-names checkbox to the end of its row.
