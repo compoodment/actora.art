@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.214 - 2026-05-19
+
+- Switched `/lab/space` Mercury to SolarSystemScope high/low quality textures.
+
 ## 0.2.213 - 2026-05-19
 
 - Made Venus' atmosphere in `/lab/space` rotate independently from the surface.
