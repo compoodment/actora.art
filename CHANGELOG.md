@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.238 - 2026-05-20
+
+- Upgraded Ganymede and Callisto in `/lab/space` to source-guided 4K and 8K visual texture variants with cleaner globe continuity.
+
 ## 0.2.237 - 2026-05-20
 
 - Upgraded Europa in `/lab/space` to repaired USGS/Voyager-Galileo-derived 4K and 8K texture variants with cleaner globe continuity.
