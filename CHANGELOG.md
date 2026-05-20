@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.236 - 2026-05-20
+
+- Upgraded Io in `/lab/space` to repaired USGS/Galileo-derived 4K and 8K texture variants for cleaner close-up viewing.
+
 ## 0.2.235 - 2026-05-20
 
 - Slowed Earth cloud drift in `/lab/space` so the cloud layer is only slightly faster than Earth's surface rotation.
