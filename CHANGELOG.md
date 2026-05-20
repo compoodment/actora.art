@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.235 - 2026-05-20
+
+- Slowed Earth cloud drift in `/lab/space` so the cloud layer is only slightly faster than Earth's surface rotation.
+
 ## 0.2.234 - 2026-05-20
 
 - Restored Earth cloud drift in `/lab/space` to the two-simulation-hour relative period.
