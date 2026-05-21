@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.247 - 2026-05-21
+
+- Lowercased the Space startup loader label to `loading`.
+
 ## 0.2.246 - 2026-05-21
 
 - Set Space's default simulation speed to `1 hour/s` and cleaned up the startup loader animation.
