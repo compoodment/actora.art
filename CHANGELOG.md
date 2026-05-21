@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.242 - 2026-05-21
+
+- Upgraded Mimas and Tethys in `/lab/space` to source-guided 4K and 8K visual texture variants.
+
 ## 0.2.241 - 2026-05-21
 
 - Upgraded Titan in `/lab/space` to source-guided 4K and 8K visual texture variants.
