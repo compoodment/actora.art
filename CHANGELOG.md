@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.249 - 2026-05-22
+
+- Made the Space startup loader dot animation more reliable after page refreshes.
+
 ## 0.2.248 - 2026-05-21
 
 - Reversed the Space startup loader orbit animation direction so the arc fade trails behind the bright edge.
