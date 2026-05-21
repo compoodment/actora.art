@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.245 - 2026-05-21
+
+- Smoothed the Space startup loader animation and replaced the visible asset counter with a simple animated `Loading...` label.
+
 ## 0.2.244 - 2026-05-21
 
 - Replaced the plain Space startup loader with an animated orbital loading screen and a real asset counter tied to initial texture loading.
