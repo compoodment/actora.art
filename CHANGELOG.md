@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.255 - 2026-05-22
+
+- Fixed /u/:username profile footers so signed-in visitors are identified immediately instead of first showing @guest, and tightened footer alignment on short profile pages.
+
 ## 0.2.254 - 2026-05-22
 
 - Matched /u/:username profile pages to the site's normal footer styling and identity behavior.
