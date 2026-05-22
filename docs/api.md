@@ -36,9 +36,9 @@ Credential secrets and private account state are not exposed through public docs
 
 ### Public profiles
 
-Opted-in profiles render at `/u/:username`. Signed-in visitors can manage their own profile fields and display-only badges from `/account`.
+Profiles render at `/u/:username`. Public profiles show profile content; private profiles show a private-state page to other visitors. Signed-in visitors can manage their own profile fields and display-only badges from `/account`.
 
-Profile pages are public only after the account owner turns them on. Badges are profile flair only; they are not permission roles.
+Profile content is public only after the account owner turns it on. Badges are profile flair only; they are not permission roles.
 
 ## Boundary
 

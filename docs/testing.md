@@ -24,6 +24,13 @@ These are for normal product QA. Anything probing non-public controls, account e
 4. Mention the visible rainbow/light-show effect if you see it.
    - Expected: Aurora acknowledges it as a real site behavior.
 
+## Profiles
+
+1. Open a known public `/u/:username` profile.
+   - Expected: the profile page loads with identity, links, and badges if present.
+2. Open a known private `/u/:username` profile.
+   - Expected: the page says the profile is private rather than exposing profile details.
+
 ## Wall
 
 1. Open `/lab/wall`.
