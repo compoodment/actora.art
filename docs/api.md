@@ -30,13 +30,13 @@ The public wall contract is about what visitors can see and do. Hidden state det
 
 ### Accounts
 
-The account UI supports passkey-based sign-in, sign-out, user-owned passkey management, and opt-in public profile settings.
+The account UI supports passkey-based sign-in, sign-out, editable username/display name, user-owned passkey management, and opt-in public profile settings.
 
 Credential secrets and private account state are not exposed through public docs.
 
 ### Public profiles
 
-Profiles render at `/u/:username`. Public profiles show profile content; private profiles show a private-state page to other visitors. Signed-in visitors can manage their own profile fields and display-only badges from `/account`.
+Profiles render at `/u/:username`, where the route follows the current username. Public profiles show display name as the main heading and username as the handle; private profiles show a private-state page to other visitors. Signed-in visitors can manage their account identity, profile fields, and display-only badges from `/account`.
 
 Profile content is public only after the account owner turns it on. Badges are profile flair only; they are not permission roles.
 

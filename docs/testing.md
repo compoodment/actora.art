@@ -27,9 +27,11 @@ These are for normal product QA. Anything probing non-public controls, account e
 ## Profiles
 
 1. Open a known public `/u/:username` profile.
-   - Expected: the profile page loads with identity, links, and badges if present.
+   - Expected: the profile page loads with display name as the main heading, username as the handle, links, and badges if present.
 2. Open a known private `/u/:username` profile.
    - Expected: the page says the profile is private rather than exposing profile details.
+3. On `/account`, edit username/display name while signed in.
+   - Expected: display name updates on the account/profile surfaces, and the profile URL follows the current username.
 
 ## Wall
 
