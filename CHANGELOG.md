@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.260 - 2026-05-22
+
+- Moved `/account` avatar upload limits text into the avatar upload area.
+
 ## 0.2.259 - 2026-05-22
 
 - Clarified `/account` profile saving so bio/links and badge saves are visibly separate.
