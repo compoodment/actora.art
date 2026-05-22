@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.263 - 2026-05-22
+
+- Fixed `/lab/space` startup on iPad/tablet-sized touch devices by using a lighter initial graphics path.
+
 ## 0.2.262 - 2026-05-22
 
 - Fixed the Wall toolbar so pending erases do not show as available characters before they are confirmed.

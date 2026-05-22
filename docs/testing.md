@@ -50,11 +50,13 @@ These are for normal product QA. Anything probing non-public controls, account e
 
 1. Open `/lab/space`.
    - Expected: the 3D scene loads with the Solar System visible or shows a clear WebGL fallback.
-2. Check the Objects panel.
+2. On an iPad/tablet-sized touch device if available, open `/lab/space`.
+   - Expected: the scene loads in the lighter startup path instead of hanging on the loading screen.
+3. Check the Objects panel.
    - Expected: it includes an Asteroid belt visual-layer row, and hiding/showing it changes the faint dust belt without changing selected-body controls.
-3. Track a planet or moon, then untrack.
+4. Track a planet or moon, then untrack.
    - Expected: Track keeps the object readable, normal camera movement returns after untracking, and the body does not disappear when untracking close to it.
-4. Use `see whole system`.
+5. Use `see whole system`.
    - Expected: the camera tracks the Sun from a wide system view and shows a note explaining that whole-system mode is Sun tracking from a zoomed-out distance.
 
 ## Liminal
