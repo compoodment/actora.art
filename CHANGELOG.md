@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.261 - 2026-05-22
+
+- Let `/account` avatar upload limits span the top profile block instead of being squeezed under the avatar.
+
 ## 0.2.260 - 2026-05-22
 
 - Moved `/account` avatar upload limits text into the avatar upload area.
