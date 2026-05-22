@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.257 - 2026-05-22
+
+- Fixed `/account` avatar uploads and made avatar image selection/clearing save immediately.
+
 ## 0.2.256 - 2026-05-22
 
 - Added editable username/display name on `/account` and made public profiles show display name as the main heading with username as the handle.

@@ -32,6 +32,8 @@ These are for normal product QA. Anything probing non-public controls, account e
    - Expected: the page says the profile is private rather than exposing profile details.
 3. On `/account`, edit username/display name while signed in.
    - Expected: display name updates on the account/profile surfaces, and the profile URL follows the current username.
+4. On `/account`, upload or clear an avatar image.
+   - Expected: the avatar preview updates and saves immediately.
 
 ## Wall
 
