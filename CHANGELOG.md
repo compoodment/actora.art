@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.254 - 2026-05-22
+
+- Matched /u/:username profile pages to the site's normal footer styling and identity behavior.
+
 ## 0.2.253 - 2026-05-22
 
 - Restored profile-page footer navigation, compacted badge editing on /account, removed badge descriptions, and improved profile image upload handling.
