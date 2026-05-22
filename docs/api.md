@@ -30,9 +30,15 @@ The public wall contract is about what visitors can see and do. Hidden state det
 
 ### Accounts
 
-The account UI supports passkey-based sign-in, sign-out, and user-owned passkey management.
+The account UI supports passkey-based sign-in, sign-out, user-owned passkey management, and opt-in public profile settings.
 
 Credential secrets and private account state are not exposed through public docs.
+
+### Public profiles
+
+Opted-in profiles render at `/u/:username`. Signed-in visitors can manage their own profile fields and display-only badges from `/account`.
+
+Profile pages are public only after the account owner turns them on. Badges are profile flair only; they are not permission roles.
 
 ## Boundary
 

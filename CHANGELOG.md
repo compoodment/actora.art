@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.251 - 2026-05-22
+
+- Added opt-in public profiles at `/u/:username` with account-managed bios, links, avatars, and display-only badges.
+
 ## 0.2.250 - 2026-05-22
 
 - Made the Space startup loader dots faster and easier to see.
