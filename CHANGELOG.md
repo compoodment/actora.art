@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.259 - 2026-05-22
+
+- Clarified `/account` profile saving so bio/links and badge saves are visibly separate.
+
 ## 0.2.258 - 2026-05-22
 
 - Cleaned up `/account` profile layout spacing, avatar controls, and link/badge/passkey separation.
