@@ -35,7 +35,7 @@ Always available:
 - `help` - command list.
 - `ls` - list page targets.
 - `cd <page>` - open a page.
-- `find` or `find <username>` - find a username.
+- `find` or `find <username>` - find a profile.
 - `clear` - reset the terminal output.
 
 Guest-only:

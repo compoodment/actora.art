@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.279 - 2026-05-23
+
+- Changed the terminal find command wording to "find a profile".
+
 ## 0.2.278 - 2026-05-23
 
 - Rewrote the terminal `what?` response into a clearer usage flow.
