@@ -6,6 +6,7 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 
 - Type a command at the prompt and press Enter.
 - Suggestions appear while typing. Press Tab to accept the active suggestion.
+- Account commands are state-aware: guests see `register` and `login`; signed-in users see `logout`.
 - Arrow keys move through suggestions while the suggestion list is open. Without suggestions, they move through command history.
 - Escape dismisses the current suggestion list.
 - Some commands ask a follow-up prompt, such as `find` and `register`.
@@ -26,21 +27,25 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 
 Use `cd <page>` to open a target. `account` requires sign-in; if signed out, use `login` or `register`.
 
-Use `cat <page>` to print a short description without leaving the terminal.
-
 ## Commands
+
+Always available:
 
 - `what?` - brief walkthrough.
 - `help` - command list.
 - `ls` - list page targets.
 - `cd <page>` - open a page.
-- `cat <page>` - show what a page is for.
 - `find` or `find <username>` - exact username lookup.
+- `clear` - reset the terminal output.
+
+Guest-only:
+
 - `register` - create a passkey account.
 - `login` - sign in with a passkey.
+
+Signed-in only:
+
 - `logout` - sign out.
-- `whoareu` - print the site owner handle.
-- `clear` - reset the terminal output.
 
 ## Find
 
@@ -50,9 +55,9 @@ Exact lookup can open public or private profile state pages. It does not expose 
 
 ## Account Flow
 
-`register` asks for a username and display name, then starts browser passkey creation. Successful registration signs in immediately.
+`register` asks for a username and display name, then starts browser passkey creation. Successful registration signs in immediately. `register` and `login` are guest commands; they disappear after sign-in.
 
-`login` starts browser passkey sign-in. `logout` signs out the current account.
+`login` starts browser passkey sign-in. `logout` signs out the current account. `logout` is only shown while signed in.
 
 Passkey prompts are handled by the browser or device. Cancelling a passkey prompt cancels the terminal flow.
 

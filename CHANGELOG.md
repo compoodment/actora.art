@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.277 - 2026-05-23
+
+- Updated the homepage terminal so account commands match sign-in state: guests see register/login, and signed-in users see logout.
+- Removed the unused `cat` and `whoareu` terminal commands.
+
 ## 0.2.276 - 2026-05-23
 
 - Fixed live social updates jumping conversations back to the top.
