@@ -37,7 +37,7 @@ These are for normal product QA. Anything probing non-public controls, account e
 4. On `/account`, upload or clear an avatar image.
    - Expected: the avatar preview updates and saves immediately.
 5. Open the footer `social` popup while signed in.
-   - Expected: it shows social threads by latest activity, uses Sys for request notifications, and allows DMs only with friends.
+   - Expected: it opens as a compact support-chat-style popup above the shared footer, shows social threads by latest activity, uses Sys for request notifications, and allows DMs only with friends.
 
 ## Wall
 

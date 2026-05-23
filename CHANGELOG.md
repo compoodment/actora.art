@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.265 - 2026-05-23
+
+- Reworked the footer `social` popup into a compact support-chat-style inbox anchored above the shared footer instead of a docked panel.
+
 ## 0.2.264 - 2026-05-23
 
 - Added social v0: exact username finding from the homepage terminal, profile friend requests, a footer `social` popup, Sys request notifications, and friends-only DMs.
