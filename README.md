@@ -2,9 +2,9 @@
 
 # actora.art
 
-**public notes for experiments, projects, and small web systems**
+**public notes for experiments, social surfaces, projects, and small web systems**
 
-[site](https://www.actora.art/) · [docs](docs/index.md) · [changelog](CHANGELOG.md) · [privacy](docs/privacy.md)
+[site](https://actora.art/) · [docs](docs/index.md) · [changelog](CHANGELOG.md) · [privacy](docs/privacy.md)
 
 ![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
@@ -20,10 +20,10 @@
 - **chat** — Aurora, the site chat bot
 - **wall** — shared text/ASCII wall
 - **lab** — experiments and prototypes
-- **space** — Newtonian gravity playground
+- **space** — orbital mechanics prototype
 - **liminal** — first-person concrete test chamber
 - **particles** — interactive visual toy
-- **projects** — external projects
+- **projects** — project pages and playable project shells
 - **info** — links, contact, credits
 
 ## Read First
