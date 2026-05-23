@@ -26,14 +26,18 @@ These are for normal product QA. Anything probing non-public controls, account e
 
 ## Profiles
 
+1. From the homepage terminal, type `find`.
+   - Expected: it prompts for an exact username and opens an existing profile in a new tab.
 1. Open a known public `/u/:username` profile.
    - Expected: the profile page loads with display name as the main heading, username as the handle, links, and badges if present.
 2. Open a known private `/u/:username` profile.
-   - Expected: the page says the profile is private rather than exposing profile details.
+   - Expected: the page says the profile is private rather than exposing profile details, and signed-in users can still send a friend request.
 3. On `/account`, edit username/display name while signed in.
    - Expected: display name updates on the account/profile surfaces, and the profile URL follows the current username.
 4. On `/account`, upload or clear an avatar image.
    - Expected: the avatar preview updates and saves immediately.
+5. Open the footer `social` popup while signed in.
+   - Expected: it shows social threads by latest activity, uses Sys for request notifications, and allows DMs only with friends.
 
 ## Wall
 
