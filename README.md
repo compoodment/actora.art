@@ -4,7 +4,7 @@
 
 **public notes for experiments, social surfaces, projects, and small web systems**
 
-[site](https://actora.art/) · [docs](docs/index.md) · [changelog](CHANGELOG.md) · [privacy](docs/privacy.md)
+[site](https://actora.art/) · [experiments](docs/experiments.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
 
 ![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
@@ -28,15 +28,12 @@
 
 ## Read First
 
-- [docs/index.md](docs/index.md) - public docs index
-- [docs/identity.md](docs/identity.md) - site shape and tone
 - [docs/social.md](docs/social.md) - profiles, badges, friends, and DMs
 - [docs/experiments.md](docs/experiments.md) - public experiment notes
 - [docs/privacy.md](docs/privacy.md) - privacy notes
-- [docs/api.md](docs/api.md) - public API boundary
-- [docs/codebase.md](docs/codebase.md) - source boundary
-- [docs/deploy.md](docs/deploy.md) - hosting boundary
 - [CHANGELOG.md](CHANGELOG.md) - public release notes
+
+This README is the public docs index. Implementation source, deployment details, admin behavior, moderation internals, storage layout, runtime state, and secrets live outside this public repo.
 
 ## Site Stack
 
