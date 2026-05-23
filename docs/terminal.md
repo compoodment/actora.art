@@ -35,7 +35,7 @@ Always available:
 - `help` - command list.
 - `ls` - list page targets.
 - `cd <page>` - open a page.
-- `find` or `find <username>` - exact username lookup.
+- `find` or `find <username>` - find a username.
 - `clear` - reset the terminal output.
 
 Guest-only:
@@ -49,9 +49,9 @@ Signed-in only:
 
 ## Find
 
-`find <username>` opens `/u/:username` for an exact username match. `@` is optional. If no username is given, the terminal asks for one.
+`find <username>` opens `/u/:username` for a matching username. `@` is optional. If no username is given, the terminal asks for one.
 
-Exact lookup can open public or private profile state pages. It does not expose private profile fields in the terminal itself.
+The lookup can open public or private profile state pages. It does not expose private profile fields in the terminal itself.
 
 ## Account Flow
 

@@ -28,9 +28,9 @@ They can show a label, color, and optional small image. They do not grant permis
 
 ## Finding People
 
-The homepage terminal `find` command looks up exact usernames and opens the matching `/u/:username` profile route in a new tab.
+The homepage terminal `find` command looks up usernames and opens the matching `/u/:username` profile route in a new tab.
 
-Exact lookup can find existing private profiles so signed-in visitors can send friend requests from the private-state page without seeing private profile details.
+The lookup can find existing private profiles so signed-in visitors can send friend requests from the private-state page without seeing private profile details.
 
 ## Friendships And DMs
 
