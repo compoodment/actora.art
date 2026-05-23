@@ -14,12 +14,15 @@
 ## Site
 
 - **terminal** — homepage command interface
+- **account** — passkey sign-in, account settings, and profile editing
+- **profiles** — opt-in public identity pages at `/u/:username`
+- **social** — exact-username finding, friend requests, and friends-only DMs
+- **chat** — Aurora, the site chat bot
+- **wall** — shared text/ASCII wall
 - **lab** — experiments and prototypes
-- **orbits** — Newtonian gravity playground
+- **space** — Newtonian gravity playground
 - **liminal** — first-person concrete test chamber
 - **particles** — interactive visual toy
-- **wall** — shared text/ASCII wall
-- **chat** — Aurora, the site chat bot
 - **projects** — external projects
 - **info** — links, contact, credits
 
@@ -27,6 +30,7 @@
 
 - [docs/index.md](docs/index.md) - public docs index
 - [docs/identity.md](docs/identity.md) - site shape and tone
+- [docs/social.md](docs/social.md) - profiles, badges, friends, and DMs
 - [docs/experiments.md](docs/experiments.md) - public experiment notes
 - [docs/privacy.md](docs/privacy.md) - privacy notes
 - [docs/api.md](docs/api.md) - public API boundary

@@ -40,6 +40,14 @@ Profiles render at `/u/:username`, where the route follows the current username.
 
 Profile content is public only after the account owner turns it on. Badges are profile flair only; they are not permission roles.
 
+### Social
+
+The social surface supports exact-username finding, mutual friend requests, a one-way System notification thread, and friends-only DMs.
+
+Signed-in visitors can send friend requests from profile pages, accept or decline incoming requests from the footer `social` popup, and DM accepted friends. Social updates can arrive without a manual page refresh.
+
+Social friendships are not stored account roles and do not grant permission changes, friend+ access, admin access, chat limits, Wall budgets, or other runtime capabilities.
+
 ## Boundary
 
 If a route, field, error, or behavior is not needed to understand normal visitor-facing behavior, it belongs outside this public repo.

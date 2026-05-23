@@ -24,7 +24,7 @@ These are for normal product QA. Anything probing non-public controls, account e
 4. Mention the visible rainbow/light-show effect if you see it.
    - Expected: Aurora acknowledges it as a real site behavior.
 
-## Profiles
+## Profiles And Social
 
 1. From the homepage terminal, type `find`.
    - Expected: it prompts for an exact username and opens an existing profile in a new tab.
