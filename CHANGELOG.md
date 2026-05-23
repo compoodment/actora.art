@@ -4,9 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.272 - 2026-05-23
+
+- Fixed shared social message bubbles so incoming and outgoing messages both size to their text.
+
 ## 0.2.271 - 2026-05-23
 
-- Made one-way System/Aurora message bubbles use a consistent readable width.
+- Made one-way System/Aurora message bubbles use a consistent readable width. Replaced by 0.2.272's shared text-sized bubble alignment.
 
 ## 0.2.270 - 2026-05-23
 

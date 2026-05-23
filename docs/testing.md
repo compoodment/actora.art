@@ -37,7 +37,7 @@ These are for normal product QA. Anything probing non-public controls, account e
 4. On `/account`, upload or clear an avatar image.
    - Expected: the avatar preview updates and saves immediately.
 5. Open the footer `social` popup while signed in.
-   - Expected: the footer social control can show a count for new System notices and incoming DMs without shifting the word social, opening an unread System or DM thread clears that thread's badge immediately while other unread threads keep their badges, the popup opens compactly above the shared footer, shows social threads by latest activity, shows one-way System messages from Aurora in consistently sized bubbles, and allows DMs only with friends.
+   - Expected: the footer social control can show a count for new System notices and incoming DMs without shifting the word social, opening an unread System or DM thread clears that thread's badge immediately while other unread threads keep their badges, the popup opens compactly above the shared footer, shows social threads by latest activity, sizes incoming/outgoing/System message bubbles to their text with a max-width wrap cap, shows one-way System messages from Aurora, and allows DMs only with friends.
 
 ## Wall
 
