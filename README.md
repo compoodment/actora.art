@@ -4,7 +4,7 @@
 
 **public notes for experiments, social surfaces, projects, and small web systems**
 
-[site](https://actora.art/) · [experiments](docs/experiments.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
+[site](https://actora.art/) · [terminal](docs/terminal.md) · [experiments](docs/experiments.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
 
 ![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
@@ -28,6 +28,7 @@
 
 ## Read First
 
+- [docs/terminal.md](docs/terminal.md) - homepage terminal commands and flow
 - [docs/social.md](docs/social.md) - profiles, badges, friends, and DMs
 - [docs/experiments.md](docs/experiments.md) - public experiment notes
 - [docs/privacy.md](docs/privacy.md) - privacy notes
