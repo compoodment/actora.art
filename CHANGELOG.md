@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.275 - 2026-05-23
+
+- Added live social updates so DMs and social notifications can arrive without refreshing the page.
+
 ## 0.2.274 - 2026-05-23
 
 - Fixed iPhone Safari zooming the page when focusing the social message input.
