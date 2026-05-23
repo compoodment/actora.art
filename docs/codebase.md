@@ -14,7 +14,6 @@ The tracked public surface is documentation and release notes only.
 - experiment descriptions
 - profile, social, and public API boundary notes
 - public release notes
-- short, safe testing prompts
 
 ## What stays private
 
