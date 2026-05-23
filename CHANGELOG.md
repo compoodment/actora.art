@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.270 - 2026-05-23
+
+- Updated social notifications so opening an unread System or DM thread clears that thread's badge immediately, and System messages now show Aurora as their sender.
+
 ## 0.2.269 - 2026-05-23
 
 - Added notification badges inside the social popup and kept the footer social label from shifting when the badge appears.
