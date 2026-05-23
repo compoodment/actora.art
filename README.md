@@ -34,7 +34,6 @@
 - [docs/experiments.md](docs/experiments.md) - public experiment notes
 - [docs/privacy.md](docs/privacy.md) - privacy notes
 - [docs/api.md](docs/api.md) - public API boundary
-- [docs/testing.md](docs/testing.md) - public-safe manual checks
 - [docs/codebase.md](docs/codebase.md) - source boundary
 - [docs/deploy.md](docs/deploy.md) - hosting boundary
 - [CHANGELOG.md](CHANGELOG.md) - public release notes
