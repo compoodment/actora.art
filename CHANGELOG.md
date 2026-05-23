@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.268 - 2026-05-23
+
+- Fixed a footer social notification badge regression that could make the site stop responding.
+
 ## 0.2.267 - 2026-05-23
 
 - Added a footer social notification count for new Sys notices and incoming DMs.
