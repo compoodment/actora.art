@@ -37,7 +37,7 @@ These are for normal product QA. Anything probing non-public controls, account e
 4. On `/account`, upload or clear an avatar image.
    - Expected: the avatar preview updates and saves immediately.
 5. Open the footer `social` popup while signed in.
-   - Expected: the footer social control can show a count for new Sys notices and incoming DMs, opening it clears that count, the popup opens compactly above the shared footer, shows social threads by latest activity, uses Sys for request notifications, and allows DMs only with friends.
+   - Expected: the footer social control can show a count for new Sys notices and incoming DMs without shifting the word social, opening it clears that footer count, unread popup threads show exact badges for the current view, the popup opens compactly above the shared footer, shows social threads by latest activity, uses Sys for request notifications, and allows DMs only with friends.
 
 ## Wall
 
