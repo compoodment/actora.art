@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.280 - 2026-05-24
+
+- Retired Dicky's public site surface and removed the hidden terminal shortcut.
+
 ## 0.2.279 - 2026-05-23
 
 - Changed the terminal find command wording to "find a profile".
