@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.282 - 2026-05-28
+
+- Fixed social request notifications so accepting or declining a friend request does not make the handled request unread again.
+
 ## 0.2.281 - 2026-05-28
 
 - Fixed social notifications so DMs from ended friendships no longer leave an unread badge with no visible thread.
