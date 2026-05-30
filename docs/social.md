@@ -13,9 +13,11 @@ Public profiles can show:
 - display name
 - username
 - avatar
+- short status over the avatar
 - bio
 - links
 - join date
+- profile theme and accent color
 - display-only badges
 
 Profiles are private by default. Existing accounts with private profiles show a private-state page to other visitors instead of exposing profile details. The route follows the current username, so changing username from `/account` changes the profile URL.
@@ -25,6 +27,8 @@ Profiles are private by default. Existing accounts with private profiles show a 
 Badges are public profile markers only.
 
 They can show a label, color, and optional small image. They do not grant permissions, admin access, social friendships, account roles, chat limits, Wall budgets, or any other product capability.
+
+Beta-era accounts also receive a locked `actoraOS v<joined-version> Beta` badge. It is public profile flair only.
 
 ## Finding People
 

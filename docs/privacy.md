@@ -5,7 +5,7 @@ actora.art collects only what it needs to run the site.
 ## What the site uses
 
 - cookies/session state for chat, wall, accounts, and passkeys
-- public profile details only if an account owner chooses to publish them
+- public profile details, including status/theme/badges, only if an account owner chooses to publish them
 - social friend requests, friendships, System notices, and friends-only DMs for signed-in social features
 - signed-in Space save/load state
 - enough local/browser state to restore recent activity on the same device

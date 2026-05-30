@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.287 - 2026-05-30
+
+- Added locked `actoraOS v<joined-version> Beta` badges for beta-era accounts.
+- Added profile status pills, profile theme presets, and custom accent colors.
+
 ## 0.2.284 - 2026-05-28
 
 - Fixed public profile page caching so signed-in visitors' account footer state is never served with public cache headers.
