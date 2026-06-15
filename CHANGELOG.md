@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.309 - 2026-06-15
+
+- Added a visible shuffle active state and fixed cramped album rows in the music rail.
+
 ## 0.2.308 - 2026-06-15
 
 - Kept fresh music page loads on All tracks instead of auto-selecting the first album.
