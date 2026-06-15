@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.302 - 2026-06-15
+
+- Fixed the music footer/player order, tightened the music page density, and made the left playlist/album rail more compact.
+
 ## 0.2.301 - 2026-06-15
 
 - Restored the shared actora.art footer on the music page above the fixed music player.
