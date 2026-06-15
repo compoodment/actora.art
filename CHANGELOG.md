@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.292 - 2026-06-15
+
+- Tightened `/music` behavior by removing dead controls, stacking playlists and albums in one left rail, making lyrics collapsible, and improving batch album uploads with embedded metadata.
+
 ## 0.2.291 - 2026-06-15
 
 - Tightened the `/music` layout density so the page shows more of the album and track list at once.
