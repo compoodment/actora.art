@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.334 - 2026-06-15
+
+- Reduced the overall music page UI sizing so the player and library feel less zoomed in.
+
 ## 0.2.333 - 2026-06-15
 
 - Matched music playlist row sizing to album rows so the library sidebar is more consistent.
