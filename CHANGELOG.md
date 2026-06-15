@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.319 - 2026-06-15
+
+- Fixed music playback being blocked when browser visualizer setup fails.
+
 ## 0.2.318 - 2026-06-15
 
 - Fixed music playback starts being blocked on some browsers after selecting a track.
