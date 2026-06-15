@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.305 - 2026-06-15
+
+- Added release-year import and year sorting for the music album library.
+
 ## 0.2.304 - 2026-06-15
 
 - Added automatic lyric import for uploaded music when the audio file already contains embedded lyrics.
