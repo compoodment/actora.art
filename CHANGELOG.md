@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.332 - 2026-06-15
+
+- Improved the phone music library with collapsible Playlists and Albums sections and roomier playlist rows.
+
 ## 0.2.331 - 2026-06-15
 
 - Improved music lock-screen/background playback behavior on iPhone and iPad.
