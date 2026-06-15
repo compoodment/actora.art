@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.312 - 2026-06-15
+
+- Added local folder mode for browser-only music playback without uploading audio files.
+
 ## 0.2.311 - 2026-06-15
 
 - Changed the default music library sort to Artist.
