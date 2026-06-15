@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.299 - 2026-06-15
+
+- Added real track durations to the music table and made playlist add controls available for every playlist the signed-in viewer can edit.
+
 ## 0.2.298 - 2026-06-15
 
 - Fixed music track table column alignment and added a seek bar with elapsed/total time to the persistent player.
