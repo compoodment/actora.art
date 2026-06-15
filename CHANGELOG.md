@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.323 - 2026-06-15
+
+- Added playlist renaming from editable playlist pages.
+
 ## 0.2.322 - 2026-06-15
 
 - Added editable playlist covers, moved SoundCloud Files volumes into playlists, and fixed playlist track time alignment.
