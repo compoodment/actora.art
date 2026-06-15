@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.296 - 2026-06-15
+
+- Added clearer music playlist add controls for selected track lists and individual tracks.
+- Fixed confusing music page state where All tracks could still show the current album cover, Manage kept stale edit forms open, and the fixed player sat too tightly over page content.
+
 ## 0.2.295 - 2026-06-15
 
 - Fixed the main music Shuffle action so it starts shuffled playback for the selected album, playlist, library, or search results.
