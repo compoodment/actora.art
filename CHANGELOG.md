@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.294 - 2026-06-15
+
+- Fixed music shuffle so playback uses a real shuffled order, avoids immediate random repeats, and makes previous follow listening history.
+- Stopped the player from silently looping albums/playlists when no repeat control exists, and replaced the fake volume bar with a working slider.
+
 ## 0.2.293 - 2026-06-15
 
 - Fixed the collapsed lyrics rail on `/music` so it actually gives space back to the track list.
