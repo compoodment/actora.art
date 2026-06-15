@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.330 - 2026-06-15
+
+- Added signed-in user music uploads with a 1GB quota and immediate shared-library publishing.
+
 ## 0.2.329 - 2026-06-15
 
 - Fixed empty music Actions columns showing when no row actions are available.
