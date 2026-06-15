@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.308 - 2026-06-15
+
+- Kept fresh music page loads on All tracks instead of auto-selecting the first album.
+
 ## 0.2.307 - 2026-06-15
 
 - Made the now-playing title jump back to its album or playlist and tightened music table header alignment.
