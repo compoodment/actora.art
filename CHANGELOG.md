@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.297 - 2026-06-15
+
+- Fixed music album grouping so mixed-artist albums stay together instead of splitting into separate albums per track artist.
+
 ## 0.2.296 - 2026-06-15
 
 - Added clearer music playlist add controls for selected track lists and individual tracks.
