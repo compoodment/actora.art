@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.288 - 2026-06-15
+
+- Added `/music`, a public music library and player with albums, playlists, lyrics access, visualizer, and a persistent bottom player.
+- Added owner-managed uploads and drafts for publishing music to the public library.
+
 ## 0.2.287 - 2026-05-30
 
 - Added locked `actoraOS v<joined-version> Beta` badges for beta-era accounts.
