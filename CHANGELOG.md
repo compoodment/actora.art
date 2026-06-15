@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.310 - 2026-06-15
+
+- Improved music album search for mixed-artist albums and cleaned Tyler/Bastard metadata.
+
 ## 0.2.309 - 2026-06-15
 
 - Added a visible shuffle active state and fixed cramped album rows in the music rail.
