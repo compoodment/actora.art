@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.291 - 2026-06-15
+
+- Tightened the `/music` layout density so the page shows more of the album and track list at once.
+
 ## 0.2.290 - 2026-06-15
 
 - Reworked `/music` around a clearer playlist, album, track, lyrics, and bottom-player layout with icon controls.
