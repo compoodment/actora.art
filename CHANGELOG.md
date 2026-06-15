@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.327 - 2026-06-15
+
+- Fixed music track actions being pushed out of view on iPad/tablet widths.
+
 ## 0.2.326 - 2026-06-15
 
 - Hid the shared footer on phone-width music pages while keeping it on tablet and desktop.
