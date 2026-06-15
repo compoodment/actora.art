@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.304 - 2026-06-15
+
+- Added automatic lyric import for uploaded music when the audio file already contains embedded lyrics.
+
 ## 0.2.303 - 2026-06-15
 
 - Moved music track search into the selected album/playlist header, added left-rail library search/sort, and added playlist drag reordering.
