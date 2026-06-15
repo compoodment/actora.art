@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.316 - 2026-06-15
+
+- Fixed a music state refresh issue that could make playlists disappear while navigating.
+
 ## 0.2.315 - 2026-06-15
 
 - Fixed music status messages so they no longer shift the fixed player controls.
