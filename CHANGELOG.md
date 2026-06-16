@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.339 - 2026-06-16
+
+- Added hover highlighting to music track rows.
+
 ## 0.2.338 - 2026-06-16
 
 - Moved music song actions into a right-click/action menu and added owner YouTube URL audio import to drafts.
