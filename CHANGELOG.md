@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.344 - 2026-06-16
+
+- Fixed music cover button boxes so row and now-playing covers are square.
+
 ## 0.2.343 - 2026-06-16
 
 - Corrected music cover play buttons so the full cover stays visible instead of being cropped.
