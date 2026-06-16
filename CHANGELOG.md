@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.336 - 2026-06-16
+
+- Added album, artist, year, and cover options for signed-in music uploads, with user-owned album grouping.
+
 ## 0.2.335 - 2026-06-16
 
 - Let signed-in users delete music tracks they uploaded themselves.
