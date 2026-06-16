@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.348 - 2026-06-16
+
+- Improved the mobile music library so playlists and albums work as clearer collapsed source pickers before showing tracks.
+
 ## 0.2.347 - 2026-06-16
 
 - Improved iPhone background playback by keeping mobile Safari on native audio playback instead of the visualizer audio path.
