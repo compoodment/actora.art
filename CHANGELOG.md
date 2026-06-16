@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.341 - 2026-06-16
+
+- Fixed music album assignment so adding a user-uploaded track to an album keeps it in the all-tracks library and targets the exact album.
+- Replaced the separate row play button with a cover-art play overlay.
+- Reduced false playback warning toasts when audio is already playing.
+
 ## 0.2.340 - 2026-06-16
 
 - Moved music status notifications to a top-right toast so they no longer affect the player layout.
