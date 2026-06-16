@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.351 - 2026-06-16
+
+- Improved the desktop music player visualizer with a fuller waveform-style motion across the whole footer.
+
 ## 0.2.350 - 2026-06-16
 
 - Improved the desktop music player waveform so the full-width visualizer moves more naturally across the whole player.
