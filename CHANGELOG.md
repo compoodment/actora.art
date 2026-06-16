@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.352 - 2026-06-16
+
+- Fixed playlist cover changes so newly uploaded playlist art appears immediately.
+
 ## 0.2.351 - 2026-06-16
 
 - Improved the desktop music player visualizer with a fuller waveform-style motion across the whole footer.
