@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.346 - 2026-06-16
+
+- Smoothed the signed-in music upload quota label near the 1 GB limit.
+
 ## 0.2.345 - 2026-06-16
 
 - Fixed music row cover play buttons so the generic button height no longer stretches them.
