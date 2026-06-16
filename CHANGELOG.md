@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.340 - 2026-06-16
+
+- Moved music status notifications to a top-right toast so they no longer affect the player layout.
+
 ## 0.2.339 - 2026-06-16
 
 - Added hover highlighting to music track rows.
