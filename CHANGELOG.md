@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.357 - 2026-06-17
+
+- Fixed public playlist cover uploads still failing with HTTP 413 after image selection.
+
 ## 0.2.356 - 2026-06-17
 
 - Fixed large music cover uploads that could fail with HTTP 413 even when the cover image itself was within the allowed size.
