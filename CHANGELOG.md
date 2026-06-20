@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.359 - 2026-06-20
+
+- Removed the abandoned YouTube URL import option from the music draft tools.
+
 ## 0.2.357 - 2026-06-17
 
 - Fixed public playlist cover uploads still failing with HTTP 413 after image selection.
