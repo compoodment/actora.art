@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.360 - 2026-07-05
+
+- Improved music adding and management with a clearer signed-in upload control, owner-side song search, and an edit panel that stays near the top instead of being buried below long track lists.
+
 ## 0.2.359 - 2026-06-20
 
 - Removed the abandoned YouTube URL import option from the music draft tools.
