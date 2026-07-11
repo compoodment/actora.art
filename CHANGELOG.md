@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.368 - 2026-07-11
+
+- Simplified the Space loading animation to three orbiting bodies with matching recent-path trails.
+
 ## 0.2.367 - 2026-07-11
 
 - Corrected the Space loading orbital animation so bodies and their paths move together.
