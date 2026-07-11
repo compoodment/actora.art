@@ -28,7 +28,7 @@ An early universe-sandbox orbital mechanics prototype at `/lab/space`.
 
 It simulates Newtonian gravity between sourced Solar System objects including the main planets, Earth's Moon, the ISS, Mars's Phobos and Deimos, Jupiter's Galilean moons, Saturn's headline moons, Uranus's headline moons, selected Neptune moons, and Pluto with Charon.
 
-Asteroid bodies and non-Pluto dwarf planets are intentionally excluded from the baseline for lower-end device performance, while a faint slowly drifting asteroid belt dust layer gives visual context without adding simulated asteroids.
+Asteroid bodies and non-Pluto dwarf planets are intentionally excluded from the baseline for lower-end device performance, while a lightweight procedural asteroid belt adds feathered edges, subtle gaps, shallow depth, and orbital motion without adding simulated asteroids.
 
 The prototype shows time as a simulated date, supports body labels and trails, exposes Track as the selected-body camera action, and includes account-only autosave/manual save slots for signed-in users. The Objects panel keeps body/object visibility separate from live gravity, and close-up bodies render with smooth spherical silhouettes, Earth night lights, and a gently drifting Earth cloud layer.
 
