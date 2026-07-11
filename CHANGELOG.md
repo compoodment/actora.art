@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.373 - 2026-07-11
+
+- Fixed the Space left control panel and game menu layout after the Create and Missions cleanup.
+
 ## 0.2.372 - 2026-07-11
 
 - Fixed Space failing to open after the Create and Missions cleanup by restoring its core render and simulation loop.
