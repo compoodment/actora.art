@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.365 - 2026-07-11
+
+- Space lab now finishes loading its scene textures before opening the simulation, avoiding texture-related lag after entry.
+
 ## 0.2.364 - 2026-07-11
 
 - Reduced Space lab texture downloads by serving WebP versions of its color imagery while keeping lighting-detail maps intact.
