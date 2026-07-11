@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.364 - 2026-07-11
+
+- Reduced Space lab texture downloads by serving WebP versions of its color imagery while keeping lighting-detail maps intact.
+
 ## 0.2.363 - 2026-07-11
 
 - Made the Space lab start faster and show clearer loading progress, while high-detail textures continue loading in the background.
