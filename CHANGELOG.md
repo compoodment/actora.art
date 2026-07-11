@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.371 - 2026-07-11
+
+- Smoothed the Space loading screen's final phase on slower connections.
+
 ## 0.2.370 - 2026-07-11
 
 - Removed unused Create and Missions features from the Space lab game menu.
