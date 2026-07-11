@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.362 - 2026-07-11
+
+- Fixed the Space lab Objects panel collapse button so it actually hides the object list.
+
 ## 0.2.361 - 2026-07-10
 
 - Fixed Space lab body creation controls, improved mobile control accessibility, and reduced the default Space texture load.
