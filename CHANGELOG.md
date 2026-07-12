@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.382 - 2026-07-12
+
+- Added a live FPS readout below Space's quality control.
+
 ## 0.2.381 - 2026-07-12
 
 - Reduced Space frame-time work in the simulation and display hierarchy without changing its visible physics behavior.
