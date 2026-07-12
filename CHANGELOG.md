@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.388 - 2026-07-12
+
+- Added Alpha Centauri as Space's second selectable system, with its three stars and four represented worlds rendered through a source-informed seven-body simulation. Solar System remains the default.
+- Added dedicated Alpha Centauri surface textures, multi-star lighting and trails, full loading coverage when changing systems, and saves that reopen the system they were created in.
+
 ## 0.2.387 - 2026-07-12
 
 - Added a system selector to Space's desktop and mobile controls, with Solar System remaining the default and the interface ready to host future implemented systems.
