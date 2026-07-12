@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.380 - 2026-07-12
+
+- Standardized Space's astronomical distance readouts on AU, including selected-body coordinates and close-pass notices.
+
 ## 0.2.379 - 2026-07-12
 
 - Tuned the Space Sun to a 35% brightness lift, keeping its surface detail and flare treatment intact.
