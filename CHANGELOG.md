@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.386 - 2026-07-12
+
+- Fixed Space trails flickering and snapping near the body they follow while retaining the reduced trail-rendering workload.
+
 ## 0.2.385 - 2026-07-12
 
 - Restored Space's full 8K high-quality body and sky textures so close views retain their original surface detail. Low mode and the other performance improvements remain available.
