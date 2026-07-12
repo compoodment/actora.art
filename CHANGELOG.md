@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.376 - 2026-07-12
+
+- Made the Space Sun more realistic with a warmer white-light surface, natural edge darkening, a finer red chromosphere, and fewer prominence loops clustered into active regions instead of surrounding the whole star.
+
 ## 0.2.375 - 2026-07-12
 
 - Made the Space asteroid belt more realistic using a sampled NASA/JPL main-belt orbital profile, Jupiter resonance gaps, composition and lighting variation, and sparse close-range views instead of a dense movie-style rock field.
