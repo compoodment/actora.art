@@ -30,7 +30,7 @@ It simulates Newtonian gravity between sourced Solar System objects including th
 
 Asteroid bodies and non-Pluto dwarf planets are intentionally excluded from the baseline for lower-end device performance. A lightweight representative belt instead uses a sampled [NASA/JPL Small-Body Database](https://ssd-api.jpl.nasa.gov/doc/sbdb_query.html) orbital profile, Jupiter resonance gaps, composition-informed reflectance, and realistic close-range sparsity without adding simulated asteroids.
 
-The prototype shows time as a simulated date, supports body labels and trails, exposes Track as the selected-body camera action, and includes account-only autosave/manual save slots for signed-in users. The Objects panel keeps body/object visibility separate from live gravity, and close-up bodies render with smooth spherical silhouettes, Earth night lights, a gently drifting Earth cloud layer, and a bright, textured Sun with edge darkening and tapered plasma prominences.
+The prototype shows time as a simulated date, supports body labels and trails, exposes Track as the selected-body camera action, and includes account-only autosave/manual save slots for signed-in users. The Objects panel keeps body/object visibility separate from live gravity, and close-up bodies render with smooth spherical silhouettes, Earth night lights, a gently drifting Earth cloud layer, and a brighter, textured Sun with edge darkening and tapered plasma prominences.
 
 ## Actora
 
