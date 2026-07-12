@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.377 - 2026-07-12
+
+- Restored the Space Sun's stronger surface detail and fuller flare coverage, while improving its prominences with tapered, varied plasma strands and hotter inner highlights.
+
 ## 0.2.376 - 2026-07-12
 
 - Made the Space Sun more realistic with a warmer white-light surface, natural edge darkening, a finer red chromosphere, and fewer prominence loops clustered into active regions instead of surrounding the whole star.
