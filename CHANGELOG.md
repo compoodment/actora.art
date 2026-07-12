@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.385 - 2026-07-12
+
+- Restored Space's full 8K high-quality body and sky textures so close views retain their original surface detail. Low mode and the other performance improvements remain available.
+
 ## 0.2.384 - 2026-07-12
 
 - Made Space lighter in memory and download size with a 4K high-detail texture tier and an active-only public asset set, while reducing paused-scene, trail, hierarchy, and distant-Sun rendering work.
