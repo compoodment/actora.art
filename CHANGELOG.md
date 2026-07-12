@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.384 - 2026-07-12
+
+- Made Space lighter in memory and download size with a 4K high-detail texture tier and an active-only public asset set, while reducing paused-scene, trail, hierarchy, and distant-Sun rendering work.
+- Improved Space camera collision behavior, loading and reduced-motion presentation, WebGL recovery choices, and phone control focus/state.
+- Made signed-in Space saves clearer and more reliable across login changes, autosave clearing, concurrent tabs, unchanged autosaves, and storage failures.
+
 ## 0.2.383 - 2026-07-12
 
 - Made Space startup resilient to failed or stalled visual assets and WebGL interruptions while keeping the loading screen in place until the scene is genuinely ready.
