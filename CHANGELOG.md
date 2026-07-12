@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.390 - 2026-07-12
+
+- Stabilized Space orbit trails, especially across Alpha Centauri's enormous scale, so paths no longer jitter, jump, detach, or briefly cross the body they follow as trail geometry refreshes.
+- Improved Alpha Centauri's wide stellar paths by tracing the motion of each real subsystem and keeping borderline orbit inference stable instead of switching visual modes from frame to frame.
+
 ## 0.2.389 - 2026-07-12
 
 - Corrected Alpha Centauri's planet lighting so each world's brightness and moving day/night boundary now follow its real host-star luminosity and distance. The faint companion-star contribution remains physically scaled, while Solar System lighting is unchanged.
