@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.383 - 2026-07-12
+
+- Made Space startup resilient to failed or stalled visual assets and WebGL interruptions while keeping the loading screen in place until the scene is genuinely ready.
+- Fixed Space quality changes, camera/trail behavior, body selection, asteroid-belt detail, keyboard/touch input, and phone menu/control access without resetting the current session.
+- Hardened signed-in Space saves against timeouts, expired sessions, invalid state, and storage failures.
+
 ## 0.2.382 - 2026-07-12
 
 - Added a live FPS readout below Space's quality control.
