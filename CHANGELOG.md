@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.389 - 2026-07-12
+
+- Corrected Alpha Centauri's planet lighting so each world's brightness and moving day/night boundary now follow its real host-star luminosity and distance. The faint companion-star contribution remains physically scaled, while Solar System lighting is unchanged.
+- Removed artificial self-lighting from Proxima b and d, reduced the system's background fill, and made all three stars illuminate their worlds with more natural colors.
+
 ## 0.2.388 - 2026-07-12
 
 - Added Alpha Centauri as Space's second selectable system, with its three stars and four represented worlds rendered through a source-informed seven-body simulation. Solar System remains the default.
