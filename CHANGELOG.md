@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.378 - 2026-07-12
+
+- Made the Space Sun 50% lighter while preserving its restored surface detail and fuller tapered flare treatment.
+
 ## 0.2.377 - 2026-07-12
 
 - Restored the Space Sun's stronger surface detail and fuller flare coverage, while improving its prominences with tapered, varied plasma strands and hotter inner highlights.
