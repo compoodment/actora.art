@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.397 - 2026-07-13
+
+- Improved Social with cancellable friend requests, block and unblock controls, relationship-aware profile actions, timestamps, earlier-message loading, and more accurate unread state. The dialog now keeps the current conversation, draft, scroll position, and focus steady while live updates arrive, and guards against duplicate sends or stale refreshes.
+- Made profile editing more dependable: avatar, visibility, identity, and badge updates no longer wipe unsaved profile fields, overlapping controls stay disabled while saving, assigned badges are clearly distinguished from editable ones, and invalid image/link/profile data is rejected more consistently.
+- Made Music uploads, covers, playlists, and playback more resilient with clear storage and collection limits, safer media validation, better failure messages, orphan cleanup, and a fix for playback progress resetting during unrelated updates.
+- Improved account and session consistency during slow requests, strengthened passkey handling, made account deletion clear all associated feature data together, and hardened Social, Aurora, Wall, Orbit, and Music changes against partial saves.
+- Fixed footer forward-navigation state, terminal profile lookup failures, frame-rate-dependent homepage particles, and several keyboard, focus, landmark, and control-label issues across the site. Updated the frontend dependency set and bumped actoraOS to `0.2.397`.
+
 ## 0.2.396 - 2026-07-13
 
 - Moved the Solar System Sun's warmth progression three times farther out, so its richer ivory-gold and yellow-orange character becomes visible from much broader views without changing its surface detail, prominences, brightness, or physical lighting.

@@ -40,10 +40,14 @@ The lookup can find existing private profiles so signed-in visitors can send fri
 
 Social relationships are mutual friendships, not follows.
 
-- Friend requests can be sent from profile pages.
-- Incoming requests are accepted or declined from the footer `social` popup.
+- Friend requests can be sent and cancelled from profile pages.
+- Incoming requests can be accepted or declined from a profile or the footer `social` popup.
+- Friends can be unfriended from their profile.
+- Accounts can be blocked and later unblocked. Blocking ends any friendship or pending request, prevents new requests and DMs between the two accounts, and hides their retained conversation while the block remains active.
 - `System` is the one-way social notification thread, with messages visibly sent by Aurora.
-- DMs are person-to-person and friends-only.
+- DMs are person-to-person and available only between current, unblocked friends.
+- The popup opens recent messages first and can load earlier messages on demand. Messages show their sender and time.
+- Opening a thread marks only the messages or notices already shown as read, so a new arrival is not accidentally cleared.
 - For signed-in visitors, new DMs, System notices, and friend-state changes can appear without refreshing the page.
 
 Social friendships are separate from internal account roles. A public friendship does not mean the account has any special site permission or elevated runtime access.
@@ -52,4 +56,4 @@ Social friendships are separate from internal account roles. A public friendship
 
 Public profiles and social are identity/social surfaces, not content feeds.
 
-Current public social does not include activity feeds, project feeds, public moderation history, fuzzy people search, follows, or public visibility into private account state.
+Current public social does not include activity feeds, project feeds, public moderation history, fuzzy people search, follows, reports, mutes, or public visibility into private account state. A person's block list is visible only to that person.

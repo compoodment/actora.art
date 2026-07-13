@@ -6,7 +6,7 @@ actora.art collects only what it needs to run the site.
 
 - cookies/session state for chat, wall, accounts, and passkeys
 - public profile details, including status/theme/badges, only if an account owner chooses to publish them
-- social friend requests, friendships, System notices, and friends-only DMs for signed-in social features
+- social friend requests, friendships, directional blocks, System notices, and friends-only DMs for signed-in social features
 - signed-in Space save/load state
 - enough local/browser state to restore recent activity on the same device
 - basic safety controls to keep interactive parts usable
@@ -23,7 +23,7 @@ actora.art collects only what it needs to run the site.
 
 Data is kept only as long as it is useful for the site to work safely. Interactive features may keep enough state to restore chat, wall, profile, social, or Space activity.
 
-Profile and social content stays until it is changed, removed, pruned by normal limits, or the account is deleted. Private profiles show only a private-state page to other visitors. This state is not used for analytics or advertising.
+Profile and social content stays until it is changed, removed, pruned by normal limits, or the account is deleted. Blocks stay until the person who created them unblocks the account or either account is deleted. A block can hide a retained DM conversation without exposing either person's private account state. Private profiles show only a private-state page to other visitors. This state is not used for analytics or advertising.
 
 ## Changes
 
