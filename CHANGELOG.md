@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.391 - 2026-07-13
+
+- Improved Alpha Centauri close-up lighting so faint Proxima c is readable while tracked and Alpha Centauri B is visible as a restrained second light on A b, without changing the stars' real brightness relationships.
+- Gave the represented Alpha Centauri worlds more natural visual rotation: Proxima b and d use likely synchronous host-facing motion, while Proxima c and Alpha Centauri A b use plausible ice-giant and gas-giant spins and tilts.
+
 ## 0.2.390 - 2026-07-12
 
 - Stabilized Space orbit trails, especially across Alpha Centauri's enormous scale, so paths no longer jitter, jump, detach, or briefly cross the body they follow as trail geometry refreshes.
