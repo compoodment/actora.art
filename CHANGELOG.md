@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.393 - 2026-07-13
+
+- Added a simple system choice before Space starts loading, so visitors can enter Solar System or Alpha Centauri directly without first loading the other system. Solar System remains the first and initially focused choice, and the in-game selector remains available.
+- Improved the Proxima worlds' lighting so b and d retain readable dark-side surface detail through an ambient-only presentation adjustment that leaves their direct star lighting unchanged, while c now shows a clearer host-facing day side and terminator instead of receiving a flat tracked-view brightness lift.
+
 ## 0.2.392 - 2026-07-13
 
 - Brightened Alpha Centauri's overall presentation to match the Solar System view and made B's secondary light easier to see on A b, while keeping B clearly subordinate to A and leaving the stars' physical brightness values unchanged.
