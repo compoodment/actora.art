@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.398 - 2026-07-13
+
+- Standardized the site on the apex domain, removed duplicate compatibility pages from search indexing, corrected internal links, and made public profile URLs canonical and exact. Missing profiles now use a responsive site page, while accepted legacy profile links redirect cleanly.
+- Made Account, passkey, profile, Social, Aurora, terminal, and footer state more dependable during slow requests, retries, tab resumes, and external login changes, preventing older responses from replacing newer user actions.
+- Improved Music deletion and queue recovery, upload and playback timeouts, rejected-play handling, and keyboard menus. Unchanged generated playlists no longer refresh their cover cache versions after a backend restart. Wall now recovers from interrupted loading and reordered live updates, reports failed actions, saves the newest tool preference during navigation, and has a keyboard-accessible information dialog.
+- Strengthened persisted-state recovery and multi-step updates across Wall, Aurora, Orbit saves, profiles, authentication, and administration, while improving validation and health reporting for damaged data.
+- Added a static frontend diagnostic gate, corrected the issues it surfaced, fixed cancelled touch input in Particles, and bumped actoraOS to `0.2.398`.
+
 ## 0.2.397 - 2026-07-13
 
 - Improved Social with cancellable friend requests, block and unblock controls, relationship-aware profile actions, timestamps, earlier-message loading, and more accurate unread state. The dialog now keeps the current conversation, draft, scroll position, and focus steady while live updates arrive, and guards against duplicate sends or stale refreshes.
