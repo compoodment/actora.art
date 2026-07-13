@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.392 - 2026-07-13
+
+- Brightened Alpha Centauri's overall presentation to match the Solar System view and made B's secondary light easier to see on A b, while keeping B clearly subordinate to A and leaving the stars' physical brightness values unchanged.
+
 ## 0.2.391 - 2026-07-13
 
 - Improved Alpha Centauri close-up lighting so faint Proxima c is readable while tracked and Alpha Centauri B is visible as a restrained second light on A b, without changing the stars' real brightness relationships.
