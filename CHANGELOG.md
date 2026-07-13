@@ -4,6 +4,10 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.396 - 2026-07-13
+
+- Moved the Solar System Sun's warmth progression three times farther out, so its richer ivory-gold and yellow-orange character becomes visible from much broader views without changing its surface detail, prominences, brightness, or physical lighting.
+
 ## 0.2.395 - 2026-07-13
 
 - Warmed the Solar System Sun after visual review found its system-scale view too white, and brought its richer ivory-gold and yellow-orange detail in sooner while preserving the existing surface contrast, prominences, and physical lighting.
