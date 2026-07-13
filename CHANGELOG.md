@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.402 - 2026-07-14
+
+- Added `Things` to public profiles: people can choose the section heading and arrange up to eight free-form entries with a title, optional description, and optional link. Things can be projects, art, notes, collections, contributions, or anything else the person wants to share; entries do not impose project categories or `active`/`finished` statuses.
+- Added keyboard-friendly add, remove, and move controls in Account, kept profile publication and unfinished drafts safe across immediate privacy/avatar changes, and removed empty Things, badge, and link sections from public profiles. Things do not add images, posts, likes, views, follower counts, rankings, or other public popularity metrics, and actoraOS is now `0.2.402`.
+
 ## 0.2.401 - 2026-07-14
 
 - Rebuilt Account into clear Identity, Public profile, Security, and Session areas. The page now opens as a readable overview, while detailed profile, badge, and passkey editors stay one click away in keyboard-friendly sections.

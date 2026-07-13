@@ -15,12 +15,15 @@ Public profiles can show:
 - avatar
 - short status over the avatar
 - bio
+- a custom-titled ordered Things section
 - links
 - join date
 - profile theme and accent color
 - display-only badges
 
 Profiles are private by default. Existing accounts with private profiles show a private-state page to other visitors instead of exposing profile details. The route follows the current username, so changing username from `/account` changes the profile URL.
+
+Things are intentionally free-form. A profile owner can arrange up to eight entries for projects, art, notes, collections, contributions, or anything else they had a hand in. They may customize the section heading; leaving it blank uses `things`. Each Thing has a title and may have a plain-text description and an external HTTP(S) link. Thing entries do not require a category, project status such as `active` or `finished`, date, image, or other fixed portfolio field. Empty Things, badge, and link sections do not appear on the public profile.
 
 When signed out, profile and Social actions offer a real link to sign in through the homepage terminal. Successful login or registration returns to that same canonical profile; cancellation remains in the terminal and does not start a redirect loop.
 
@@ -58,4 +61,4 @@ Social friendships are separate from internal account roles. A public friendship
 
 Public profiles and social are identity/social surfaces, not content feeds.
 
-Current public social does not include activity feeds, project feeds, public moderation history, fuzzy people search, follows, reports, mutes, or public visibility into private account state. A person's block list is visible only to that person.
+Current public social does not include posts or activity feeds, public moderation history, fuzzy people search, follows, reports, mutes, or public visibility into private account state. Profiles also do not show friend/follower totals, views, likes, reaction totals, rankings, streaks, or other popularity metrics. A person's block list is visible only to that person.
