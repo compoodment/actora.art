@@ -60,7 +60,7 @@ The lookup can open public or private profile state pages. It does not expose pr
 
 `login` starts browser passkey sign-in. A login opened from Account or a profile returns there after success; cancellation leaves the terminal open for retry. Only Account and canonical profile paths are accepted as return destinations.
 
-`logout` signs out the current account and is only shown while signed in. Account links back to the homepage with `logout` prefilled rather than owning a separate logout button; Enter is still required.
+`logout` signs out the current account and is only shown while signed in. Account separates identity, public-profile, security, and session settings, but its session action still links back to the homepage with `logout` prefilled rather than owning a separate logout button; Enter is still required.
 
 Passkey prompts are handled by the browser or device. Cancelling a passkey prompt cancels the terminal flow.
 

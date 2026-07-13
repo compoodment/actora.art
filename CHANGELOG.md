@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.401 - 2026-07-14
+
+- Rebuilt Account into clear Identity, Public profile, Security, and Session areas. The page now opens as a readable overview, while detailed profile, badge, and passkey editors stay one click away in keyboard-friendly sections.
+- Improved Account on phones and keyboards with clearer field guidance, visible saved and unfinished state, reliable focus after dynamic actions, safer cross-tab draft preservation, refreshed passkey state, and leave protection for unfinished badge edits. Logout still happens only in the homepage terminal, and actoraOS is now `0.2.401`.
+
 ## 0.2.400 - 2026-07-13
 
 - Made terminal-based sign-in easier to reach from Account, profile, Social, and `@guest` states. A requested Account or profile page is restored after successful login or registration, while cancelled sign-in stays in the terminal for an ordinary retry.
