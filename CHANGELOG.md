@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.403 - 2026-07-14
+
+- Added directional message mute for friends. Muting keeps the friendship, conversation, incoming messages, and unread state, but quiets that conversation in the footer notification total; the other person is not notified. Unmute is available from the same Social controls.
+- Made blocking clearer and more private: it still ends friendship, prevents contact, and hides the retained conversation, while the other account sees only a neutral unavailable state. Each person can block independently, every blocker keeps an explicit unblock action, and unblocking never restores friendship.
+- Fixed open conversations so a newest message is marked read only after it is actually in view, completed keyboard focus containment, Escape closing, and reliable return focus for the Social dialog at desktop and phone widths, and made ended sessions clear stale Social state immediately. actoraOS is now `0.2.403`.
+
 ## 0.2.402 - 2026-07-14
 
 - Added `Things` to public profiles: people can choose the section heading and arrange up to eight free-form entries with a title, optional description, and optional link. Things can be projects, art, notes, collections, contributions, or anything else the person wants to share; entries do not impose project categories or `active`/`finished` statuses.

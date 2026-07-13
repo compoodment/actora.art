@@ -48,12 +48,15 @@ Social relationships are mutual friendships, not follows.
 - Friend requests can be sent and cancelled from profile pages.
 - Incoming requests can be accepted or declined from a profile or the footer `social` popup.
 - Friends can be unfriended from their profile.
-- Accounts can be blocked and later unblocked. Blocking ends any friendship or pending request, prevents new requests and DMs between the two accounts, and hides their retained conversation while the block remains active.
+- A friend can be muted and later unmuted. Mute is a private, one-way notification preference: it keeps the friendship, incoming messages, conversation history, and that thread's unread state, but removes the conversation from the muter's footer notification total. The other person is not notified or shown the mute.
+- Accounts can be blocked and later unblocked. Blocking ends any friendship or pending request, prevents new requests and DMs between the two accounts, and hides their retained conversation while the block remains active. The blocker keeps an explicit unblock action; the other account sees only that Social is unavailable, not whether or by whom it was blocked.
+- Either person can hold an independent block. Each person can remove only their own block, and unblocking never restores the ended friendship.
 - `System` is the one-way social notification thread, with messages visibly sent by Aurora.
 - DMs are person-to-person and available only between current, unblocked friends.
 - The popup opens recent messages first and can load earlier messages on demand. Messages show their sender and time.
-- Opening a thread marks only the messages or notices already shown as read, so a new arrival is not accidentally cleared.
+- Opening a thread marks its newest shown message or notice as read only after that exact item is actually in view. Leaving an open conversation scrolled elsewhere does not clear a new arrival.
 - For signed-in visitors, new DMs, System notices, and friend-state changes can appear without refreshing the page.
+- The footer popup behaves as a keyboard-contained dialog, closes with Escape, and returns focus to the control that opened it even when a live update refreshed the page action.
 
 Social friendships are separate from internal account roles. A public friendship does not mean the account has any special site permission or elevated runtime access.
 
@@ -61,4 +64,4 @@ Social friendships are separate from internal account roles. A public friendship
 
 Public profiles and social are identity/social surfaces, not content feeds.
 
-Current public social does not include posts or activity feeds, public moderation history, fuzzy people search, follows, reports, mutes, or public visibility into private account state. Profiles also do not show friend/follower totals, views, likes, reaction totals, rankings, streaks, or other popularity metrics. A person's block list is visible only to that person.
+Current public social does not include posts or activity feeds, public moderation history, fuzzy people search, follows, reports, or public visibility into private account state. Profiles also do not show friend/follower totals, views, likes, reaction totals, rankings, streaks, or other popularity metrics. A person's mute and block choices are visible only to that person.
