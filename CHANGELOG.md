@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.399 - 2026-07-13
+
+- Made profile visibility safer and clearer: publishing now saves exactly what is visible in the editor, making a profile private keeps unfinished edits intact, and uncertain network results no longer pretend a profile is private. Account now distinguishes saved and unsaved profile state and protects unfinished identity/profile edits when leaving.
+- Improved Account on phones and keyboards with normal-height stacked fields, native form behavior, clearer focus and control names, visible passkey capacity and recovery constraints, keyboard passkey renaming, retryable session warnings, and an accessible public-profile status. Bumped actoraOS to `0.2.399`.
+
 ## 0.2.398 - 2026-07-13
 
 - Standardized the site on the apex domain, removed duplicate compatibility pages from search indexing, corrected internal links, and made public profile URLs canonical and exact. Missing profiles now use a responsive site page, while accepted legacy profile links redirect cleanly.
