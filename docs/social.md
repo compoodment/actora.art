@@ -22,6 +22,8 @@ Public profiles can show:
 
 Profiles are private by default. Existing accounts with private profiles show a private-state page to other visitors instead of exposing profile details. The route follows the current username, so changing username from `/account` changes the profile URL.
 
+When signed out, profile and Social actions offer a real link to sign in through the homepage terminal. Successful login or registration returns to that same canonical profile; cancellation remains in the terminal and does not start a redirect loop.
+
 ## Badges
 
 Badges are public profile markers only.

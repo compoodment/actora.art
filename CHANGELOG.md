@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.400 - 2026-07-13
+
+- Made terminal-based sign-in easier to reach from Account, profile, Social, and `@guest` states. A requested Account or profile page is restored after successful login or registration, while cancelled sign-in stays in the terminal for an ordinary retry.
+- Moved logout fully into the homepage terminal. Account now opens the terminal with `logout` ready for explicit confirmation instead of signing out directly, and actoraOS is now `0.2.400`.
+
 ## 0.2.399 - 2026-07-13
 
 - Made profile visibility safer and clearer: publishing now saves exactly what is visible in the editor, making a profile private keeps unfinished edits intact, and uncertain network results no longer pretend a profile is private. Account now distinguishes saved and unsaved profile state and protects unfinished identity/profile edits when leaving.

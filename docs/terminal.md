@@ -7,6 +7,7 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 - Type a command at the prompt and press Enter.
 - Suggestions appear while typing. Press Tab to accept the active suggestion.
 - Account commands are state-aware: guests see `register` and `login`; signed-in users see `logout`.
+- Account, profile, Social, and `@guest` links can open the terminal with the relevant auth command prefilled. Press Enter to run it; opening the terminal never starts a passkey prompt or logs out by itself.
 - Arrow keys move through suggestions while the suggestion list is open. Without suggestions, they move through command history.
 - Escape dismisses the current suggestion list.
 - Some commands ask a follow-up prompt, such as `find` and `register`.
@@ -57,7 +58,9 @@ The lookup can open public or private profile state pages. It does not expose pr
 
 `register` asks for a username and display name, then starts browser passkey creation. Successful registration signs in immediately. `register` and `login` are guest commands; they disappear after sign-in.
 
-`login` starts browser passkey sign-in. `logout` signs out the current account. `logout` is only shown while signed in.
+`login` starts browser passkey sign-in. A login opened from Account or a profile returns there after success; cancellation leaves the terminal open for retry. Only Account and canonical profile paths are accepted as return destinations.
+
+`logout` signs out the current account and is only shown while signed in. Account links back to the homepage with `logout` prefilled rather than owning a separate logout button; Enter is still required.
 
 Passkey prompts are handled by the browser or device. Cancelling a passkey prompt cancels the terminal flow.
 
