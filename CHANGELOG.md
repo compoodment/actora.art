@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.405 - 2026-07-14
+
+- Music track deletion now explains collection and media consequences before anything is removed, and cancelling the warning leaves the track untouched.
+- Refined the private admin dashboard's interaction safety and navigation without exposing moderation details or adding public popularity metrics.
+
 ## 0.2.404 - 2026-07-14
 
 - Added a dedicated private `/messages/` inbox for full conversation navigation, retained-message and conversation-participant search, earlier history, new conversations with friends, message copy, mute/unmute, explicit unblock, and friend-request actions. It uses a two-pane desktop layout and a one-conversation-at-a-time phone layout, and signed-out visitors return through the homepage terminal instead of getting a second sign-in interface.
