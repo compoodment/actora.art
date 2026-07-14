@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.417 - 2026-07-14
+
+- Profile avatars are larger while remaining sharp-cornered 1:1 squares. On wider screens the avatar now matches the identity stack from display name through `edit profile`; on narrow phones it sits above the details to preserve readable status text and page width.
+- actoraOS is now `0.2.417`.
+
 ## 0.2.416 - 2026-07-14
 
 - Profile headers no longer repeat the word `profile`, and avatars are square again in both normal and editing views.
