@@ -14,8 +14,8 @@
 ## Site
 
 - **terminal** — homepage command interface
-- **account** — passkey recovery, readable settings, profile editing, archive, and permanent lifecycle controls
-- **profiles** — opt-in public identity pages at `/u/:username`
+- **account** — identity, passkey recovery, archive, and permanent lifecycle controls
+- **profiles** — opt-in identity pages at `/u/:username` with direct spatial editing, media, and undo/redo for the owner
 - **social** — exact-username finding, friend requests, and friends-only DMs
 - **chat** — Aurora, the site chat bot
 - **wall** — shared text/ASCII wall

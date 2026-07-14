@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.410 - 2026-07-14
+
+- Profile editing now happens directly on the owner's `/u/:username` page. Account is shorter and keeps identity, security, lifecycle, and the terminal-owned session exit, with one Profile link instead of a second editing form.
+- Profiles now have a playful bounded canvas. Text, links, the badge shelf, pictures, GIFs, videos, and deliberate space can be added, moved horizontally or vertically, and resized from a corner. Owners get Save, Cancel, a switch to the visitor rendering, keyboard movement/resizing, and draft-scoped Undo/Redo; phones turn the same arrangement into a readable flow.
+- Uploaded media is type/size/quota checked and follows public/private profile visibility. Assigned badges cannot be hidden, videos never autoplay, and profiles still have no posts, likes, views, follower/friend totals, rankings, or other popularity scores. actoraOS is now `0.2.410`.
+
 ## 0.2.409 - 2026-07-14
 
 - Added a separate permanent account-deletion action at the bottom of Account lifecycle. It is deliberately distinct from reversible archive, requires the exact phrase `delete @username forever` plus approval from a linked passkey, and remains unavailable to owner and admin-capable accounts.

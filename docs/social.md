@@ -13,10 +13,10 @@ Public profiles can show:
 - display name
 - username
 - avatar
-- short status over the avatar
-- bio
-- a custom-titled ordered Things section
-- links
+- status over the avatar
+- owner-arranged text and links
+- uploaded pictures, GIFs, and videos
+- varied block sizes and intentional empty space
 - join date
 - profile theme and accent color
 - display-only badges
@@ -25,7 +25,9 @@ Profiles are private by default. Existing accounts with private profiles show a 
 
 An archived account is hidden from its public profile route and terminal username lookup until its owner explicitly restores it. Archive is reversible and is not a public profile status.
 
-Things are intentionally free-form. A profile owner can arrange up to eight entries for projects, art, notes, collections, contributions, or anything else they had a hand in. They may customize the section heading; leaving it blank uses `things`. Each Thing has a title and may have a plain-text description and an external HTTP(S) link. Thing entries do not require a category, project status such as `active` or `finished`, date, image, or other fixed portfolio field. Empty Things, badge, and link sections do not appear on the public profile.
+The exact owner edits directly on their `/u/:username` page instead of maintaining a separate copy in Account. A bounded twelve-column canvas lets them add plain-text, HTTP(S) link, badge, media, and space blocks; drag them horizontally or vertically; resize them from a corner; and deliberately leave gaps. Undo and redo cover draft changes, and visitor preview hides the canvas/content editing controls while retaining one way back to editing. Phones derive a readable flow from the same saved arrangement.
+
+This freedom is intentionally not arbitrary webpage code. Profiles do not accept custom HTML, CSS, scripts, SVG uploads, remote embeds, overlap, video autoplay, or z-index tricks. Text stays escaped, links remain explicit, and uploaded PNG/JPEG/WebP/GIF/MP4/WebM media has file, count, and account-size limits. Blocks do not require a category, project state such as `active` or `finished`, date, or other fixed portfolio field.
 
 When signed out, profile, Social, and Messages actions offer a real link to sign in through the homepage terminal. Successful login or registration returns to the requested Account, Messages, or canonical profile page; cancellation remains in the terminal and does not start a redirect loop.
 
@@ -34,6 +36,8 @@ When signed out, profile, Social, and Messages actions offer a real link to sign
 Badges are public profile markers only.
 
 They can show a label, color, and optional small image. They do not grant permissions, admin access, social friendships, account roles, chat limits, Wall budgets, or any other product capability.
+
+The badge shelf can be positioned and resized with the rest of the profile, but it cannot be removed to hide an active assigned badge.
 
 Beta-era accounts also receive a locked `actoraOS v<joined-version> Beta` badge. It is public profile flair only.
 
