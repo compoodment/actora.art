@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.411 - 2026-07-14
+
+- Made direct profile editing more compact and more like shaping the page itself: avatar and status controls live on the profile header, theme/accent choices sit under Style, one `+` menu adds text, link, picture/GIF/video, or space boxes, and badge actions take less room.
+- Profile boxes can now be resized from any edge or corner as well as moved in both directions. Pointer, touch, and keyboard interactions cancel more predictably, and Undo/Redo now stays consistent when starting a new edit or adding/removing uploaded media.
+- Improved Account and profile reliability during refreshes, retries, sign-in changes, media uploads, conflicts, and lifecycle confirmation. Typed archive/deletion confirmation stays available after a temporary status error but cannot be submitted until current account status is verified, and known passkey/recovery information is kept when a refresh response cannot be trusted. actoraOS is now `0.2.411`.
+
 ## 0.2.410 - 2026-07-14
 
 - Profile editing now happens directly on the owner's `/u/:username` page. Account is shorter and keeps identity, security, lifecycle, and the terminal-owned session exit, with one Profile link instead of a second editing form.
