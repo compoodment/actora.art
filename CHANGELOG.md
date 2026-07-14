@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.412 - 2026-07-14
+
+- Profile text is now one directly editable rich-text box instead of separate Title, Text, and Link forms. Selecting words opens a small toolbar for bold, italic, size, and color, while typed HTTP(S) addresses become subtly blue links automatically.
+- Badges are now loose individual objects that can be added from the same `+` menu as text, pictures/GIFs/videos, and space, then moved and resized around the profile. Assigned and locked badges stay visible, and old profile boxes migrate without losing their words or links.
+- Made editing chrome quieter with a smaller drag point and `×`, one compact `make profile public` / `make profile private` action, and a status editor that follows its text. Undo/Redo, visitor preview, phone-friendly controls, safe media limits, and the no-likes/views/follower-counts boundary remain intact. actoraOS is now `0.2.412`.
+
 ## 0.2.411 - 2026-07-14
 
 - Made direct profile editing more compact and more like shaping the page itself: avatar and status controls live on the profile header, theme/accent choices sit under Style, one `+` menu adds text, link, picture/GIF/video, or space boxes, and badge actions take less room.

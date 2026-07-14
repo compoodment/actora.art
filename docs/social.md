@@ -14,7 +14,7 @@ Public profiles can show:
 - username
 - avatar
 - status over the avatar
-- owner-arranged text and links
+- owner-arranged rich text with automatic links
 - uploaded pictures, GIFs, and videos
 - varied block sizes and intentional empty space
 - join date
@@ -25,9 +25,9 @@ Profiles are private by default. Existing accounts with private profiles show a 
 
 An archived account is hidden from its public profile route and terminal username lookup until its owner explicitly restores it. Archive is reversible and is not a public profile status.
 
-The exact owner edits directly on their `/u/:username` page instead of maintaining a separate copy in Account. Avatar and status changes live on the profile header, theme and accent choices sit under Style, and one `+` menu adds plain-text, HTTP(S) link, media, or space boxes. A bounded twelve-column canvas lets them drag boxes horizontally or vertically, resize them from any edge or corner, and deliberately leave gaps. Undo and redo cover draft changes, and visitor preview hides the canvas/content editing controls while retaining one way back to editing. Phones derive a readable flow from the same saved arrangement.
+The exact owner edits directly on their `/u/:username` page instead of maintaining a separate copy in Account. Avatar and status changes live on the profile header, theme and accent choices sit under Style, and one `+` menu adds text, picture/GIF/video, badge, or space boxes. Selecting text opens a small toolbar for bold, italic, size, and color; typed absolute HTTP(S) URLs become subtly blue links automatically. A bounded twelve-column canvas lets the owner drag boxes and individual badges horizontally or vertically, resize them from any edge or corner, and deliberately leave gaps. Undo and redo cover draft changes, and visitor preview hides editing controls while retaining one way back to editing. Phones derive a readable flow from the same saved arrangement.
 
-This freedom is intentionally not arbitrary webpage code. Profiles do not accept custom HTML, CSS, scripts, SVG uploads, remote embeds, overlap, video autoplay, or z-index tricks. Text stays escaped, links remain explicit, and uploaded PNG/JPEG/WebP/GIF/MP4/WebM media has file, count, and account-size limits. Blocks do not require a category, project state such as `active` or `finished`, date, or other fixed portfolio field.
+This freedom is intentionally not arbitrary webpage code. Profiles do not accept custom HTML, CSS, scripts, SVG uploads, remote embeds, overlap, video autoplay, or z-index tricks. Text formatting is stored as bounded safe data rather than webpage markup, automatic links allow only absolute HTTP(S), and uploaded PNG/JPEG/WebP/GIF/MP4/WebM media has file, count, and account-size limits. Blocks do not require a category, project state such as `active` or `finished`, date, or other fixed portfolio field.
 
 When signed out, profile, Social, and Messages actions offer a real link to sign in through the homepage terminal. Successful login or registration returns to the requested Account, Messages, or canonical profile page; cancellation remains in the terminal and does not start a redirect loop.
 
@@ -37,7 +37,7 @@ Badges are public profile markers only.
 
 They can show a label, color, and optional small image. They do not grant permissions, admin access, social friendships, account roles, chat limits, Wall budgets, or any other product capability.
 
-The badge shelf can be positioned and resized with the rest of the profile, but it cannot be removed to hide an active assigned badge.
+Each badge is a loose object that can be positioned and resized with the rest of the profile. Active assigned and locked badges remain visible rather than disappearing when their placement is removed.
 
 Beta-era accounts also receive a locked `actoraOS v<joined-version> Beta` badge. It is public profile flair only.
 
