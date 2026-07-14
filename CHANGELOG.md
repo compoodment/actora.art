@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.416 - 2026-07-14
+
+- Profile headers no longer repeat the word `profile`, and avatars are square again in both normal and editing views.
+- The box-drag point and its grab area are easier to use while remaining clear of badge content and resize corners. Style is now one tidy button with an aligned theme/accent popover.
+- actoraOS is now `0.2.416`.
+
 ## 0.2.415 - 2026-07-14
 
 - Account now says `view profile` and opens the ordinary `/u/:username` page. Editing starts only from the one stable `edit profile` button in the owner's saved profile header; old edit query strings no longer bypass that view.
