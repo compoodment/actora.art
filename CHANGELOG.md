@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.408 - 2026-07-14
+
+- Added a separate readable Account lifecycle section and reversible archive flow. Archiving requires exact username confirmation plus approval from a linked passkey, signs out every session, cancels pending friend requests, and hides the profile and terminal username lookup without deleting the person's authored or retained state. Owner and admin-capable accounts remain protected.
+- Archive preserves accepted friendships, retained messages and safety controls, profile material, and other authored feature state. Existing friends retain private history/report/block/mute/unblock/unfriend controls, while new messages, requests, and acceptances remain unavailable until restore.
+- A later verified passkey login or recovery does not reactivate an archived account by itself. The homepage terminal asks for an explicit `restore` or `cancel`; recovery shows and clears the new one-time recovery key before offering restore. actoraOS is now `0.2.408`.
+
 ## 0.2.407 - 2026-07-14
 
 - Added optional account recovery keys in Account Security. Creating or replacing one requires approval from a currently linked passkey, and the new key is shown only once with copy/download controls and a required saved acknowledgement. Replacing it invalidates the old key.

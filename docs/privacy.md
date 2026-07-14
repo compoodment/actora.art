@@ -27,6 +27,8 @@ Profile and social content stays until it is changed, removed, pruned by normal 
 
 An account recovery key is shown only when it is created, replaced, or replaced after a successful recovery. The site does not keep the raw key, and the terminal keeps entered recovery keys out of visible and recalled command history and browser storage. Replacing or using a key invalidates the previous one.
 
+Account archive is reversible. It ends every session and hides public discovery while retaining the account's recovery state, accepted relationships, messages, private safety choices, profile, Music, Chat, Wall, and Space state. A verified login or recovery does not restore the account on its own: the terminal requires a separate explicit restore choice. Its short-lived restore capability is kept only in memory for that browser flow and is not placed in page content, browser storage, URLs, command history, or persistent logs. Archive state lasts until explicit restore or account deletion.
+
 ## Changes
 
 If this changes, this note will change too.
