@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.406 - 2026-07-14
+
+- Added private reporting from signed-in non-self profiles and individual incoming messages in `/messages/`, with clear reasons, an optional note, and an optional single-step block. Cancelling sends nothing, failed submissions keep what was entered, and own messages, System notices, and the footer quick-reply layer do not show Report controls.
+- Added a private owner review flow with reversible, time-bounded Social or profile-visibility actions. Message history remains private outside the exact reported message, and reports, moderation state, friend counts, likes, views, follower totals, rankings, and other popularity signals remain absent from public pages.
+- People affected by a temporary Social restriction can still use safety and history controls, including decline, cancel, unfriend, mute, block, explicit unblock, message history/search/copy, and reporting. Profile visibility actions do not overwrite the person's chosen publication setting. actoraOS is now `0.2.406`.
+
 ## 0.2.405 - 2026-07-14
 
 - Music track deletion now explains collection and media consequences before anything is removed, and cancelling the warning leaves the track untouched.
