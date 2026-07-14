@@ -2,7 +2,7 @@
 
 # actora.art
 
-**public notes for experiments, social surfaces, projects, and small web systems**
+**public notes for experiments, social surfaces, and small web systems**
 
 [site](https://actora.art/) · [terminal](docs/terminal.md) · [experiments](docs/experiments.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
 
@@ -23,7 +23,6 @@
 - **space** — orbital mechanics prototype
 - **liminal** — first-person concrete test chamber
 - **particles** — interactive visual toy
-- **projects** — project pages and playable project shells
 - **info** — links, contact, credits
 
 ## Read First

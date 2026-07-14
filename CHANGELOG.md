@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.419 - 2026-07-15
+
+- Actora now lives in the Lab at `/lab/actora`, and the Lab list links to it.
+- Removed the separate Projects page and terminal destination. The former `/projects` routes are gone rather than redirected.
+- actoraOS is now `0.2.419`.
+
 ## 0.2.418 - 2026-07-14
 
 - Avatar uploads are now center-cropped into real square images before saving, so rectangular source photos cannot make a profile avatar rectangular.

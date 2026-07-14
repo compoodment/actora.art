@@ -20,7 +20,6 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 
 `ls` lists the current page targets:
 
-- `projects`
 - `info`
 - `chat`
 - `music`

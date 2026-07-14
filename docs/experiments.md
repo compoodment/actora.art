@@ -40,7 +40,7 @@ The prototype shows time as a simulated date, supports body labels and trails, e
 
 ## Actora
 
-A local-only web shell for the Actora game at `/projects/actora`.
+A local-only web shell for the Actora game at `/lab/actora`.
 
 It is a separate game-mode surface rather than a generic site experiment panel. The current public version is a dark, desktop-friendly local-only prototype loop with required Character Creation before play, the full prototype questionnaire, the current prototype geography set of 12 countries and 43 cities, and a Year 1 / Month 1 newborn local-life start.
 
