@@ -7,7 +7,7 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 - Type a command at the prompt and press Enter.
 - Suggestions appear while typing. Press Tab to accept the active suggestion.
 - Account commands are state-aware: guests see `register` and `login`; signed-in users see `logout`.
-- Account, profile, Social, and `@guest` links can open the terminal with the relevant auth command prefilled. Press Enter to run it; opening the terminal never starts a passkey prompt or logs out by itself.
+- Account, Messages, profile, Social, and `@guest` links can open the terminal with the relevant auth command prefilled. Press Enter to run it; opening the terminal never starts a passkey prompt or logs out by itself.
 - Arrow keys move through suggestions while the suggestion list is open. Without suggestions, they move through command history.
 - Escape dismisses the current suggestion list.
 - Some commands ask a follow-up prompt, such as `find` and `register`.
@@ -23,10 +23,12 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 - `projects`
 - `info`
 - `chat`
+- `music`
 - `lab`
 - `account`
+- `messages`
 
-Use `cd <page>` to open a target. `account` requires sign-in; if signed out, use `login` or `register`.
+Use `cd <page>` to open a target. `account` and `messages` require sign-in; if signed out, use `login` or `register`.
 
 ## Commands
 
@@ -36,7 +38,6 @@ Always available:
 - `help` - command list.
 - `ls` - list page targets.
 - `cd <page>` - open a page.
-- `find` or `find <username>` - find a profile.
 - `clear` - reset the terminal output.
 
 Guest-only:
@@ -46,11 +47,12 @@ Guest-only:
 
 Signed-in only:
 
+- `find` or `find <username>` - find a profile.
 - `logout` - sign out.
 
 ## Find
 
-`find <username>` opens `/u/:username` for a matching username. `@` is optional. If no username is given, the terminal asks for one.
+While signed in, `find <username>` opens `/u/:username` for a matching username. `@` is optional. If no username is given, the terminal asks for one.
 
 The lookup can open public or private profile state pages. It does not expose private profile fields in the terminal itself.
 
@@ -58,7 +60,7 @@ The lookup can open public or private profile state pages. It does not expose pr
 
 `register` asks for a username and display name, then starts browser passkey creation. Successful registration signs in immediately. `register` and `login` are guest commands; they disappear after sign-in.
 
-`login` starts browser passkey sign-in. A login opened from Account or a profile returns there after success; cancellation leaves the terminal open for retry. Only Account and canonical profile paths are accepted as return destinations.
+`login` starts browser passkey sign-in. A login opened from Account, Messages, or a profile returns there after success; cancellation leaves the terminal open for retry. Only Account, Messages, and canonical profile paths are accepted as return destinations.
 
 `logout` signs out the current account and is only shown while signed in. Account separates identity, public-profile, security, and session settings, but its session action still links back to the homepage with `logout` prefilled rather than owning a separate logout button; Enter is still required.
 

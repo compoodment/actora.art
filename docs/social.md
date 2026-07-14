@@ -1,6 +1,6 @@
 # Profiles And Social
 
-Public visitor-facing notes for actora.art profiles, badges, friendships, and DMs.
+Public visitor-facing notes for actora.art profiles, badges, friendships, and Messages.
 
 This document explains what normal visitors can see and do. Implementation details, private moderation, storage layout, and operational controls belong outside this public repo.
 
@@ -25,7 +25,7 @@ Profiles are private by default. Existing accounts with private profiles show a 
 
 Things are intentionally free-form. A profile owner can arrange up to eight entries for projects, art, notes, collections, contributions, or anything else they had a hand in. They may customize the section heading; leaving it blank uses `things`. Each Thing has a title and may have a plain-text description and an external HTTP(S) link. Thing entries do not require a category, project status such as `active` or `finished`, date, image, or other fixed portfolio field. Empty Things, badge, and link sections do not appear on the public profile.
 
-When signed out, profile and Social actions offer a real link to sign in through the homepage terminal. Successful login or registration returns to that same canonical profile; cancellation remains in the terminal and does not start a redirect loop.
+When signed out, profile, Social, and Messages actions offer a real link to sign in through the homepage terminal. Successful login or registration returns to the requested Account, Messages, or canonical profile page; cancellation remains in the terminal and does not start a redirect loop.
 
 ## Badges
 
@@ -41,7 +41,7 @@ The homepage terminal `find` command looks up usernames and opens the matching `
 
 The lookup can find existing private profiles so signed-in visitors can send friend requests from the private-state page without seeing private profile details.
 
-## Friendships And DMs
+## Friendships And Messages
 
 Social relationships are mutual friendships, not follows.
 
@@ -53,9 +53,11 @@ Social relationships are mutual friendships, not follows.
 - Either person can hold an independent block. Each person can remove only their own block, and unblocking never restores the ended friendship.
 - `System` is the one-way social notification thread, with messages visibly sent by Aurora.
 - DMs are person-to-person and available only between current, unblocked friends.
-- The popup opens recent messages first and can load earlier messages on demand. Messages show their sender and time.
+- `/messages/` is the private full inbox. It provides conversation navigation, search across visible retained message text and conversation participants, earlier history, new conversations with friends, message copy, mute/unmute, a blocked-people list with explicit unblock, and accept/decline/cancel actions for friend requests.
+- Messages uses two panes on larger screens and one pane at a time on phones, with a clear return to the conversation list. It is kept out of search indexes and the public sitemap.
+- The footer `social` dialog stays available as the compact notification, recent-preview, `System` action, and quick-reply layer. `open all messages` moves into the full inbox.
 - Opening a thread marks its newest shown message or notice as read only after that exact item is actually in view. Leaving an open conversation scrolled elsewhere does not clear a new arrival.
-- For signed-in visitors, new DMs, System notices, and friend-state changes can appear without refreshing the page.
+- For signed-in visitors, new DMs, System notices, and friend-state changes can appear without refreshing the page. Tabs share current account-scoped Social updates where browser support allows and clear them when the signed-in session ends.
 - The footer popup behaves as a keyboard-contained dialog, closes with Escape, and returns focus to the control that opened it even when a live update refreshed the page action.
 
 Social friendships are separate from internal account roles. A public friendship does not mean the account has any special site permission or elevated runtime access.
@@ -64,4 +66,4 @@ Social friendships are separate from internal account roles. A public friendship
 
 Public profiles and social are identity/social surfaces, not content feeds.
 
-Current public social does not include posts or activity feeds, public moderation history, fuzzy people search, follows, reports, or public visibility into private account state. Profiles also do not show friend/follower totals, views, likes, reaction totals, rankings, streaks, or other popularity metrics. A person's mute and block choices are visible only to that person.
+Current public social does not include posts or activity feeds, public moderation history, fuzzy people search, follows, reports, or public visibility into private account state. There is no Report placeholder before a real private intake and review path exists. Profiles and Messages also do not show friend/follower totals, views, likes, reaction totals, rankings, streaks, or other popularity metrics. A person's mute and block choices are visible only to that person.
