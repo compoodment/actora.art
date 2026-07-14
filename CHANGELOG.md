@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.418 - 2026-07-14
+
+- Avatar uploads are now center-cropped into real square images before saving, so rectangular source photos cannot make a profile avatar rectangular.
+- actoraOS is now `0.2.418`.
+
 ## 0.2.417 - 2026-07-14
 
 - Profile avatars are larger while remaining sharp-cornered 1:1 squares. On wider screens the avatar now matches the identity stack from display name through `edit profile`; on narrow phones it sits above the details to preserve readable status text and page width.
