@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.407 - 2026-07-14
+
+- Added optional account recovery keys in Account Security. Creating or replacing one requires approval from a currently linked passkey, and the new key is shown only once with copy/download controls and a required saved acknowledgement. Replacing it invalidates the old key.
+- Added a guest-only `recover` command to the homepage terminal. It collects the username and hidden recovery key separately, keeps the secret out of visible and recalled terminal history, and creates a new passkey plus a replacement recovery key on success.
+- Recovery keeps existing passkeys. If an account is already at its passkey limit, the terminal explains which least-recently-used passkey would be replaced and requires an explicit confirmation before continuing. actoraOS is now `0.2.407`.
+
 ## 0.2.406 - 2026-07-14
 
 - Added private reporting from signed-in non-self profiles and individual incoming messages in `/messages/`, with clear reasons, an optional note, and an optional single-step block. Cancelling sends nothing, failed submissions keep what was entered, and own messages, System notices, and the footer quick-reply layer do not show Report controls.
