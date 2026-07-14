@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.415 - 2026-07-14
+
+- Account now says `view profile` and opens the ordinary `/u/:username` page. Editing starts only from the one stable `edit profile` button in the owner's saved profile header; old edit query strings no longer bypass that view.
+- The ordinary owner view no longer announces “this is your profile.” Saved status is small identity text that stays clear of the joined date, the avatar remains a landscape rectangle, and editing keeps the move point and `×` centered and away from badge labels and resize corners.
+- Profile media still appears without separate caption or alt-text forms, and profile scripts/styles now receive a new content-based asset address whenever either file changes so an older cached editor cannot remain stuck after a correction. actoraOS is now `0.2.415`.
+
 ## 0.2.413 - 2026-07-14
 
 - Profile editing now has one normal shape: `edit profile` stays in the profile header, the separate visitor-preview/back-to-editing mode is gone, Save keeps the editor open, and Cancel returns to the ordinary profile. Long statuses sit between the handle and join date without covering either one, and saved/unsaved feedback is shown once.
