@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.413 - 2026-07-14
+
+- Profile editing now has one normal shape: `edit profile` stays in the profile header, the separate visitor-preview/back-to-editing mode is gone, Save keeps the editor open, and Cancel returns to the ordinary profile. Long statuses sit between the handle and join date without covering either one, and saved/unsaved feedback is shown once.
+- Profile boxes now show their tiny move, resize, and remove controls only when selected, hovered, or focused, while retaining comfortable touch targets and keyboard access. Badge editing opens from the badge itself, media boxes no longer carry separate caption/alt forms, and text selection offers normal/big/huge sizing alongside bold, italic, and color.
+- Dragging or resizing into occupied space now nudges only the boxes in that collision chain out of the way. The dragged box keeps its destination, unrelated boxes and deliberate gaps stay put, cancelled gestures restore everything, and each rearrangement is one Undo/Redo step. The stacked phone editor keeps content actions usable but directs spatial arrangement to a wider screen instead of changing hidden desktop geometry. actoraOS is now `0.2.413`.
+
 ## 0.2.412 - 2026-07-14
 
 - Profile text is now one directly editable rich-text box instead of separate Title, Text, and Link forms. Selecting words opens a small toolbar for bold, italic, size, and color, while typed HTTP(S) addresses become subtly blue links automatically.
