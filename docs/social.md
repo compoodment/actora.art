@@ -62,6 +62,7 @@ Social relationships are mutual friendships, not follows.
 - For signed-in visitors, new DMs, System notices, and friend-state changes can appear without refreshing the page. Tabs share current account-scoped Social updates where browser support allows and clear them when the signed-in session ends.
 - The footer popup behaves as a keyboard-contained dialog, closes with Escape, and returns focus to the control that opened it even when a live update refreshed the page action.
 - Archive cancels pending friend requests but preserves accepted friendships, retained messages and read state, private mute/block choices, and safety controls. Existing friends can still read, search, copy, report, mute, block, unblock, or end the retained relationship, but neither side can send a new message, request, or acceptance across the archive boundary. Archived profile links are omitted from these private retained views.
+- Permanent account deletion is different from archive: it removes the person's friendships, requests, blocks, mutes, System items, read state, and every shared DM thread from both participants. A private report clears its current account link but may retain the historical username/display name and exact reported profile or message content captured at intake under a stable pseudonymous subject for as long as the report is retained. The deleted account is no longer a Social identity.
 
 Social friendships are separate from internal account roles. A public friendship does not mean the account has any special site permission or elevated runtime access.
 

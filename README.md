@@ -14,7 +14,7 @@
 ## Site
 
 - **terminal** — homepage command interface
-- **account** — passkey recovery, readable settings, profile editing, and reversible account archive
+- **account** — passkey recovery, readable settings, profile editing, archive, and permanent lifecycle controls
 - **profiles** — opt-in public identity pages at `/u/:username`
 - **social** — exact-username finding, friend requests, and friends-only DMs
 - **chat** — Aurora, the site chat bot

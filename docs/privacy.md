@@ -29,6 +29,8 @@ An account recovery key is shown only when it is created, replaced, or replaced 
 
 Account archive is reversible. It ends every session and hides public discovery while retaining the account's recovery state, accepted relationships, messages, private safety choices, profile, Music, Chat, Wall, and Space state. A verified login or recovery does not restore the account on its own: the terminal requires a separate explicit restore choice. Its short-lived restore capability is kept only in memory for that browser flow and is not placed in page content, browser storage, URLs, command history, or persistent logs. Archive state lasts until explicit restore or account deletion.
 
+Permanent account deletion immediately removes the ordinary account record, sessions, passkeys, recovery/archive access, profile and badge material, relationships, private mute/block choices, shared DM threads for both participants, and the person's ordinary authored feature state. Existing private reports clear current account links but may retain the historical username/display name, reporter note, exact reported profile or message content, and a stable pseudonymous subject for as long as the report is retained. Operational audit records, capped admin change history, and backups may also remain under their separate retention. The deleted username is reserved without its former account identity for 90 days, then becomes available again. Owner and admin-capable accounts cannot use self-deletion.
+
 ## Changes
 
 If this changes, this note will change too.

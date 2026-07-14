@@ -73,6 +73,8 @@ Passkey prompts are handled by the browser or device. Cancelling a passkey promp
 
 Account archive is started from the Account lifecycle section, not as a terminal command. It requires exact username confirmation and approval from a linked passkey, signs out every session, and returns to the terminal with a one-time notice. The account stays archived until a later verified login or recovery is followed by explicit terminal restore.
 
+Permanent account deletion is also started from Account lifecycle, never as a terminal command. It has a separate irreversible warning, exact `delete @username forever` confirmation, and linked-passkey approval. Success removes the account, returns to the homepage as a guest, and shows a one-time non-secret notice that the deleted username remains reserved for 90 days. If the browser loses the final response, the terminal makes no claim about whether deletion finished: it asks the person to try signing in once and not repeat deletion while the result is uncertain.
+
 ## Boundaries
 
 The terminal is a public navigation and account surface. It does not expose implementation source, admin controls, moderation internals, storage layout, runtime state, or secrets.

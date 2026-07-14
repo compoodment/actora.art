@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.409 - 2026-07-14
+
+- Added a separate permanent account-deletion action at the bottom of Account lifecycle. It is deliberately distinct from reversible archive, requires the exact phrase `delete @username forever` plus approval from a linked passkey, and remains unavailable to owner and admin-capable accounts.
+- Successful deletion immediately removes the account, every session and passkey, recovery/archive access, profile material, relationships and private safety choices, shared message threads for both participants, and ordinary authored feature data. Retained private reports clear current account links but may keep the historical username/display name and exact reported content captured at intake; operational audit records, capped admin change history, and backups may also remain under their separate retention. The deleted username is reserved for 90 days before it can be registered or adopted again.
+- Owner deletion from the private admin surface now applies the same username reservation. Account deletion returns to the homepage terminal with a one-time non-secret signed-out notice. If the final response is lost, the notice says the result is uncertain and asks the person to try signing in once instead of repeating deletion. actoraOS is now `0.2.409`.
+
 ## 0.2.408 - 2026-07-14
 
 - Added a separate readable Account lifecycle section and reversible archive flow. Archiving requires exact username confirmation plus approval from a linked passkey, signs out every session, cancels pending friend requests, and hides the profile and terminal username lookup without deleting the person's authored or retained state. Owner and admin-capable accounts remain protected.
