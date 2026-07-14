@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.420 - 2026-07-15
+
+- Actora now appears at the bottom of the Lab list.
+- actoraOS is now `0.2.420`.
+
 ## 0.2.419 - 2026-07-15
 
 - Actora now lives in the Lab at `/lab/actora`, and the Lab list links to it.
