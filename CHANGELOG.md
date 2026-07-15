@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.426 - 2026-07-15
+
+- Song menus in Music now stay compact. `Add to playlist` and `Add to album` open separate scrolling lists instead of making one enormous menu.
+- Long song menus stay inside the window and above the bottom player, and the accidental giant hover bubble is gone.
+- actoraOS is now `0.2.426`.
+
 ## 0.2.425 - 2026-07-15
 
 - Music now separates public Discover from Your Library. Your Library contains albums and playlists you own or save, and All tracks reflects those choices instead of every song on the site.
