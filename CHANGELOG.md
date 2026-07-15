@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.430 - 2026-07-15
+
+- The desktop Music Library can now be resized or collapsed into a remembered icon-only sidebar, giving the song list as much room as you prefer.
+- Fixed Queue's Now playing song showing a chopped pill-shaped highlight and squeezing around its cover in short windows.
+- actoraOS is now `0.2.430`.
+
 ## 0.2.429 - 2026-07-15
 
 - Fixed the All tracks shortcut in the Music Library collapsing to half height and cutting off its cover icon on accounts with a dense Library.
