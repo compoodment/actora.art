@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.425 - 2026-07-15
+
+- Music now separates public Discover from Your Library. Your Library contains albums and playlists you own or save, and All tracks reflects those choices instead of every song on the site.
+- Everyone uses the same Add songs flow. Playlists start private and can be made public and discoverable; albums and songs remain public.
+- Long collections have more room because their artwork/header scrolls away. Playlist creation no longer covers the Library, song covers are square, track numbers are gone, and owner moderation separates personal and community uploads.
+- actoraOS is now `0.2.425`.
+
 ## 0.2.424 - 2026-07-15
 
 - Music now has one familiar Library for playlists and albums, one search, clearer collection headers, and easier-to-scan track rows.
