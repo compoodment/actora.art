@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.431 - 2026-07-15
+
+- Albums, playlists, and both All tracks filters now form a Back/Forward path inside Music before the browser leaves the page. Reloads and direct links reopen the same available collection, while Discover searches keep a reloadable URL.
+- Added compact desktop Back/Forward controls to Music. Missing or unavailable collection links return quietly to Discover.
+- actoraOS is now `0.2.431`.
+
 ## 0.2.430 - 2026-07-15
 
 - The desktop Music Library can now be resized or collapsed into a remembered icon-only sidebar, giving the song list as much room as you prefer.
