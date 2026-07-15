@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.429 - 2026-07-15
+
+- Fixed the All tracks shortcut in the Music Library collapsing to half height and cutting off its cover icon on accounts with a dense Library.
+- actoraOS is now `0.2.429`.
+
 ## 0.2.428 - 2026-07-15
 
 - Music gives Browse and All tracks more room for actual songs with compact headers, a cleaner Library, stable one-row filters, and track columns that simplify before titles become cramped.
