@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.424 - 2026-07-15
+
+- Music now has one familiar Library for playlists and albums, one search, clearer collection headers, and easier-to-scan track rows.
+- Playback controls are centered above the seek bar. Now playing, Queue, and Lyrics open in one optional side panel, leaving more room for the library when they are closed.
+- actoraOS is now `0.2.424`.
+
 ## 0.2.423 - 2026-07-15
 
 - Chat, Social, Messages, the shared footer, and Info now preserve drafts and status more reliably, expose keyboard-complete menus and scroll regions, and improve labels, contrast, and copy feedback.
