@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.428 - 2026-07-15
+
+- Music gives Browse and All tracks more room for actual songs with compact headers, a cleaner Library, stable one-row filters, and track columns that simplify before titles become cramped.
+- Now playing, Queue, and Lyrics no longer squeeze All tracks on narrower desktop windows. Their panel opens over the content when needed and keeps one set of view controls in the bottom player.
+- Long add-to-playlist lists stay bounded, and editing a song now opens in a focused sheet above the player with clearer fields, reliable close/Escape behavior, and visible save feedback.
+- actoraOS is now `0.2.428`.
+
 ## 0.2.427 - 2026-07-15
 
 - The All tracks view in Music now has a `Library` / `All Music` filter. Library keeps the personal collection-based view, while All Music shows every published song on the site.
