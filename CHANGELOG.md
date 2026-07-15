@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.421 - 2026-07-15
+
+- Social now opens to a square Friends launcher, uses `open messages/`, closes when you click outside it, and uses compact X and mute icons. A conversation shows the other person's avatar, which opens their profile; private-profile avatars remain private and use initials instead.
+- `/messages/` now has the same clickable conversation avatar and icon-only mute control, a `+` beside search for new conversations, and icon controls for copying or reporting a message. Redundant heading copy has been removed.
+- actoraOS is now `0.2.421`.
+
 ## 0.2.420 - 2026-07-15
 
 - Actora now appears at the bottom of the Lab list.
