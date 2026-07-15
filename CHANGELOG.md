@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.422 - 2026-07-15
+
+- The display name beside a DM avatar now opens that person's profile in both Social and `/messages/`.
+- actoraOS is now `0.2.422`.
+
 ## 0.2.421 - 2026-07-15
 
 - Social now opens to a square Friends launcher, uses `open messages/`, closes when you click outside it, and uses compact X and mute icons. A conversation shows the other person's avatar, which opens their profile; private-profile avatars remain private and use initials instead.
