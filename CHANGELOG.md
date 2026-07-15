@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.423 - 2026-07-15
+
+- Chat, Social, Messages, the shared footer, and Info now preserve drafts and status more reliably, expose keyboard-complete menus and scroll regions, and improve labels, contrast, and copy feedback.
+- Music now labels its management fields, gives menus and inserted panels a complete focus lifecycle, announces status, lazy-loads noncritical artwork, and removes private state promptly when the signed-in account changes.
+- Actora's local character and game saves now survive storage failures, expose recovery for corrupt data, and prevent older tabs from silently replacing newer progress.
+- Wall preference loading/saving is resilient to delayed or failed requests, dense controls are easier to target, and Wall/Liminal fallback text has stronger contrast. Liminal also recovers its renderer after WebGL context loss.
+- actoraOS is now `0.2.423`.
+
 ## 0.2.422 - 2026-07-15
 
 - The display name beside a DM avatar now opens that person's profile in both Social and `/messages/`.
