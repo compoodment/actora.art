@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.432 - 2026-07-16
+
+- Removed the duplicate Back/Forward arrows from the Music header. Music collections still follow a restorable history path through the persistent footer and the browser's own controls.
+- actoraOS is now `0.2.432`.
+
 ## 0.2.431 - 2026-07-15
 
 - Albums, playlists, and both All tracks filters now form a Back/Forward path inside Music before the browser leaves the page. Reloads and direct links reopen the same available collection, while Discover searches keep a reloadable URL.
