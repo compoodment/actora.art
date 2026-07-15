@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.427 - 2026-07-15
+
+- The All tracks view in Music now has a `Library` / `All Music` filter. Library keeps the personal collection-based view, while All Music shows every published song on the site.
+- The selected filter controls the displayed songs, count, playback queue, shuffle, and add-to-playlist action, and Now Playing returns to the scope playback came from.
+- actoraOS is now `0.2.427`.
+
 ## 0.2.426 - 2026-07-15
 
 - Song menus in Music now stay compact. `Add to playlist` and `Add to album` open separate scrolling lists instead of making one enormous menu.
