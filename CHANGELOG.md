@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.434 - 2026-07-16
+
+- Signed-in people can now add up to eight mixed songs, albums, and public playlists to a read-only Music section on their profile. Add or remove them directly from Music; new choices appear in the order they are added.
+- Profile editing stays separate, so Save and Undo do not change Music choices. Deleted or unavailable items and playlists made private disappear from the live showcase.
+- actoraOS is now `0.2.434`.
+
 ## 0.2.433 - 2026-07-16
 
 - Fixed the Music playlist creator covering Add songs and other Library controls. The creator and Library now remain in one clean, scrollable flow even in shorter windows.

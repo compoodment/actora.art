@@ -20,12 +20,15 @@ Public profiles can show:
 - join date
 - profile theme and accent color
 - display-only badges
+- a read-only Music section with up to eight selected public tracks, available albums, and public playlists
 
 Profiles are private by default. Existing accounts with private profiles show a private-state page to other visitors instead of exposing profile details. The route follows the current username, so changing username from `/account` changes the profile URL.
 
 An archived account is hidden from its public profile route and terminal username lookup until its owner explicitly restores it. Archive is reversible and is not a public profile status.
 
 Account's Profile section says `view profile` and opens the ordinary `/u/:username` page. The exact owner edits directly there instead of maintaining a separate copy in Account. One canonical `edit profile` entry lives in their saved header; outside editing, the ordinary saved profile is the sole view, its Social area adds no redundant self-announcement, and all editing controls are absent. Owners can still see their own private content with its private state indicated, while other visitors receive the private shell. The header does not repeat the obvious word `profile`; its enlarged 1:1 avatar spans the identity details on wider screens and stacks above them on narrow phones, while status stays clear of the join date. A coherent Style button opens its aligned theme/accent popover beside the public/private action and one `+` menu for text, picture/GIF/video, badge, or space.
+
+Profile Music is managed from Music, not from the profile editor. A signed-in person can immediately add or remove a published track, available album, or public playlist there, up to eight mixed items; new choices append. The profile only shows the current resolved cards, so profile Save, Cancel, Undo, and Redo do not change the Music selection. Deleted or unavailable Music and playlists made private disappear from the showcase.
 
 Only the selected object shows its move, resize, and remove controls on wider screens. The centered drag point has an easy grab area that remains clear of badge content and resize corners. Selecting text opens a small toolbar for bold, italic, normal/big/huge size, and color; an empty text box also hints that selected text can be styled. Typed absolute HTTP(S) URLs become subtly blue links automatically. Picture, GIF, and video boxes show the media itself without separate caption or alt-text forms, so any visible context can be placed freely in an ordinary text box nearby. Activating a self-created badge opens its editor; deleting the badge permanently is a separate confirmed action.
 
@@ -79,4 +82,4 @@ Social friendships are separate from internal account roles. A public friendship
 
 Public profiles and social are identity/social surfaces, not content feeds.
 
-Current public social does not include posts or activity feeds, public moderation history, fuzzy people search, follows, or public visibility into private account state. Signed-in people can privately report a non-self profile or one exact incoming message from Messages; the site exposes no public report count, queue, outcome, or moderation history. Profiles and Messages also do not show friend/follower totals, views, likes, reaction totals, rankings, streaks, or other popularity metrics. A person's mute and block choices are visible only to that person.
+Current public social does not include posts or activity feeds, public moderation history, fuzzy people search, follows, or public visibility into private account state. Signed-in people can privately report a non-self profile or one exact incoming message from Messages; a profile report can retain the currently visible Music item kind, opaque item ID, title, and subtitle, but not Music cover media or uploader identity. The site exposes no public report count, queue, outcome, or moderation history. Profiles and Messages also do not show friend/follower totals, views, likes, reaction totals, rankings, streaks, or other popularity metrics. A person's mute and block choices are visible only to that person.
