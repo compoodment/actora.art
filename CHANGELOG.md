@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.435 - 2026-07-16
+
+- Music now has a practical listening queue with `Play next` and `Add to queue`, plus private Continue listening and Recently played views that can be cleared at any time.
+- Discover now includes a random album and bounded public Music suggestions from friends. Music also has keyboard controls for playback, seeking, volume, mute, search, and Queue, with `?` opening the shortcut guide.
+- Adding songs now opens a private, unpublished review where titles, artists, albums, years, and artwork can be checked before publishing. Nothing becomes public until Publish; closing or cancelling confirms before discarding the review.
+- Songs, albums, and public playlists can now be shared directly with a friend, with an optional note and safe Music cards across the footer Social dialog and `/messages/`. Removed or newly private Music remains recognizable as unavailable without an active link or artwork.
+- actoraOS is now `0.2.435`.
+
 ## 0.2.434 - 2026-07-16
 
 - Signed-in people can now add up to eight mixed songs, albums, and public playlists to a read-only Music section on their profile. Add or remove them directly from Music; new choices appear in the order they are added.
