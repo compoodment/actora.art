@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.436 - 2026-07-16
+
+- Profile Music cards now sit directly in the profile without a redundant `Music` heading or a doubled horizontal separator.
+- actoraOS is now `0.2.436`.
+
 ## 0.2.435 - 2026-07-16
 
 - Music now has a practical listening queue with `Play next` and `Add to queue`, plus private Continue listening and Recently played views that can be cleared at any time.
