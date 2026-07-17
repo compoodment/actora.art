@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.439 - 2026-07-17
+
+- Actora's Life screen now separates the playable overview from the live feed, keeps Advance month close at hand, and moves Skip time presets into a compact dialog that yields cleanly to required choices.
+- The Actions screen now follows a clearer Social/Personal hierarchy while keeping choices, queued plans, time costs, and the monthly budget together. Relationships is one searchable people browser instead of several repeated sections, while people who are both family and friends retain both contexts.
+- Death continuation now lets you review the finished life, browse available linked lives, inspect one, and explicitly confirm the handoff. Keyboard focus stays inside the flow, and a life with no available successor offers a clear new-game action. Existing local saves remain compatible. actoraOS is now `0.2.439`.
+- The Lab list no longer mistakes ordinary uses of “space” or “orbits” for updates to the Space experiment.
+
 ## 0.2.438 - 2026-07-17
 
 - Music cards can now be dragged or moved with the keyboard while editing your profile, and their X removes them from the profile without deleting the underlying song, album, or playlist.
