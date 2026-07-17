@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.438 - 2026-07-17
+
+- Music cards can now be dragged or moved with the keyboard while editing your profile, and their X removes them from the profile without deleting the underlying song, album, or playlist.
+- Every editable profile box now keeps the same move/X controls directly above the box being hovered or focused, instead of shifting those actions between the middle, edges, and badge-specific positions.
+- Music changes still save immediately and remain separate from profile Save/Undo. actoraOS is now `0.2.438`.
+
 ## 0.2.437 - 2026-07-17
 
 - While editing your profile, the `+` menu can now open your Music Library. Search Songs, Albums, or Playlists and use the plus/minus controls to update the profile without leaving it.
