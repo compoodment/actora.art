@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.437 - 2026-07-17
+
+- While editing your profile, the `+` menu can now open your Music Library. Search Songs, Albums, or Playlists and use the plus/minus controls to update the profile without leaving it.
+- Music choices still save immediately and stay separate from profile Save/Undo. Private playlists explain that they must be public first, and the existing eight-item limit remains.
+- actoraOS is now `0.2.437`.
+
 ## 0.2.436 - 2026-07-16
 
 - Profile Music cards now sit directly in the profile without a redundant `Music` heading or a doubled horizontal separator.
