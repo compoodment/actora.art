@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.440 - 2026-07-18
+
+- Actora now opens on a proper title screen. Start with `Begin a Life`, or review the current local character and choose `Continue` when a saved life exists.
+- `New Life` now asks for confirmation and identifies the life it will delete, whether opened from the title, active game, or the end of a life. Cancelling—or a browser storage error—leaves that life untouched.
+- Profile now follows Actora's seven-card design, combining related identity, appearance, stats, attributes, mood, needs, and skill areas. Recent Records has been removed there because History already owns the chronology.
+- actoraOS is now `0.2.440`.
+
 ## 0.2.439 - 2026-07-17
 
 - Actora's Life screen now separates the playable overview from the live feed, keeps Advance month close at hand, and moves Skip time presets into a compact dialog that yields cleanly to required choices.
