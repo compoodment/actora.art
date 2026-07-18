@@ -40,15 +40,15 @@ The prototype shows time as a simulated date, supports body labels and trails, e
 
 ## Actora
 
-A local-only web shell for the Actora game at `/lab/actora`.
+A browser-local presentation of the unfinished Actora game at `/lab/actora`.
 
-It is a separate game-mode surface rather than a generic site experiment panel. The current public version is a dark, desktop-friendly local-only prototype loop with required Character Creation before play, the full prototype questionnaire, the current prototype geography set of 12 countries and 43 cities, and a Year 1 / Month 1 newborn local-life start.
+It is a separate game-mode surface rather than a generic site experiment panel. New lives run Actora's tagged `v0.58.0` Python command/save runtime in a dedicated browser Worker, while existing local TypeScript lives and unfinished character drafts stay on their compatible legacy engine. The current public version keeps the dark, desktop-friendly button-and-card presentation, required Character Creation, full prototype questionnaire, current prototype geography set of 12 countries and 43 cities, and a Year 1 / Month 1 newborn local-life start.
 
 The prototype opens on a save-aware title screen: begin a life when no healthy local save exists, or review and continue the current character. Starting a New Life from the title, active game, or terminal continuation state uses one protected confirmation.
 
 It includes generated family setup, later sibling births, meeting NPCs, lifecycle identity choices, local event history, action records, month-by-month advancement, pending choices, in-game relationship links from meeting choices, Hang out actions, and Life/Actions/Profile/Relationships/History tabs. Life splits the overview from its live feed with compact Advance/Skip controls, Actions groups Social and Personal choices beside the queue and time budget, and Relationships uses one searchable people-and-detail browser. Profile uses seven combined cards and leaves chronology to History; Mood + Needs and Skills / Talents remain honest placeholders. First-pass death continuation moves through a finished-life summary, available linked lives, candidate detail, and explicit confirmation.
 
-It saves state locally in the browser. It is not connected to account saves or the full Actora simulation yet.
+It saves state locally in the browser with separate native and legacy save spaces; neither is connected to an actora.art account. The native path covers Actora's current six-command foundation—creation, action queues, advancement, choices, and life continuation—but does not claim that the wider terminal game or Actora itself is finished.
 
 ## Liminal
 

@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.441 - 2026-07-18
+
+- New lives in `/lab/actora` now run Actora's current `v0.58.0` Python simulation directly in the browser while keeping the existing button-and-card interface. Character creation, planned actions, time advancement, required choices, and continuing through a family line use the same game runtime as the source project.
+- Existing local Actora lives and unfinished character drafts stay on their compatible legacy engine; this release does not guess at a conversion or overwrite them. New native lives have their own local save, integrity check, recovery copy, and protection against two tabs silently replacing each other's turns.
+- Actora itself is still an unfinished game. This ports its current six-command foundation rather than presenting the wider terminal game as complete. Progress remains browser-local and is not attached to an actora.art account.
+- actoraOS is now `0.2.441`.
+
 ## 0.2.440 - 2026-07-18
 
 - Actora now opens on a proper title screen. Start with `Begin a Life`, or review the current local character and choose `Continue` when a saved life exists.
