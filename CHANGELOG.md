@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.444 - 2026-07-18
+
+- Actora's Actions screen now keeps Social/Personal beside its title, removes repeated category/count copy, and uses compact queue controls. Profile section navigation is label-only, with personal facts shown once in the inspector and unfinished sections clearly unavailable.
+- Character Creation now gives six- and seven-step paths the correct progress width, keeps Back and Start Game together on confirmation, and preserves the `Actora` name's casing. The title and loading screens also have a direct Lab exit.
+- Life shows location once in the global context, Relationships removes repeated link facts, and History uses clean singular/plural copy, month-only rows beneath year groups, and readable pre–Year 1 labels instead of negative years. Choice options also have equal visual weight, and continuation actions preserve character-name casing.
+- actoraOS is now `0.2.444`.
+
 ## 0.2.443 - 2026-07-18
 
 - Actora's Relationships screen is now the one place for family and social details instead of repeating smaller versions in Life and Profile. Profile keeps six personal-information sections, while Life gives the story feed and controls more room.
