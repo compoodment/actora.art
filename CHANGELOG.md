@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.442 - 2026-07-18
+
+- `/lab/actora` now looks and moves like part of actora.art: a quiet near-black life ledger with a persistent character rail, thin dividers, compact controls, and the live story placed ahead of dashboard-style summaries.
+- The title and Character Creation are cleaner, every game section keeps a stable place, Profile and Relationships use compact side-by-side inspectors, and History reads as one chronological record. The shell also has a direct way back to Lab.
+- Required choices now keep keyboard focus inside the interruption, Character Creation can return to the title, busy and time-budget states are clearer, relationship search accepts full names, and the page no longer gains a stray outer scrollbar on desktop. Local lives and simulation rules are unchanged.
+- actoraOS is now `0.2.442`.
+
 ## 0.2.441 - 2026-07-18
 
 - New lives in `/lab/actora` now run Actora's current `v0.58.0` Python simulation directly in the browser while keeping the existing button-and-card interface. Character creation, planned actions, time advancement, required choices, and continuing through a family line use the same game runtime as the source project.
