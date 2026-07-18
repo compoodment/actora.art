@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.443 - 2026-07-18
+
+- Actora's Relationships screen is now the one place for family and social details instead of repeating smaller versions in Life and Profile. Profile keeps six personal-information sections, while Life gives the story feed and controls more room.
+- The game shell now says simply `Actora`, keeps the active section in its existing rail, and retains one clear `Exit to lab` action instead of repeating route breadcrumbs.
+- The live feed remains the immediate view of a life as it unfolds, while History remains the full chronology. Local lives, relationship data, and simulation rules are unchanged.
+- actoraOS is now `0.2.443`.
+
 ## 0.2.442 - 2026-07-18
 
 - `/lab/actora` now looks and moves like part of actora.art: a quiet near-black life ledger with a persistent character rail, thin dividers, compact controls, and the live story placed ahead of dashboard-style summaries.
