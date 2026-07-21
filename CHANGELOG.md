@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.450 - 2026-07-21
+
+- Tightened the desktop `page` picker so its branch rows have the same compact, continuous rhythm as `help`, while touch layouts keep larger tap targets.
+- actoraOS is now `0.2.450`.
+
 ## 0.2.449 - 2026-07-21
 
 - Aligned the terminal activity rail so the stem above command results connects cleanly with every following branch, including `help` and `find` output.

@@ -33,7 +33,7 @@ Type `page` to open a selectable list of the current page targets:
 - `account`
 - `messages`
 
-Use Up/Down and Enter, or choose a row directly. Typing filters the picker, and `page <name>` opens a target directly, such as `page music`.
+Use Up/Down and Enter, or choose a row directly. The desktop picker follows the activity rail's compact row rhythm, while touch layouts retain larger targets. Typing filters the picker, and `page <name>` opens a target directly, such as `page music`.
 
 `account` and `messages` remain visible while signed out so their requirement is clear, but either picker selection or a direct command checks the current session again before opening them. If signed out, use `login`, `register`, or `recover` first.
 
