@@ -11,7 +11,7 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 - Press Tab to accept the visible ghost or active ambiguous match. When there is no completion to accept, Tab and Shift+Tab follow normal browser focus navigation.
 - Account commands are state-aware: guests see `register`, `login`, and `recover`; signed-in users see `logout`.
 - Account, Messages, profile, Social, and `@guest` links can open the terminal with the relevant auth command prefilled. Press Enter to run it; opening the terminal never starts a passkey prompt or logs out by itself.
-- Arrow keys move through ambiguous suggestions or the page picker while either is open. Without a selectable rail, they move through command history.
+- Arrow keys move through ambiguous suggestions or the page picker while either is open. Without a selectable rail, they move through command history. That recall history returns with the visible transcript after same-tab site navigation and resets with it on reload.
 - Escape dismisses the current completion or closes the page picker without navigating.
 - Some commands ask a follow-up prompt, such as `find` and `register`.
 - The prompt context identifies follow-up flows such as `register`, `recover`, and `find`; compact guidance changes only when an action needs explanation.
@@ -33,7 +33,7 @@ Type `page` to open a selectable list of the current page targets:
 - `account`
 - `messages`
 
-Use Up/Down and Enter, or choose a row directly. The desktop picker follows the activity rail's compact row rhythm, while touch layouts retain larger targets. Typing filters the picker, and `page <name>` opens a target directly, such as `page music`.
+Use Up/Down and Enter, or choose a row directly. The desktop picker follows the activity rail's compact row rhythm, while touch layouts retain larger targets. Typing filters the picker without changing its overall height. One remaining page stays selectable, an exact match remains visibly selected for Enter or pointer activation, and an empty filter shows `no matching page`. `page <name>` opens a target directly, such as `page music`.
 
 `account` and `messages` remain visible while signed out so their requirement is clear, but either picker selection or a direct command checks the current session again before opening them. If signed out, use `login`, `register`, or `recover` first.
 

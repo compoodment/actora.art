@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.451 - 2026-07-21
+
+- The open `page` picker now stays the same height through single-result and empty filters. One remaining page stays selectable, exact pages remain visibly selected, no-result searches say `no matching page`, and an already-complete page name no longer traps Tab.
+- Returning to the terminal in the same browser tab now restores Up/Down command recall together with the visible transcript. Reload still starts a clean terminal.
+- actoraOS is now `0.2.451`.
+
 ## 0.2.450 - 2026-07-21
 
 - Tightened the desktop `page` picker so its branch rows have the same compact, continuous rhythm as `help`, while touch layouts keep larger tap targets.
