@@ -5,15 +5,17 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 ## Flow
 
 - Type a command at the prompt and press Enter.
-- Suggestions appear while typing. Press Tab to accept the active suggestion.
+- Suggestions appear in an attached panel while typing, with a short description for each matching command or page. Press Tab to accept the active suggestion; when no suggestion is open, Tab follows normal browser focus navigation.
 - Account commands are state-aware: guests see `register`, `login`, and `recover`; signed-in users see `logout`.
 - Account, Messages, profile, Social, and `@guest` links can open the terminal with the relevant auth command prefilled. Press Enter to run it; opening the terminal never starts a passkey prompt or logs out by itself.
 - Arrow keys move through suggestions while the suggestion list is open. Without suggestions, they move through command history.
 - Escape dismisses the current suggestion list.
 - Some commands ask a follow-up prompt, such as `find` and `register`.
+- The prompt context identifies follow-up flows such as `register`, `recover`, and `find`; the hint row switches between ready, completion, cancellation, and working guidance.
 - Ctrl+C twice cancels an active `find`, `register`, `recover`, or archived-account restore prompt.
 - Navigation commands print a short message before opening the target page.
 - Terminal output is kept for the current browser session and resets on reload.
+- New output stays in view while the terminal is already at the latest line. Scrolling up to read or copy older output does not pull the view back down.
 - `clear` resets the visible terminal back to the startup lines.
 
 ## Pages

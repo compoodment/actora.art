@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.445 - 2026-07-21
+
+- The homepage terminal now has a quiet, bordered command composer that makes the active prompt easier to find without turning the page into a fake terminal window.
+- Autocomplete stays attached to the prompt and pairs each command or page with a short description, an active marker, and contextual keyboard hints. Follow-up and working states now identify themselves in the same place.
+- Tab accepts a completion only while one is open, normal keyboard focus can otherwise leave the prompt, and reading or copying older output no longer gets pulled back to the newest line. The terminal also follows the mobile viewport and reduced-motion preference more carefully.
+- actoraOS is now `0.2.445`.
+
 ## 0.2.444 - 2026-07-18
 
 - Actora's Actions screen now keeps Social/Personal beside its title, removes repeated category/count copy, and uses compact queue controls. Profile section navigation is label-only, with personal facts shown once in the inspector and unfinished sections clearly unavailable.
