@@ -1,45 +1,56 @@
 # Privacy
 
-actora.art collects only what it needs to run the site.
+actora.art handles the data needed to provide its interactive pages, accounts, safety controls, and continuity between visits.
 
-## What the site uses
+It does not run advertising or analytics scripts, create advertising profiles, or sell visitor data.
 
-- cookies/session state for chat, wall, accounts, passkeys, and account recovery
-- public profile details, including status/theme, owner-arranged structured text/automatic links/individual badges, uploaded pictures/GIFs/videos, and up to eight chosen public Music cards, only if an account owner chooses to publish them
-- social friend requests, friendships, private directional message mutes and blocks, System notices, and friends-only DMs—including structured Music cards—for the footer quick layer and private Messages inbox
-- a private, capped listening history for signed-in Music and a short-lived unpublished review when adding songs
-- signed-in Space save/load state
-- enough local/browser state to restore recent activity on the same device
-- basic safety controls to keep interactive parts usable
+## Data the Site Handles
 
-## What it does not do
+- Essential cookies and session state for guest continuity, signed-in accounts, and security.
+- Account identity, passkey public-key metadata, session records, and recovery/archive state. Raw recovery keys are shown once and are not stored by the site.
+- Chat conversations and session metadata, including enough request context to enforce limits and respond to abuse.
+- Profile content and media, friendships, requests, private mutes/blocks, System notices, friends-only messages, and private reports.
+- Published Music files and metadata, private Library and playlist state, listening history, and unpublished review-stage uploads.
+- Shared Wall marks, ownership/budget state, and saved tool preferences.
+- Signed-in Space saves.
+- Request metadata such as IP and browser/request details for rate limiting, security, abuse response, and private operational audit.
 
-- no cross-site tracking
-- no ad profiles
-- no analytics scripts
-- no selling visitor data
-- no third-party sharing for ads or analytics
+## What Is Public, Private, or Operator-Visible
 
-## Retention
+Published profiles, their chosen Music cards, published Music, public playlists, and visible Wall marks are public. A profile is private by default. Ordinary visitors see only its private-state page; the owner and authorized administrators can preview the full profile for operation and moderation.
 
-Data is kept only as long as it is useful for the site to work safely. Interactive features may keep enough state to restore chat, wall, profile, social, or Space activity.
+Chat conversations, friendship state, Messages, mute/block choices, private playlists, Library state, listening history, unpublished Music reviews, Space saves, and private-profile fields are not public. Messages is excluded from the public sitemap and search indexing.
 
-Profile and social content stays until it is changed, removed, pruned by normal limits, or the account is deleted. Unpublished profile media is not available to other visitors; removed, abandoned, and account-deleted media is cleaned from ordinary runtime storage. A private profile and its media show only a private-state boundary to other visitors. A profile report may retain the exact visible structured text, automatic-link and individual-badge layout, plus media type, size, and cryptographic digest captured at intake, but not another copy of the image/video bytes or a reusable media URL. If visible at intake, it may also retain up to eight Music item kinds, opaque item IDs, titles, and subtitles; it does not retain Music cover media/URLs or uploader identifiers. Older reports remain under the same retention even if they do not contain this newer field. The private Messages search reads only the signed-in person's currently visible retained conversations and does not persist a separate application search history or message index. Cross-tab fallback storage carries only short coordination signals, not message or relationship content. A message mute lasts until it is removed or the friendship ends; it keeps the conversation and incoming messages intact while quieting that conversation's footer notifications, and the other person is not told. Blocks stay until the person who created them unblocks the account or either account is deleted. A block can hide a retained DM conversation while the other account sees only that contact is unavailable, not the private reason. This state is not used for analytics or advertising.
+Authorized operators can access the operational metadata and content needed to run, secure, and moderate the service. The site's administrative Chat view exposes owner/count/time/session-state metadata rather than titles or conversation text. The separate owner-only report view exposes only the evidence captured for a report.
 
-A signed-in account can choose up to eight ordered public tracks, available albums, and public playlists for the Music section on its profile. That choice is saved in the account's private Music Library state and can be changed immediately from Music, from a Library picker, or by reordering/removing existing cards while editing the account's own profile. These profile-editing actions use that same private Music state; they do not copy the Library into profile content, and profile Save/Undo remains independent. Other viewers receive only the read-only showcase. Deleted or unavailable items and playlists made private are removed from the live selection; account deletion removes the selection. Public profile cards do not reveal Music Library-owner or uploader account identifiers.
+A profile report can retain visible identity and status, structured text and layout, badge metadata, presence/type/size/digest metadata for visible avatar, badge, and canvas media, and up to eight Music kind/id/title/subtitle entries. It does not copy the media bytes or reusable media URLs.
 
-Signed-in Music keeps at most 50 private listening-history entries for Continue listening and Recently played. An entry stops appearing exactly at 90 days and is removed from persisted state by a bounded ten-minute cleanup job; the account owner can clear it immediately at any time. Entries can include the Music item, when it was last played, and a resume position. Friends cannot inspect the history list, timing, or listening position. The From friends shelf is derived from friends' currently public uploads, not from anyone's listening history or private Library, and exposes only the public Music suggestion and safe public identity.
+A message report retains only the selected incoming message: its text, sender identity, timestamp, internal thread/message references, attached Music title snapshot, and the reporter's optional context. It does not include neighboring messages or separate media bytes or URLs.
 
-Files chosen through Add songs remain private and unpublished in a review stage for at most two hours. The temporary audio, cover, and editable details are held only so the uploader can check, change, remove, publish, or discard them. Nothing becomes public until an explicit Publish action. Cancelling, discarding, or allowing the review to expire removes the unpublished stage; published songs then follow the ordinary Music rules.
+## External Services
 
-A friends-only DM can retain an optional note and a bounded snapshot of one shared song, album, or playlist: its kind, item reference, title, and subtitle. Each view checks whether the Music is still available to that person. If it has been deleted, made private, or otherwise cannot be opened, the message keeps a recognizable unavailable label but no active Music link, artwork, or play action. The message does not keep a separate copy of the audio or cover. Reporting an exact incoming message may retain that note and structured Music snapshot as evidence captured at intake, without retaining separate Music media or a reusable cover URL.
+Aurora sends a recent portion of the current conversation, a site system prompt, and limited signed-in account context to Ollama Cloud to generate a reply. See the [Ollama privacy policy](https://ollama.com/privacy).
 
-An account recovery key is shown only when it is created, replaced, or replaced after a successful recovery. The site does not keep the raw key, and the terminal keeps entered recovery keys out of visible and recalled command history and browser storage. Replacing or using a key invalidates the previous one.
+Site pages currently load JetBrains Mono from Google Fonts, so the browser makes a request to Google and sends ordinary network/request metadata. See [Google Fonts privacy information](https://developers.google.com/fonts/faq/privacy).
 
-Account archive is reversible. It ends every session and hides public discovery while retaining the account's recovery state, accepted relationships, messages, private safety choices, profile, Music, Chat, Wall, and Space state. A verified login or recovery does not restore the account on its own: the terminal requires a separate explicit restore choice. Its short-lived restore capability is kept only in memory for that browser flow and is not placed in page content, browser storage, URLs, command history, or persistent logs. Archive state lasts until explicit restore or account deletion.
+actora.art does not share visitor data with third parties for advertising or analytics.
 
-Permanent account deletion immediately removes the ordinary account record, sessions, passkeys, recovery/archive access, profile and badge material, relationships, private mute/block choices, shared DM threads for both participants, the Music profile selection, and the person's ordinary authored feature state. Existing private reports clear current account links but may retain the historical username/display name, reporter note, exact reported profile or message content—including bounded Music title metadata visible at intake—and a stable pseudonymous subject for as long as the report is retained. Operational audit records, capped admin change history, and backups may also remain under their separate retention. The deleted username is reserved without its former account identity for 90 days, then becomes available again. Owner and admin-capable accounts cannot use self-deletion.
+## Browser-Local Data
+
+Actora lives, unfinished character drafts, and recovery copies are stored locally in the browser rather than in an actora.art account. They do not follow the account to another device, and clearing the site's browser data can remove them. Some guest continuity and interface preferences also use browser storage or essential cookies.
+
+## Retention and Controls
+
+- Signed-in sessions expire after 30 days. Guests keep one browser-scoped Chat session. Empty signed-in Chat sessions expire after 6 hours, and archived chats expire after 7 days. Other signed-in chats persist until the account holder deletes, resets, or archives them; an authorized operator resets or archives them; or the account is deleted.
+- Profile, Social, Messages, and published Music state generally remains until changed, deleted, or removed by a normal feature limit. Private Music history is capped at 50 entries and expires after 90 days; its owner can clear it immediately.
+- Files selected through **Add songs** stay in a private unpublished review for at most two hours. Publishing is explicit; discarding or expiry removes the review stage.
+- A visible Wall layer expires within three days and can disappear sooner through normal Wall actions.
+- Reports remain open until a decision within bounded limits. Closed reports are retained for at most 180 days. Captured evidence can outlast later profile/message edits or account deletion while its report remains retained.
+
+Account archive is reversible. It ends sessions and hides the public profile and terminal find result while retaining account and feature state subject to each feature's normal expiry and limits. Verified login or recovery still requires a separate explicit restore.
+
+Permanent deletion immediately removes the account, access, and ordinary active records. Profile and Music media cleanup follows that state change and may complete later. Retained report evidence, operational audit records, capped administrative change history, and backups can remain under their separate retention. The deleted username remains reserved without its former account identity for 90 days.
 
 ## Changes
 
-If this changes, this note will change too.
+This note changes when the site's data handling changes.
