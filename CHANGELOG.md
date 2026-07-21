@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.448 - 2026-07-21
+
+- Corrected the homepage system card's right edge so all six text rows form one continuous border in the browser at desktop and mobile sizes.
+- actoraOS is now `0.2.448`.
+
 ## 0.2.447 - 2026-07-21
 
 - Corrected the homepage system card to the intended rounded 44-column text composition, with the cat, actoraOS name, version, and command guidance aligned consistently.
