@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.449 - 2026-07-21
+
+- Aligned the terminal activity rail so the stem above command results connects cleanly with every following branch, including `help` and `find` output.
+- actoraOS is now `0.2.449`.
+
 ## 0.2.448 - 2026-07-21
 
 - Corrected the homepage system card's right edge so all six text rows form one continuous border in the browser at desktop and mobile sizes.

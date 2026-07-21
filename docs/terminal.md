@@ -6,7 +6,7 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 
 - Type a command at the prompt and press Enter.
 - The opening ASCII system card uses one rounded 44-column composition containing the reactive cat, current actoraOS version, and short guidance for `page` and `help`. Its border is literal terminal text rather than window chrome, uses one aligned monospace face for content and box-drawing characters, and stays visible while the activity rail scrolls beneath it.
-- Submitted commands, working messages, and results appear in one open activity rail instead of nested boxes.
+- Submitted commands, working messages, and results appear in one open activity rail instead of nested boxes. Its stem and result branches share one continuous text column.
 - When one completion is unambiguous, its remaining characters appear as dim inline ghost text without changing what you typed. Ambiguous matches appear in a small unboxed rail with descriptions.
 - Press Tab to accept the visible ghost or active ambiguous match. When there is no completion to accept, Tab and Shift+Tab follow normal browser focus navigation.
 - Account commands are state-aware: guests see `register`, `login`, and `recover`; signed-in users see `logout`.
