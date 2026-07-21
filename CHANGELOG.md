@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.447 - 2026-07-21
+
+- Corrected the homepage system card to the intended rounded 44-column text composition, with the cat, actoraOS name, version, and command guidance aligned consistently.
+- The same card now appears at every viewport size and stays visible as the terminal activity rail scrolls.
+- actoraOS is now `0.2.447`.
+
 ## 0.2.446 - 2026-07-21
 
 - The homepage now opens with a literal ASCII system card containing the reactive cat, actoraOS version, and short `page`/`help` guidance. Commands and responses continue beneath it in an open text activity rail instead of a bordered composer or nested output boxes.
