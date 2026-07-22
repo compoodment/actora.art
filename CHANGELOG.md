@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.456 - 2026-07-22
+
+- Restored crater detail to Phobos and Deimos while keeping their corrected, camera-independent rotation.
+- Their surface maps now stay attached to each moon and render cleanly around the seams and poles without the former ribbons or spiral-like smears.
+- actoraOS is now `0.2.456`.
+
 ## 0.2.455 - 2026-07-22
 
 - Corrected the apparent camera-following rotation of Phobos and Deimos in Space. Their irregular surfaces now render cleanly without bright ribbons or spiral-like smears as the camera moves around them.
