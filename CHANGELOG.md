@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.457 - 2026-07-22
+
+- Added Hyperion and Phoebe to the Space Solar System simulation, bringing its selectable roster to 40 bodies.
+- Both moons begin with source-derived irregular shapes and no surface textures. Hyperion uses a non-predictive chaotic-tumble visualization, while retrograde Phoebe rotates independently instead of staying locked to Saturn.
+- Existing Solar saves keep their exact saved roster; resetting or starting fresh uses the expanded system.
+- actoraOS is now `0.2.457`.
+
 ## 0.2.456 - 2026-07-22
 
 - Restored crater detail to Phobos and Deimos while keeping their corrected, camera-independent rotation.
