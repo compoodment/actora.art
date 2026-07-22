@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.454 - 2026-07-22
+
+- Removed the Wall's separate Move button. On touch screens, tap to paint or erase with the selected tool and drag to pan the readable ASCII canvas without changing modes or leaving an accidental mark.
+- actoraOS is now `0.2.454`.
+
 ## 0.2.453 - 2026-07-22
 
 - The Wall's desktop tool panel can now be resized by dragging its edge, with keyboard controls, sensible limits, a double-click reset, and a remembered width.
