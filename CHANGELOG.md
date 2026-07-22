@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.453 - 2026-07-22
+
+- The Wall's desktop tool panel can now be resized by dragging its edge, with keyboard controls, sensible limits, a double-click reset, and a remembered width.
+- Added a remembered `last painted` color, a complete hue/saturation/brightness picker, keyboard drawing, and a directly editable one-character selector.
+- Phone layouts now keep the ASCII readable and provide a clear Move tool for panning before returning to Paint or Erase. Drawing also stops cleanly when a pointer, mouse button, or browser focus is lost.
+- Open Wall tabs now stay current on character/refund limits and undo/redo availability, stale history no longer blocks the next safe action, and failed guest writes cannot leave only part of a paint recorded.
+- actoraOS is now `0.2.453`.
+
 ## 0.2.452 - 2026-07-22
 
 - Liminal now opens with visible controls and has a complete, focused Pause, Options, and Controls experience instead of sparse unfinished tabs.
