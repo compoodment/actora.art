@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.452 - 2026-07-22
+
+- Liminal now opens with visible controls and has a complete, focused Pause, Options, and Controls experience instead of sparse unfinished tabs.
+- Escape pauses and resumes keyboard movement reliably; a clear click restores mouse look when the browser releases it. Focus stays inside the paused menu, pointer-lock failures remain recoverable, and short screens no longer put controls behind the footer.
+- Removed the fisheye effect entirely and made walking camera motion substantially gentler. Camera motion remains optional and defaults off when reduced motion is requested.
+- actoraOS is now `0.2.452`.
+
 ## 0.2.451 - 2026-07-21
 
 - The open `page` picker now stays the same height through single-result and empty filters. One remaining page stays selectable, exact pages remain visibly selected, no-result searches say `no matching page`, and an already-complete page name no longer traps Tab.
