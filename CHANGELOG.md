@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.458 - 2026-07-22
+
+- Added Phoebe's real NASA PDS relative-albedo surface map to Space while preserving its irregular shape and independent rotation.
+- Kept Hyperion's surface neutral because no trustworthy global map exists in the same frame as its current shape; unrelated imagery is not presented as accurate geography.
+- actoraOS is now `0.2.458`.
+
 ## 0.2.457 - 2026-07-22
 
 - Added Hyperion and Phoebe to the Space Solar System simulation, bringing its selectable roster to 40 bodies.
