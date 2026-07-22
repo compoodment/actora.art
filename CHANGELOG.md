@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.455 - 2026-07-22
+
+- Corrected the apparent camera-following rotation of Phobos and Deimos in Space. Their irregular surfaces now render cleanly without bright ribbons or spiral-like smears as the camera moves around them.
+- The moons keep their existing parent-facing tidal lock and stable world orientation.
+- actoraOS is now `0.2.455`.
+
 ## 0.2.454 - 2026-07-22
 
 - Removed the Wall's separate Move button. On touch screens, tap to paint or erase with the selected tool and drag to pan the readable ASCII canvas without changing modes or leaving an accidental mark.
