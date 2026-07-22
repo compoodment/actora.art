@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.460 - 2026-07-22
+
+- Added Pan, Janus, and Epimetheus to Space as individually selectable Saturn moons, bringing the Solar System simulation to 43 bodies.
+- Each moon uses its real Cassini-derived shape and stays oriented toward Saturn. They intentionally begin with neutral, texture-free surfaces because no trustworthy compatible global maps were found.
+- Existing 40-body and older 38-body Solar saves keep their exact saved rosters; a reset or new session uses the expanded system.
+- actoraOS is now `0.2.460`.
+
 ## 0.2.459 - 2026-07-22
 
 - Added an illustrative Hyperion surface texture guided by NASA Cassini imagery while retaining its real irregular shape and non-predictive chaotic tumble. The texture is a visual approximation, not recovered or scientifically controlled geography.
