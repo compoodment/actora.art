@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.459 - 2026-07-22
+
+- Added an illustrative Hyperion surface texture guided by NASA Cassini imagery while retaining its real irregular shape and non-predictive chaotic tumble. The texture is a visual approximation, not recovered or scientifically controlled geography.
+- Made Phoebe's real NASA PDS relative-albedo geography easier to see without replacing or fabricating its source surface data.
+- actoraOS is now `0.2.459`.
+
 ## 0.2.458 - 2026-07-22
 
 - Added Phoebe's real NASA PDS relative-albedo surface map to Space while preserving its irregular shape and independent rotation.
