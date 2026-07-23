@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.466 - 2026-07-23
+
+- Space now replaces the smooth spherical surfaces of Tethys, Dione, and Rhea with source-derived Cassini shapes, completing the current realism pass across 24 corrected planets and moons.
+- Existing texture files, orbits, physical sizes, gravity, Saturn-facing orientation, and saves remain unchanged. Mimas and Tethys now sample those maps at corrected named-landmark longitudes, while trails meet corrected bodies using the surface radius in the actual approach direction instead of leaving an oversized gap based on the longest axis.
+- actoraOS is now `0.2.466`.
+
 ## 0.2.465 - 2026-07-23
 
 - Replaced Enceladus's smooth spherical surface with its current source-derived global shape, preserving its real subtle relief without exaggeration.
