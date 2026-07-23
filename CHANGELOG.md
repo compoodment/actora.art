@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.463 - 2026-07-23
+
+- Corrected the silhouettes of 18 planets and moons using published principal-axis dimensions. Very small differences such as Earth's remain intentionally subtle, while Saturn and Neptune's elongated inner moons show their stronger real proportions.
+- Existing textures, orbital behavior, body sizes, and saves are unchanged. Earth's cloud and night layers follow its corrected surface, tidally locked moons keep their long axes parent-facing, and giant-planet rings remain circular and equatorial.
+- actoraOS is now `0.2.463`.
+
 ## 0.2.462 - 2026-07-23
 
 - Added Metis, Adrastea, Amalthea, and Thebe to Space, completing Jupiter's four small inner moons and bringing the Solar System simulation to 47 selectable bodies.
