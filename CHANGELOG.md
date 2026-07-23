@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.470 - 2026-07-24
+
+- Fixed Space trails turning into long straight spokes at very high time rates such as `2 month/s`; fast local orbits now refresh their curve before the moving object can pull the endpoint across a stale path.
+- The desktop Objects panel now scrolls only its object list. The `objects` heading and collapse button stay in place, and the button no longer shifts when the list scrollbar appears or the panel is collapsed.
+- Mouse-wheel zoom in Space now eases continuously across frames instead of jumping one full step per wheel event, while keeping the same Track limits and collision-safe free-flight movement.
+- actoraOS is now `0.2.470`.
+
 ## 0.2.469 - 2026-07-23
 
 - Fixed triangular visual glitches in Space when staying tracked on a tiny object while zooming out to its parent—for example, tracking ISS while viewing Earth or tracking a small moon while viewing Saturn.
