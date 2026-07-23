@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.468 - 2026-07-23
+
+- Space's physical rings now have restrained natural-color character: Saturn gains layered ivory, gold, rose, and cool-gray bands; Jupiter's rings read as warm dust; Uranus keeps dark inner rings with red and blue outer components; and Neptune's rings use a subtle cool dusty tint.
+- Faint and physically narrow rings are easier to read in close views through a restrained, distance-aware contrast exposure and screen-scale antialiasing without adding an opacity or brightness floor. Tracking a ringed planet now frames its characteristic rings while leaving shadows, gaps, arcs, physics, manual zoom, and saves unchanged.
+- actoraOS is now `0.2.468`.
+
 ## 0.2.467 - 2026-07-23
 
 - Space now models localized eclipses from the Sun and all three Alpha Centauri stars. Planets, moons, and the ISS can enter umbra or penumbra behind another body while unaffected parts of the same surface remain lit; each star is blocked independently.
