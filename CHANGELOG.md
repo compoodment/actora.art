@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.469 - 2026-07-23
+
+- Fixed triangular visual glitches in Space when staying tracked on a tiny object while zooming out to its parent—for example, tracking ISS while viewing Earth or tracking a small moon while viewing Saturn.
+- Close-up tracking and manual zoom remain unchanged; pulled-back views now keep stable depth across the planet, rings, trails, and nearby bodies.
+- actoraOS is now `0.2.469`.
+
 ## 0.2.468 - 2026-07-23
 
 - Space's physical rings now have restrained natural-color character: Saturn gains layered ivory, gold, rose, and cool-gray bands; Jupiter's rings read as warm dust; Uranus keeps dark inner rings with red and blue outer components; and Neptune's rings use a subtle cool dusty tint.
