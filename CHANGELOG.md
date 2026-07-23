@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.471 - 2026-07-24
+
+- Fixed the remaining large dark polygon gaps in Space when tracking a tiny object while zoomed out to its parent, including small-moon-to-Saturn and ISS-to-Earth views.
+- The starfield now renders independently from scene depth while preserving its existing image, orientation, color, and quality settings. Track keeps a tighter local depth range without changing camera framing, zoom behavior, physics, trails, textures, or saves.
+- actoraOS is now `0.2.471`.
+
 ## 0.2.470 - 2026-07-24
 
 - Fixed Space trails turning into long straight spokes at very high time rates such as `2 month/s`; fast local orbits now refresh their curve before the moving object can pull the endpoint across a stale path.
