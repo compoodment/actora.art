@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.464 - 2026-07-23
+
+- Replaced the smooth spherical surfaces of Mimas and Proteus with source-derived global shapes from NASA's Planetary Data System.
+- Their existing textures remain attached to the corrected geometry, and both moons keep their parent-facing tidal lock. Orbital behavior, physical sizes, gravity, and saves are unchanged.
+- actoraOS is now `0.2.464`.
+
 ## 0.2.463 - 2026-07-23
 
 - Corrected the silhouettes of 18 planets and moons using published principal-axis dimensions. Very small differences such as Earth's remain intentionally subtle, while Saturn and Neptune's elongated inner moons show their stronger real proportions.
