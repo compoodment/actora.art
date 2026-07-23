@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.462 - 2026-07-23
+
+- Added Metis, Adrastea, Amalthea, and Thebe to Space, completing Jupiter's four small inner moons and bringing the Solar System simulation to 47 selectable bodies.
+- Amalthea and Thebe use source-derived irregular shapes; Metis and Adrastea use their published dimensions without invented topography. All four keep a stable Jupiter-facing orientation.
+- Added individually tuned, NASA-reference-guided surface textures for all four moons. These are clearly documented visual approximations, not NASA maps or recovered surface geography.
+- Existing 43-body, 40-body, and older 38-body saves retain their exact rosters; new sessions and resets use all 47 bodies. actoraOS is now `0.2.462`.
+
 ## 0.2.461 - 2026-07-23
 
 - Added detailed Cassini-inspired surfaces to Pan, Janus, and Epimetheus in Space while preserving their real irregular shapes and Saturn-facing orientation.
