@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.465 - 2026-07-23
+
+- Replaced Enceladus's smooth spherical surface with its current source-derived global shape, preserving its real subtle relief without exaggeration.
+- The existing Enceladus texture remains attached to the corrected geometry, and its orbit, physical size, gravity, Saturn-facing orientation, and saves are unchanged.
+- actoraOS is now `0.2.465`.
+
 ## 0.2.464 - 2026-07-23
 
 - Replaced the smooth spherical surfaces of Mimas and Proteus with source-derived global shapes from NASA's Planetary Data System.
