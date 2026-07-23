@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.467 - 2026-07-23
+
+- Space now models localized eclipses from the Sun and all three Alpha Centauri stars. Planets, moons, and the ISS can enter umbra or penumbra behind another body while unaffected parts of the same surface remain lit; each star is blocked independently.
+- Replaced the old decorative strips around Jupiter, Saturn, Uranus, and Neptune with 36 physical ring components. Their real radial structure, gaps, arcs, orientations, and optical depth now shape both the rings' appearance and the shadows exchanged with their host planets and nearby bodies, without artificial visibility floors.
+- actoraOS is now `0.2.467`.
+
 ## 0.2.466 - 2026-07-23
 
 - Space now replaces the smooth spherical surfaces of Tethys, Dione, and Rhea with source-derived Cassini shapes, completing the current realism pass across 24 corrected planets and moons.
