@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.472 - 2026-07-24
+
+- Refined Space mouse-wheel zoom after real-use feedback: movement now accelerates gently and slows into its final distance instead of applying most of each notch immediately and easing only the remainder.
+- Repeated scrolling continues one fluid motion, while reversing direction responds immediately. Middle-button drag, touch pinch, Track limits, free-flight collision safety, saves, and the existing visual fixes remain unchanged.
+- actoraOS is now `0.2.472`.
+
 ## 0.2.471 - 2026-07-24
 
 - Fixed the remaining large dark polygon gaps in Space when tracking a tiny object while zoomed out to its parent, including small-moon-to-Saturn and ISS-to-Earth views.
