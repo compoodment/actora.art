@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.474 - 2026-07-24
+
+- Added the first playable personal spacecraft to Space. Spawn it near your current Solar System view, fly from an embodied cockpit at real-time scale, return to free camera, and select or Track the same ship from outside.
+- The first model is a coherent exterior-and-interior inspection blockout with a walkable artificial-gravity layout, pilot hands and legs, physical flight instruments, pressure doors, a canopy shutter, folding sun-tracking solar arrays, a table, and storage.
+- Flight includes gravity, coasting, deliberately slow damping, manual thrust/braking/translation/roll, solid-body collision warnings, and solar-array maneuvering interlocks. The ship is session-only while its shape and controls are being playtested; persistence, assists, third person, docking, and final art remain later passes.
+- actoraOS is now `0.2.474`.
+
 ## 0.2.473 - 2026-07-24
 
 - Fixed irregular mouse-wheel zoom amounts when holding right mouse to turn at the same time. Directional movement no longer interrupts the unfinished portion of a smooth wheel gesture.
