@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.473 - 2026-07-24
+
+- Fixed irregular mouse-wheel zoom amounts when holding right mouse to turn at the same time. Directional movement no longer interrupts the unfinished portion of a smooth wheel gesture.
+- Simultaneous look and zoom now behave as one continuous camera action while retaining the same Track limits, collision safety, wheel response, middle-button drag, touch controls, and saves.
+- actoraOS is now `0.2.473`.
+
 ## 0.2.472 - 2026-07-24
 
 - Refined Space mouse-wheel zoom after real-use feedback: movement now accelerates gently and slows into its final distance instead of applying most of each notch immediately and easing only the remainder.
