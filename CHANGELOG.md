@@ -4,6 +4,17 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.475 - 2026-07-25
+
+- Rebuilt the personal spacecraft's first inspection model as a coherent inhabited ship. The exterior and interior now agree, rooms have fitted doors and real circulation, and the cockpit, controls, restraints, ladder, locker, furnishings, bedroom, wet room, equipment area, and solar machinery read as constructed objects instead of placeholder shapes.
+- Replaced the open, mismatched glass front with one sealed tapered panoramic windshield, solid surrounding hull, and a four-leaf armored shutter. The bedroom and bathroom now have their missing enclosing walls, the shower tray and glass occupy the shower footprint, and the suit bay hardware no longer intersects the suit or locker.
+- The cockpit now looks through the normal Space sky and live Solar System view, keeps flight information on the physical dashboard, shows the pilot's body and moving controls, uses practical lighting and shadows, and has no permanent shooter-style crosshair.
+- Raised the physical flight display clear of the pilot's hands and short-screen navigation, refined the first-person walking body, and brightened the interior's ambient/practical balance so every room remains readable without flattening its material and shadow response.
+- Mouse steering now behaves like a persistent virtual attitude stick: moving farther from center sustains a stronger turn, moving back recenters it, and the view responds smoothly without inheriting raw mouse shake.
+- Solar wings now deploy through visible carriage, bearing, boom, hinge, and folding-leaf hardware, then track the Sun only when fully deployed. Their onboard and externally tracked poses use the same mechanism.
+- Spacecraft motion and the orbital environment now advance from the same simulation clock, so slow frames cannot make the ship drift ahead of the bodies around it. Losing browser focus or flight-view ownership also releases held controls safely.
+- actoraOS is now `0.2.475`.
+
 ## 0.2.474 - 2026-07-24
 
 - Added the first playable personal spacecraft to Space. Spawn it near your current Solar System view, fly from an embodied cockpit at real-time scale, return to free camera, and select or Track the same ship from outside.
