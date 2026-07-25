@@ -1,0 +1,29 @@
+name: Public docs validation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate sanitized docs surface
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out public docs
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js 22.22.2
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.2'
+
+      - name: Validate public docs
+        run: node scripts/validate-public-docs.mjs
