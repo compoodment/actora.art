@@ -95,12 +95,15 @@ const homeDirectoryPattern = new RegExp(
   `(?:^|[\\s"'\\x60(=])/(?:${['Users', 'home'].join('|')})/`,
 );
 const fileUrlPrefix = ['file:', '//'].join('');
+const obviousPosixFilesystemRoot =
+  /(?:^|[\s"'`(=])\/(?:root|tmp|opt|var|workspace|Volumes)(?:\/|$)/;
 const localPathPatterns = [
   /(?:^|[\s"'`(=])[A-Za-z]:[\\/]/,
   /(?:^|[\s"'`(=])\\\\[A-Za-z0-9._-]+[\\/]/,
   homeDirectoryPattern,
   /(?:^|[\s"'`(=])\/mnt\/[a-z]\//i,
   /(?:^|[\s"'`(=])~[\\/]/,
+  obviousPosixFilesystemRoot,
 ];
 const credentialAssignment =
   /\b(?:api[_-]?key|access[_-]?token|auth[_-]?token|client[_-]?secret|password|passwd|private[_-]?key|secret|github[_-]?token|aws[_-]?access[_-]?key[_-]?id)\b\s*[:=]\s*(?:"([^"]*)"|'([^']*)'|([^\s#;,]+))/i;
