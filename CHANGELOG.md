@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.480 - 2026-07-30
+
+- Connected the homepage terminal's `commands:` heading to its Help tree, removing the empty-looking connector gap before the command list.
+- actoraOS is now `0.2.480`.
+
 ## 0.2.479 - 2026-07-29
 
 - Made the homepage terminal and Info copy control more reliable and accessible: cancellation and account-aware navigation now survive request races, IME input stays intact, the page picker keeps its selected row visible, reduced-motion and contrast preferences are respected, and copy feedback cannot be overwritten by an older attempt.
