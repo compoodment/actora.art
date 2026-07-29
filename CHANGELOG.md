@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.478 - 2026-07-29
+
+- Shortened terminal page transitions from roughly three seconds to about one second for both direct `page <name>` commands and page-picker selections.
+- actoraOS is now `0.2.478`.
+
 ## 0.2.477 - 2026-07-29
 
 - Added a signed-in `profile` terminal command that verifies the current account and opens its canonical profile page.
