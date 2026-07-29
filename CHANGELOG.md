@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.477 - 2026-07-29
+
+- Added a signed-in `profile` terminal command that verifies the current account and opens its canonical profile page.
+- actoraOS is now `0.2.477`.
+
 ## 0.2.476 - 2026-07-29
 
 - Fixed free-camera travel in Space after leaving Track. Mouse-wheel movement now keeps a useful system-scale speed in open space instead of collapsing to a tiny crawl.
