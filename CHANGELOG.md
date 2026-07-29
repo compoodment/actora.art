@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.476 - 2026-07-29
+
+- Fixed free-camera travel in Space after leaving Track. Mouse-wheel movement now keeps a useful system-scale speed in open space instead of collapsing to a tiny crawl.
+- Approaching a body's surface now slows progressively for both centered and glancing paths, including very small objects, without weakening collision safety or slowing movement away.
+- actoraOS is now `0.2.476`.
+
 ## 0.2.475 - 2026-07-25
 
 - Rebuilt the personal spacecraft's first inspection model as a coherent inhabited ship. The exterior and interior now agree, rooms have fitted doors and real circulation, and the cockpit, controls, restraints, ladder, locker, furnishings, bedroom, wet room, equipment area, and solar machinery read as constructed objects instead of placeholder shapes.
