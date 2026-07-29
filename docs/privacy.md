@@ -7,7 +7,7 @@ It does not run advertising or analytics scripts, create advertising profiles, o
 ## Data the Site Handles
 
 - Essential cookies and session state for guest continuity, signed-in accounts, and security.
-- Account identity, passkey public-key metadata, session records, and recovery/archive state. Raw recovery keys are shown once and are not stored by the site.
+- Account identity, passkey public-key metadata, session records, and recovery/archive state. Raw recovery keys are never durably stored or logged. After a signed-in key replacement, the exact result may remain in volatile process memory for up to five minutes so the same session and request can recover from an ambiguous response without rotating the key again.
 - Chat conversations and session metadata, including enough request context to enforce limits and respond to abuse.
 - Profile content and media, friendships, requests, private mutes/blocks, System notices, friends-only messages, and private reports.
 - Published Music files and metadata, private Library and playlist state, listening history, and unpublished review-stage uploads.

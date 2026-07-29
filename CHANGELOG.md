@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.479 - 2026-07-29
+
+- Made the homepage terminal and Info copy control more reliable and accessible: cancellation and account-aware navigation now survive request races, IME input stays intact, the page picker keeps its selected row visible, reduced-motion and contrast preferences are respected, and copy feedback cannot be overwritten by an older attempt.
+- Tightened Music across account changes, playback, queues, uploads, editors, and mobile layouts. Listening time now survives pause/resume, removed collections cannot return through the queue, metadata and album edits report their real saved result, playlist order has direct controls, and player panels, covers, repeated actions, helper text, and the shared footer are easier to reach and understand.
+- Made Chat account- and session-safe. Historical conversations, drafts, prompt history, retries, quota timing, and delayed responses stay bound to the right account and chat, while transcript announcements, focus, headings, labels, model choices, long titles, and IME composition behave more clearly.
+- Hardened Account and Profile recovery and identity changes. Delayed tabs cannot expose or mutate a replacement account, an exact same-session/request recovery-key rotation can be retried within a short bounded window after an ambiguous response, profile privacy clears immediately on identity changes, and lifecycle confirmations, passkey editing, join dates, focus, and authored-media descriptions are consistent.
+- Improved Messages and footer Social for multiline writing, short screens, account changes, retry-safe sending, preserved drafts, request cancellation, live profile and Music changes, restriction expiry, unread state, operation feedback, focus restoration, and item-specific copy/safety actions.
+- actoraOS is now `0.2.479`.
+
 ## 0.2.478 - 2026-07-29
 
 - Shortened terminal page transitions from roughly three seconds to about one second for both direct `page <name>` commands and page-picker selections.
