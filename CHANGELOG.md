@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.484 - 2026-07-30
+
+- Restored the darker authored shadow sides on Saturn and the other bodies by keeping the spacecraft's presentation light confined to the spacecraft itself.
+- Isolated the optional spacecraft from the planetary renderer: before spawning and after removing or resetting the ship, no ship light, render layer, camera tracking, or real-time lock remains active.
+- actoraOS is now `0.2.484`.
+
 ## 0.2.483 - 2026-07-30
 
 - Rebuilt the personal spacecraft interior so its cockpit controls, screens, guest seat, photographs, lights, furniture, bed, wet room, engineering hardware, doors, ceiling, and room boundaries align without the reported floating, clipping, or open-gap defects. The living table now folds downward into a floor-mounted cassette and stows its mug; the living room, observation area, and bedroom now have matching interior/exterior windows.
