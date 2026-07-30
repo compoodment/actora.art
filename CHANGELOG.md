@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.482 - 2026-07-30
+
+- Aligned the Social dialog's `open /messages` link with its Close button.
+- actoraOS is now `0.2.482`.
+
 ## 0.2.481 - 2026-07-30
 
 - Made the terminal Help heading a continuing rail label instead of rendering `commands:` as a selectable-looking branch.
