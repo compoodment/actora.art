@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.481 - 2026-07-30
+
+- Made the terminal Help heading a continuing rail label instead of rendering `commands:` as a selectable-looking branch.
+- actoraOS is now `0.2.481`.
+
 ## 0.2.480 - 2026-07-30
 
 - Connected the homepage terminal's `commands:` heading to its Help tree, removing the empty-looking connector gap before the command list.
