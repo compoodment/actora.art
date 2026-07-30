@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.483 - 2026-07-30
+
+- Rebuilt the personal spacecraft interior so its cockpit controls, screens, guest seat, photographs, lights, furniture, bed, wet room, engineering hardware, doors, ceiling, and room boundaries align without the reported floating, clipping, or open-gap defects. The living table now folds downward into a floor-mounted cassette and stows its mug; the living room, observation area, and bedroom now have matching interior/exterior windows.
+- Kept practical room lights on across the walkable interior, tightened overlapping interaction targets, and separated the solar-array control from the canopy-shutter control.
+- Added seated third-person flight on `C`, direct solar-array control on `R` and the visible onboard button, and fast interplanetary cruise on `Shift` + `W`/`S`; `V` still switches only between onboard and free camera. Deployed arrays remain visible while piloting or tracking the ship and automatically stow before strong maneuvering.
+- Fixed close tracked views so the natural Milky Way backdrop remains visible and Earth no longer flickers behind the tracked spacecraft.
+- actoraOS is now `0.2.483`.
+
 ## 0.2.482 - 2026-07-30
 
 - Aligned the Social dialog's `open /messages` link with its Close button.
