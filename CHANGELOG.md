@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.488 - 2026-07-31
+
+- Refined Cordelia, Ophelia, Bianca, Cressida, Desdemona, Juliet, Portia, and Belinda with smooth elongated silhouettes based on published major/minor-axis measurements. Rosalind and Puck remain spherical where no comparable measured axis solution is available. This is a visual refinement only; their sizes, masses, gravity, orbits, and saves are unchanged.
+- Added a separate dark, restrained color surface for each of Uranus's ten small inner moons. These source-guided GPT Image 2 visuals are clearly treated as illustrative color rather than measured global maps, terrain, or height data; Puck's broad cratered character also follows the available low-resolution Voyager view.
+- actoraOS is now `0.2.488`.
+
 ## 0.2.487 - 2026-07-31
 
 - Expanded Uranus in Space from five to fifteen moons by adding Cordelia, Ophelia, Bianca, Cressida, Desdemona, Juliet, Portia, Rosalind, Belinda, and Puck. Each has its own sourced orbit and physical scale plus selection and Track support.
