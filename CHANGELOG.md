@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.485 - 2026-07-31
+
+- Completed Neptune's known moon system in Space by adding Nereid, Hippocamp, Halimede, Sao, Laomedeia, S/2002 N 5, Psamathe, S/2021 N 1, and Neso. Neptune now has all 16 currently known moons in the object tree, with individual orbits, selection, and Track support.
+- Gave every new moon its own evidence-led physical scale and irregular mesh. Nereid uses a near-bound procedural axis prior that follows the thermal analysis favoring a figure close to the published `a:c <= 1.3` ceiling; because the other small moons remain unresolved in observations, their distinct silhouettes are clearly treated as conservative size-constrained reconstructions rather than claimed measured topography.
+- Added nine separate source-guided illustrative GPT Image 2 color textures with seamless object-space mapping and a realistic visual posture. They affect color only—the mesh remains the sole source of shape and relief.
+- actoraOS is now `0.2.485`.
+
 ## 0.2.484 - 2026-07-30
 
 - Restored the darker authored shadow sides on Saturn and the other bodies by keeping the spacecraft's presentation light confined to the spacecraft itself.
