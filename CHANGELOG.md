@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.487 - 2026-07-31
+
+- Expanded Uranus in Space from five to fifteen moons by adding Cordelia, Ophelia, Bianca, Cressida, Desdemona, Juliet, Portia, Rosalind, Belinda, and Puck. Each has its own sourced orbit and physical scale plus selection and Track support.
+- Kept the ten small unresolved moons visually honest as smooth source-radius bodies without invented surface maps or topography.
+- actoraOS is now `0.2.487`.
+
 ## 0.2.486 - 2026-07-31
 
 - Fixed the Milky Way and stars sometimes disappearing when Track was zoomed very close to small moons and other tiny objects. The sky now remains continuous across extreme camera depth ranges without changing the sky image, Track framing, body rotation, or orbital physics.
