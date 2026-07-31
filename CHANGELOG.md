@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.486 - 2026-07-31
+
+- Fixed the Milky Way and stars sometimes disappearing when Track was zoomed very close to small moons and other tiny objects. The sky now remains continuous across extreme camera depth ranges without changing the sky image, Track framing, body rotation, or orbital physics.
+- actoraOS is now `0.2.486`.
+
 ## 0.2.485 - 2026-07-31
 
 - Completed Neptune's known moon system in Space by adding Nereid, Hippocamp, Halimede, Sao, Laomedeia, S/2002 N 5, Psamathe, S/2021 N 1, and Neso. Neptune now has all 16 currently known moons in the object tree, with individual orbits, selection, and Track support.
