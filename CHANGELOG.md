@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.489 - 2026-07-31
+
+- Reworked the Sun in Space with a new fine-grained ivory-gold photosphere, three restrained active-region clusters, and smooth view-dependent grading from the whole-system view through close Track. The generated surface is an original illustrative approximation, not a dated or calibrated solar observation.
+- Replaced the former even halo and repeated flare geometry with an asymmetric chromosphere and corona, purposeful prominence arches, and sparse microflare activity. Their motion follows simulation time exactly and freezes while the simulation is paused; the conservative quality path keeps a reduced version of the same presentation.
+- Kept the Sun's white illumination, luminosity, physical radius, orbit, forces, and all other Solar System dynamics unchanged.
+- actoraOS is now `0.2.489`.
+
 ## 0.2.488 - 2026-07-31
 
 - Refined Cordelia, Ophelia, Bianca, Cressida, Desdemona, Juliet, Portia, and Belinda with smooth elongated silhouettes based on published major/minor-axis measurements. Rosalind and Puck remain spherical where no comparable measured axis solution is available. This is a visual refinement only; their sizes, masses, gravity, orbits, and saves are unchanged.
