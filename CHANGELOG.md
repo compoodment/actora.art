@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.491 - 2026-08-01
+
+- Completed Pluto's known moon system in Space by adding Styx, Nix, Kerberos, and Hydra beside Charon. All five moons now appear in the object hierarchy with individual sourced orbits, selection, Track, and their distinct rotation behavior.
+- Gave the four small moons deterministic New Horizons-constrained silhouettes, including Kerberos's two-lobed form. These are bounded reconstructions from published dimensions and resolved views, not claimed controlled global shape models or mapped topography.
+- Added four separate source-guided illustrative GPT Image 2 color surfaces. They affect color only and remain explicitly separate from each moon's geometry, spin, gravity, and orbit.
+- actoraOS is now `0.2.491`.
+
 ## 0.2.490 - 2026-08-01
 
 - Replaced the Sun's overlapping gray petal-like outer corona with one continuous pale-gold radiance field and soft irregular rays that remain camera-facing instead of pinching around a deformed sphere.
