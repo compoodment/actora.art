@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.490 - 2026-08-01
+
+- Replaced the Sun's overlapping gray petal-like outer corona with one continuous pale-gold radiance field and soft irregular rays that remain camera-facing instead of pinching around a deformed sphere.
+- Kept bright prominence strands and their footpoints around the limb instead of drawing them across the photosphere, and removed the distracting surface microflare flash.
+- Added a restrained constant-screen-size point-source beacon when the physically scaled Sun becomes sub-pixel at Uranus- and Neptune-scale views. The Sun's physical size, white light, luminosity, orbit, forces, and Solar System dynamics are unchanged.
+- actoraOS is now `0.2.490`.
+
 ## 0.2.489 - 2026-07-31
 
 - Reworked the Sun in Space with a new fine-grained ivory-gold photosphere, three restrained active-region clusters, and smooth view-dependent grading from the whole-system view through close Track. The generated surface is an original illustrative approximation, not a dated or calibrated solar observation.
