@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.494 - 2026-08-01
+
+- Kept the distant Sun beacon and camera-facing outer corona behind opaque planets and moons, so bodies such as Uranus can naturally occult the Sun at every visual level of detail instead of the marker shining through them.
+- Preserved the Sun layers' transparent, non-depth-writing presentation and left the Sun's physical size, light, luminosity, orbit, forces, and simulation dynamics unchanged.
+- actoraOS is now `0.2.494`.
+
 ## 0.2.493 - 2026-08-01
 
 - Expanded Saturn in Space to 25 represented moons by adding Atlas, Prometheus, Pandora, Aegaeon, Methone, Anthe, Pallene, Telesto, Calypso, Helene, Polydeuces, Kiviuq, and Siarnaq. The complete hierarchy supports selection, Track, individual sourced orbits, and an exact prior-70-body save lane.
