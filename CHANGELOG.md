@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.493 - 2026-08-01
+
+- Expanded Saturn in Space to 25 represented moons by adding Atlas, Prometheus, Pandora, Aegaeon, Methone, Anthe, Pallene, Telesto, Calypso, Helene, Polydeuces, Kiviuq, and Siarnaq. The complete hierarchy supports selection, Track, individual sourced orbits, and an exact prior-70-body save lane.
+- Used six Cassini/PDS plate models, four published measured-axis ellipsoids, and three conservative spheres according to the available evidence. Daphnis remains absent because its served ephemeris does not support the simulation's 2026 epoch.
+- Added thirteen separate source-guided illustrative GPT Image 2 color surfaces. They remain color-only and are explicitly separate from each moon's geometry, gravity, spin, and orbit.
+- Kept the Sun's compact pale-gold flare systems visibly continuous as they rotate across the photosphere, without restoring oversized loops or abrupt white flashes.
+- actoraOS is now `0.2.493`.
+
 ## 0.2.492 - 2026-08-01
 
 - Kept the Sun's activity continuous as prominences rotate across its face: their bright limb glow now fades into restrained dark absorption filaments over the photosphere instead of disappearing abruptly.
