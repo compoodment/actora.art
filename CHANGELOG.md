@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.492 - 2026-08-01
+
+- Kept the Sun's activity continuous as prominences rotate across its face: their bright limb glow now fades into restrained dark absorption filaments over the photosphere instead of disappearing abruptly.
+- Kept the Sun and other primary planets visible while tracking distant primary bodies such as Uranus or Neptune. Close tracking of moons and the personal spacecraft still uses a tighter local depth range.
+- Moved `spawn your ship` into the left Game menu, simplified the panel label to `space`, removed the obsolete piloting note, and made coarse Objects-list wheel scrolling advance by about one row instead of skipping past nearby entries.
+- actoraOS is now `0.2.492`.
+
 ## 0.2.491 - 2026-08-01
 
 - Completed Pluto's known moon system in Space by adding Styx, Nix, Kerberos, and Hydra beside Charon. All five moons now appear in the object hierarchy with individual sourced orbits, selection, Track, and their distinct rotation behavior.
