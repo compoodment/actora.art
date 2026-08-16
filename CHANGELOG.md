@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.496 - 2026-08-16
+
+- Simplified Chat when only the fast model is available by hiding the redundant one-option model chooser. The chooser remains available when fast and smart are genuinely distinct choices.
+- Standardized Chat header control heights across desktop and mobile, and kept the selected-chat row height and text size stable while the desktop sidebar expands or collapses.
+- actoraOS is now `0.2.496`.
+
 ## 0.2.495 - 2026-08-16
 
 - Added explicit saved-Chat capacity boundaries. When a thread or account reaches its storage ceiling, new messages are rejected without silently deleting or truncating existing history.
