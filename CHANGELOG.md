@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.495 - 2026-08-16
+
+- Added explicit saved-Chat capacity boundaries. When a thread or account reaches its storage ceiling, new messages are rejected without silently deleting or truncating existing history.
+- Published the site's security-reporting contact at `/.well-known/security.txt` and tightened public cross-origin preflight metadata.
+- Updated vulnerable transitive frontend packages to their patched releases; clean production and full dependency audits report no known vulnerabilities.
+- actoraOS is now `0.2.495`.
+
 ## 0.2.494 - 2026-08-01
 
 - Kept the distant Sun beacon and camera-facing outer corona behind opaque planets and moons, so bodies such as Uranus can naturally occult the Sun at every visual level of detail instead of the marker shining through them.
