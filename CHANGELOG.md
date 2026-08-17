@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.498 - 2026-08-17
+
+- Renamed Chat to Aurora, made `/aurora/` the canonical full-page experience, and added a footer Aurora dock so the same assistant conversation can travel across the site.
+- Refined the transcript with square directional message blocks, personal speaker labels, contextual chat editing, smoother stable navigation, and a composer whose activity indicator sits directly above the input.
+- Added optional custom instructions while preserving Aurora's core identity, and reorganized the administrator prompt area around a single maintained Aurora personality with legacy role prompts retained as history.
+- Added safe read-only site tools and cited web search, and expanded the public Aurora, accounts, site, Space, Lab, privacy, and terminal documentation used for repository-backed answers.
+- actoraOS is now `0.2.498`.
+
 ## 0.2.497 - 2026-08-17
 
 - Improved Chat readability with a more focused transcript measure, clearer turn rhythm, and restrained speaker distinction while preserving its monochrome, bubble-free presentation.
