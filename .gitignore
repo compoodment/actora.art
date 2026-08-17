@@ -1,6 +1,7 @@
 # local/editor files
 .DS_Store
 .idea/
+.codex-workstream.md
 
 # private/local material
 .backups/

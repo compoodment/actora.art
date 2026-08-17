@@ -27,7 +27,7 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 Type `page` to open a selectable list of the current page targets:
 
 - `info`
-- `chat`
+- `aurora`
 - `music`
 - `lab`
 - `account`
@@ -35,7 +35,7 @@ Type `page` to open a selectable list of the current page targets:
 
 Use Up/Down and Enter, or choose a row directly. The desktop picker follows the activity rail's compact row rhythm, while touch layouts retain larger targets. Typing filters the picker without changing its overall height. One remaining page stays selectable, an exact match remains visibly selected for Enter or pointer activation, and an empty filter shows `no matching page`. `page <name>` opens a target directly, such as `page music`.
 
-`account` and `messages` remain visible while signed out so their requirement is clear, but either picker selection or a direct command checks the current session again before opening them. If signed out, use `login`, `register`, or `recover` first.
+`page chat` remains a compatibility alias for `page aurora`. `account` and `messages` remain visible while signed out so their requirement is clear, but either picker selection or a direct command checks the current session again before opening them. If signed out, use `login`, `register`, or `recover` first.
 
 The former `ls` and `cd` commands are removed. `pages` is not an alias for `page`.
 

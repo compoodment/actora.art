@@ -4,7 +4,7 @@
 
 **public notes for the site, its social spaces, Music, and the Lab**
 
-[site](https://actora.art/) · [terminal](docs/terminal.md) · [music](docs/music.md) · [lab](docs/lab.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
+[site](https://actora.art/) · [guide](docs/site.md) · [Aurora](docs/aurora.md) · [terminal](docs/terminal.md) · [music](docs/music.md) · [lab](docs/lab.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
 
 ![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
@@ -17,15 +17,19 @@
 - **music** — public listening, personal libraries, playlists, and uploads
 - **account and profiles** — passkey identity, lifecycle controls, and opt-in profile pages
 - **social and messages** — exact-username finding, mutual friendships, and friends-only DMs
-- **chat** — conversations with Aurora
+- **Aurora** — full-page and footer conversations, custom instructions, public Actora lookups, and cited web search
 - **lab** — experiments and unfinished games, including Space, Liminal, Particles, The Wall, and Actora
 - **info** — links, contact, and credits
 
 ## Read First
 
 - [docs/terminal.md](docs/terminal.md) — homepage commands and account flow
+- [docs/site.md](docs/site.md) — public page and footer guide
+- [docs/aurora.md](docs/aurora.md) — conversations, personalization, and read-only tools
+- [docs/accounts.md](docs/accounts.md) — passkeys, recovery, archive, and deletion
 - [docs/music.md](docs/music.md) — listening, libraries, uploads, and sharing
 - [docs/lab.md](docs/lab.md) — short descriptions of the Lab projects
+- [docs/space.md](docs/space.md) — Space catalogue, saves, and evidence boundaries
 - [docs/social.md](docs/social.md) — profiles, badges, friends, and Messages
 - [docs/privacy.md](docs/privacy.md) — data use, visibility, external services, and retention
 - [CHANGELOG.md](CHANGELOG.md) — public release notes
