@@ -9,6 +9,7 @@
 - Archived conversations are read-only and expire after seven days.
 - The footer panel resumes the current conversation. The full Aurora page exposes the complete conversation controls.
 - Failed replies can be retried, and the latest user message can be edited and regenerated. A conversation can carry its own brief without changing global personalization.
+- Sent and received messages support a safe Markdown subset: headings, bold, italics, strikethrough, inline and fenced code, HTTP(S) links, lists, blockquotes, and horizontal rules. Raw HTML is shown as text.
 
 ## Personalization
 

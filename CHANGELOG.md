@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.506 - 2026-08-17
+
+- Added safe Markdown formatting to sent and received Aurora messages, full Messages conversations, and open Social footer conversations.
+- Supported headings, bold, italics, strikethrough, inline and fenced code, links, lists, blockquotes, and horizontal rules without interpreting raw HTML.
+- actoraOS is now `0.2.506`.
+
 ## 0.2.505 - 2026-08-17
 
 - Put an always-visible `edit` action directly on the latest message you sent to Aurora.

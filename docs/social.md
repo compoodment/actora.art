@@ -28,12 +28,12 @@ Social relationships are mutual friendships, not follows.
 
 - Friend requests can be sent, cancelled, accepted, or declined from profiles and Social surfaces.
 - Direct messages are available only between current, unblocked friends. Friendship affects Social and Messages only; it grants no elevated site access.
-- The footer Social dialog is the compact notification and quick-reply layer. [`/messages/`](https://actora.art/messages/) is the private full inbox with conversation search, history, friend-request actions, copying, mute/block controls, and reporting.
+- The footer Social dialog is the compact notification and quick-reply layer. [`/messages/`](https://actora.art/messages/) is the private full inbox with conversation search, history, friend-request actions, copying, mute/block controls, and reporting. Open messages on both surfaces support Aurora's safe Markdown subset; compact inbox previews stay plain.
 - Search matches visible conversation participants, retained message text, and attached Music titles or subtitles. It does not create a separate public or shared search record.
 - Songs, albums, and public playlists can be shared with friends. If the Music later becomes unavailable, the retained message keeps a recognizable title/type snapshot but loses its link, artwork, and play action.
 - Mute is a private, one-way notification preference. It keeps the friendship, messages, and unread state while removing that conversation from the muter's footer notification total.
 - Blocking ends the friendship or pending request, prevents new contact, and hides the retained conversation while the block remains. The other person sees only that Social is unavailable. Each person controls only their own block, and unblocking does not restore the friendship.
-- `System` is a one-way notification thread whose messages are visibly sent by Aurora.
+- `System` is a one-way notification thread for site notices.
 - Only avatars from currently public profiles appear in Social identity views; otherwise initials are used.
 - A newly shown message or notice is acknowledged as read only after that exact item is in view.
 - Archive cancels pending requests but preserves accepted friendships, retained messages, and private safety choices subject to their normal limits. Neither side can start new contact across the archive boundary. Permanent deletion removes the person's ordinary Social state and shared DM threads; retained report evidence is the exception described in [privacy.md](privacy.md).
