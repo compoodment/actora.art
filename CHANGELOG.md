@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.515 - 2026-08-17
+
+- Made explicit web research and supplied public links perform real bounded search or page-reading work before Aurora replies, so the matching activity symbols and sources are dependable.
+- actoraOS is now `0.2.515`.
+
 ## 0.2.514 - 2026-08-17
 
 - Made Aurora sample live activity frequently enough to display short search and page-reading phases without stacking polling requests.
