@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.508 - 2026-08-17
+
+- Added a confirmation step before Aurora custom instructions can be reset.
+- actoraOS is now `0.2.508`.
+
 ## 0.2.507 - 2026-08-17
 
 - Made enabled Aurora custom instructions persistent behavior rather than optional flavor, so recurring requests apply on every relevant reply without repeated reminders.
