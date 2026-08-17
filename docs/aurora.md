@@ -13,7 +13,7 @@
 
 ## Personalization
 
-The settings control accepts custom instructions for Aurora's tone, format, personality, or preferred way of helping. Signed-in settings follow the account across devices. Guest settings last for the browser session.
+The settings control accepts custom instructions for Aurora's tone, format, personality, preferred way of helping, or recurring interaction style. When enabled, applicable instructions persist across every reply without needing to be repeated. Signed-in settings follow the account across devices. Guest settings last for the browser session. If one part conflicts with Aurora's protected boundaries, the remaining customization still applies.
 
 Personal instructions cannot replace Aurora's identity, weaken privacy or safety boundaries, establish account facts, grant permissions, or expand tool access. They can be disabled or reset without deleting a conversation.
 
