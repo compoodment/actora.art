@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.503 - 2026-08-17
+
+- Fixed transcript text selection in Aurora so selecting text no longer jumps focus back to the composer.
+- actoraOS is now `0.2.503`.
+
 ## 0.2.502 - 2026-08-17
 
 - Removed the remaining Aurora label from full-page System message history.
