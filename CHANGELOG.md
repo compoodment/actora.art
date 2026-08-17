@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.497 - 2026-08-17
+
+- Improved Chat readability with a more focused transcript measure, clearer turn rhythm, and restrained speaker distinction while preserving its monochrome, bubble-free presentation.
+- Added an auto-growing multiline composer, a jump-to-latest control, compact quota/reset presentation, and per-Aurora-message Copy actions.
+- Increased Chat touch targets on mobile and moved the existing Aurora activity indicator directly above the composer.
+- actoraOS is now `0.2.497`.
+
 ## 0.2.496 - 2026-08-16
 
 - Simplified Chat when only the fast model is available by hiding the redundant one-option model chooser. The chooser remains available when fast and smart are genuinely distinct choices.
