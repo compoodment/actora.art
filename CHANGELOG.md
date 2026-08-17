@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.502 - 2026-08-17
+
+- Removed the remaining Aurora label from full-page System message history.
+- Corrected the visible actoraOS release number across the site.
+- actoraOS is now `0.2.502`.
+
 ## 0.2.501 - 2026-08-17
 
 - Matched Aurora's footer header controls to Social's sizing.
