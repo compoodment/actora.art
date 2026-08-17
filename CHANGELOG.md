@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.511 - 2026-08-17
+
+- Made Aurora's mysterious signal react to web search, public-page reading, and GitHub reading with distinct symbol patterns instead of visible status labels.
+- Matched the full Aurora and footer experiences, added accessible screen-reader announcements, and respected reduced-motion preferences.
+- actoraOS is now `0.2.511`.
+
 ## 0.2.510 - 2026-08-17
 
 - Fixed Aurora's public-page reader so website and GitHub repository links work through the live conversation path.
