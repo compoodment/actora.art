@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.514 - 2026-08-17
+
+- Made Aurora sample live activity frequently enough to display short search and page-reading phases without stacking polling requests.
+- actoraOS is now `0.2.514`.
+
 ## 0.2.513 - 2026-08-17
 
 - Fixed Aurora's activity poll so browsers cannot cache the ordinary pattern and hide later search, page-reading, or GitHub symbols.
