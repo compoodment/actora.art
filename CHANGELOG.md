@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.518 - 2026-08-17
+
+- Added context-window awareness beside Aurora's message allowance, with a quiet percentage and an inspect-only view after older context is compacted.
+- Aurora now retains long-conversation continuity by summarizing older turns while keeping recent messages verbatim; complete visible chat history remains untouched.
+- actoraOS is now `0.2.518`.
+
 ## 0.2.517 - 2026-08-17
 
 - Removed Aurora's per-conversation chat brief feature; global custom instructions remain available in Aurora settings.
