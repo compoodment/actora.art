@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.500 - 2026-08-17
+
+- Restored Aurora answers that use the public documentation search tool.
+- Made the Messages sidebar panels scroll correctly.
+- Matched the footer Aurora and Social dialogs in size, palette, controls, and square panel styling.
+- Made Aurora available from public profiles.
+- actoraOS is now `0.2.500`.
+
 ## 0.2.499 - 2026-08-17
 
 - Aligned Messages and the footer Social panel with Aurora's square, flat visual language.
