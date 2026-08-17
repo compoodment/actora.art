@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.499 - 2026-08-17
+
+- Aligned Messages and the footer Social panel with Aurora's square, flat visual language.
+- Clarified the footer Aurora expansion action as `open /aurora` and kept the typing field focused after sending.
+- Fixed the administrator Aurora legacy-prompt history card so its preserved metadata remains readable.
+- actoraOS is now `0.2.499`.
+
 ## 0.2.498 - 2026-08-17
 
 - Renamed Chat to Aurora, made `/aurora/` the canonical full-page experience, and added a footer Aurora dock so the same assistant conversation can travel across the site.
