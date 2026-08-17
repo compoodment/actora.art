@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.509 - 2026-08-17
+
+- Raised normal Aurora messages from 4,096 to 10,000 characters while keeping custom instructions at 2,000.
+- Added bounded public-page reading so Aurora can inspect visitor-provided websites and public GitHub repositories, including relevant linked repository files.
+- actoraOS is now `0.2.509`.
+
 ## 0.2.508 - 2026-08-17
 
 - Added a confirmation step before Aurora custom instructions can be reset.

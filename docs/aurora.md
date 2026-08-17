@@ -10,6 +10,7 @@
 - The footer panel resumes the current conversation. The full Aurora page exposes the complete conversation controls.
 - Failed replies can be retried, and the latest user message can be edited and regenerated. A conversation can carry its own brief without changing global personalization.
 - Sent and received messages support a safe Markdown subset: headings, bold, italics, strikethrough, inline and fenced code, HTTP(S) links, lists, blockquotes, and horizontal rules. Raw HTML is shown as text.
+- Normal messages accept up to 10,000 characters. Custom instructions remain limited to 2,000 characters and conversation briefs to 1,200.
 
 ## Personalization
 
@@ -29,9 +30,10 @@ Aurora can consult bounded, read-only sources when useful:
 - public page and Lab catalogues;
 - a bounded Space body catalogue;
 - safe context about the current visitor; and
-- general web search for outside or current information.
+- general web search for outside or current information; and
+- bounded reading of visitor-provided public websites and GitHub repository pages, with a small number of relevant public links followed when needed.
 
-Web-backed answers should include descriptive source links. Actora documentation and outside-web results are distinct sources. These tools cannot play Music, open a page on someone's behalf, edit accounts, send messages, submit forms, or mutate site state.
+Web-backed answers should include descriptive source links. Actora documentation and outside-web results are distinct sources. Public-page reading rejects local/private-network targets, credentials, and unusual ports. These tools cannot play Music, open a page in the visitor's browser, edit accounts, send messages, submit forms, or mutate site state.
 
 The abstract line above the composer stays wordless. Web-backed answers keep a compact source strip with the answer.
 
