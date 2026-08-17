@@ -8,6 +8,7 @@
 - Signed-in visitors can create, select, rename, archive, restore, reset, and delete multiple conversations. Their own messages use their current display name.
 - Archived conversations are read-only and expire after seven days.
 - The footer panel resumes the current conversation. The full Aurora page exposes the complete conversation controls.
+- Failed replies can be retried, and the latest user message can be edited and regenerated. A conversation can carry its own brief without changing global personalization.
 
 ## Personalization
 
@@ -29,8 +30,10 @@ Aurora can consult bounded, read-only sources when useful:
 
 Web-backed answers should include descriptive source links. Actora documentation and outside-web results are distinct sources. These tools cannot play Music, open a page on someone's behalf, edit accounts, send messages, submit forms, or mutate site state.
 
+The line above the composer reports Aurora's current activity when she is thinking or using a bounded lookup. Web-backed answers keep a compact source strip with the answer.
+
 ## Privacy
 
-Aurora sends a recent part of the current conversation, Aurora's instructions, and enabled customization to Ollama Cloud to produce a reply. The system prompt does not embed the visitor's identity or role. If identity or access is relevant, Aurora can call a read-only tool that returns only the current visitor's safe display/account label, signed-in state, and coarse access class. A web-search query is sent only when Aurora chooses to search; account details, private instructions, and unrelated conversation text must not be placed in that query.
+Aurora sends a recent part of the current conversation, Aurora's instructions, enabled customization, the conversation brief, and a protected minimal viewer context to Ollama Cloud to produce a reply. Viewer context contains only the safe display/account label, signed-in state, and coarse access class; a read-only tool can supply bounded access guidance. A web-search query is sent only when Aurora chooses to search; account details, private instructions, and unrelated conversation text must not be placed in that query.
 
 See [privacy.md](privacy.md) for retention and external-service details.

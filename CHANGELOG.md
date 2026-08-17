@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.504 - 2026-08-17
+
+- Added retry for failed Aurora replies and edit-and-resend for the latest message.
+- Added per-conversation briefs, clearer automatic chat titles, live lookup status, and compact web source links.
+- Corrected Aurora's awareness of the signed-in visitor's display name and access class.
+- actoraOS is now `0.2.504`.
+
 ## 0.2.503 - 2026-08-17
 
 - Fixed transcript text selection in Aurora so selecting text no longer jumps focus back to the composer.
