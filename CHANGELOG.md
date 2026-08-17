@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.505 - 2026-08-17
+
+- Put an always-visible `edit` action directly on the latest message you sent to Aurora.
+- Restored Aurora's status animation to its wordless, mysterious presentation.
+- actoraOS is now `0.2.505`.
+
 ## 0.2.504 - 2026-08-17
 
 - Added retry for failed Aurora replies and edit-and-resend for the latest message.

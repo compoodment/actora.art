@@ -30,7 +30,7 @@ Aurora can consult bounded, read-only sources when useful:
 
 Web-backed answers should include descriptive source links. Actora documentation and outside-web results are distinct sources. These tools cannot play Music, open a page on someone's behalf, edit accounts, send messages, submit forms, or mutate site state.
 
-The line above the composer reports Aurora's current activity when she is thinking or using a bounded lookup. Web-backed answers keep a compact source strip with the answer.
+The abstract line above the composer stays wordless. Web-backed answers keep a compact source strip with the answer.
 
 ## Privacy
 
