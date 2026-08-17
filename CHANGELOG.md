@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.501 - 2026-08-17
+
+- Matched Aurora's footer header controls to Social's sizing.
+- Added chat switching and new-chat creation to footer Aurora for signed-in people.
+- Presented system notifications as system messages without Aurora attribution.
+- actoraOS is now `0.2.501`.
+
 ## 0.2.500 - 2026-08-17
 
 - Restored Aurora answers that use the public documentation search tool.
