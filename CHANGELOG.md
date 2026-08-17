@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.517 - 2026-08-17
+
+- Removed Aurora's per-conversation chat brief feature; global custom instructions remain available in Aurora settings.
+- actoraOS is now `0.2.517`.
+
 ## 0.2.516 - 2026-08-17
 
 - Reworked Aurora on phones with safe-area spacing, a compact header, wider messages, a roomier composer, and expandable source lists.
