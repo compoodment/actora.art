@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.535 - 2026-08-18
+
+- Footer Social now matches Messages and Aurora more closely, with compact message cards, a bare composer, and the same enter-symbol send control.
+- Footer conversations now support copy, report, mark unread, mute, retry, and uninterrupted typing after sending.
+- actoraOS is now `0.2.535`.
+
 ## 0.2.534 - 2026-08-18
 
 - Messages now uses Aurora's actual expanded sidebar width and balanced conversation-list spacing.
