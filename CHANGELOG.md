@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.528 - 2026-08-18
+
+- Messages now shares Aurora's quieter typography, compact square bubbles, top-right actions, composer proportions, and denser mobile layout.
+- Conversations can be marked unread from a compact menu, long threads offer a centered `latest` control, and failed sends retain a direct retry action.
+- actoraOS is now `0.2.528`.
+
 ## 0.2.527 - 2026-08-18
 
 - The GitHub, Discord, and recent-changes surfaces on Info now use Actora's square-corner aesthetic.
