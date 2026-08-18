@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.538 - 2026-08-18
+
+- Aurora source links now have clear non-underlined separators, so adjacent sources stay easy to distinguish.
+- Aurora’s quota, context, and memory indicators now use simple dashes between each status.
+- Aurora’s footer popup now keeps its compact layout on profile pages too.
+- actoraOS is now `0.2.538`.
+
 ## 0.2.537 - 2026-08-18
 
 - Aurora’s browser title now matches the rest of the site: `Aurora - actora.art`.
