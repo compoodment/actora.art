@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.533 - 2026-08-18
+
+- Fixed the collapsed Messages controls wrapping onto separate rows.
+- actoraOS is now `0.2.533`.
+
 ## 0.2.532 - 2026-08-18
 
 - The Messages conversation rail now collapses and expands smoothly, with spacing that matches Aurora's compact sidebar.
