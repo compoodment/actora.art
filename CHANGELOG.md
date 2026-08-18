@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.520 - 2026-08-18
+
+- Signed-in visitors can explicitly give Aurora short memories that carry between conversations, while guest chats remain non-persistent.
+- Aurora settings now let visitors add, filter, edit, categorize, pin, expire, disable, forget, or clear their memories; bulk clearing requires confirmation.
+- Aurora uses only a small relevant set per reply and shows the count beside context use. Memories never establish account roles or permissions.
+- actoraOS is now `0.2.520`.
+
 ## 0.2.519 - 2026-08-18
 
 - Aurora now finishes from information it has already gathered when a lookup reaches its bounded limit, instead of replying with a dead-end limit message.
