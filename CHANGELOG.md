@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.534 - 2026-08-18
+
+- Messages now uses Aurora's actual expanded sidebar width and balanced conversation-list spacing.
+- actoraOS is now `0.2.534`.
+
 ## 0.2.533 - 2026-08-18
 
 - Fixed the collapsed Messages controls wrapping onto separate rows.
