@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.536 - 2026-08-18
+
+- Aurora, Messages, and the footer panels now use one compact down-arrow to return to the latest message.
+- The footer arrow appears only when a DM is no longer at the newest message.
+- actoraOS is now `0.2.536`.
+
 ## 0.2.535 - 2026-08-18
 
 - Footer Social now matches Messages and Aurora more closely, with compact message cards, a bare composer, and the same enter-symbol send control.
