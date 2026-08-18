@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.537 - 2026-08-18
+
+- Aurora’s browser title now matches the rest of the site: `Aurora - actora.art`.
+- actoraOS is now `0.2.537`.
+
 ## 0.2.536 - 2026-08-18
 
 - Aurora, Messages, and the footer panels now use one compact down-arrow to return to the latest message.
