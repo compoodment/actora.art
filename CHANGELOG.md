@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.523 - 2026-08-18
+
+- Aurora now opens direct actora.art playlist links through Music instead of misreading the surrounding webpage.
+- Correcting a playlist name retries the corrected name, and large playlist searches stay within Aurora's lookup limits.
+- actoraOS is now `0.2.523`.
+
 ## 0.2.522 - 2026-08-18
 
 - Aurora can now find public playlists by playlist details or by the published songs inside them.
