@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.524 - 2026-08-18
+
+- Aurora now sees the complete current Space catalog instead of a smaller handwritten list.
+- Space body lookups include parent, radius, mass, and available data-quality labels; names such as `S/2002 N 5` work with casual spacing and punctuation.
+- Future Space roster changes must refresh Aurora's catalog before the site can build.
+- actoraOS is now `0.2.524`.
+
 ## 0.2.523 - 2026-08-18
 
 - Aurora now opens direct actora.art playlist links through Music instead of misreading the surrounding webpage.
