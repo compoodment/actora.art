@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.526 - 2026-08-18
+
+- Aurora memories now appear as readable cards with their details tucked behind an explicit edit action.
+- Memory filtering, adding, editing, and confirmed deletion are easier to scan and use.
+- Text fields across the site now grow with their contents instead of showing manual resize handles.
+- actoraOS is now `0.2.526`.
+
 ## 0.2.525 - 2026-08-18
 
 - Aurora, Messages, and Social now turn standard pipe-delimited Markdown into proper hard-corner tables.
