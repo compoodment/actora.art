@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.521 - 2026-08-18
+
+- Aurora can now edit an existing memory without making you forget and recreate it first.
+- A plain “yes” works after Aurora asks a specific memory confirmation question; unrelated affirmations cannot change memory.
+- Aurora settings use consistent dark, square buttons and dropdowns, with shorter explanations.
+- actoraOS is now `0.2.521`.
+
 ## 0.2.520 - 2026-08-18
 
 - Signed-in visitors can explicitly give Aurora short memories that carry between conversations, while guest chats remain non-persistent.
