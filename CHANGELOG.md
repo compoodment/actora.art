@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.522 - 2026-08-18
+
+- Aurora can now find public playlists by playlist details or by the published songs inside them.
+- Playlist results can be inspected with useful song titles and artists; private playlists remain unavailable.
+- actoraOS is now `0.2.522`.
+
 ## 0.2.521 - 2026-08-18
 
 - Aurora can now edit an existing memory without making you forget and recreate it first.
