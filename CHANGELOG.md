@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.519 - 2026-08-18
+
+- Aurora now finishes from information it has already gathered when a lookup reaches its bounded limit, instead of replying with a dead-end limit message.
+- actoraOS is now `0.2.519`.
+
 ## 0.2.518 - 2026-08-17
 
 - Added context-window awareness beside Aurora's message allowance, with a quiet percentage and an inspect-only view after older context is compacted.
