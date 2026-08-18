@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.527 - 2026-08-18
+
+- The GitHub, Discord, and recent-changes surfaces on Info now use Actora's square-corner aesthetic.
+- actoraOS is now `0.2.527`.
+
 ## 0.2.526 - 2026-08-18
 
 - Aurora memories now appear as readable cards with their details tucked behind an explicit edit action.
