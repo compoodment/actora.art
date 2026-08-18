@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.525 - 2026-08-18
+
+- Aurora, Messages, and Social now turn standard pipe-delimited Markdown into proper hard-corner tables.
+- Wide tables scroll within their message on narrow screens instead of stretching the layout.
+- actoraOS is now `0.2.525`.
+
 ## 0.2.524 - 2026-08-18
 
 - Aurora now sees the complete current Space catalog instead of a smaller handwritten list.
