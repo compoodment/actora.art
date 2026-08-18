@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.531 - 2026-08-18
+
+- Messages now uses Aurora's compact top-row sidebar toggle instead of a floating control over the conversation list.
+- Collapsed Messages keeps its conversation buttons visible in the narrow rail, just like Aurora.
+- actoraOS is now `0.2.531`.
+
 ## 0.2.530 - 2026-08-18
 
 - Messages now uses a cleaner icon-led search row and Aurora-style composer, with consistently compact conversation actions.
