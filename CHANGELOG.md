@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.532 - 2026-08-18
+
+- The Messages conversation rail now collapses and expands smoothly, with spacing that matches Aurora's compact sidebar.
+- actoraOS is now `0.2.532`.
+
 ## 0.2.531 - 2026-08-18
 
 - Messages now uses Aurora's compact top-row sidebar toggle instead of a floating control over the conversation list.
