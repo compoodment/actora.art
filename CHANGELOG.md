@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.530 - 2026-08-18
+
+- Messages now uses a cleaner icon-led search row and Aurora-style composer, with consistently compact conversation actions.
+- The desktop conversation list can now collapse and expand smoothly while mobile keeps its one-pane navigation.
+- actoraOS is now `0.2.530`.
+
 ## 0.2.529 - 2026-08-18
 
 - Very long unbroken words now wrap inside Messages bubbles instead of adding a horizontal scrollbar to the conversation.
