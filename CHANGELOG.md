@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.539 - 2026-08-20
+
+- Aurora can now read attached PDFs, text files, Markdown, data files, and common source-code files.
+- Use the square `+` beside the composer, or drag documents over Aurora on desktop. Selected files stay removable until the message is sent.
+- Aurora clearly rejects images, unsupported files, oversized files, and scanned PDFs without readable text instead of pretending it can see them.
+- Attachment text is used only for the current reply; chat history keeps the file label, not the document contents.
+- actoraOS is now `0.2.539`.
+
 ## 0.2.538 - 2026-08-18
 
 - Aurora source links now have clear non-underlined separators, so adjacent sources stay easy to distinguish.
