@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.540 - 2026-08-20
+
+- The attachment, typing, and send controls now share one aligned height in both full Aurora and the footer popup.
+- The focused typing field keeps its border inside the same geometry instead of appearing taller than the adjacent buttons.
+- actoraOS is now `0.2.540`.
+
 ## 0.2.539 - 2026-08-20
 
 - Aurora can now read attached PDFs, text files, Markdown, data files, and common source-code files.
