@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.541 - 2026-08-20
+
+- Aurora's settings, help, attachment, typing, and send controls now share one aligned row, square size, and spacing rhythm.
+- The abstract activity field now lines up with the typing field in full Aurora and the footer popup.
+- actoraOS is now `0.2.541`.
+
 ## 0.2.540 - 2026-08-20
 
 - The attachment, typing, and send controls now share one aligned height in both full Aurora and the footer popup.
