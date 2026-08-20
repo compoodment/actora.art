@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.2.542 - 2026-08-20
+
+- Lab now uses square neutral experiment rows instead of rounded blue-tinted cards.
+- Info now uses the same black, gray, and white visual language as the rest of actora.art while keeping its existing content and structure.
+- actoraOS is now `0.2.542`.
+
 ## 0.2.541 - 2026-08-20
 
 - Aurora's settings, help, attachment, typing, and send controls now share one aligned row, square size, and spacing rhythm.
