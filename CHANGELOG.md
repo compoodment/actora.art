@@ -8,8 +8,10 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 - Music now keeps playing while you move through actora.art and adds a compact footer player without replacing the centered actoraOS home link.
 - Open Actora tabs share one playback session, so each tab can show and control the same song without doubling the audio.
+- If the tab producing the audio closes, another open Actora tab now takes over the same song at the same moment instead of stopping playback.
 - Footer shortcuts open the full Music, Aurora, and Messages pages in new tabs.
 - The compact Music popup now sits above the footer and visually matches the full player.
+- Music's standalone heading now uses the same lowercase `music` label as the footer player.
 - Aurora's status animation once again spans the full composer width.
 - actoraOS is now `0.3.3`.
 
