@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.0 - 2026-08-20
+
+- Aurora's footer popup stays compact and no longer gains a page-wide horizontal scrollbar from long replies or source titles.
+- actoraOS is now `0.3.0`.
+
 ## 0.2.542 - 2026-08-20
 
 - Lab now uses square neutral experiment rows instead of rounded blue-tinted cards.
