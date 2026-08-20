@@ -4,14 +4,20 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.4 - 2026-08-20
+
+- If the tab producing the audio closes, another open Actora tab now attempts to continue from the same moment; if the browser blocks background playback, one press resumes the preserved song and position.
+- Opening full Music from the footer now shows the track that is actually playing instead of empty track details beside live progress.
+- Switching accounts now clears the previous account's shared now-playing state, and play/pause remains truthful while a new tab takes over playback.
+- Music's standalone heading now uses the same lowercase `music` label as the footer player.
+- actoraOS is now `0.3.4`.
+
 ## 0.3.3 - 2026-08-20
 
 - Music now keeps playing while you move through actora.art and adds a compact footer player without replacing the centered actoraOS home link.
 - Open Actora tabs share one playback session, so each tab can show and control the same song without doubling the audio.
-- If the tab producing the audio closes, another open Actora tab now takes over the same song at the same moment instead of stopping playback.
 - Footer shortcuts open the full Music, Aurora, and Messages pages in new tabs.
 - The compact Music popup now sits above the footer and visually matches the full player.
-- Music's standalone heading now uses the same lowercase `music` label as the footer player.
 - Aurora's status animation once again spans the full composer width.
 - actoraOS is now `0.3.3`.
 
