@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.5 - 2026-08-20
+
+- Music now requires an account. Guest Music links open the homepage terminal for sign-in or registration and return to the same Music destination afterward.
+- The Music page, footer player, profile showcases, catalog/media access, and Aurora's Music readers now share the same signed-in boundary.
+- Signing out now stops and clears Music playback.
+- actoraOS is now `0.3.5`.
+
 ## 0.3.4 - 2026-08-20
 
 - If the tab producing the audio closes, another open Actora tab now attempts to continue from the same moment; if the browser blocks background playback, one press resumes the preserved song and position.
