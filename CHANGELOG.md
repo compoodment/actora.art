@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.10 - 2026-08-20
+
+- Aurora now carries an explicitly requested playlist through lookup and creation as one operation instead of repeatedly describing internal track-id work.
+- Existing stuck playlist conversations can continue with an ordinary reply such as `ok`; Aurora asks another question only when a required playlist detail is actually missing.
+- actoraOS is now `0.3.10`.
+
 ## 0.3.9 - 2026-08-20
 
 - Aurora now completes an approved playlist operation instead of stopping after saying that creation is starting.
