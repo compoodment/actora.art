@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.9 - 2026-08-20
+
+- Aurora now completes an approved playlist operation instead of stopping after saying that creation is starting.
+- Short follow-ups such as `do it then` resume the explicit playlist request immediately before them.
+- Empty Aurora responses now show an honest failure instead of a `...` message.
+- actoraOS is now `0.3.9`.
+
 ## 0.3.8 - 2026-08-20
 
 - Aurora now knows when a Music, Space, document, attachment, or fetched-page result has more pages and continues reading before making complete-catalog claims.
