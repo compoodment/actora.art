@@ -12,6 +12,8 @@ Albums are public. New playlists are private by default and become discoverable 
 
 The player stays available while moving between Discover, collections, tracks, Now playing, Queue, and Lyrics. **Play next** and **Add to queue** work for guests as well as signed-in visitors.
 
+Playback also follows you around actora.art through the shared footer. Its compact title strip and square controls expose play/pause, previous, next, seeking, shuffle, and volume without replacing the centered actoraOS home link. Long titles move inside a fixed-width strip instead of widening the footer. Opening full Music creates a new tab, and every open Actora tab can display and control the same playback session while one tab remains the audio owner.
+
 Signed-in listening history powers private **Continue listening** and **Recently played** shelves. It can be cleared at any time and is never public profile or activity data.
 
 ## Add Songs

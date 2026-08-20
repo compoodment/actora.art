@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.4.0 - 2026-08-20
+
+- Music now keeps playing while you move through actora.art and adds a compact footer player without replacing the centered actoraOS home link.
+- Open Actora tabs share one playback session, so each tab can show and control the same song without doubling the audio.
+- Footer shortcuts open the full Music, Aurora, and Messages pages in new tabs.
+- actoraOS is now `0.4.0`.
+
 ## 0.3.2 - 2026-08-20
 
 - Social's footer popup title now matches Aurora's bold heading.
