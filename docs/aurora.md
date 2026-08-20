@@ -45,6 +45,6 @@ The abstract line above the composer stays wordless. Web-backed answers keep a c
 
 ## Privacy
 
-Aurora sends a recent part of the current conversation, Aurora's instructions, enabled customization, the conversation brief, and a protected minimal viewer context to Ollama Cloud to produce a reply. Viewer context contains only the safe display/account label, signed-in state, and coarse access class; a read-only tool can supply bounded access guidance. A web-search query is sent only when Aurora chooses to search; account details, private instructions, and unrelated conversation text must not be placed in that query.
+Aurora sends the current uncompacted conversation, Aurora's instructions, enabled customization, any retained compacted summary, and a protected minimal viewer context to Ollama Cloud to produce a reply. The context indicator estimates that same payload; there is no separate fixed message-count cutoff. At the displayed compaction threshold, older turns become a retained summary while the newest turns remain verbatim. Viewer context contains only the safe display/account label, signed-in state, and coarse access class; a read-only tool can supply bounded access guidance. A web-search query is sent only when Aurora chooses to search; account details, private instructions, and unrelated conversation text must not be placed in that query.
 
 See [privacy.md](privacy.md) for retention and external-service details.

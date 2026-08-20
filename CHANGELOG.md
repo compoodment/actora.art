@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.11 - 2026-08-20
+
+- Aurora no longer silently forgets conversation turns after 50 messages while showing low context use.
+- The context indicator now measures the same complete uncompacted conversation Aurora receives; normal compaction begins only at the displayed threshold.
+- Long-running Music actions keep their original explicit authorization even when the conversation is large.
+- actoraOS is now `0.3.11`.
+
 ## 0.3.10 - 2026-08-20
 
 - Aurora now carries an explicitly requested playlist through lookup and creation as one operation instead of repeatedly describing internal track-id work.

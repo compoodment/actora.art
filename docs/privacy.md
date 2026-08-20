@@ -29,7 +29,7 @@ A message report retains only the selected incoming message: its text, sender id
 
 ## External Services
 
-Aurora sends a recent portion of the current conversation, layered Aurora instructions, limited safe account context, and any enabled custom instructions to Ollama Cloud to generate a reply. If Aurora uses general web search, a separate bounded query is sent to Ollama's web-search service; it is instructed not to include private account data, custom instructions, or unrelated conversation text. See the [Ollama privacy policy](https://ollama.com/privacy).
+Aurora sends the current uncompacted conversation, any retained compacted summary, layered Aurora instructions, limited safe account context, and enabled custom instructions to Ollama Cloud to generate a reply. The displayed context estimate covers that same payload; older turns become a retained summary at the compaction threshold rather than disappearing behind a separate message-count cutoff. If Aurora uses general web search, a separate bounded query is sent to Ollama's web-search service; it is instructed not to include private account data, custom instructions, or unrelated conversation text. See the [Ollama privacy policy](https://ollama.com/privacy).
 
 Site pages currently load JetBrains Mono from Google Fonts, so the browser makes a request to Google and sends ordinary network/request metadata. See [Google Fonts privacy information](https://developers.google.com/fonts/faq/privacy).
 
