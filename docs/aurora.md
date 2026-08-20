@@ -8,9 +8,9 @@
 - Signed-in visitors can create, select, rename, archive, restore, reset, and delete multiple conversations. Their own messages use their current display name.
 - Archived conversations are read-only and expire after seven days.
 - The footer panel resumes the current conversation. The full Aurora page exposes the complete conversation controls.
-- Failed replies can be retried, and the latest user message can be edited and regenerated. A conversation can carry its own brief without changing global personalization.
+- Failed replies can be retried, and the latest user message can be edited and regenerated.
 - Sent and received messages support a safe Markdown subset: headings, bold, italics, strikethrough, inline and fenced code, HTTP(S) links, lists, blockquotes, and horizontal rules. Raw HTML is shown as text.
-- Normal messages accept up to 10,000 characters. Custom instructions remain limited to 2,000 characters and conversation briefs to 1,200.
+- Normal messages accept up to 10,000 characters. Custom instructions remain limited to 2,000 characters.
 
 ## Personalization
 
@@ -22,7 +22,7 @@ Personal instructions cannot replace Aurora's identity, weaken privacy or safety
 
 ## Information and Tools
 
-Aurora can consult bounded, read-only sources when useful:
+Aurora can consult bounded sources when useful:
 
 - sanitized public actora.art documentation;
 - the public Music catalog;
@@ -33,7 +33,11 @@ Aurora can consult bounded, read-only sources when useful:
 - general web search for outside or current information; and
 - bounded reading of visitor-provided public websites and GitHub repository pages, with a small number of relevant public links followed when needed.
 
-Web-backed answers should include descriptive source links. Actora documentation and outside-web results are distinct sources. Public-page reading rejects local/private-network targets, credentials, and unusual ports. These tools cannot play Music, open a page in the visitor's browser, edit accounts, send messages, submit forms, or mutate site state.
+Web-backed answers should include descriptive source links. Actora documentation and outside-web results are distinct sources. Public-page reading rejects local/private-network targets, credentials, and unusual ports.
+
+After an explicit request from a signed-in visitor, Aurora can control their shared Music player: play, pause/resume, skip, seek, adjust volume or shuffle, queue Music, and clear the upcoming queue. It can create private-by-default playlists and edit playlists that visitor owns, including their name, description, tracks, order, and visibility. Clearing a long queue or making a private playlist public asks for confirmation first, and the latest playlist edit can be undone. Aurora cannot delete playlists.
+
+Aurora otherwise cannot open a page in the visitor's browser, edit accounts, send messages, submit forms, or mutate site state.
 
 The abstract line above the composer stays wordless. Web-backed answers keep a compact source strip with the answer.
 

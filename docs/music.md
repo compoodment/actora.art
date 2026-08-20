@@ -22,6 +22,12 @@ Signed-in visitors can add MP3, M4A/AAC, Ogg/Opus, or WAV files. Selected audio,
 
 Uploaders can edit or delete their own published songs. Playlist owners can manage their own playlists and change their visibility.
 
+## Aurora control
+
+Signed-in visitors can ask Aurora to play Music, control transport, seek, change volume or shuffle, queue tracks or collections, and clear the upcoming queue. Aurora uses the same shared player as the full Music page and footer, so every tab stays synchronized.
+
+Aurora can also create a private-by-default playlist or edit a playlist you own: rename it, change its description or visibility, add/remove tracks, and reorder it. Publishing a private playlist or clearing a long queue requires confirmation. The latest playlist edit can be undone. Aurora cannot delete playlists; deletion remains an intentional action in the full Music interface.
+
 ## Sharing and Profiles
 
 Songs, albums, and public playlists can be shared with current friends through Messages. The message keeps a recognizable title if the Music later becomes unavailable, but its active link and playback action disappear.

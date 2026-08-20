@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.7 - 2026-08-20
+
+- Signed-in visitors can now ask Aurora to play Music, control playback, queue tracks or collections, and clear the upcoming queue across Actora tabs.
+- Aurora can create private playlists and edit playlists you own, including their name, description, tracks, order, and visibility. Aurora cannot delete playlists.
+- Publishing a private playlist or clearing a long queue asks for confirmation, and the latest playlist edit can be undone.
+- actoraOS is now `0.3.7`.
+
 ## 0.3.6 - 2026-08-20
 
 - Music now recovers when its audio-owning tab crashes or disappears without closing cleanly.
