@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.6 - 2026-08-20
+
+- Music now recovers when its audio-owning tab crashes or disappears without closing cleanly.
+- Pressing Play in another tab now moves playback ownership to that tab, and account changes reliably stop and unload Music everywhere.
+- Cross-tab controls now keep working when the browser's preferred tab channel is unavailable.
+- actoraOS is now `0.3.6`.
+
 ## 0.3.5 - 2026-08-20
 
 - Music now requires an account. Guest Music links open the homepage terminal for sign-in or registration and return to the same Music destination afterward.
