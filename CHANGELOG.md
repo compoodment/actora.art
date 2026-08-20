@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.2 - 2026-08-20
+
+- Social's footer popup title now matches Aurora's bold heading.
+- actoraOS is now `0.3.2`.
+
 ## 0.3.1 - 2026-08-20
 
 - Aurora's footer composer now keeps its normal compact controls on profile pages.
