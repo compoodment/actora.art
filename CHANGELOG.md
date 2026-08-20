@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.8 - 2026-08-20
+
+- Aurora now knows when a Music, Space, document, attachment, or fetched-page result has more pages and continues reading before making complete-catalog claims.
+- Music searches show matching albums before their tracks, ignore capitalization, tolerate punctuation differences in artist names, and no longer mistake the first 15 tracks for the entire catalog.
+- Naming a playlist after already asking Aurora to create it now preserves that request instead of making you repeat the action.
+- actoraOS is now `0.3.8`.
+
 ## 0.3.7 - 2026-08-20
 
 - Signed-in visitors can now ask Aurora to play Music, control playback, queue tracks or collections, and clear the upcoming queue across Actora tabs.
