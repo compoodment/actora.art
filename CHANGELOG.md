@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.12 - 2026-08-20
+
+- Aurora now creates a catalog-wide playlist as one complete operation instead of carrying dozens of track ids through later replies.
+- Artist, album, and track matching ignores capitalization, includes every current match, and cannot create an empty playlist.
+- Repeating the same completed request does not create a duplicate playlist, and stalled requests now show a truthful timeout with a retry.
+- actoraOS is now `0.3.12`.
+
 ## 0.3.11 - 2026-08-20
 
 - Aurora no longer silently forgets conversation turns after 50 messages while showing low context use.
