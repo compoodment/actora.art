@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.16 - 2026-08-21
+
+- Aurora now understands “unpause” as a direct Music control without inventing an explicit-content confirmation.
+- Aurora can check the current deployed actoraOS version instead of relying on an older conversation claim.
+- actoraOS is now `0.3.16`.
+
 ## 0.3.15 - 2026-08-21
 
 - Aurora now verifies whether a requested song or playlist actually started in the browser instead of treating a scheduled Music action as successful playback.
