@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.14 - 2026-08-21
+
+- Aurora can now delete the signed-in visitor's own ordinary playlists after a fresh confirmation.
+- An Aurora playlist deletion can be undone for ten minutes without losing its identity, songs, details, visibility, or cover.
+- Direct Music playback and shuffle requests now run immediately instead of entering a nonexistent explicit-content confirmation loop.
+- actoraOS is now `0.3.14`.
+
 ## 0.3.13 - 2026-08-21
 
 - Playlist owners can now delete an editable playlist directly from its collection controls instead of needing a hidden management surface.
