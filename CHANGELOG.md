@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.13 - 2026-08-21
+
+- Playlist owners can now delete an editable playlist directly from its collection controls instead of needing a hidden management surface.
+- Playlist deletion remains confirmation-gated, and actoraOS is now `0.3.13`.
+
 ## 0.3.12 - 2026-08-20
 
 - Aurora now creates a catalog-wide playlist as one complete operation instead of carrying dozens of track ids through later replies.
