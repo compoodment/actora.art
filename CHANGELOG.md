@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.15 - 2026-08-21
+
+- Aurora now verifies whether a requested song or playlist actually started in the browser instead of treating a scheduled Music action as successful playback.
+- If the browser requires another interaction, the requested Music remains loaded and Aurora clearly directs the listener to the footer play control.
+- actoraOS is now `0.3.15`.
+
 ## 0.3.14 - 2026-08-21
 
 - Aurora can now delete the signed-in visitor's own ordinary playlists after a fresh confirmation.
