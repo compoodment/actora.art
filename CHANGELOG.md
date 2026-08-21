@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.17 - 2026-08-21
+
+- Aurora now accepts natural requests and short follow-up approval for ordinary account-owned actions instead of demanding exact magic wording.
+- Reordering or re-curating an owned playlist works from the original request, while destructive or privacy-changing actions keep their appropriate confirmations.
+- Natural memory confirmations are less brittle, and abandoned tool work no longer returns unexpectedly after the conversation changes topic.
+- actoraOS is now `0.3.17`.
+
 ## 0.3.16 - 2026-08-21
 
 - Aurora now understands “unpause” as a direct Music control without inventing an explicit-content confirmation.
