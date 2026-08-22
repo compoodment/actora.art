@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.20 - 2026-08-23
+
+- Music management now follows a direct upload, edit, or delete model without draft/publish controls.
+- Owner-wide catalog moderation moved out of the listener-facing Music page while ordinary uploaders keep item-level editing for their own tracks and playlists.
+- Aurora no longer offers playlist deletion; playlist owners keep the visible confirmed deletion control in Music.
+- actoraOS is now `0.3.20`.
+
 ## 0.3.19 - 2026-08-22
 
 - Rebuilt the private Admin area as a compact control room with live site activity, Music moderation, Aurora health, storage totals, and server free-space visibility.
