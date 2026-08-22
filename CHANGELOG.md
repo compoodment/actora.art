@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.19 - 2026-08-22
+
+- Rebuilt the private Admin area as a compact control room with live site activity, Music moderation, Aurora health, storage totals, and server free-space visibility.
+- Signed-in Aurora conversations no longer have arbitrary saved-conversation, per-chat message/byte, account message/byte, or archive-age ceilings. Daily use and abuse protections remain.
+- actoraOS is now `0.3.19`.
+
 ## 0.3.18 - 2026-08-22
 
 - The persistent footer now keeps the same monospaced typography on Account and every other page.
