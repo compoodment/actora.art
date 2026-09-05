@@ -36,7 +36,7 @@
 
 This README is the public docs index. Implementation source, deployment details, moderation internals, storage layout, runtime state, and secrets live outside this public repo.
 
-The community update is a local candidate under verification, not a deployed release. Its profile designer, Account session controls and encrypted Messages are described conditionally in the guides. Current live DMs still require friendship and remain server-readable. See [social](docs/social.md), [accounts](docs/accounts.md) and [privacy](docs/privacy.md) for the current/staged distinction, recovery limits and selected-message reporting.
+The community update in `0.3.24` adds expressive profiles, Account session controls and encrypted Messages. See [social](docs/social.md), [accounts](docs/accounts.md) and [privacy](docs/privacy.md) for recovery limits and explicit selected-message reporting.
 
 ## Site Stack
 

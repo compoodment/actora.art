@@ -6,7 +6,7 @@ The main public areas of actora.art are:
 - [Aurora](https://actora.art/aurora/) — full-page conversations with Aurora.
 - [Music](https://actora.art/music/) — public listening plus signed-in libraries, uploads, playlists, and private history.
 - [Lab](https://actora.art/lab/) — Space, Liminal, Particles, The Wall, and Actora.
-- [Messages](https://actora.art/messages/) — the signed-in full inbox, with the Social footer as its compact companion. Current live DMs require friendship; the locally tested encrypted update adds a separate private message-request inbox.
+- [Messages](https://actora.art/messages/) — the signed-in full inbox, with the Social footer as its compact companion. Encrypted conversations include a separate private message-request inbox.
 - [Account](https://actora.art/account/) — identity, passkeys, recovery status, archive, and deletion.
 - [Info](https://actora.art/info/) — public links, contact, and credits.
 

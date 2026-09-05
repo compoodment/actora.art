@@ -4,6 +4,16 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.24 - 2026-09-05
+
+- Messages and the Social footer now support end-to-end encrypted conversations, private message requests, replies, reactions, pictures and video. Typing indicators are temporary; there are no read receipts.
+- Use messaging across multiple tabs with independent drafts and conversation selections. Trusted devices, separate message recovery and optional encrypted key backup help preserve access to retained history.
+- Reporting previews the selected message and its attachments before sharing them with Actora's owner. Legacy test-message history starts fresh; older operational backups keep their separate retention.
+- Profiles gain a whole-page designer, isolated custom CSS, mobile arrangements, featured friends, optional public guestbooks and click-to-play Music.
+- Recently played and Continue listening group album and playlist sessions, with collection-aware resume and improved mobile player controls.
+- Account gains clearer Save/Discard, profile addresses and signed-in session controls. Shared footer popups and mobile controls use consistent sizing.
+- actoraOS is now `0.3.24`.
+
 ## 0.3.20 - 2026-08-23
 
 - Music management now follows a direct upload, edit, or delete model without draft/publish controls.
