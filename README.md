@@ -16,7 +16,7 @@
 - **terminal** — the homepage command interface and account entry point
 - **music** — public listening, personal libraries, playlists, and uploads
 - **account and profiles** — passkey identity, lifecycle controls, and opt-in profile pages
-- **social and messages** — exact-username finding, mutual friendships, and friends-only DMs
+- **social and messages** — exact-username finding, mutual friendships, private conversations, and existing in-site notifications
 - **Aurora** — full-page and footer conversations, custom instructions, public Actora lookups, and cited web search
 - **lab** — experiments and unfinished games, including Space, Liminal, Particles, The Wall, and Actora
 - **info** — links, contact, and credits
@@ -35,6 +35,8 @@
 - [CHANGELOG.md](CHANGELOG.md) — public release notes
 
 This README is the public docs index. Implementation source, deployment details, moderation internals, storage layout, runtime state, and secrets live outside this public repo.
+
+The community update is a local candidate under verification, not a deployed release. Its profile designer, Account session controls and encrypted Messages are described conditionally in the guides. Current live DMs still require friendship and remain server-readable. See [social](docs/social.md), [accounts](docs/accounts.md) and [privacy](docs/privacy.md) for the current/staged distinction, recovery limits and selected-message reporting.
 
 ## Site Stack
 
