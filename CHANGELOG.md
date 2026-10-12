@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.25 - 2026-10-12
+
+- Updated the Astro framework, image tooling, and vulnerable transitive frontend packages to their patched releases; clean production dependency audits report no known vulnerabilities.
+- Removed the hidden `weight` terminal shortcut. The private app it opened is retired, so `weight` is now an unknown command like any other.
+- actoraOS is now `0.3.25`.
+
 ## 0.3.24 - 2026-09-05
 
 - Messages and the Social footer now support end-to-end encrypted conversations, private message requests, replies, reactions, pictures and video. Typing indicators are temporary; there are no read receipts.
