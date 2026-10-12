@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.26 - 2026-10-12
+
+- Following a link from one page to another now updates the address bar and the back button correctly, and the footer stays in place instead of disappearing in some browsers.
+- actoraOS is now `0.3.26`.
+
 ## 0.3.25 - 2026-10-12
 
 - Updated the Astro framework, image tooling, and vulnerable transitive frontend packages to their patched releases; clean production dependency audits report no known vulnerabilities.
