@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.27 - 2026-10-30
+
+- Guest conversations with Aurora now share one daily allowance across the site. When it runs out, guests can sign in or come back the next day; signed-in conversations aren't affected.
+- Updated the site's build tooling to patched releases.
+- actoraOS is now `0.3.27`.
+
 ## 0.3.26 - 2026-10-12
 
 - Following a link from one page to another now updates the address bar and the back button correctly, and the footer stays in place instead of disappearing in some browsers.

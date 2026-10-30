@@ -5,6 +5,7 @@
 ## Conversations
 
 - Guests have one browser-scoped conversation and are labelled `guest`.
+- Guest conversations share one daily allowance across the whole site. When it runs out, Aurora tells guests it's busy for the day: they can sign in or come back tomorrow. Signed-in conversations aren't part of it.
 - Signed-in visitors can create, select, rename, archive, restore, reset, and delete multiple conversations. Their own messages use their current display name.
 - Archived conversations are read-only and remain available until their owner restores, resets, or deletes them.
 - The footer panel resumes the current conversation. The full Aurora page exposes the complete conversation controls.
