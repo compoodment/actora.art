@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.28 - 2026-10-30
+
+- Aurora answers again. The language model it used was retired by its provider in late September; Aurora now runs on a current one, and its replies show only the answer.
+- actoraOS is now `0.3.28`.
+
 ## 0.3.27 - 2026-10-30
 
 - Guest conversations with Aurora now share one daily allowance across the site. When it runs out, guests can sign in or come back the next day; signed-in conversations aren't affected.
