@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.29 - 2026-10-31
+
+- Aurora's replies no longer include its reasoning before the answer.
+- actoraOS is now `0.3.29`.
+
 ## 0.3.28 - 2026-10-30
 
 - Aurora answers again. The language model it used was retired by its provider in late September; Aurora now runs on a current one, and its replies show only the answer.
