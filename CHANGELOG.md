@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.30 - 2026-10-31
+
+- Your sign-in now stays on actora.art and is no longer shared with other sites under actora.art. You stay signed in.
+- actoraOS is now `0.3.30`.
+
 ## 0.3.29 - 2026-10-31
 
 - Aurora's replies no longer include its reasoning before the answer.
