@@ -18,7 +18,7 @@
 - **account and profiles** — passkey identity, lifecycle controls, and opt-in profile pages
 - **social and messages** — exact-username finding, mutual friendships, private conversations, and existing in-site notifications
 - **Aurora** — full-page and footer conversations, custom instructions, public Actora lookups, and cited web search
-- **lab** — experiments and unfinished games, including Space, Liminal, Particles, The Wall, and Actora
+- **lab** — experiments: Space and The Wall
 - **info** — links, contact, and credits
 
 ## Read First
@@ -43,7 +43,6 @@ The community update in `0.3.24` adds expressive profiles, Account session contr
 - Astro
 - TypeScript and Preact
 - Three.js
-- Python and Pyodide for Actora
 - Node.js backend for interactive site-owned APIs
 
 ## Privacy

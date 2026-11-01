@@ -5,7 +5,7 @@ The main public areas of actora.art are:
 - [Home](https://actora.art/) — the interactive Terminal and account entry point.
 - [Aurora](https://actora.art/aurora/) — full-page conversations with Aurora.
 - [Music](https://actora.art/music/) — for signed-in accounts: listening, libraries, uploads, playlists, and private history.
-- [Lab](https://actora.art/lab/) — Space, Liminal, Particles, The Wall, and Actora.
+- [Lab](https://actora.art/lab/) — Space and The Wall.
 - [Messages](https://actora.art/messages/) — the signed-in full inbox, with the Social footer as its compact companion. Encrypted conversations include a separate private message-request inbox.
 - [Account](https://actora.art/account/) — identity, passkeys, recovery status, archive, and deletion.
 - [Info](https://actora.art/info/) — public links, contact, and credits.
