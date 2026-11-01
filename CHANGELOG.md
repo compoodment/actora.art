@@ -8,7 +8,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 - Lab is retired: the Wall is now at `/wall/` and Space at `/space/`, and `page wall` and `page space` open them.
 - The terminal is wider and centred, long commands wrap, and everything answers straight away.
-- The footer has a notifications bell; Aurora has left the footer (her page stays), so pages load faster.
+- The footer has a notifications bell with the unread number on its corner; Aurora has left the footer (her page stays), so pages load faster.
 - actoraOS is now `0.3.37`.
 
 ## 0.3.36 - 2026-11-01

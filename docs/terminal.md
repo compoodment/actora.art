@@ -5,7 +5,7 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 ## Flow
 
 - Type a command at the prompt and press Enter.
-- The terminal is a centred, wider column on desktop, with a one-line bar at the top containing the cat face, current actoraOS version, and `page` and `help` hints. Long commands wrap inside the column.
+- The opening ASCII system card shows the reactive cat, the current actoraOS version, and short guidance for `page` and `help`, at the top of a centred, wider column on desktop. Long commands wrap inside the column.
 - Submitted commands and results appear in one open activity rail instead of nested boxes. Its stem and result branches share one continuous text column.
 - When one completion is unambiguous, its remaining characters appear as dim inline ghost text without changing what you typed. Ambiguous matches appear in a small unboxed rail with descriptions.
 - Press Tab to accept the visible ghost or active ambiguous match. When there is no completion to accept, Tab and Shift+Tab follow normal browser focus navigation.
@@ -19,7 +19,7 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 - Output and page opens are immediate, with no built-in working pauses.
 - Terminal output is kept for the current browser session and resets on reload.
 - New output stays in view while the terminal is already at the latest line. Scrolling up to read or copy older output does not pull the view back down.
-- `clear` clears the activity rail while leaving the top bar available.
+- `clear` clears the activity rail while leaving the system card available.
 - The terminal adds no borrowed product logo, user/session banner, or permanent ready label. Account identity remains available through the site's shared footer and state-aware commands.
 
 ## Pages
@@ -46,7 +46,7 @@ Always available:
 - `help` - command list.
 - `page` - choose a page from the picker.
 - `page <name>` - open a page directly.
-- `clear` - clear the activity rail while keeping the top bar.
+- `clear` - clear the activity rail while keeping the system card.
 
 Guest-only:
 
