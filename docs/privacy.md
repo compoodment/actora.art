@@ -6,7 +6,7 @@ It does not run advertising or analytics scripts, create advertising profiles, o
 
 ## Removed Features
 
-Music and Messages were removed from actora.art on 2026-11-01 (version `0.3.32`). The site no longer offers playing, uploading, sharing or sending anything through either. The owner has decided that the songs, playlists, listening history and uploads that Music held, and the messages, attachment files, device records and key backups that Messages held, will be deleted from the server. That deletion has not happened yet.
+Music and Messages were removed from actora.art on 2026-11-01 (version `0.3.32`). The site no longer offers playing, uploading, sharing or sending anything through either. The songs, playlists, listening history and uploads that Music held, and the messages, attachment files, device records and key backups that Messages held, were deleted from the server on 2026-11-01 (version `0.3.35`). Copies in the site's encrypted backups disappear as those backups age out.
 
 Evidence from a message report that the owner had already received stays under the report rules described below: it follows report retention, even if the conversation or account is later removed. Operational backups and retained reports keep their separate retention.
 
