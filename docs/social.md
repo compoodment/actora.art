@@ -36,11 +36,11 @@ Social relationships are mutual friendships, not follows.
 
 - Friend requests can be sent, cancelled, accepted, or declined from profiles and Social surfaces.
 - Friendship grants no elevated site access.
-- The footer Social dialog is the compact layer for friend requests and notices.
+- The footer notifications bell opens the compact layer for friend requests and notices.
 - Blocking ends the friendship or pending friendship request and prevents new contact. The other person receives neutral unavailability. Each person controls only their own block. Unblocking does not restore the friendship.
 - System notices are one-way notifications from the site.
 - Only avatars from currently public profiles appear in Social identity views; otherwise initials are used.
-- Unread counts are private personal state, not read receipts. There is no last-seen or online-presence feature. Existing Social footer notifications remain inside the site; no browser/OS push or notification audio is added.
+- Unread counts are private personal state, not read receipts. There is no last-seen or online-presence feature. Footer notifications remain inside the site; no browser/OS push or notification audio is added.
 - Archive cancels pending friendship requests but preserves accepted friendships and private safety choices subject to their normal limits. Neither side can start new contact across the archive boundary. Deletion removes the deleted person's access and preserves separately retained reports according to [privacy.md](privacy.md).
 
 ## Safety and Boundaries

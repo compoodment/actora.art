@@ -2,9 +2,9 @@
 
 # actora.art
 
-**public notes for the site, its social spaces, and the Lab**
+**public notes for the site and its social spaces**
 
-[site](https://actora.art/) · [guide](docs/site.md) · [Aurora](docs/aurora.md) · [terminal](docs/terminal.md) · [lab](docs/lab.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
+[site](https://actora.art/) · [guide](docs/site.md) · [Aurora](docs/aurora.md) · [terminal](docs/terminal.md) · [Space](docs/space.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
 
 ![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
@@ -16,8 +16,9 @@
 - **terminal** — the homepage command interface and account entry point
 - **account and profiles** — passkey identity, lifecycle controls, and opt-in profile pages
 - **social** — exact-username finding, mutual friendships, and in-site notifications
-- **Aurora** — full-page and footer conversations, custom instructions, public Actora lookups, and cited web search
-- **lab** — experiments: Space and The Wall
+- **Aurora** — conversations, custom instructions, public Actora lookups, and cited web search
+- **Space** — a 3D orbital sandbox
+- **The Wall** — a shared ASCII graffiti wall
 - **info** — links, contact, and credits
 
 ## Read First
@@ -26,7 +27,6 @@
 - [docs/site.md](docs/site.md) — public page and footer guide
 - [docs/aurora.md](docs/aurora.md) — conversations, personalization, and read-only tools
 - [docs/accounts.md](docs/accounts.md) — passkeys, recovery, archive, and deletion
-- [docs/lab.md](docs/lab.md) — short descriptions of the Lab projects
 - [docs/space.md](docs/space.md) — Space catalogue, saves, and evidence boundaries
 - [docs/social.md](docs/social.md) — profiles, badges, and friends
 - [docs/privacy.md](docs/privacy.md) — data use, visibility, external services, and retention

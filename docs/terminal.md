@@ -5,8 +5,8 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 ## Flow
 
 - Type a command at the prompt and press Enter.
-- The opening ASCII system card uses one rounded 44-column composition containing the reactive cat, current actoraOS version, and short guidance for `page` and `help`. Its border is literal terminal text rather than window chrome, uses one aligned monospace face for content and box-drawing characters, and stays visible while the activity rail scrolls beneath it.
-- Submitted commands, working messages, and results appear in one open activity rail instead of nested boxes. Its stem and result branches share one continuous text column.
+- The terminal is a centred, wider column on desktop, with a one-line bar at the top containing the cat face, current actoraOS version, and `page` and `help` hints. Long commands wrap inside the column.
+- Submitted commands and results appear in one open activity rail instead of nested boxes. Its stem and result branches share one continuous text column.
 - When one completion is unambiguous, its remaining characters appear as dim inline ghost text without changing what you typed. Ambiguous matches appear in a small unboxed rail with descriptions.
 - Press Tab to accept the visible ghost or active ambiguous match. When there is no completion to accept, Tab and Shift+Tab follow normal browser focus navigation.
 - Session-dependent commands are state-aware: guests see `register`, `login`, and `recover`; signed-in users see `profile`, `find`, and `logout`.
@@ -16,10 +16,10 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 - Some commands ask a follow-up prompt, such as `find` and `register`.
 - The prompt context identifies follow-up flows such as `register`, `recover`, and `find`; compact guidance changes only when an action needs explanation.
 - Ctrl+C twice cancels an active `find`, `register`, `recover`, or archived-account restore prompt.
-- Navigation commands print a short message before opening the target page.
+- Output and page opens are immediate, with no built-in working pauses.
 - Terminal output is kept for the current browser session and resets on reload.
 - New output stays in view while the terminal is already at the latest line. Scrolling up to read or copy older output does not pull the view back down.
-- `clear` clears the activity rail while leaving the system card available.
+- `clear` clears the activity rail while leaving the top bar available.
 - The terminal adds no borrowed product logo, user/session banner, or permanent ready label. Account identity remains available through the site's shared footer and state-aware commands.
 
 ## Pages
@@ -28,10 +28,11 @@ Type `page` to open a selectable list of the current page targets:
 
 - `info`
 - `aurora`
-- `lab`
+- `wall`
+- `space`
 - `account`
 
-Use Up/Down and Enter, or choose a row directly. The desktop picker follows the activity rail's compact row rhythm, while touch layouts retain larger targets. Typing filters the picker without changing its overall height. One remaining page stays selectable, an exact match remains visibly selected for Enter or pointer activation, and an empty filter shows `no matching page`. `page <name>` opens a target directly, such as `page lab`.
+Use Up/Down and Enter, or choose a row directly. The desktop picker follows the activity rail's compact row rhythm, while touch layouts retain larger targets. Typing filters the picker without changing its overall height. One remaining page stays selectable, an exact match remains visibly selected for Enter or pointer activation, and an empty filter shows `no matching page`. `page <name>` opens a target directly, such as `page wall` or `page space`.
 
 `page chat` remains a compatibility alias for `page aurora`. `account` remains visible while signed out so its requirement is clear, but either picker selection or a direct command checks the current session again before opening it. If signed out, use `login`, `register`, or `recover` first.
 
@@ -45,7 +46,7 @@ Always available:
 - `help` - command list.
 - `page` - choose a page from the picker.
 - `page <name>` - open a page directly.
-- `clear` - clear the activity rail while keeping the system card.
+- `clear` - clear the activity rail while keeping the top bar.
 
 Guest-only:
 

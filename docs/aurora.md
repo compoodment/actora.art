@@ -1,6 +1,6 @@
 # Aurora
 
-[Aurora](https://actora.art/aurora/) is actora.art's conversational presence. The full page supports longer conversations; a compact footer panel makes the current conversation available elsewhere on the site.
+[Aurora](https://actora.art/aurora/) is actora.art's conversational presence. The page supports longer conversations and exposes the complete conversation controls.
 
 ## Conversations
 
@@ -8,7 +8,6 @@
 - Guest conversations share one daily allowance across the whole site. When it runs out, Aurora tells guests it's busy for the day: they can sign in or come back tomorrow. Signed-in conversations aren't part of it.
 - Signed-in visitors can create, select, rename, archive, restore, reset, and delete multiple conversations. Their own messages use their current display name.
 - Archived conversations are read-only and remain available until their owner restores, resets, or deletes them.
-- The footer panel resumes the current conversation. The full Aurora page exposes the complete conversation controls.
 - Failed replies can be retried, and the latest user message can be edited and regenerated.
 - Sent and received messages support a safe Markdown subset: headings, bold, italics, strikethrough, inline and fenced code, HTTP(S) links, lists, blockquotes, and horizontal rules. Raw HTML is shown as text.
 - Normal messages accept up to 10,000 characters. Custom instructions remain limited to 2,000 characters.
@@ -27,13 +26,12 @@ Aurora can consult structured sources when useful:
 
 - sanitized public actora.art documentation;
 - exact public-profile lookup;
-- public page and Lab catalogues;
-- the current Space body catalogue;
+- the public page catalogue;
 - safe context about the current visitor; and
 - general web search for outside or current information; and
 - paginated reading of visitor-provided public websites and GitHub repository pages, with relevant public links followed when needed.
 
-Small result sets return completely. Large Space, attachment, documentation, and fetched-page results report their exact total and next position. Aurora must continue through the remaining pages before saying that something is absent, unique, or the only match. General web search remains non-exhaustive because it returns top results; Aurora can refine or run another search when broader coverage matters.
+Small result sets return completely. Large attachment, documentation, and fetched-page results report their exact total and next position. Aurora must continue through the remaining pages before saying that something is absent, unique, or the only match. General web search remains non-exhaustive because it returns top results; Aurora can refine or run another search when broader coverage matters.
 
 Web-backed answers should include descriptive source links. Actora documentation and outside-web results are distinct sources. Public-page reading rejects local/private-network targets, credentials, and unusual ports.
 
