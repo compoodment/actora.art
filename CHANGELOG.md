@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.34 - 2026-11-01
+
+- Retired the server parts of Messages. Friends, friend requests and notices keep working; the stored messages stay until the planned clean-up.
+- actoraOS is now `0.3.34`.
+
 ## 0.3.33 - 2026-11-01
 
 - Retired the server parts of Music. Nothing changes on the site; the stored songs stay until the planned clean-up.
