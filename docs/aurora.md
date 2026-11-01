@@ -26,7 +26,6 @@ Personal instructions cannot replace Aurora's identity, weaken privacy or safety
 Aurora can consult structured sources when useful:
 
 - sanitized public actora.art documentation;
-- the public Music catalog;
 - exact public-profile lookup;
 - public page and Lab catalogues;
 - the current Space body catalogue;
@@ -34,13 +33,11 @@ Aurora can consult structured sources when useful:
 - general web search for outside or current information; and
 - paginated reading of visitor-provided public websites and GitHub repository pages, with relevant public links followed when needed.
 
-Small result sets return completely. Large Music, Space, attachment, documentation, queue, and fetched-page results report their exact total and next position. Aurora must continue through the remaining pages before saying that something is absent, unique, or the only match. Music matching ignores capitalization and tolerates ordinary punctuation differences. General web search remains non-exhaustive because it returns top results; Aurora can refine or run another search when broader coverage matters.
+Small result sets return completely. Large Space, attachment, documentation, and fetched-page results report their exact total and next position. Aurora must continue through the remaining pages before saying that something is absent, unique, or the only match. General web search remains non-exhaustive because it returns top results; Aurora can refine or run another search when broader coverage matters.
 
 Web-backed answers should include descriptive source links. Actora documentation and outside-web results are distinct sources. Public-page reading rejects local/private-network targets, credentials, and unusual ports.
 
-After an explicit request from a signed-in visitor, Aurora can control their shared Music player: play, pause/resume, skip, seek, adjust volume or shuffle, queue Music, and clear the upcoming queue. It can create private-by-default playlists and edit playlists that visitor owns, including their name, description, tracks, order, and visibility. Clearing a long queue or making a private playlist public asks for confirmation first, and the latest playlist edit can be undone. Aurora cannot delete playlists. An explicitly requested playlist remains one pending operation through catalog lookup and creation, without exposing internal track ids or repeatedly asking for approval. Aurora asks another question only when a required playlist detail is genuinely missing.
-
-Aurora otherwise cannot open a page in the visitor's browser, edit accounts, send messages, submit forms, or mutate site state.
+Aurora cannot open a page in the visitor's browser, edit accounts, send messages, submit forms, or mutate site state.
 
 The abstract line above the composer stays wordless. Web-backed answers keep a compact source strip with the answer.
 

@@ -2,9 +2,9 @@
 
 # actora.art
 
-**public notes for the site, its social spaces, Music, and the Lab**
+**public notes for the site, its social spaces, and the Lab**
 
-[site](https://actora.art/) · [guide](docs/site.md) · [Aurora](docs/aurora.md) · [terminal](docs/terminal.md) · [music](docs/music.md) · [lab](docs/lab.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
+[site](https://actora.art/) · [guide](docs/site.md) · [Aurora](docs/aurora.md) · [terminal](docs/terminal.md) · [lab](docs/lab.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
 
 ![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
@@ -14,9 +14,8 @@
 ## Site
 
 - **terminal** — the homepage command interface and account entry point
-- **music** — public listening, personal libraries, playlists, and uploads
 - **account and profiles** — passkey identity, lifecycle controls, and opt-in profile pages
-- **social and messages** — exact-username finding, mutual friendships, private conversations, and existing in-site notifications
+- **social** — exact-username finding, mutual friendships, and in-site notifications
 - **Aurora** — full-page and footer conversations, custom instructions, public Actora lookups, and cited web search
 - **lab** — experiments: Space and The Wall
 - **info** — links, contact, and credits
@@ -27,16 +26,15 @@
 - [docs/site.md](docs/site.md) — public page and footer guide
 - [docs/aurora.md](docs/aurora.md) — conversations, personalization, and read-only tools
 - [docs/accounts.md](docs/accounts.md) — passkeys, recovery, archive, and deletion
-- [docs/music.md](docs/music.md) — listening, libraries, uploads, and sharing
 - [docs/lab.md](docs/lab.md) — short descriptions of the Lab projects
 - [docs/space.md](docs/space.md) — Space catalogue, saves, and evidence boundaries
-- [docs/social.md](docs/social.md) — profiles, badges, friends, and Messages
+- [docs/social.md](docs/social.md) — profiles, badges, and friends
 - [docs/privacy.md](docs/privacy.md) — data use, visibility, external services, and retention
 - [CHANGELOG.md](CHANGELOG.md) — public release notes
 
 This README is the public docs index. Implementation source, deployment details, moderation internals, storage layout, runtime state, and secrets live outside this public repo.
 
-The community update in `0.3.24` adds expressive profiles, Account session controls and encrypted Messages. See [social](docs/social.md), [accounts](docs/accounts.md) and [privacy](docs/privacy.md) for recovery limits and explicit selected-message reporting.
+Music and Messages were removed in `0.3.32` (2026-11-01). Old `/music` and `/messages` links show a short page saying so. See [privacy](docs/privacy.md) for what happens to the data they held.
 
 ## Site Stack
 

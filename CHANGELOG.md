@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.32 - 2026-11-01
+
+- Removed Music and Messages from the site. Old links show a short notice. Friends, friend requests, notices, profiles and guestbooks stay.
+- Aurora no longer plays or edits music.
+- actoraOS is now `0.3.32`.
+
 ## 0.3.31 - 2026-11-01
 
 - Removed Actora, Particles and Liminal from the Lab; Lab now holds Space and The Wall. Old links show a short notice.
