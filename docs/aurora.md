@@ -9,7 +9,8 @@
 - Signed-in visitors can create, select, rename, archive, restore, reset, and delete multiple conversations. Their own messages use their current display name.
 - Archived conversations are read-only and remain available until their owner restores, resets, or deletes them.
 - Deleting a conversation also deletes the memories Aurora saved from it; the page lists them before you confirm.
-- When you send your first message on a visit, the chat notes that Aurora is an AI and that her answers can be wrong.
+- When you send your first message on a visit, the chat notes "aurora is an ai. its messages can be wrong."
+- In the home-page terminal, `aurora` opens Aurora there: a chat picker, replies that stream in, Esc or ■ stop to stop her, and slash commands (`/help` lists them). Each step she takes shows as one short line and is kept with her reply.
 - Aurora is told the current date, time and page. She can search your own saved conversations (dated from 0.3.41 on), list your saved memories and read your notifications; these tools only read.
 - Failed replies can be retried, and the latest user message can be edited and regenerated.
 - Sent and received messages support a safe Markdown subset: headings, bold, italics, strikethrough, inline and fenced code, HTTP(S) links, lists, blockquotes, and horizontal rules. Raw HTML is shown as text.
