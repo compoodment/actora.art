@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.40 - 2026-11-02
+
+- Behind the scenes: a little less repeated work when loading notifications, Aurora and moderation data, and a sturdier tool for clearing old addresses from earlier backups. Nothing changes on screen.
+- actoraOS is now `0.3.40`.
+
 ## 0.3.39 - 2026-11-02
 
 - The site no longer stores visitors' network (IP) addresses. It keeps only scrambled codes, which still let it limit and block abuse, and drops unused codes after 30 days. Addresses already stored were converted when this version started.
