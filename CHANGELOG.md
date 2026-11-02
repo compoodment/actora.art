@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.42 - 2026-11-02
+
+- Aurora is a little more careful: after she has read a web page or a document in a reply, she can't search your earlier chats or read your notifications in that same reply.
+- actoraOS is now `0.3.42`.
+
 ## 0.3.41 - 2026-11-02
 
 - Your picture and name in the footer are now one button that opens a small menu: profile, edit profile (opens the editor straight away), account and sign out.
