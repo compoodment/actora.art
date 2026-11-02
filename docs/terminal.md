@@ -30,11 +30,10 @@ Type `page` to open a selectable list of the current page targets:
 - `aurora`
 - `wall`
 - `space`
-- `account`
 
 Use Up/Down and Enter, or choose a row directly. The desktop picker follows the activity rail's compact row rhythm, while touch layouts retain larger targets. Typing filters the picker without changing its overall height. One remaining page stays selectable, an exact match remains visibly selected for Enter or pointer activation, and an empty filter shows `no matching page`. `page <name>` opens a target directly, such as `page wall` or `page space`.
 
-`page chat` remains a compatibility alias for `page aurora`. `account` remains visible while signed out so its requirement is clear, but either picker selection or a direct command checks the current session again before opening it. If signed out, use `login`, `register`, or `recover` first.
+`page chat` remains a compatibility alias for `page aurora`. Account settings have their own command, `account` (below).
 
 The former `ls` and `cd` commands are removed. `pages` is not an alias for `page`.
 
@@ -57,6 +56,7 @@ Guest-only:
 Signed-in only:
 
 - `profile` - open your own profile.
+- `account` - open your account settings.
 - `find` or `find <username>` - find a profile.
 - `logout` - sign out.
 
@@ -67,6 +67,8 @@ While signed in, `find <username>` opens `/u/:username` for a matching username.
 The lookup can open public or private profile state pages. It does not expose private profile fields in the terminal itself.
 
 While signed in, `profile` verifies the current account again and opens that account's canonical `/u/:username` page. It does not ask for a username or reuse identity from an older terminal session.
+
+While signed in, `account` checks the current session again and opens Account settings at once. It is not offered while signed out; typing it asks you to `login`, `register`, or `recover` first.
 
 ## Account Flow
 

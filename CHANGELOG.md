@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.38 - 2026-11-02
+
+- `account` is now its own terminal command: signed in, type `account` to open your account settings. The `page` list is now info, aurora, wall and space.
+- actoraOS is now `0.3.38`.
+
 ## 0.3.37 - 2026-11-01
 
 - Lab is retired: the Wall is now at `/wall/` and Space at `/space/`, and `page wall` and `page space` open them.
