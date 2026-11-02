@@ -18,7 +18,7 @@ Evidence from a message report that the owner had already received stays under t
 - Profile content and media, friendships, requests, private blocks, System notices, and private reports. Profiles include optional public guestbook comments.
 - Shared Wall marks, ownership/budget state, and saved tool preferences.
 - Signed-in Space saves.
-- Request metadata such as IP and browser/request details for rate limiting, security, abuse response, and private operational audit.
+- Request details for rate limiting, security, abuse response, and private operational audit. Network (IP) addresses are not stored: the site keeps only a keyed code made from each address, which can't be turned back into the address without the site's secret key. IPv6 addresses are coded by their /64 network, and guest limits group IPv4 addresses by their /24. Codes on Aurora conversations and Wall budgets are dropped after 30 days without use; bans keep their code until they are lifted. The site's web server leaves addresses out of its error log. Backups made before 0.3.39 are being rewritten the same way.
 
 ## What Is Public, Private, or Operator-Visible
 

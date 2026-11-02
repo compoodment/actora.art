@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.39 - 2026-11-02
+
+- The site no longer stores visitors' network (IP) addresses. It keeps only scrambled codes, which still let it limit and block abuse, and drops unused codes after 30 days. Addresses already stored were converted when this version started.
+- actoraOS is now `0.3.39`.
+
 ## 0.3.38 - 2026-11-02
 
 - `account` is now its own terminal command: signed in, type `account` to open your account settings. The `page` list is now info, aurora, wall and space.
