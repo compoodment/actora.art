@@ -7,6 +7,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 ## 0.3.43 - 2026-11-02
 
 - Talk to Aurora right in the terminal: type `aurora`, pick a chat or start a new one, and watch her reply as she writes. Esc (or ■ stop on a phone) stops her; `/help` lists the commands for renaming, archiving, deleting, memories and attaching files; Esc or `/exit` takes you back.
+- A reply you stop still counts toward the daily message limit once Aurora has started on it.
 - Aurora shows a short line for each step she takes, like searching your earlier chats, and keeps those lines with her reply.
 - Aurora's note now reads "aurora is an ai. its messages can be wrong."
 - actoraOS is now `0.3.43`.
