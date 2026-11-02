@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.41 - 2026-11-02
+
+- Your picture and name in the footer are now one button that opens a small menu: profile, edit profile (opens the editor straight away), account and sign out.
+- The Aurora page now says plainly that Aurora is an AI and that her answers can be wrong.
+- Aurora knows the date, the time and the page you're on. She can look back through your own earlier chats, including older parts of long ones, and new messages now show when they were sent. She can also list what she remembers about you and read your notifications. She still can't change anything except her memories, and only when you ask.
+- Deleting a chat now also deletes the memories Aurora saved from it, and shows you which ones first. Expired memories are deleted rather than hidden.
+- Behind the scenes: unused code, styles and old space-station models removed.
+- actoraOS is now `0.3.41`.
+
 ## 0.3.40 - 2026-11-02
 
 - Behind the scenes: a little less repeated work when loading notifications, Aurora and moderation data, and a sturdier tool for clearing old addresses from earlier backups. Nothing changes on screen.

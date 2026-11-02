@@ -14,7 +14,7 @@ Evidence from a message report that the owner had already received stays under t
 
 - Essential cookies and session state for guest continuity, signed-in accounts, and security.
 - Account identity, passkey public-key metadata, session records, and recovery/archive state. Raw recovery keys are never durably stored or logged. After a signed-in key replacement, the exact result may remain in volatile process memory for up to five minutes so the same session and request can recover from an ambiguous response without rotating the key again.
-- Aurora conversations and session metadata, account-wide custom instructions for signed-in visitors, and enough request context to enforce limits and respond to abuse. Guest custom instructions use browser-session storage.
+- Aurora conversations (each new message with the time it was sent) and session metadata, account-wide custom instructions and, if memory is on, the facts Aurora saves for signed-in visitors (deleted with the conversation they came from, when they expire, or when you remove them), and enough request context to enforce limits and respond to abuse. Guest custom instructions use browser-session storage.
 - Profile content and media, friendships, requests, private blocks, System notices, and private reports. Profiles include optional public guestbook comments.
 - Shared Wall marks, ownership/budget state, and saved tool preferences.
 - Signed-in Space saves.
