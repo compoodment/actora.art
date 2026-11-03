@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.44 - 2026-11-03
+
+- The site's font now comes from actora.art itself, so your browser no longer asks Google for it.
+- Small fixes to Aurora's chat lists and how her steps are shown.
+- actoraOS is now `0.3.44`.
+
 ## 0.3.43 - 2026-11-02
 
 - Talk to Aurora right in the terminal: type `aurora`, pick a chat or start a new one, and watch her reply as she writes. Esc (or ■ stop on a phone) stops her; `/help` lists the commands for renaming, archiving, deleting, memories and attaching files; Esc or `/exit` takes you back.
