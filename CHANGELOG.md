@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.45 - 2026-11-03
+
+- A privacy statement on the site at `/privacy/`, linked from `info`.
+- A `crawlers` page (open it with `page`) lists the bots that visited in the last 30 days. Only bots are counted, by name; ordinary visits aren't logged.
+- actoraOS is now `0.3.45`.
+
 ## 0.3.44 - 2026-11-03
 
 - The site's font now comes from actora.art itself, so your browser no longer asks Google for it.
