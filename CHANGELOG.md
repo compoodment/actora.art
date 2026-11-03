@@ -4,6 +4,17 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.47 - 2026-11-03
+
+- Aurora can look at photos and scanned PDFs you attach. Your browser makes them smaller first; she describes them for that reply, and the pictures aren't kept.
+- Aurora can read the site's public pages: the Wall, public profiles, info, privacy and crawlers.
+- Pictures and videos you upload to your profile no longer keep their location or camera details. Your browser makes still pictures smaller (WebP) when it can.
+- Signing out, here or in another tab, clears Aurora's conversation, attachments and your custom instructions from the screen straight away.
+- Once Aurora has read outside text in a conversation (a web page, the Wall, a profile or a picture), she leaves your memories, chat history and custom instructions out of that conversation. A new chat brings them back.
+- Aurora's settings stay saved when the page refreshes at the same moment.
+- The visits written to the system log after 0.3.45 have been deleted.
+- actoraOS is now `0.3.47`.
+
 ## 0.3.46 - 2026-11-03
 
 - Fixed: for about twenty minutes after 0.3.45, the site's web server wrote ordinary visits (page and browser name, not your address) to the computer's system log. That's stopped.
