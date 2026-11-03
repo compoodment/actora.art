@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.46 - 2026-11-03
+
+- Fixed: for about twenty minutes after 0.3.45, the site's web server wrote ordinary visits (page and browser name, not your address) to the computer's system log. That's stopped.
+- The first click on the footer after you come back to the window now works.
+- The account menu opens the item you point at when you press Enter.
+- Aurora's settings no longer flip back after you save them.
+- actoraOS is now `0.3.46`.
+
 ## 0.3.45 - 2026-11-03
 
 - A privacy statement on the site at `/privacy/`, linked from `info`.
