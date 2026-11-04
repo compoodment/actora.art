@@ -1,50 +1,54 @@
 # Aurora
 
-[Aurora](https://actora.art/aurora/) is actora.art's conversational presence. The page supports longer conversations and exposes the complete conversation controls.
+[Aurora](https://actora.art/aurora/) is an AI assistant on actora.art. Her replies are written by a computer and can be wrong. The chat says so when you send your first message. You can also open her from the [terminal](terminal.md) with `aurora`.
 
 ## Conversations
 
-- Guests have one browser-scoped conversation and are labelled `guest`.
-- Guest conversations share one daily allowance across the whole site. When it runs out, Aurora tells guests it's busy for the day: they can sign in or come back tomorrow. Signed-in conversations aren't part of it.
-- Signed-in visitors can create, select, rename, archive, restore, reset, and delete multiple conversations. Their own messages use their current display name.
-- Archived conversations are read-only and remain available until their owner restores, resets, or deletes them.
-- Deleting a conversation also deletes the memories Aurora saved from it; the page lists them before you confirm.
-- When you send your first message on a visit, the chat notes "aurora is an ai. its messages can be wrong."
-- In the home-page terminal, `aurora` opens Aurora there: a chat picker, replies that stream in, Esc or ■ stop to stop her, and slash commands (`/help` lists them). Each step she takes shows as one short line and is kept with her reply.
-- Aurora is told the current date, time and page. She can search your own saved conversations (dated from 0.3.41 on), list your saved memories and read your notifications; these tools only read.
-- Failed replies can be retried, and the latest user message can be edited and regenerated.
-- Sent and received messages support a safe Markdown subset: headings, bold, italics, strikethrough, inline and fenced code, HTTP(S) links, lists, blockquotes, and horizontal rules. Raw HTML is shown as text.
-- Normal messages accept up to 10,000 characters. Custom instructions remain limited to 2,000 characters.
+- Guests get one chat, kept in the browser and labelled `guest`. It is deleted 3 days after its last message.
+- All guests share one daily allowance for the whole site. When it runs out, Aurora says she is busy for the day. You can sign in or come back tomorrow.
+- Signed-in visitors have their own daily allowance. They can make, rename, archive, restore, reset and delete as many chats as they like. Archived chats are read-only until you restore, reset or delete them.
+- Deleting a chat also deletes the memories Aurora saved from it. The page lists them before you confirm.
+- Replies appear as she writes them. Use the stop button (Esc in the terminal) to stop her. In the terminal, `/help` lists the slash commands.
+- While she works, each step gets a short note and how long it took. The steps fold into one line when she starts answering, and you can open it again. They are saved with her reply, without her search words.
+- Failed replies can be retried. You can edit your latest message and ask for a new reply.
+- A message can be up to 10,000 characters. Messages show a small set of Markdown: headings, bold, italics, strikethrough, code, links, lists, quotes and lines. Raw HTML is shown as text.
+- The context meter shows how much of the conversation Aurora can hold. When it fills up, older messages are summarised and the newest stay as they were.
+
+## Attachments
+
+You can attach up to five files to a message: PDFs, text, Markdown, data files, code, and photos (JPEG, PNG, WebP, and HEIC where your browser can open it). Aurora reads them for that reply only. The site keeps the file's name, type and size, but not its text or pictures. Photos are shrunk in your browser and stripped of location data before they are sent. Scanned PDF pages are read as pictures.
+
+## Memory
+
+If you are signed in, Aurora can remember short facts when you ask, such as "remember I like short answers". She only remembers or forgets when you ask or agree. At most six relevant memories go into one reply. Open settings to add, edit, pin, expire, delete or switch off memory. Guests have no memory.
 
 ## Personalization
 
-The settings control accepts custom instructions for Aurora's tone, format, personality, preferred way of helping, or recurring interaction style. When enabled, applicable instructions persist across every reply without needing to be repeated. Signed-in settings follow the account across devices. Guest settings last for the browser session. If one part conflicts with Aurora's protected boundaries, the remaining customization still applies.
+In settings you can write custom instructions for Aurora's tone, format or style, up to 2,000 characters. They apply to every reply. When you are signed in they follow your account. A guest's last for the browser session. You can switch them off or reset them without deleting a chat. Resetting asks you to confirm.
 
-Resetting custom instructions requires an explicit confirmation before the saved or browser-session customization is cleared.
+Your instructions cannot change who Aurora is, weaken her safety or privacy rules, give you access, or give her new tools. If only part of them conflicts, the rest still applies.
 
-Personal instructions cannot replace Aurora's identity, weaken privacy or safety boundaries, establish account facts, grant permissions, or expand tool access. They can be disabled or reset without deleting a conversation.
+## Information and tools
 
-## Information and Tools
+Aurora can use:
 
-Aurora can consult structured sources when useful:
+- public actora.art pages and documentation;
+- exact public profile lookup;
+- your saved chats, your memories and your notifications (signed in only);
+- the date, time and page you are on;
+- web search for outside or current information; and
+- public websites and GitHub pages that you give her or that a search found.
 
-- sanitized public actora.art documentation;
-- exact public-profile lookup;
-- the public page catalogue;
-- safe context about the current visitor; and
-- general web search for outside or current information; and
-- paginated reading of visitor-provided public websites and GitHub repository pages, with relevant public links followed when needed.
+Large results come in pages, and she keeps reading before she says that something is missing or the only match. Web search returns top results only, so she may search again. Answers that use the web link to their sources. Pages that point to private networks, carry passwords or use unusual ports are refused.
 
-Small result sets return completely. Large attachment, documentation, and fetched-page results report their exact total and next position. Aurora must continue through the remaining pages before saying that something is absent, unique, or the only match. General web search remains non-exhaustive because it returns top results; Aurora can refine or run another search when broader coverage matters.
+After she reads text from outside (a website, an attachment, a profile), she stops using your memories, custom instructions, chat history and notifications for the rest of that chat. Start a new chat to use them again.
 
-Web-backed answers should include descriptive source links. Actora documentation and outside-web results are distinct sources. Public-page reading rejects local/private-network targets, credentials, and unusual ports.
-
-Aurora cannot open a page in the visitor's browser, edit accounts, send messages, submit forms, or mutate site state.
-
-The abstract line above the composer stays wordless. Web-backed answers keep a compact source strip with the answer.
+Aurora cannot open pages in your browser, change accounts, send messages or submit forms.
 
 ## Privacy
 
-Aurora sends the current uncompacted conversation, Aurora's instructions, enabled customization, any retained compacted summary, and a protected minimal viewer context to Ollama Cloud to produce a reply. The context indicator estimates that same payload; there is no separate fixed message-count cutoff. At the displayed compaction threshold, older turns become a retained summary while the newest turns remain verbatim. Viewer context contains only the safe display/account label, signed-in state, and coarse access class; a read-only tool can supply bounded access guidance. A web-search query is sent only when Aurora chooses to search; account details, private instructions, and unrelated conversation text must not be placed in that query.
+To write a reply, the site sends Ollama Cloud the conversation (older parts as a summary), Aurora's instructions, your custom instructions and memories, attachment text, the date and time, your page, and what her tools found. Ollama works mainly in the United States. A web search sends a short search query; she is told to leave private details out of it.
 
-See [privacy.md](privacy.md) for retention and external-service details.
+Do not share sensitive details with Aurora, such as health information, passwords or ID numbers.
+
+See [privacy.md](privacy.md) for what is kept, how long, and Ollama.
