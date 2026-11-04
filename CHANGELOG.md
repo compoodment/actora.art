@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.49 - 2026-11-04
+
+- Fixed: Aurora sometimes said "I could not finish that answer." after a web search. She now answers with what she found.
+- actoraOS is now `0.3.49`.
+
 ## 0.3.48 - 2026-11-04
 
 - When you attach something for Aurora and press Enter, it leaves the input straight away.
