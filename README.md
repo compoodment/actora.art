@@ -13,41 +13,37 @@
 
 ## Site
 
-- **terminal** — the homepage command interface and account entry point
-- **account and profiles** — passkeys, account controls, and optional public profiles
-- **social** — find people by username, make friends, and see notifications
-- **Aurora** — conversations, custom instructions, public Actora lookups, and cited web search
+- **terminal** — the homepage. Type commands to open pages and manage your account
+- **account and profiles** — sign in with a passkey, and optionally share a public profile
+- **social** — find people by username, make friends, see notifications
+- **Aurora** — an AI assistant you can chat with. She can search the web and read public actora.art pages
 - **Space** — a 3D orbital sandbox
 - **The Wall** — a shared ASCII graffiti wall
-- **info** — links, contact, and credits
+- **crawlers** — daily counts of visits by automated programs
+- **info** — links, contact and credits
 
 ## Read First
 
-- [docs/terminal.md](docs/terminal.md) — homepage commands and account flow
-- [docs/site.md](docs/site.md) — public page and footer guide
-- [docs/aurora.md](docs/aurora.md) — conversations, settings, and tools
-- [docs/accounts.md](docs/accounts.md) — passkeys, recovery, archive, and deletion
-- [docs/space.md](docs/space.md) — Space, simulations, and saves
-- [docs/social.md](docs/social.md) — profiles, badges, and friends
-- [docs/privacy.md](docs/privacy.md) — data use, visibility, external services, and retention
-- [CHANGELOG.md](CHANGELOG.md) — public release notes
+- [docs/terminal.md](docs/terminal.md) — the homepage commands
+- [docs/site.md](docs/site.md) — a guide to each page
+- [docs/aurora.md](docs/aurora.md) — chats, settings and what she can do
+- [docs/accounts.md](docs/accounts.md) — passkeys, recovery, archive and deletion
+- [docs/space.md](docs/space.md) — Space
+- [docs/social.md](docs/social.md) — profiles, badges and friends
+- [docs/privacy.md](docs/privacy.md) — what the site keeps, for how long, and who receives it
+- [CHANGELOG.md](CHANGELOG.md) — release notes
 
-This README is the public docs index. Implementation source, deployment details, moderation internals, storage layout, runtime state, and secrets live outside this public repo.
+These notes describe what visitors can do and see. The site's code and its private workings are not published here.
 
-Music and Messages were removed in `0.3.32` (2026-11-01). Old `/music` and `/messages` links show a short page saying so. See [privacy](docs/privacy.md) for what happens to the data they held.
-
-## Site Stack
-
-- Astro
-- TypeScript and Preact
-- Three.js
-- Node.js backend for interactive site-owned APIs
+Music and Messages were removed on 2026-11-01. Their old addresses show a short page saying so. [Privacy](docs/privacy.md) says what happened to their data.
 
 ## Privacy
 
-No ads, analytics scripts, or sale of visitor data. Interactive surfaces keep the state they need to work, and current external-service data flows are disclosed.
+No ads, no analytics, and your data is never sold. The site keeps only what it needs to work. See [docs/privacy.md](docs/privacy.md).
 
-See [docs/privacy.md](docs/privacy.md).
+## Questions
+
+Email [actora@putment.com](mailto:actora@putment.com).
 
 ## License
 
