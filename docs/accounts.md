@@ -11,11 +11,11 @@ Version `0.3.24` added the session-management controls described below.
 - An account can link and name multiple passkeys, then remove any passkey except the final one.
 - Sessions expire and can also be ended through normal sign-out or account lifecycle actions.
 - Account shows identity Save/Discard and the resulting profile address, and links to **customize profile** on the owner's page. Changing a username changes that address; old username links do not redirect.
-- The update lists signed-in browser sessions, identifies the current session, and supports signing out one session or all other sessions. It shows sign-in/last-active times without IP/location data. Browser sessions and passkeys are separate.
+- Account lists your signed-in browser sessions and identifies the current one. You can sign out one session or all other sessions. It shows when each session signed in and was last active, without location or network addresses. Sessions and passkeys are separate.
 
 ## Recovery
 
-A separately saved recovery key can recover an account after every linked passkey is lost. A successful recovery rotates the key; the new one must be saved before leaving the one-time reveal. Raw recovery keys are not available through a later lookup.
+A recovery key you saved separately can recover your account if you lose every passkey. A successful recovery rotates the key; the new one must be saved before leaving the one-time reveal. Raw recovery keys are not available through a later lookup.
 
 Messages, and the message keys and recovery controls that went with them, were removed on 2026-11-01. See [privacy.md](privacy.md).
 

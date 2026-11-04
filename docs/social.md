@@ -1,6 +1,6 @@
 # Profiles and Social
 
-Public visitor-facing notes for actora.art profiles, badges, and friendships.
+Profiles let you share a page and connect with friends.
 
 ## Update Status
 
@@ -12,11 +12,11 @@ Signed-in visitors can publish an opt-in profile at `/u/:username`. Profiles are
 
 A public profile can show identity details, status, theme, an avatar, structured text and links, uploaded pictures/GIFs/videos, badges, and intentional space. Its address follows the current username.
 
-The exact owner edits directly from the profile page. They can add and arrange content, use Save, Cancel, Undo, and Redo.
+Edit your profile on your profile page. Add and arrange content, then save or cancel. Undo and Redo are available.
 
 The whole-page designer adds editable visual starting points, backgrounds, typography, colors, borders, spacing, header/avatar choices and layout controls. Owners can use custom CSS inside an isolated authored page, and visitors can switch to plain view. The editor, navigation, safety actions and guestbook form remain accessible outside that design. Existing profile content is preserved.
 
-The new mobile arrangement adapts automatically or uses a separate owner-selected order and one/two columns, without changing desktop positions. Custom media-query CSS can refine mobile appearance. Optional featured friends show up to twelve selected, currently eligible friends. Owners can enable a public guestbook and remove any comment; authors can remove their own. Disabling a guestbook hides its saved comments.
+The mobile layout adapts automatically, or you can choose a separate order and one or two columns without changing the desktop layout. Custom media-query CSS can refine mobile appearance. Optional featured friends show up to twelve selected, currently eligible friends. Owners can enable a public guestbook and remove any comment; authors can remove their own. Disabling a guestbook hides its saved comments.
 
 Profiles continue to accept bounded structured content and validated site-hosted media without arbitrary HTML, scripts, uploaded SVG or unrestricted external resources. Custom CSS and overlapping layers are available only inside the updated design's isolated frame. Signed-out profile actions can return through the terminal after completed sign-in, registration, or recovery.
 
@@ -32,7 +32,7 @@ Signed-in visitors can use the terminal's exact-username `find` command to open 
 
 ## Friendships
 
-Social relationships are mutual friendships, not follows.
+Friendships are mutual.
 
 - Friend requests can be sent, cancelled, accepted, or declined from profiles and Social surfaces.
 - Friendship grants no elevated site access.

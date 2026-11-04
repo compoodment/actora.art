@@ -14,8 +14,8 @@
 ## Site
 
 - **terminal** — the homepage command interface and account entry point
-- **account and profiles** — passkey identity, lifecycle controls, and opt-in profile pages
-- **social** — exact-username finding, mutual friendships, and in-site notifications
+- **account and profiles** — passkeys, account controls, and optional public profiles
+- **social** — find people by username, make friends, and see notifications
 - **Aurora** — conversations, custom instructions, public Actora lookups, and cited web search
 - **Space** — a 3D orbital sandbox
 - **The Wall** — a shared ASCII graffiti wall
@@ -25,9 +25,9 @@
 
 - [docs/terminal.md](docs/terminal.md) — homepage commands and account flow
 - [docs/site.md](docs/site.md) — public page and footer guide
-- [docs/aurora.md](docs/aurora.md) — conversations, personalization, and read-only tools
+- [docs/aurora.md](docs/aurora.md) — conversations, settings, and tools
 - [docs/accounts.md](docs/accounts.md) — passkeys, recovery, archive, and deletion
-- [docs/space.md](docs/space.md) — Space catalogue, saves, and evidence boundaries
+- [docs/space.md](docs/space.md) — Space, simulations, and saves
 - [docs/social.md](docs/social.md) — profiles, badges, and friends
 - [docs/privacy.md](docs/privacy.md) — data use, visibility, external services, and retention
 - [CHANGELOG.md](CHANGELOG.md) — public release notes
