@@ -19,7 +19,7 @@ The footer has back and forward buttons, the site version, who you are signed in
 
 ## The Wall
 
-Pick a character and a colour, then draw. You can erase your own marks while they are under 24 hours old, which can show an older mark underneath. Everyone, guests too, gets a daily allowance of marks, and erasing gives some back. Marks fade and are gone after three days at the latest. On a touch screen, tap to draw and drag to move around.
+Anyone can look at the Wall; drawing needs an account. Pick a character and a colour, then draw. You can erase your own marks while they are under 24 hours old, which can show an older mark underneath. You get a daily allowance of marks, and erasing gives some back. Marks fade and are gone after three days at the latest. On a touch screen, tap to draw and drag to move around.
 
 ## Removed pages
 
