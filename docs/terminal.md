@@ -5,7 +5,7 @@ The homepage terminal is the main public entry point for actora.art. It accepts 
 ## Flow
 
 - Type a command at the prompt and press Enter.
-- The terminal is a centred, wider column on desktop, topped by a slim bar: the cat's ears on one line, and below them its reactive face, the current actoraOS version, and `page` and `help` hints. Long commands wrap inside the column.
+- On desktop, the terminal is a centred column with a cat, version and hints at the top. Long commands wrap. A grey vertical bar separates parts of a line.
 - Submitted commands and results appear in one open activity rail instead of nested boxes. Its stem and result branches share one continuous text column.
 - When one completion is unambiguous, its remaining characters appear as dim inline ghost text without changing what you typed. Ambiguous matches appear in a small unboxed rail with descriptions.
 - Press Tab to accept the visible ghost or active ambiguous match. When there is no completion to accept, Tab and Shift+Tab follow normal browser focus navigation.
@@ -30,6 +30,7 @@ Type `page` to open a selectable list of the current page targets:
 - `aurora`
 - `wall`
 - `space`
+- `crawlers`
 
 Use Up/Down and Enter, or choose a row directly. The desktop picker follows the activity rail's compact row rhythm, while touch layouts retain larger targets. Typing filters the picker without changing its overall height. One remaining page stays selectable, an exact match remains visibly selected for Enter or pointer activation, and an empty filter shows `no matching page`. `page <name>` opens a target directly, such as `page wall` or `page space`.
 
@@ -46,6 +47,7 @@ Always available:
 - `page` - choose a page from the picker.
 - `page <name>` - open a page directly.
 - `clear` - clear the activity rail while keeping the top bar.
+- `aurora` - talk to Aurora in the terminal.
 
 Guest-only:
 
