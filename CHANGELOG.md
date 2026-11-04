@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.52 - 2026-11-04
+
+- The Wall: anyone can look, drawing needs an account. Visitors who aren't signed in see the Wall with a sign-in link instead of the drawing tools. The privacy page is updated.
+- Recovery keys: the site no longer holds on to a new recovery key after showing it to you. If the page loses the answer while making one, it tells you to make a new key in Account. Account also tells you when you have no recovery key you can use.
+- The site's documentation is shorter and in plainer words.
+- actoraOS is now `0.3.52`.
+
 ## 0.3.51 - 2026-11-04
 
 - The site keeps less data: Aurora no longer saves the words she searches for, guest conversations are deleted after 3 days instead of 8, and coded network addresses are removed after 14 days without use instead of 30. The privacy page is updated.
