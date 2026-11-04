@@ -1,70 +1,51 @@
 # Privacy
 
-actora.art handles the data needed to provide its interactive pages, accounts, safety controls, and continuity between visits.
+This is a short summary. The full, legal statement is on the site at [actora.art/privacy/](https://actora.art/privacy/). If the two ever differ, the statement is right.
 
-It does not run advertising or analytics scripts, create advertising profiles, or sell visitor data.
+actora.art is a personal, non-commercial site run by computment. It has no ads, no analytics and no tracking, and it never sells your data. Questions, or anything the site does not let you do yourself: [actora@putment.com](mailto:actora@putment.com).
 
-## Removed Features
+## What the site keeps
 
-Music and Messages were removed from actora.art on 2026-11-01 (version `0.3.32`). The site no longer offers playing, uploading, sharing or sending anything through either. The songs, playlists, listening history and uploads that Music held, and the messages, attachment files, device records and key backups that Messages held, were deleted from the server on 2026-11-01 (version `0.3.35`). Copies in the site's encrypted backups disappear as those backups age out.
+- **Visits.** Your network (IP) address is not stored. The site keeps only a code made from it with a secret key, which cannot be turned back into the address. The code is used for daily limits and to stop abuse. The site counts page views per day, for 90 days, and does not count unique visitors. It does not keep an access log of ordinary visits. The public [crawlers](https://actora.art/crawlers/) page shows daily totals for automated programs, kept for 30 days.
+- **Accounts.** Your username, display name, passkeys (the public half only), and the browsers you are signed in on. A recovery key is never stored, only a check value made from it.
+- **Aurora.** Your messages and her replies with the steps she took. A guest's chat is deleted after 3 days. A signed-in chat stays until you delete it or your account; an empty one goes after 6 hours. Memories and custom instructions of signed-in visitors. Attached files: only the name, type and size. Her search words are not saved.
+- **Profiles and friends.** What you put on your profile, guestbook comments, friendships, requests, blocks and notifications. Location and camera details are removed from pictures and videos you upload to your profile.
+- **The Wall and Space.** Who made each Wall mark, and your tool settings if signed in. Wall marks last at most three days. Signed-in Space saves.
+- **Reports.** When someone reports a profile, the site keeps who reported, who was reported, the reason, and a copy of what the profile showed. Closed reports are deleted after 180 days.
+- **Email.** If you write to the site address, your email is kept for up to a year after your question is answered.
+- **Cookies.** Only two, both needed to work: `guestId` for guests (7 days) and `authSession` for signed-in visitors (30 days, or until you sign out). Your browser also keeps a few small settings, such as your Wall tool. The site shows no cookie banner because it uses nothing beyond these.
 
-Evidence from a message report that the owner had already received stays under the report rules described below: it follows report retention, even if the conversation or account is later removed. Operational backups and retained reports keep their separate retention.
+## What is public
 
-## Data the Site Handles
+Published profiles, guestbook comments and visible Wall marks. Everything else is private, including Aurora chats, memories, friendships, blocks and Space saves.
 
-- Essential cookies and session state for guest continuity, signed-in accounts, and security.
-- Account identity, passkey public-key metadata, session records, and recovery/archive state. Raw recovery keys are never durably stored or logged. After a signed-in key replacement, the exact result may remain in volatile process memory for up to five minutes so the same session and request can recover from an ambiguous response without rotating the key again.
-- Aurora conversations (each new message with the time it was sent, and her replies with the short list of steps she took and her short notes on them) and session metadata, account-wide custom instructions and, if memory is on, the facts Aurora saves for signed-in visitors (deleted with the conversation they came from, when they expire, or when you remove them), and enough request context to enforce limits and respond to abuse. The site does not save her search words. It keeps an attachment’s name, type and size, but not its text, image or separate image description. Guest custom instructions stay in the browser session.
-- Profile content and media, friendships, requests, private blocks, System notices, and private reports. Profiles include optional public guestbook comments.
-- Shared Wall marks, ownership/budget state, and saved tool preferences.
-- Signed-in Space saves.
-- Request details for rate limiting, security, abuse response, and private operational audit. Network (IP) addresses are not stored: the site keeps only a keyed code made from each address, which can't be turned back into the address without the site's secret key. IPv6 addresses are coded by their /64 network, and guest limits group IPv4 addresses by their /24. Codes on Aurora conversations and Wall allowances are removed after 14 days without use; blocks keep their code until lifted. The site keeps daily page-view totals for 90 days, but does not count unique visitors. It briefly keeps how many people are on a page in memory. The public [/crawlers/](https://actora.art/crawlers/) page shows daily totals for 30 days. The site’s own web server does not keep an access log of ordinary visits. See the full statement for the limited logging exceptions.
+The site's administration tools show overviews of accounts and usage, not the text of Aurora chats. Reports are seen only by computment, who runs the server and can technically reach all stored data. He uses it only to run, secure and repair the site.
 
-The full privacy statement is on the site at [actora.art/privacy/](https://actora.art/privacy/).
+## Who receives data
 
-## What Is Public, Private, or Operator-Visible
+- **Ollama** (mainly in the United States) gets what Aurora needs to write a reply: the conversation, her instructions, your custom instructions and memories, attachment text, photos, the date and time, your page, and tool results. A web search sends a short search query. Your network address is not sent. The statement explains the transfer outside the EU and its limits. If you do not want this, do not use Aurora. See Ollama's [privacy policy](https://ollama.com/privacy).
+- **Contabo** (EU) runs the relay server that visitors pass through. Failed requests can be written to its error log, including the address, for at most 30 days.
+- **Hetzner** (Germany) stores encrypted backups it cannot read.
+- Authorities, only when the law requires it.
 
-Published profiles and visible Wall marks are public. A profile is private by default. Ordinary visitors see only its private-state page; the owner and authorized administrators can preview the full profile for operation and moderation.
+The site loads nothing from other websites, fonts included.
 
-Aurora conversations, friendship state, block choices, Space saves, and private-profile fields are not public.
+## Deleting and keeping
 
-Authorized operators can access the operational metadata and server-readable content needed to run, secure, and moderate the service. The site's administrative Aurora view exposes owner/count/time/session-state metadata rather than titles or conversation text. The separate owner-only report view exposes only the evidence captured for a report.
+- Delete Aurora chats and memories in Aurora. Edit or remove your profile on it. Archive or delete your account in Account.
+- **Archive** hides your profile and ends your sessions. The rest is kept until you restore or delete.
+- **Delete** removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora chats and memories, friendships, Wall data and Space saves. Copies other people hold stay with them. A report keeps the copy it made, without a link to your account. The username is reserved for 90 days.
+- Deleted data can stay in encrypted backups for up to 3 years.
+- Network codes on Aurora chats and Wall allowances are removed after 14 days without use.
 
-A profile report can retain visible identity and status, structured text and layout, badge metadata, presence/type/size/digest metadata for visible avatar, badge, and canvas media. Reports made before Music was removed may also hold up to eight Music kind/id/title/subtitle entries. A report does not copy the media bytes or reusable media URLs.
+## Backups
 
-Reports of individual messages, made before Messages was removed, retain the evidence disclosed at the time: the selected decrypted message, all attachments belonging to that message, and the reporter's explanation. They do not include the surrounding conversation.
+Backups are nightly on the same computer (7 days) and at Hetzner (daily for 14 days, weekly for 8 weeks, monthly for 12 months, yearly for 3 years). They are used only to restore the site after a failure.
 
-## Profiles and Account
+## Removed features
 
-Profiles can use owner-selected designs, isolated custom CSS, featured friends and optional guestbooks. Guestbook comments are public plain text visible to profile visitors. Owners can remove any comment and authors can remove their own. Disabling a guestbook hides its saved comments. User CSS cannot style Actora's navigation, account/safety actions or editor, or load unrestricted external resources.
+Music and Messages were removed on 2026-11-01. Their data was deleted from the server that day and remains only in backups until they expire. Reports made about messages before then keep the reported message under the report rules.
 
-Account lists signed-in browser sessions and allows one session or all other sessions to be signed out. These sessions are separate from passkeys. Archive remains reversible. Permanent deletion removes your access and profile. Deleting your account cannot erase copies held by other people. Guestbooks and comments authored elsewhere are removed with the deleted account. Report evidence and operational backups retain their separate policies.
+## Your rights
 
-## External Services
-
-Aurora sends the conversation, her instructions, relevant memories, attachment text, tool results, the date and time, the current page and enabled custom instructions to Ollama Cloud to generate a reply. Ollama processes these requests mainly in the United States. The full statement explains the transfer and its safeguards. The displayed context estimate covers that same payload; older turns become a retained summary at the compaction threshold rather than disappearing behind a separate message-count cutoff. If Aurora uses general web search, a separate bounded query is sent to Ollama's web-search service; it is instructed not to include private account data, custom instructions, or unrelated conversation text. See the [Ollama privacy policy](https://ollama.com/privacy).
-
-The site serves its own font files; pages make no requests to Google or other font services.
-
-actora.art does not share visitor data with third parties for advertising or analytics.
-
-## Browser-Local Data
-
-Actora lives, unfinished character drafts, and recovery copies are stored locally in the browser rather than in an actora.art account. They do not follow the account to another device, and clearing the site's browser data can remove them. Some guest continuity and interface preferences also use browser storage or essential cookies.
-
-## Retention and Controls
-
-- Signed-in sessions expire after 30 days. A guest’s Aurora conversation is deleted 3 days after its last message. Empty signed-in active conversations expire after 6 hours. Non-empty active and archived signed-in Aurora conversations and account-wide custom instructions persist until the account holder changes or removes them, an authorized operator applies an available conversation control, or the account is deleted.
-- Profile and Social state generally remains until changed, deleted, or removed by a normal feature limit.
-- A visible Wall layer expires within three days and can disappear sooner through normal Wall actions.
-- Reports remain open until a decision within bounded limits. Closed reports are retained for at most 180 days. Captured evidence can outlast later edits or account deletion while its report remains retained.
-
-You can delete conversations and memories in Aurora, edit or remove your profile, and delete your account in Account. For other requests, email [actora@putment.com](mailto:actora@putment.com). Deleted data can remain in backups for up to 3 years; reports have their own retention.
-
-Account archive is reversible. It ends sessions and hides the public profile and terminal find result while retaining account and feature state subject to each feature's normal expiry and limits. Verified login or recovery still requires a separate explicit restore.
-
-Permanent deletion immediately removes the account and its access. Profile media cleanup follows the committed state change and may complete later. Retained report evidence, operational audit records, capped administrative change history, and backups can remain under their separate retention. The deleted username remains reserved without its former account identity for 90 days.
-
-## Changes
-
-This note changes when the site's data handling changes.
+You can ask to see, correct, delete or take away your data, or to object to its use. Email [actora@putment.com](mailto:actora@putment.com). The site answers within a month. It is not meant for children under 16.
