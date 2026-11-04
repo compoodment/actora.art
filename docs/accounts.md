@@ -1,26 +1,26 @@
 # Accounts
 
-actora.art accounts use passkeys instead of passwords. The homepage Terminal is the main place to register, sign in, recover access, restore an archived account, or sign out. The [Account](https://actora.art/account/) page manages identity and account-owned security controls.
+actora.art accounts use passkeys, not passwords. A passkey is a sign-in saved on your phone, computer or security key. You use it with your fingerprint, face or device PIN.
 
-Version `0.3.24` added the session-management controls described below.
+The [homepage terminal](terminal.md) is where you register, sign in, recover, restore and sign out. The [Account](https://actora.art/account/) page manages the rest.
 
-## Identity and Passkeys
+## Your identity and passkeys
 
-- A username identifies the account and forms its public-profile address.
-- A display name is the visitor-facing name shown by account-aware surfaces such as Aurora.
-- An account can link and name multiple passkeys, then remove any passkey except the final one.
-- Sessions expire and can also be ended through normal sign-out or account lifecycle actions.
-- Account shows identity Save/Discard and the resulting profile address, and links to **customize profile** on the owner's page. Changing a username changes that address; old username links do not redirect.
-- Account lists your signed-in browser sessions and identifies the current one. You can sign out one session or all other sessions. It shows when each session signed in and was last active, without location or network addresses. Sessions and passkeys are separate.
+- Your username names your account and sets your profile address.
+- Your display name is the name the site shows, for example to Aurora.
+- You can add several passkeys and give each a name. You can remove any of them except the last one.
+- Changing your username changes your profile address. Old links do not forward.
+- Account lists the browsers you are signed in on and marks the current one. It shows when each signed in and was last used, with no location. You can sign out one browser or all the others.
+- A sign-in lasts 30 days, or until you sign out.
 
 ## Recovery
 
-A recovery key you saved separately can recover your account if you lose every passkey. A successful recovery rotates the key; the new one must be saved before leaving the one-time reveal. Raw recovery keys are not available through a later lookup.
+If you lose every passkey, a recovery key lets you add a new one. You create the key on Account and save it somewhere else, because it is shown only once. Using it gives you a new key, which you must save before you carry on.
 
-Messages, and the message keys and recovery controls that went with them, were removed on 2026-11-01. See [privacy.md](privacy.md).
+## Archive and deletion
 
-## Archive and Deletion
+Archive is reversible. It signs out every browser and hides your profile, and the terminal can no longer find you. Pending friend requests are cancelled. To come back, sign in or recover, then choose `restore` in the terminal.
 
-Archive is reversible. It ends sessions and makes the public profile and terminal lookup unavailable while ordinary retained feature state remains subject to its usual limits. A later verified sign-in or recovery still requires an explicit restore step.
+Deleting removes your account for good: profile, Aurora chats and memories, friendships, Wall data, Space saves, and the guestbook comments you wrote on other profiles. Copies other people hold stay with them. Reports about you keep the copy made when they were filed. A deleted username is reserved for 90 days.
 
-Permanent deletion removes the account and ordinary owned records, including account-owned Aurora preferences and conversations, Profile, Social, Wall, and Space state, including the guestbook and comments the person authored elsewhere. Copies held by other people cannot be erased by deleting an account. Safety evidence and bounded operational history can follow the separate retention described in [privacy.md](privacy.md). A deleted username remains reserved for 90 days.
+Both are started from Account and need your passkey. Details: [terminal](terminal.md) and [privacy](privacy.md).
