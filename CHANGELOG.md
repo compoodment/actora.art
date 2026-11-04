@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.48 - 2026-11-04
+
+- When you attach something for Aurora and press Enter, it leaves the input straight away.
+- The site no longer passes daily visitor totals to the owner's dashboard; the privacy statement says less as a result.
+- actoraOS is now `0.3.48`.
+
 ## 0.3.47 - 2026-11-03
 
 - Aurora can look at photos and scanned PDFs you attach. Your browser makes them smaller first; she describes them for that reply, and the pictures aren't kept.
