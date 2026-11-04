@@ -1,52 +1,47 @@
 # Profiles and Social
 
-Profiles let you share a page and connect with friends.
-
-## Update Status
-
-Version `0.3.24` added profile design. Music and Messages were removed on 2026-11-01; see [privacy.md](privacy.md) for data handling and reporting limits.
+A profile is your own page. Friends let you connect with other people.
 
 ## Profiles
 
-Signed-in visitors can publish an opt-in profile at `/u/:username`. Profiles are private by default. Ordinary visitors see only a private-state page until the owner publishes; the owner and authorized administrators can preview the full profile for operation and moderation. An archived account's profile and terminal find result remain unavailable until restored.
+If you are signed in, you can publish a profile at `/u/username`. It is private until you publish it. Until then, other visitors see only a note that it is private. You can always see your own. The site's administrators can also preview it when they check a report. An archived account's profile is hidden until the account is restored.
 
-A public profile can show identity details, status, theme, an avatar, structured text and links, uploaded pictures/GIFs/videos, badges, and intentional space. Its address follows the current username.
+A profile can hold your names, a status, an avatar, text and links, pictures, GIFs and videos, badges, and your featured friends. Its address follows your current username.
 
-Edit your profile on your profile page. Add and arrange content, then save or cancel. Undo and Redo are available.
+To edit, open your profile while signed in. Add and arrange things, then save or cancel. Undo and redo work.
 
-The whole-page designer adds editable visual starting points, backgrounds, typography, colors, borders, spacing, header/avatar choices and layout controls. Owners can use custom CSS inside an isolated authored page, and visitors can switch to plain view. The editor, navigation, safety actions and guestbook form remain accessible outside that design. Existing profile content is preserved.
+You can also design the whole page: starting looks, backgrounds, fonts, colours, borders, spacing, layout, and your own CSS. Your design stays inside the page. It cannot change the site's navigation, the safety actions or the editor, and visitors can switch to a plain view. On a phone you can choose a separate order and one or two columns, and your desktop layout stays as it is.
 
-The mobile layout adapts automatically, or you can choose a separate order and one or two columns without changing the desktop layout. Custom media-query CSS can refine mobile appearance. Optional featured friends show up to twelve selected, currently eligible friends. Owners can enable a public guestbook and remove any comment; authors can remove their own. Disabling a guestbook hides its saved comments.
+You can feature up to twelve friends. Only friends whose profiles are currently visible are shown.
 
-Profiles continue to accept bounded structured content and validated site-hosted media without arbitrary HTML, scripts, uploaded SVG or unrestricted external resources. Custom CSS and overlapping layers are available only inside the updated design's isolated frame. Signed-out profile actions can return through the terminal after completed sign-in, registration, or recovery.
+You can turn on a public guestbook. You can remove any comment on yours, and authors can remove their own. If you turn the guestbook off, its comments are hidden.
+
+Profiles take text, links and pictures, GIFs and videos from the site. They do not take raw HTML, scripts or SVG files.
 
 ## Badges
 
-Badges are display-only profile markers. They never grant access or change another feature.
+Badges are decoration only. They never give access to anything. You can make your own. Some badges are given by the site or are locked. Beta-era accounts get a locked badge with the version they joined on (an estimate for older accounts).
 
-People can create ordinary badges for their own profile, while assigned or locked badges follow their own display rules. Beta-era accounts receive a locked badge showing the account's recorded join version; legacy accounts use an approximate release-era version.
+## Finding people
 
-## Finding People
+While signed in, type `find username` in the terminal to open that exact profile. There is no search by part of a name. A private profile still opens its private page, where you can send a friend request.
 
-Signed-in visitors can use the terminal's exact-username `find` command to open `/u/:username`. An existing private profile can still show its private shell and allow a friend request without revealing its fields.
+## Friends
 
-## Friendships
+Friendship goes both ways.
 
-Friendships are mutual.
+- Send, cancel, accept or decline friend requests from profiles and the bell in the footer.
+- Friends get no extra access to the site.
+- Blocking ends a friendship or a pending request and stops new contact. The other person only sees that you are unavailable. Blocks are private. Unblocking does not bring the friendship back.
+- Notices from the site arrive in the same bell, one way only.
+- Only avatars of public profiles are shown. Everyone else shows initials.
+- Unread counts are private. There is no "seen", last-seen or online status, and no push notifications or sounds.
+- Archiving cancels pending requests but keeps accepted friends. Nobody can start new contact across an archived account.
 
-- Friend requests can be sent, cancelled, accepted, or declined from profiles and Social surfaces.
-- Friendship grants no elevated site access.
-- The footer notifications bell opens the compact layer for friend requests and notices.
-- Blocking ends the friendship or pending friendship request and prevents new contact. The other person receives neutral unavailability. Each person controls only their own block. Unblocking does not restore the friendship.
-- System notices are one-way notifications from the site.
-- Only avatars from currently public profiles appear in Social identity views; otherwise initials are used.
-- Unread counts are private personal state, not read receipts. There is no last-seen or online-presence feature. Footer notifications remain inside the site; no browser/OS push or notification audio is added.
-- Archive cancels pending friendship requests but preserves accepted friendships and private safety choices subject to their normal limits. Neither side can start new contact across the archive boundary. Deletion removes the deleted person's access and preserves separately retained reports according to [privacy.md](privacy.md).
+## Reporting
 
-## Safety and Boundaries
+While signed in, you can privately report someone else's profile. You will not see counts, outcomes or other people's reports. See [privacy.md](privacy.md) for what a report keeps.
 
-Signed-in visitors can privately report a non-self profile. Reports can retain evidence as described in [privacy.md](privacy.md), but the site exposes no public report count, queue, outcome, or moderation history.
+## What is not here
 
-Profiles and Social do not include posts, activity feeds, follows, fuzzy people search, public friend/follower totals, views, likes, rankings, streaks, or other popularity metrics. Block choices remain private to the person who made them.
-
-Implementation details, storage layout, and private moderation controls live outside this public repository.
+There are no posts, feeds, follows, name search, friend or follower totals, views, likes, rankings or streaks.
