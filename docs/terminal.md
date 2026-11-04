@@ -1,95 +1,63 @@
 # Terminal
 
-The homepage terminal is the main public entry point for actora.art. It accepts short commands, prints responses in place, and opens site pages when a command navigates.
+The homepage terminal is the front door of actora.art. Type a short command and press Enter. It answers right there, or opens a page. Type `help` for the list, or `what?` for a short tour.
 
 ## Flow
 
-- Type a command at the prompt and press Enter.
-- On desktop, the terminal is a centred column with a cat, version and hints at the top. Long commands wrap. A grey vertical bar separates parts of a line.
-- Submitted commands and results appear in one open activity rail instead of nested boxes. Its stem and result branches share one continuous text column.
-- When one completion is unambiguous, its remaining characters appear as dim inline ghost text without changing what you typed. Ambiguous matches appear in a small unboxed rail with descriptions.
-- Press Tab to accept the visible ghost or active ambiguous match. When there is no completion to accept, Tab and Shift+Tab follow normal browser focus navigation.
-- Session-dependent commands are state-aware: guests see `register`, `login`, and `recover`; signed-in users see `profile`, `find`, and `logout`.
-- Account, profile, Social, and `@guest` links can open the terminal with the relevant auth command prefilled. Press Enter to run it; opening the terminal never starts a passkey prompt or logs out by itself.
-- Arrow keys move through ambiguous suggestions or the page picker while either is open. Without a selectable rail, they move through command history. That recall history returns with the visible transcript after same-tab site navigation and resets with it on reload.
-- Escape dismisses the current completion or closes the page picker without navigating.
-- Some commands ask a follow-up prompt, such as `find` and `register`.
-- The prompt context identifies follow-up flows such as `register`, `recover`, and `find`; compact guidance changes only when an action needs explanation.
-- Ctrl+C twice cancels an active `find`, `register`, `recover`, or archived-account restore prompt.
-- Output and page opens are immediate, with no built-in working pauses.
-- Terminal output is kept for the current browser session and resets on reload.
-- New output stays in view while the terminal is already at the latest line. Scrolling up to read or copy older output does not pull the view back down.
-- `clear` clears the activity rail while leaving the top bar available.
-- The terminal adds no borrowed product logo, user/session banner, or permanent ready label. Account identity remains available through the site's shared footer and state-aware commands.
+- As you type, the rest of a matching command shows in dim text. Press Tab to accept it. If several commands match, a short list with descriptions appears. Use the arrow keys to choose, Tab to accept, and Esc to dismiss.
+- With no list open, the up and down arrows bring back earlier commands.
+- Guests see `register`, `login` and `recover`. Signed-in visitors see `profile`, `account`, `find` and `logout`.
+- Some commands ask a follow-up question, such as `register` and `find`. Press Ctrl+C twice to cancel one.
+- Links from Account, profiles and Social can open the terminal with a command already typed. Nothing runs, and no passkey prompt starts, until you press Enter.
+- Output stays until you reload the page. `clear` wipes it.
+- Scrolling up to read older output does not pull you back down.
 
 ## Pages
 
-Type `page` to open a selectable list of the current page targets:
-
-- `info`
-- `aurora`
-- `wall`
-- `space`
-- `crawlers`
-
-Use Up/Down and Enter, or choose a row directly. The desktop picker follows the activity rail's compact row rhythm, while touch layouts retain larger targets. Typing filters the picker without changing its overall height. One remaining page stays selectable, an exact match remains visibly selected for Enter or pointer activation, and an empty filter shows `no matching page`. `page <name>` opens a target directly, such as `page wall` or `page space`.
-
-`page chat` remains a compatibility alias for `page aurora`. Account settings have their own command, `account` (below).
-
-The former `ls` and `cd` commands are removed. `pages` is not an alias for `page`.
+Type `page` for a list of pages: `info`, `aurora`, `wall`, `space` and `crawlers`. Pick one with the arrow keys and Enter, or type to filter. `page <name>` opens one directly, such as `page wall`. [Account](accounts.md) has its own command.
 
 ## Commands
 
-Always available:
+For everyone:
 
-- `what?` - brief walkthrough.
-- `help` - command list.
-- `page` - choose a page from the picker.
-- `page <name>` - open a page directly.
-- `clear` - clear the activity rail while keeping the top bar.
-- `aurora` - talk to Aurora in the terminal.
+- `what?` — a short tour.
+- `help` — the command list.
+- `page` — choose a page.
+- `page <name>` — open a page.
+- `clear` — clear the screen.
+- `aurora` — chat with [Aurora](aurora.md) inside the terminal.
 
-Guest-only:
+Guests:
 
-- `register` - create a passkey account.
-- `login` - sign in with a passkey.
-- `recover` - add a new passkey using a separately saved recovery key.
+- `register` — create an account with a passkey.
+- `login` — sign in with a passkey.
+- `recover` — add a new passkey with your saved recovery key.
 
-Signed-in only:
+Signed in:
 
-- `profile` - open your own profile.
-- `account` - open your account settings.
-- `find` or `find <username>` - find a profile.
-- `logout` - sign out.
+- `profile` — open your profile.
+- `account` — open your account page.
+- `find <username>` — open someone's profile. `@` is optional. Without a name, it asks for one.
+- `logout` — sign out.
 
-## Profile and Find
+`find` needs the exact username. It opens public and private profile pages alike, and shows no private details itself.
 
-While signed in, `find <username>` opens `/u/:username` for a matching username. `@` is optional. If no username is given, the terminal asks for one.
+## Accounts
 
-The lookup can open public or private profile state pages. It does not expose private profile fields in the terminal itself.
+`register` asks for a username and display name, then asks your browser or device to create a passkey. You are signed in straight away.
 
-While signed in, `profile` verifies the current account again and opens that account's canonical `/u/:username` page. It does not ask for a username or reuse identity from an older terminal session.
+`login` asks for your passkey. After `login`, `register` or `recover`, the terminal can take you back to the Account or profile page you came from. Cancelling a passkey prompt changes nothing, and you can try again.
 
-While signed in, `account` checks the current session again and opens Account settings at once. It is not offered while signed out; typing it asks you to `login`, `register`, or `recover` first.
+If the account is archived, `login` does not sign you in. The terminal asks you to type `restore` or `cancel`.
 
-## Account Flow
+`recover` asks for your username, then for your recovery key in a hidden field that is not kept in the terminal history. A valid key starts the creation of a new passkey. Your other passkeys stay. If you already have the most allowed, the terminal tells you which passkey, the one used least recently, would be replaced and asks you to type `replace`. Then you get a new recovery key, shown once. Save it before you carry on. For an archived account, you then choose `restore` or `cancel`.
 
-`register` asks for a username and display name, then starts browser passkey creation. Successful registration signs in immediately. `register` and `login` are guest commands; they disappear after sign-in.
+You create or replace recovery keys on Account, under Security, with one of your passkeys. Each key is shown once, and a new key replaces the old one.
 
-`login` starts browser passkey sign-in. A safe Account or profile return destination can be resumed after login, registration, or completed recovery; cancellation leaves the terminal open for retry. Only Account and canonical profile paths are accepted. Recovery returns only after the replacement key has been acknowledged and, for an archived account, after explicit restore. If a verified account is archived, login does not sign it in: the terminal asks for exact `restore` or `cancel`, and only an explicit restore reactivates the account and creates a session.
+`logout` signs you out. On Account, the signed-in sessions section sends you back here with `logout` typed, and you press Enter.
 
-`recover` asks for a username, then collects the recovery key in a separate hidden field that is not placed in visible or recalled terminal history. A valid key starts creation of one new passkey. Existing passkeys remain unless the account is already at its limit; in that case, the terminal explains which least-recently-used passkey would be replaced and requires an explicit `replace` confirmation before the browser passkey prompt starts. Successful recovery shows a replacement recovery key once and waits for it to be saved before continuing. Recovery of an archived account likewise does not reactivate it implicitly; after the replacement key is saved, the terminal offers the separate restore choice.
-
-Recovery keys are created or replaced from Account Security after approval from a currently linked passkey. Each new key is shown only once, and replacing or successfully using it invalidates the previous key.
-
-`logout` signs out the current account and is only shown while signed in. Account is divided into Identity, Profile, Security, Account lifecycle, and Session. Its session action links back to the homepage with `logout` prefilled rather than owning a separate logout button; Enter is still required.
-
-Passkey prompts are handled by the browser or device. Cancelling a passkey prompt cancels the terminal flow without changing passkeys.
-
-Account archive is started from the Account lifecycle section, not as a terminal command. It requires exact username confirmation and approval from a linked passkey, signs out every session, and returns to the terminal with a one-time notice. The account stays archived until a later verified login or recovery is followed by explicit terminal restore.
-
-Permanent account deletion is also started from Account lifecycle, never as a terminal command. It has a separate irreversible warning, exact `delete @username forever` confirmation, and linked-passkey approval. Success removes the account, returns to the homepage as a guest, and shows a one-time non-secret notice that the deleted username remains reserved for 90 days. If the browser loses the final response, the terminal makes no claim about whether deletion finished: it asks the person to try signing in once and not repeat deletion while the result is uncertain.
+Archiving and deleting start on Account, never in the terminal. Archive needs your exact username and a passkey, and signs out every browser. You come back to the terminal with a one-time note, and `restore` is how you return later. Deleting needs you to type `delete @username forever` and use a passkey. You land on the homepage as a guest with a note that the username is reserved for 90 days. If the connection drops during a delete, the terminal does not claim it finished. Try signing in once, and do not delete again while unsure. See [accounts.md](accounts.md).
 
 ## Boundaries
 
-The terminal is a public navigation and account surface. It does not expose implementation source, admin controls, moderation internals, storage layout, runtime state, or secrets.
+The terminal is for finding pages and managing your account. It does not show the site's code, admin tools, private workings or secrets.
