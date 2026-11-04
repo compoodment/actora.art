@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.51 - 2026-11-04
+
+- The site keeps less data: Aurora no longer saves the words she searches for, guest conversations are deleted after 3 days instead of 8, and coded network addresses are removed after 14 days without use instead of 30. The privacy page is updated.
+- actoraOS is now `0.3.51`.
+
 ## 0.3.50 - 2026-11-04
 
 - Aurora now shows what she is doing while she works: each step gets its own line with a short note and how long it took. When she starts answering, the steps fold into one line you can open again. Her answer appears at a calm, steady pace, with the light square after the newest word while she writes.
