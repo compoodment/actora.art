@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.50 - 2026-11-04
+
+- Aurora now shows what she is doing while she works: each step gets its own line with a short note and how long it took. When she starts answering, the steps fold into one line you can open again. Her answer appears at a calm, steady pace.
+- The site no longer counts unique visitors. It keeps only page-view totals. The privacy page is updated.
+- Cleaner wording across the site, with one grey vertical bar between the parts of a line.
+- actoraOS is now `0.3.50`.
+
 ## 0.3.49 - 2026-11-04
 
 - Fixed: Aurora sometimes said "I could not finish that answer." after a web search. She now answers with what she found.
