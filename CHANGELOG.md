@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.56 - 2026-11-05
+
+- Aurora's replies no longer stop mid-sentence. She has much more room per reply, and when a long answer still runs out she carries on where she stopped, in the same reply. If a reply is ever still cut short, it says so underneath.
+- In the terminal, there is now a gap between your message and Aurora's reply, and while she works it says "reading your message".
+- actoraOS is now `0.3.56`.
+
 ## 0.3.55 - 2026-11-05
 
 - New terminal command: `space` takes you to [space.actora.art](https://space.actora.art/).
