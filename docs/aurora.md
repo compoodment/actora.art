@@ -20,7 +20,7 @@ You can attach up to five files to a message: PDFs, text, Markdown, data files, 
 
 ## Memory
 
-If you are signed in, Aurora can remember short facts when you ask, such as "remember I like short answers". She only remembers or forgets when you ask or agree. At most six relevant memories go into one reply. Open settings to add, edit, pin, expire, delete or switch off memory. Guests have no memory.
+If you are signed in, Aurora remembers short facts when you ask, in your own words, such as "remember I like short answers" or "yes, save that". She also keeps short notes of her own about things worth remembering, such as what you are working on; she does not write them in a chat where she has read a website or file. Settings show both kinds separately, and a memory saved in a chat that read a website or file is labelled. At most six relevant memories go into one reply. Open settings to add, edit, pin, expire, delete or switch off memory; the switch covers her notes too. Guests have no memory.
 
 ## Personalization
 
@@ -41,7 +41,7 @@ Aurora can use:
 
 Large results come in pages, and she keeps reading before she says that something is missing or the only match. Web search returns top results only, so she may search again, up to three times in one reply. Answers that use the web link to their sources. Pages that point to private networks, carry passwords or use unusual ports are refused.
 
-After she reads text from outside (a website, an attachment, a profile, or your chat history, notifications or memory list), she does not change your memories or open new kinds of private information for the rest of that reply, and she can only open pages that you or a search offered. Her next reply starts fresh with your memories and instructions. She saves, changes or forgets a memory only when you ask her to in your own message.
+After she reads text from outside (a website, an attachment, a profile, or your chat history, notifications or memory list), she does not open new kinds of private information for the rest of that reply, and she can only open pages that you or a search offered. Her next reply starts fresh with your memories and instructions. A memory is saved, changed or forgotten only when your own message asks for it; text from a website or file cannot do that by itself.
 
 Aurora cannot open pages in your browser, change accounts, send messages or submit forms.
 

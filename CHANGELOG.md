@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.58 - 2026-11-05
+
+- Aurora understands ordinary ways of asking her to remember or forget something, like "yes, save that".
+- Aurora can keep short notes of her own. Settings show them apart from what you asked her to remember, and you can delete any of them.
+- A memory saved in a chat where Aurora read a website or file is labelled, so an odd one is easy to spot.
+- actoraOS is now `0.3.58`.
+
 ## 0.3.57 - 2026-11-05
 
 - Aurora keeps your memories, custom instructions and chat history after she reads a website, attachment or profile. Only the rest of that one reply is limited.
