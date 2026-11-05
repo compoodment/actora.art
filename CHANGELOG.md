@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.53 - 2026-11-05
+
+- Space moved to its own site, [space.actora.art](https://space.actora.art/), with no account and nothing saved. Its old address here shows a short removed page, and earlier Space saves are deleted. The privacy page is updated.
+- When you sign out, or a session ends, Aurora stops a reply in progress and saves nothing from it, and the Wall's live updates stop showing that account's marks and allowance.
+- Fixed: a message with an empty list line could freeze the page.
+- Fixed: resetting an Aurora conversation with two tabs open could clear the other conversation.
+- Fixed: deleting a chat now also removes its copy from the older chat files.
+- actoraOS is now `0.3.53`.
+
 ## 0.3.52 - 2026-11-04
 
 - The Wall: anyone can look, drawing needs an account. Visitors who aren't signed in see the Wall with a sign-in link instead of the drawing tools. The privacy page is updated.
