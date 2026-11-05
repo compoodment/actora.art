@@ -4,6 +4,16 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.57 - 2026-11-05
+
+- Aurora keeps your memories, custom instructions and chat history after she reads a website, attachment or profile. Only the rest of that one reply is limited.
+- Aurora can search the web up to three times in one reply, so refining a search no longer shows a failed step.
+- Links in Aurora's replies show their full address.
+- The profile menu is now just profile, edit profile, account and sign out.
+- Plainer wording across the site, with "sign in" and "sign out" everywhere.
+- The Aurora page no longer opens with a large empty space to scroll through.
+- actoraOS is now `0.3.57`.
+
 ## 0.3.56 - 2026-11-05
 
 - Aurora's replies no longer stop mid-sentence. She has much more room per reply, and when a long answer still runs out she carries on where she stopped, in the same reply. If a reply is ever still cut short, it says so underneath.

@@ -11,7 +11,7 @@
 - Replies appear as she writes them. Use the stop button (Esc in the terminal) to stop her. In the terminal, `/help` lists the slash commands.
 - While she works, each step gets a short note and how long it took. The steps fold into one line when she starts answering, and you can open it again. They are saved with her reply, without her search words.
 - Failed replies can be retried. You can edit your latest message and ask for a new reply.
-- A message can be up to 10,000 characters. Messages show a small set of Markdown: headings, bold, italics, strikethrough, code, links, lists, quotes and lines. Raw HTML is shown as text.
+- A message can be up to 10,000 characters. Messages show a small set of Markdown: headings, bold, italics, strikethrough, code, links, lists, quotes and lines. Raw HTML is shown as text. Links in her replies show their full address, and a long or unexpected part after "?" or "#" is shown as plain text, not as part of the link.
 - The context meter shows how much of the conversation Aurora can hold. When it fills up, older messages are summarised and the newest stay as they were.
 
 ## Attachments
@@ -39,9 +39,9 @@ Aurora can use:
 - web search for outside or current information; and
 - public websites and GitHub pages that you give her or that a search found.
 
-Large results come in pages, and she keeps reading before she says that something is missing or the only match. Web search returns top results only, so she may search again. Answers that use the web link to their sources. Pages that point to private networks, carry passwords or use unusual ports are refused.
+Large results come in pages, and she keeps reading before she says that something is missing or the only match. Web search returns top results only, so she may search again, up to three times in one reply. Answers that use the web link to their sources. Pages that point to private networks, carry passwords or use unusual ports are refused.
 
-After she reads text from outside (a website, an attachment, a profile), she stops using your memories, custom instructions, chat history and notifications for the rest of that chat. Start a new chat to use them again.
+After she reads text from outside (a website, an attachment, a profile, or your chat history, notifications or memory list), she does not change your memories or open new kinds of private information for the rest of that reply, and she can only open pages that you or a search offered. Her next reply starts fresh with your memories and instructions. She saves, changes or forgets a memory only when you ask her to in your own message.
 
 Aurora cannot open pages in your browser, change accounts, send messages or submit forms.
 
