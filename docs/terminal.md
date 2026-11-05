@@ -24,6 +24,7 @@ For everyone:
 - `help` — the command list.
 - `page` — choose a page.
 - `page <name>` — open a page.
+- `space` — explore Space at [space.actora.art](https://space.actora.art/).
 - `clear` — clear the screen.
 - `aurora` — chat with [Aurora](aurora.md) inside the terminal.
 

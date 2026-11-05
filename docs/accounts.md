@@ -11,7 +11,7 @@ The [homepage terminal](terminal.md) is where you register, sign in, recover, re
 - You can add several passkeys and give each a name. You can remove any of them except the last one.
 - Changing your username changes your profile address. Old links do not forward.
 - Account lists the browsers you are signed in on and marks the current one. It shows when each signed in and was last used, with no location. You can sign out one browser or all the others.
-- A sign-in lasts 30 days, or until you sign out.
+- A sign-in lasts 30 days after you last used it, or until you sign out.
 
 ## Recovery
 

@@ -4,6 +4,16 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.55 - 2026-11-05
+
+- New terminal command: `space` takes you to [space.actora.art](https://space.actora.art/).
+- The `aurora` command's description now says "talk to aurora in the terminal".
+- Aurora no longer treats a question about what she remembers as a request to save or change a memory.
+- Friends and guestbooks: blocking someone keeps your controls over their guestbook comments, and profile buttons update when a friendship changes.
+- Fixed: a display name could appear as a link in site notices. Links with brackets in them now work in Aurora's replies.
+- The privacy page is more exact: sign-ins last 30 days after last use, guest custom instructions are sent along when Aurora replies, and how long backups and Aurora's instruction history are kept.
+- actoraOS is now `0.3.55`.
+
 ## 0.3.54 - 2026-11-05
 
 - Fixed: in the terminal, sending a message again after a lost connection could send it twice. Now it picks up the reply that was already saved.

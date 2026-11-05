@@ -13,7 +13,7 @@ actora.art is a personal, non-commercial site run by computment. It has no ads, 
 - **The Wall.** Who made each Wall mark, and your tool settings if signed in. Wall marks last at most three days.
 - **Reports.** When someone reports a profile, the site keeps who reported, who was reported, the reason, and a copy of what the profile showed. Closed reports are deleted after 180 days.
 - **Email.** If you write to the site address, your email is kept for up to a year after your question is answered.
-- **Cookies.** Only two, both needed to work: `guestId` for guests (7 days) and `authSession` for signed-in visitors (30 days, or until you sign out). Your browser also keeps a few small settings, such as your Wall tool. The site shows no cookie banner because it uses nothing beyond these.
+- **Cookies.** Only two, both needed to work: `guestId` for guests (7 days) and `authSession` for signed-in visitors (30 days after last use, or until you sign out). Your browser also keeps a few small settings, such as your Wall tool. The site shows no cookie banner because it uses nothing beyond these.
 
 ## What is public
 
