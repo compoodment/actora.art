@@ -8,7 +8,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 - Fixed: in the terminal, sending a message again after a lost connection could send it twice. Now it picks up the reply that was already saved.
 - Fixed: if the Wall could not load your tool settings at first, you could not draw until you reloaded.
-- Profile pictures and badges now have hidden photo details (like location) removed, the same as other uploads.
+- Profile pictures and badges now have hidden photo details (like location) removed, the same as other uploads. New pictures also lose their colour profile, so some wide-colour photos may look very slightly less saturated.
 - Deleting a conversation from the admin side also deletes the memories Aurora saved from it.
 - Aurora gives up on a stuck provider on time instead of waiting too long.
 - actoraOS is now `0.3.54`.
