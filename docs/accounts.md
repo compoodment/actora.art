@@ -21,6 +21,6 @@ If you lose every passkey, a recovery key lets you add a new one. You create the
 
 Archive is reversible. It signs out every browser and hides your profile, and the terminal can no longer find you. Pending friend requests are cancelled. To come back, sign in or recover, then choose `restore` in the terminal.
 
-Deleting removes your account for good: profile, Aurora chats and memories, friendships, Wall data, Space saves, and the guestbook comments you wrote on other profiles. Copies other people hold stay with them. Reports about you keep the copy made when they were filed. A deleted username is reserved for 90 days.
+Deleting removes your account for good: profile, Aurora chats and memories, friendships, Wall data, and the guestbook comments you wrote on other profiles. Copies other people hold stay with them. Reports about you keep the copy made when they were filed. A deleted username is reserved for 90 days.
 
 Both are started from Account and need your passkey. Details: [terminal](terminal.md) and [privacy](privacy.md).

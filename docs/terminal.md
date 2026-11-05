@@ -14,7 +14,7 @@ The homepage terminal is the front door of actora.art. Type a short command and 
 
 ## Pages
 
-Type `page` for a list of pages: `info`, `aurora`, `wall`, `space` and `crawlers`. Pick one with the arrow keys and Enter, or type to filter. `page <name>` opens one directly, such as `page wall`. [Account](accounts.md) has its own command.
+Type `page` for a list of pages: `info`, `aurora`, `wall` and `crawlers`. Pick one with the arrow keys and Enter, or type to filter. `page <name>` opens one directly, such as `page wall`. [Account](accounts.md) has its own command.
 
 ## Commands
 

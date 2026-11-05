@@ -10,14 +10,14 @@ actora.art is a personal, non-commercial site run by computment. It has no ads, 
 - **Accounts.** Your username, display name, passkeys (the public half only), and the browsers you are signed in on. A recovery key is never stored, only a check value made from it.
 - **Aurora.** Your messages and her replies with the steps she took. A guest's chat is deleted after 3 days. A signed-in chat stays until you delete it or your account; an empty one goes after 6 hours. Memories and custom instructions of signed-in visitors. Attached files: only the name, type and size. Her search words are not saved.
 - **Profiles and friends.** What you put on your profile, guestbook comments, friendships, requests, blocks and notifications. Location and camera details are removed from pictures and videos you upload to your profile.
-- **The Wall and Space.** Who made each Wall mark, and your tool settings if signed in. Wall marks last at most three days. Signed-in Space saves.
+- **The Wall.** Who made each Wall mark, and your tool settings if signed in. Wall marks last at most three days.
 - **Reports.** When someone reports a profile, the site keeps who reported, who was reported, the reason, and a copy of what the profile showed. Closed reports are deleted after 180 days.
 - **Email.** If you write to the site address, your email is kept for up to a year after your question is answered.
 - **Cookies.** Only two, both needed to work: `guestId` for guests (7 days) and `authSession` for signed-in visitors (30 days, or until you sign out). Your browser also keeps a few small settings, such as your Wall tool. The site shows no cookie banner because it uses nothing beyond these.
 
 ## What is public
 
-Published profiles, guestbook comments and visible Wall marks. Everything else is private, including Aurora chats, memories, friendships, blocks and Space saves.
+Published profiles, guestbook comments and visible Wall marks. Everything else is private, including Aurora chats, memories, friendships and blocks.
 
 The site's administration tools show overviews of accounts and usage, not the text of Aurora chats. Reports are seen only by computment, who runs the server and can technically reach all stored data. He uses it only to run, secure and repair the site.
 
@@ -34,7 +34,7 @@ The site loads nothing from other websites, fonts included.
 
 - Delete Aurora chats and memories in Aurora. Edit or remove your profile on it. Archive or delete your account in Account.
 - **Archive** hides your profile and ends your sessions. The rest is kept until you restore or delete.
-- **Delete** removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora chats and memories, friendships, Wall data and Space saves. Copies other people hold stay with them. A report keeps the copy it made, without a link to your account. The username is reserved for 90 days.
+- **Delete** removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora chats and memories, friendships and Wall data. Copies other people hold stay with them. A report keeps the copy it made, without a link to your account. The username is reserved for 90 days.
 - Deleted data can stay in encrypted backups for up to 3 years.
 - Network codes on Aurora chats and Wall allowances are removed after 14 days without use.
 

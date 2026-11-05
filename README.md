@@ -4,7 +4,7 @@
 
 **public notes for the site and its social spaces**
 
-[site](https://actora.art/) · [guide](docs/site.md) · [Aurora](docs/aurora.md) · [terminal](docs/terminal.md) · [Space](docs/space.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
+[site](https://actora.art/) · [guide](docs/site.md) · [Aurora](docs/aurora.md) · [terminal](docs/terminal.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
 
 ![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
@@ -17,7 +17,7 @@
 - **account and profiles** — sign in with a passkey, and optionally share a public profile
 - **social** — find people by username, make friends, see notifications
 - **Aurora** — an AI assistant you can chat with. She can search the web and read public actora.art pages
-- **Space** — a 3D orbital sandbox
+- **Space** — a 3D orbital sandbox, now at [space.actora.art](https://space.actora.art/)
 - **The Wall** — a shared ASCII graffiti wall
 - **crawlers** — daily counts of visits by automated programs
 - **info** — links, contact and credits
@@ -28,7 +28,6 @@
 - [docs/site.md](docs/site.md) — a guide to each page
 - [docs/aurora.md](docs/aurora.md) — chats, settings and what she can do
 - [docs/accounts.md](docs/accounts.md) — passkeys, recovery, archive and deletion
-- [docs/space.md](docs/space.md) — Space
 - [docs/social.md](docs/social.md) — profiles, badges and friends
 - [docs/privacy.md](docs/privacy.md) — what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes

@@ -5,7 +5,7 @@ The pages of actora.art:
 - [Home](https://actora.art/) — the terminal. Type `help` to see what it can do. See [terminal.md](terminal.md).
 - [Aurora](https://actora.art/aurora/) — chat with Aurora, an AI assistant. See [aurora.md](aurora.md).
 - [The Wall](https://actora.art/wall/) — a shared ASCII graffiti wall.
-- [Space](https://actora.art/space/) — a 3D sandbox of orbiting planets and stars, with the Solar System and Alpha Centauri. Signed-in visitors can save. See [space.md](space.md).
+- Space moved to its own site, [space.actora.art](https://space.actora.art/): a 3D sandbox of orbiting planets and stars, with no account and nothing saved. Its old address here shows a short removed page.
 - [Crawlers](https://actora.art/crawlers/) — daily counts of visits by automated programs, such as search engines.
 - [Account](https://actora.art/account/) — your name, passkeys, sessions, archive and deletion. See [accounts.md](accounts.md).
 - [Info](https://actora.art/info/) — links, contact and credits.
@@ -23,4 +23,4 @@ Anyone can look at the Wall; drawing needs an account. Pick a character and a co
 
 ## Removed pages
 
-Lab, Music and Messages were removed on 2026-11-01. Their old addresses show a short page saying "This has been removed from actora.art."
+Lab, Music and Messages were removed on 2026-11-01, and Space on 2026-11-05 when it moved to space.actora.art. Their old addresses show a short page saying "This has been removed from actora.art."
