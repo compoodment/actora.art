@@ -8,8 +8,8 @@
 - All guests share one daily allowance for the whole site. When it runs out, Aurora says she is busy for the day. You can sign in or come back tomorrow.
 - Signed-in visitors have their own daily allowance. They can make, rename, archive, restore, reset and delete as many chats as they like. Archived chats are read-only until you restore, reset or delete them.
 - Deleting a chat also deletes the memories Aurora saved from it. The page lists them before you confirm.
-- Replies appear as she writes them. Use the stop button (Esc in the terminal) to stop her. In the terminal, `/help` lists the slash commands.
-- While she works, each step gets a short note and how long it took. The steps fold into one line when she starts answering, and you can open it again. They are saved with her reply, without her search words.
+- Replies appear as she writes them. Use the stop button or Esc to stop her. In the terminal, `/help` lists the slash commands.
+- While she works, you see her thinking, and each step gets a short note and how long it took. Her thinking stays on your screen only and is not saved. The steps fold into one line when she starts answering, and you can open it again. They are saved with her reply, without her search words.
 - Failed replies can be retried. You can edit your latest message and ask for a new reply.
 - A message can be up to 10,000 characters. Messages show a small set of Markdown: headings, bold, italics, strikethrough, code, links, lists, quotes and lines. Raw HTML is shown as text. Links in her replies show their full address, and a long or unexpected part after "?" or "#" is shown as plain text, not as part of the link.
 - The context meter shows how much of the conversation Aurora can hold. When it fills up, older messages are summarised and the newest stay as they were.

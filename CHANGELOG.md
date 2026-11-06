@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.59 - 2026-11-06
+
+- The Aurora page is redesigned: a calm reading column, one message box with a stop button and a context meter, and a plain list of your chats with dates and a search field.
+- Settings for custom instructions and memory are simpler and quieter.
+- You can now see Aurora's thinking while she works. It is not saved.
+- actoraOS is now `0.3.59`.
+
 ## 0.3.58 - 2026-11-05
 
 - Aurora understands ordinary ways of asking her to remember or forget something, like "yes, save that".
