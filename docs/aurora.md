@@ -10,7 +10,7 @@
 - Deleting a chat also deletes the memories Aurora saved from it. The page lists them before you confirm.
 - Replies appear as she writes them. Use the stop button or Esc to stop her. In the terminal, `/help` lists the slash commands.
 - While she works, you see her thinking, and each step gets a short note and how long it took. Her thinking stays on your screen only and is not saved. The steps fold into one line when she starts answering, and you can open it again. They are saved with her reply, without her search words.
-- Failed replies can be retried. You can edit your latest message and ask for a new reply.
+- Failed replies can be retried. Retrying her latest reply keeps the earlier answer, and you can flip between up to ten versions. You can edit your latest message in place and ask for a new reply.
 - A message can be up to 10,000 characters. Messages show a small set of Markdown: headings, bold, italics, strikethrough, code, links, lists, quotes and lines. Raw HTML is shown as text. Links in her replies show their full address, and a long or unexpected part after "?" or "#" is shown as plain text, not as part of the link.
 - The context meter shows how much of the conversation Aurora can hold. When it fills up, older messages are summarised and the newest stay as they were.
 
@@ -20,7 +20,7 @@ You can attach up to five files to a message: PDFs, text, Markdown, data files, 
 
 ## Memory
 
-If you are signed in, Aurora remembers short facts when you ask, in your own words, such as "remember I like short answers" or "yes, save that". She also keeps short notes of her own about things worth remembering, such as what you are working on; she does not write them in a chat where she has read a website or file. Settings show both kinds separately, and a memory saved in a chat that read a website or file is labelled. At most six relevant memories go into one reply. Open settings to add, edit, pin, expire, delete or switch off memory; the switch covers her notes too. Guests have no memory.
+If you are signed in, Aurora remembers short facts when you ask, such as “remember I like short answers” or “yes, save that.” She may also save a useful fact on her own, based on what you wrote in this chat, and you can undo that save under her reply. She also keeps short notes about things worth remembering; she does not write those notes in a chat where she has read a website or file. Settings show the kinds separately, and a memory saved in a chat that read a website or file is labelled. At most six relevant memories go into one reply. Open memory to add, edit, pin, expire, delete or switch off memory; the switch covers her notes too. Guests have no memory.
 
 ## Personalization
 
@@ -41,7 +41,7 @@ Aurora can use:
 
 Large results come in pages, and she keeps reading before she says that something is missing or the only match. Web search returns top results only, so she may search again, up to three times in one reply. Answers that use the web link to their sources. Pages that point to private networks, carry passwords or use unusual ports are refused.
 
-After she reads text from outside (a website, an attachment, a profile, or your chat history, notifications or memory list), she does not open new kinds of private information for the rest of that reply, and she can only open pages that you or a search offered. Her next reply starts fresh with your memories and instructions. A memory is saved, changed or forgotten only when your own message asks for it; text from a website or file cannot do that by itself.
+After she reads text from outside (a website, an attachment, a profile, or your chat history, notifications or memory list), she does not open new kinds of private information for the rest of that reply, and she can only open pages that you or a search offered. Her next reply starts fresh with your memories and instructions. You can ask her to save, change or forget a memory. She may also save on her own before reading outside text in that reply, using facts grounded in what you wrote in this chat.
 
 Aurora cannot open pages in your browser, change accounts, send messages or submit forms.
 

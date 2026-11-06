@@ -4,6 +4,17 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.60 - 2026-11-06
+
+- Aurora can save a useful fact about you on her own, from what you wrote. Each save shows under her reply with an undo, and it is marked "saved by aurora" in memory. She never does this from websites or files, and never saves passwords, keys or sensitive details like health on her own.
+- Saying yes to Aurora's offer to remember something works in many more ordinary ways, in English and Dutch.
+- Retrying her reply keeps the earlier answer; flip between versions with ‹ 1/2 ›.
+- Her thinking shows how long she thought.
+- The chat list: right-click (or ⋯, or long-press) to rename, pin, download, archive or delete a chat; select several to archive, pin or delete them at once; drag its edge to resize it, or fold it away.
+- Memory and instructions open as separate panels. You edit your message in place, code blocks have a copy button, and numbered lists are no longer cut off.
+- Aurora now knows the site's current version.
+- actoraOS is now `0.3.60`.
+
 ## 0.3.59 - 2026-11-06
 
 - The Aurora page is redesigned: a calm reading column, one message box with a stop button and a context meter, and a plain list of your chats with dates and a search field.
