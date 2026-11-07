@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.61 - 2026-11-07
+
+- Sending Aurora several pictures at once works again; before, a message with a few screenshots failed with "retry". If files are still too big together, she says so.
+- Files you drop or paste while another is still loading are no longer lost.
+- actoraOS is now `0.3.61`.
+
 ## 0.3.60 - 2026-11-06
 
 - Aurora can save a useful fact about you on her own, from what you wrote. Each save shows under her reply with an undo, and it is marked "saved by aurora" in memory. She never does this from websites or files, and never saves passwords, keys or sensitive details like health on her own.
