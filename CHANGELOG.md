@@ -7,7 +7,8 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 ## 0.3.61 - 2026-11-07
 
 - Sending Aurora several pictures at once works again; before, a message with a few screenshots failed with "retry". If files are still too big together, she says so.
-- Files you drop or paste while another is still loading are no longer lost.
+- You can paste screenshots and other files straight into Aurora's message box.
+- Files you drop or paste while another is still loading are no longer lost, and if one can't be read, Aurora says which.
 - actoraOS is now `0.3.61`.
 
 ## 0.3.60 - 2026-11-06
