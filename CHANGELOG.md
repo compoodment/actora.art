@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.62 - 2026-11-08
+
+- Behind the scenes: the site's own server is getting ready to handle encrypted connections itself, so the relay in front of it will no longer be able to read traffic. Nothing changes for visitors yet.
+- Old Aurora chats from before per-chat storage are moved into the current storage and the old files retired.
+- actoraOS is now `0.3.62`.
+
 ## 0.3.61 - 2026-11-07
 
 - Sending Aurora several pictures at once works again; before, a message with a few screenshots failed with "retry". If files are still too big together, she says so.
