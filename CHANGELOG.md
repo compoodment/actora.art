@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.63 - 2026-11-08
+
+- Behind the scenes: tidied up after features that were removed earlier (messages, music, the lab, orbits, and Space, which now lives at space.actora.art). The code and documentation now describe only today's site.
+- The Info page no longer lists Three.js in the site's tools; it left with Space.
+- actoraOS is now `0.3.63`.
+
 ## 0.3.62 - 2026-11-08
 
 - Behind the scenes: the site's own server is getting ready to handle encrypted connections itself, so the relay in front of it will no longer be able to read traffic. Nothing changes for visitors yet.
