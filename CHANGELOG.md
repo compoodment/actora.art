@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.67 - 2026-11-09
+
+- Behind the scenes: the site's building blocks (Astro, Preact and the icon set) are updated to their latest compatible versions.
+- actoraOS is now `0.3.67`.
+
 ## 0.3.66 - 2026-11-09
 
 - The site's own backup copies are now removed after a year. The privacy page now says deleted data can stay in backups for about 4 years at most: up to a year on the site's computer plus up to 3 years in yearly encrypted copies at Hetzner. Before, it said copies made before site updates were kept regardless of age.
