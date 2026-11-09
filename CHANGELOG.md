@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.69 - 2026-11-10
+
+- A block on a network address now ends after 90 days unless it is renewed, because home addresses are passed on to other people. Blocks on accounts stay until they are lifted.
+- The administration log keeps entries for at most a year.
+- The privacy page now says what the relay server really sees: it passes the encrypted connection through unread, and only its firewall can note your address, for at most 30 days.
+- Security reports go to actora@putment.com, also listed in the site's security.txt.
+- These notes now cover the chat menu, pins, downloads, finding chats, pasting screenshots and the Wall's undo and redo, and say more precisely what is kept about guest chats and attachments.
+- actoraOS is now `0.3.69`.
+
 ## 0.3.68 - 2026-11-09
 
 - Behind the scenes: Astro, the framework the site is built with, is updated to its latest compatible version.
