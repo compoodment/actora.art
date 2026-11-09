@@ -21,7 +21,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 ## 0.3.65 - 2026-11-09
 
-- Behind the scenes: the site's own backup copies are trimmed to the newest 10; older ones stay only in the offsite backup, and nothing is kept longer than 3 years.
+- Behind the scenes: the site's own backup copies are trimmed to the newest 10; older ones stay only in the offsite backup, and nothing is kept longer than 3 years. (0.3.66 corrected this: about 4 years at most in total, and emails up to 5 years.)
 - actoraOS is now `0.3.65`.
 
 ## 0.3.64 - 2026-11-09

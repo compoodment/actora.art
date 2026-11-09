@@ -8,7 +8,7 @@ actora.art is a personal, non-commercial site run by computment. It has no ads, 
 
 - **Visits.** Your network (IP) address is not stored. The site keeps only a code made from it with a secret key, which cannot be turned back into the address. The code is used for daily limits and to stop abuse. The site counts page views per day, for 90 days, and does not count unique visitors. It does not keep an access log of ordinary visits. The public [crawlers](https://actora.art/crawlers/) page shows daily totals for automated programs, kept for 30 days.
 - **Accounts.** Your username, display name, passkeys (the public half only), and the browsers you are signed in on. A recovery key is never stored, only a check value made from it.
-- **Aurora.** Your messages and her replies with the steps she took, memory changes and up to ten versions of a retried reply. A guest’s chat is deleted after 3 days. A signed-in chat stays until you delete it or your account; an empty one goes after 6 hours. We also keep signed-in visitors’ memories and custom instructions, including facts Aurora saves on her own and up to 50 short notes she keeps about you. You can see and delete them in her settings. Her own saves refuse links, certain credentials and identifiers, and sensitive personal data such as health or religion, using word lists that cannot catch every expression. You can ask her to remember a health fact about yourself, though requests containing certain credentials or identifiers are refused. Attached files: only the name, type and size are kept. Her search words are not saved.
+- **Aurora.** Your messages and her replies with the steps she took, memory changes and up to ten versions of a retried reply. A guest’s chat is deleted after 3 days. A signed-in chat stays until you delete it or your account; an empty one goes after 6 hours. We also keep signed-in visitors’ memories and custom instructions, including facts Aurora saves on her own and up to 50 short notes she keeps about you. You can see and delete them in her settings. Her own saves refuse links, certain credentials and identifiers, and sensitive personal data such as health or religion, using word lists that cannot catch every expression. You can ask her to remember a health fact about yourself, though requests containing certain credentials or identifiers are refused. Attached files: only the name, type, size and a fingerprint for retries are kept, never the text or pictures. Her search words are not saved.
 - **Profiles and friends.** What you put on your profile, guestbook comments, friendships, requests, blocks and notifications. Location and camera details are removed from pictures and videos you upload to your profile.
 - **The Wall.** Who made each Wall mark, and your tool settings if signed in. Wall marks last at most three days.
 - **Reports.** When someone reports a profile, the site keeps who reported, who was reported, the reason, and a copy of what the profile showed. Closed reports are deleted after 180 days.
@@ -24,7 +24,7 @@ The site's administration tools show overviews of accounts and usage, not the te
 ## Who receives data
 
 - **Ollama** (mainly in the United States) gets what Aurora needs to write a reply: the conversation, her instructions, your custom instructions and memories, attachment text, photos, the date and time, your page, and tool results. A web search sends a short search query. Your network address is not sent. The statement explains the transfer outside the EU and its limits. If you do not want this, do not use Aurora. See Ollama's [privacy policy](https://ollama.com/privacy).
-- **Contabo** (EU) runs the relay server that visitors pass through. Failed requests can be written to its error log, including the address, for at most 30 days.
+- **Contabo** (EU) runs the relay server that visitors pass through. It passes the encrypted connection through to the site unread: it sees the site name and your network address, not your requests, and keeps no record of them. Its firewall can note your address for stray or blocked connection attempts, for at most 30 days.
 - **Hetzner** (Germany) stores encrypted backups it cannot read.
 - Authorities, only when the law requires it.
 
@@ -35,8 +35,9 @@ The site loads nothing from other websites, fonts included.
 - Delete Aurora chats and memories in Aurora. Edit or remove your profile on it. Archive or delete your account in Account.
 - **Archive** hides your profile and ends your sessions. The rest is kept until you restore or delete.
 - **Delete** removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora chats and memories, friendships and Wall data. Copies other people hold stay with them. A report keeps the copy it made, without a link to your account. The username is reserved for 90 days.
-- Deleted data can stay in backups for about 4 years at most: up to a year on the site's computer, plus up to 3 years in yearly encrypted copies at Hetzner.
-- Network codes on Aurora chats and Wall allowances are removed after 14 days without use.
+- Deleted data can stay in backups for about 4 years at most: up to a year on the site's computer, plus up to 3 years in yearly encrypted copies at Hetzner. Emails can stay in backups for up to 5 years.
+- Network codes on Aurora chats and Wall allowances are removed after 14 days without use. A network block ends after 90 days unless it is renewed.
+- The administration log keeps entries for at most a year.
 
 ## Backups
 

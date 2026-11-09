@@ -4,19 +4,19 @@
 
 ## Conversations
 
-- Guests get one chat, kept in the browser and labelled `guest`. It is deleted 3 days after its last message.
+- Guests get one chat, labelled `guest`. The site stores it, and a cookie in your browser reconnects you to it. It is deleted 3 days after its last message.
 - All guests share one daily allowance for the whole site. When it runs out, Aurora says she is busy for the day. You can sign in or come back tomorrow.
-- Signed-in visitors have their own daily allowance. They can make, rename, archive, restore, reset and delete as many chats as they like. Archived chats are read-only until you restore, reset or delete them.
+- Signed-in visitors have their own daily allowance. They can make, rename, archive, restore, reset and delete as many chats as they like. Archived chats are read-only until you restore, reset or delete them. Each chat has a menu (right-click, long-press or ⋯) to rename, pin, archive, download or delete it; pinned chats stay at the top, and you can select several chats to act on them at once. `⌕ find a chat` filters the list by name. On a computer the list can be made wider or folded away. Guests can download their chat too.
 - Deleting a chat also deletes the memories Aurora saved from it. The page lists them before you confirm.
 - Replies appear as she writes them. Use the stop button or Esc to stop her. In the terminal, `/help` lists the slash commands.
-- While she works, you see her thinking, and each step gets a short note and how long it took. Her thinking stays on your screen only and is not saved. The steps fold into one line when she starts answering, and you can open it again. They are saved with her reply, without her search words.
+- While she works, you see her thinking and her steps, each with a short note and how long it took. Her thinking stays on your screen for this visit only and is not saved. The step notes fold into one line when she starts answering, you can open it again, and the notes are saved with her reply, without her search words.
 - Failed replies can be retried. Retrying her latest reply keeps the earlier answer, and you can flip between up to ten versions. You can edit your latest message in place and ask for a new reply.
 - A message can be up to 10,000 characters. Messages show a small set of Markdown: headings, bold, italics, strikethrough, code, links, lists, quotes and lines. Raw HTML is shown as text. Links in her replies show their full address, and a long or unexpected part after "?" or "#" is shown as plain text, not as part of the link.
 - The context meter shows how much of the conversation Aurora can hold. When it fills up, older messages are summarised and the newest stay as they were.
 
 ## Attachments
 
-You can attach up to five files to a message: PDFs, text, Markdown, data files, code, and photos (JPEG, PNG, WebP, and HEIC where your browser can open it). Aurora reads them for that reply only. The site keeps the file's name, type and size, but not its text or pictures. Photos are shrunk in your browser and stripped of location data before they are sent. Scanned PDF pages are read as pictures.
+You can attach or paste up to five files to a message, screenshots included: PDFs, text, Markdown, data files, code, and photos (JPEG, PNG, WebP, and HEIC where your browser can open it). Aurora reads them for that reply only. The site keeps the file's name, type and size, and a fingerprint so a retry can tell it is the same file, but not its text or pictures. Photos are shrunk in your browser and stripped of location data before they are sent. Scanned PDF pages are read as pictures.
 
 ## Memory
 

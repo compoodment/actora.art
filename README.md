@@ -32,17 +32,15 @@
 - [docs/privacy.md](docs/privacy.md) — what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes
 
-These notes describe what visitors can do and see. The site's code and its private workings are not published here.
-
-Music and Messages were removed on 2026-11-01. Their old addresses show a short page saying so. [Privacy](docs/privacy.md) says what happened to their data.
+These notes describe what visitors can do and see. The site's code and its private workings are not published here. Removed pages are listed in the [guide](docs/site.md#removed-pages).
 
 ## Privacy
 
 No ads, no analytics, and your data is never sold. The site keeps only what it needs to work. See [docs/privacy.md](docs/privacy.md).
 
-## Questions
+## Questions and security reports
 
-Email [actora@putment.com](mailto:actora@putment.com).
+Email [actora@putment.com](mailto:actora@putment.com), for questions and for security problems alike ([security.txt](https://actora.art/.well-known/security.txt)).
 
 ## License
 
