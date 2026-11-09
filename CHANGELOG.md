@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.65 - 2026-11-09
+
+- Behind the scenes: the site's own backup copies are trimmed to the newest 10; older ones stay only in the offsite backup, and nothing is kept longer than 3 years.
+- actoraOS is now `0.3.65`.
+
 ## 0.3.64 - 2026-11-09
 
 - Behind the scenes: Aurora's custom instructions are stored through one simpler piece of code, a first step towards encrypting them. Nothing changes for you.
