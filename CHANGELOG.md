@@ -6,7 +6,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 ## 0.3.67 - 2026-11-09
 
-- Behind the scenes: the site's building blocks (Astro, Preact and the icon set) are updated to their latest compatible versions.
+- Behind the scenes: some of the site's building blocks (Preact, the icon set and Astro's helpers) are updated to their latest compatible versions.
 - actoraOS is now `0.3.67`.
 
 ## 0.3.66 - 2026-11-09
