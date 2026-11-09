@@ -35,12 +35,12 @@ The site loads nothing from other websites, fonts included.
 - Delete Aurora chats and memories in Aurora. Edit or remove your profile on it. Archive or delete your account in Account.
 - **Archive** hides your profile and ends your sessions. The rest is kept until you restore or delete.
 - **Delete** removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora chats and memories, friendships and Wall data. Copies other people hold stay with them. A report keeps the copy it made, without a link to your account. The username is reserved for 90 days.
-- Deleted data can stay in encrypted backups for up to 3 years.
+- Deleted data can stay in backups for about 4 years at most: up to a year on the site's computer, plus up to 3 years in yearly encrypted copies at Hetzner.
 - Network codes on Aurora chats and Wall allowances are removed after 14 days without use.
 
 ## Backups
 
-Backups are nightly on the same computer (7 days) and at Hetzner (daily for 14 days, weekly for 8 weeks, monthly for 12 months, yearly for 3 years). They are used only to restore the site after a failure.
+Backups are nightly on the same computer (7 days), the latest 10 copies made before site updates (each removed once it is a year old), and at Hetzner (daily for 14 days, weekly for 8 weeks, monthly for 12 months, yearly for 3 years). They are used only to restore the site after a failure.
 
 ## Removed features
 
