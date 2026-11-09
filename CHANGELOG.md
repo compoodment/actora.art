@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.68 - 2026-11-09
+
+- Behind the scenes: Astro, the framework the site is built with, is updated to its latest compatible version.
+- actoraOS is now `0.3.68`.
+
 ## 0.3.67 - 2026-11-09
 
 - Behind the scenes: some of the site's building blocks (Preact, the icon set and Astro's helpers) are updated to their latest compatible versions.
