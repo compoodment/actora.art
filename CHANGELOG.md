@@ -6,7 +6,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 
 ## 0.3.66 - 2026-11-09
 
-- Behind the scenes: the site's own backup copies are now removed after 1 year.
+- The site's own backup copies are now removed after a year. The privacy page now says deleted data can stay in backups for about 4 years at most: up to a year on the site's computer plus up to 3 years in yearly encrypted copies at Hetzner. Before, it said copies made before site updates were kept regardless of age.
 - actoraOS is now `0.3.66`.
 
 ## 0.3.65 - 2026-11-09
