@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.64 - 2026-11-09
+
+- Behind the scenes: Aurora's custom instructions are stored through one simpler piece of code, a first step towards encrypting them. Nothing changes for you.
+- Backup copies of the site are never kept longer than 3 years.
+- actoraOS is now `0.3.64`.
+
 ## 0.3.63 - 2026-11-08
 
 - Behind the scenes: tidied up after features that were removed earlier (messages, music, the lab, orbits, and Space, which now lives at space.actora.art). The code and documentation now describe only today's site.
