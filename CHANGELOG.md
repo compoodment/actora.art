@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.66 - 2026-11-09
+
+- Behind the scenes: the site's own backup copies are now removed after 1 year.
+- actoraOS is now `0.3.66`.
+
 ## 0.3.65 - 2026-11-09
 
 - Behind the scenes: the site's own backup copies are trimmed to the newest 10; older ones stay only in the offsite backup, and nothing is kept longer than 3 years.
