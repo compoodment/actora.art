@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.70 - 2026-11-10
+
+- Fixed a fault that could switch off Aurora's saved memories after a restart. It happened when a memory she saved herself was later marked as coming from a chat that read a file or page.
+- Aurora's reply as you watch it now always matches the saved reply, down to the spaces, including the message shown when she could not finish an answer.
+- Safer updates behind the scenes: a new version of the site's pages only replaces the old one once it is complete and checked, and error messages never include stored content.
+- actoraOS is now `0.3.70`.
+
 ## 0.3.69 - 2026-11-10
 
 - A block on a network address now ends after 90 days unless it is renewed, because home addresses are passed on to other people. Blocks on accounts stay until they are lifted.
