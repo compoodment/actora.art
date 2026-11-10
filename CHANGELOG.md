@@ -4,6 +4,13 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.73 - 2026-11-10
+
+- When a page breaks, the site can send a small anonymous error report so problems get found. It never includes what you type, conversations, full page addresses or who you are, is kept for seven days and never goes into backups.
+- You can switch error reports off on your account page, or, without an account, for your browser on the privacy page. The privacy statement explains it in a new section.
+- Deleting your account now also clears your name from older chat and profile visit records.
+- actoraOS is now `0.3.73`.
+
 ## 0.3.72 - 2026-11-10
 
 - When you block someone, they no longer see your profile, guestbook or photos, and you no longer see theirs. The page refreshes right after you block or unblock.
