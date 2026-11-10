@@ -1,54 +1,60 @@
 # Aurora
 
-[Aurora](https://actora.art/aurora/) is an AI assistant on actora.art. Her replies are written by a computer and can be wrong. The chat says so when you send your first message. You can also open her from the [terminal](terminal.md) with `aurora`.
+[Aurora](https://actora.art/aurora/) is the site's AI. She is in the [terminal](terminal.md) too: type `aurora`, then `/help`.
 
-## Conversations
+## Chats
 
-- Guests get one chat, labelled `guest`. The site stores it, and a cookie in your browser reconnects you to it. It is deleted 3 days after its last message.
-- All guests share one daily allowance for the whole site. When it runs out, Aurora says she is busy for the day. You can sign in or come back tomorrow.
-- Signed-in visitors have their own daily allowance. They can make, rename, archive, restore, reset and delete as many chats as they like. Archived chats are read-only until you restore, reset or delete them. Each chat has a menu (right-click, long-press or ⋯) to rename, pin, archive, download or delete it; pinned chats stay at the top, and you can select several chats to act on them at once. `⌕ find a chat` filters the list by name. On a computer the list can be made wider or folded away. Guests can download their chat too.
-- Deleting a chat also deletes the memories Aurora saved from it. The page lists them before you confirm.
-- Replies appear as she writes them. Use the stop button or Esc to stop her. In the terminal, `/help` lists the slash commands.
-- While she works, you see her thinking and her steps, each with a short note and how long it took. Her thinking stays on your screen for this visit only and is not saved. The step notes fold into one line when she starts answering, you can open it again, and the notes are saved with her reply, without her search words.
-- Failed replies can be retried. Retrying her latest reply keeps the earlier answer, and you can flip between up to ten versions. You can edit your latest message in place and ask for a new reply.
-- A message can be up to 10,000 characters. Messages show a small set of Markdown: headings, bold, italics, strikethrough, code, links, lists, quotes and lines. Raw HTML is shown as text. Links in her replies show their full address, and a long or unexpected part after "?" or "#" is shown as plain text, not as part of the link.
-- The context meter shows how much of the conversation Aurora can hold. When it fills up, older messages are summarised and the newest stay as they were.
+- Guests get one chat. The site stores it, a cookie ties your browser to it, and it is deleted 3 days after its last message.
+- All guests share one daily allowance of messages. When it runs out, sign in or come back tomorrow. Signed in, you have your own, and the page shows what is left.
+- Signed in, your chats are kept until you delete them. A chat with no messages is deleted after 6 hours.
+- Deleting a chat deletes the memories saved from it. Starting over keeps them.
+- An archived chat is read-only until you unarchive it.
+- A message holds up to 10,000 characters.
+- Retrying a reply keeps the earlier answers, up to 10 versions. Only your latest message can be edited.
+- When the context meter fills up, Aurora works from a summary of the older messages. The newest stay as they were.
+- Her thinking shows while she works and is not saved. The short notes on her steps are saved with the reply, without her search words.
 
 ## Attachments
 
-You can attach or paste up to five files to a message, screenshots included: PDFs, text, Markdown, data files, code, and photos (JPEG, PNG, WebP, and HEIC where your browser can open it). Aurora reads them for that reply only. The site keeps the file's name, type and size, and a fingerprint so a retry can tell it is the same file, but not its text or pictures. Photos are shrunk in your browser and stripped of location data before they are sent. Scanned PDF pages are read as pictures.
+- Up to 5 files a message: PDFs, photos (JPEG, PNG, WebP, and HEIC if your browser can open it), text, Markdown, data files and code.
+- A PDF or photo can be 25 MB, other files 2 MB. She reads the first 40,000 characters of a file, and 120,000 in one message.
+- She reads a file for that reply only. The site keeps its name, type, size and a fingerprint that recognises it on a retry. It does not keep the text or the pictures.
+- Photos are shrunk in your browser and lose their metadata, location included, before they are sent.
+- PDF pages that are mostly picture are read as pictures.
 
 ## Memory
 
-If you are signed in, Aurora remembers short facts when you ask, such as “remember I like short answers” or “yes, save that.” She may also save a useful fact on her own, based on what you wrote in this chat, and you can undo that save under her reply. She also keeps short notes about things worth remembering; she does not write those notes in a chat where she has read a website or file. Settings show the kinds separately, and a memory saved in a chat that read a website or file is labelled. At most six relevant memories go into one reply. Open memory to add, edit, pin, expire, delete or switch off memory; the switch covers her notes too. Guests have no memory.
+Memory needs an account.
 
-## Personalization
+- She saves a fact when you ask. She can also save one on her own from what you wrote, and keeps short notes of her own. Each save shows under her reply, with undo.
+- Up to 100 memories of 300 characters each, and 50 notes. A new note replaces the oldest unpinned one.
+- At most 6 memories go into one reply.
+- Once she has read a page, file or photo in a reply, she saves nothing on her own in that reply. A memory saved in such a chat is labelled.
+- Once a chat has read outside text, she writes no more notes in it until you start over.
+- Under `memory` you can edit, pin or forget each one, set it to expire after 30 or 90 days, forget everything, or switch memory off. Off covers her notes too.
 
-In settings you can write custom instructions for Aurora's tone, format or style, up to 2,000 characters. They apply to every reply. When you are signed in they follow your account. A guest's last for the browser session. You can switch them off or reset them without deleting a chat. Resetting asks you to confirm.
+## Custom instructions
 
-Your instructions cannot change who Aurora is, weaken her safety or privacy rules, give you access, or give her new tools. If only part of them conflicts, the rest still applies.
+Up to 2,000 characters on tone, format or style, used in every reply. Signed in, they follow your account. A guest's last until the tab closes. They do not override her safety and privacy rules or give her tools.
 
-## Information and tools
+## What she can reach
 
-Aurora can use:
+- public actora.art pages and these docs;
+- a public profile, by exact username;
+- your saved chats, memories and notifications, when you are signed in;
+- the date, the time and the page you are on;
+- the web: up to 3 searches and 3 pages a reply. She opens only pages that you gave her or a search found, and links her sources.
 
-- public actora.art pages and documentation;
-- exact public profile lookup;
-- your saved chats, your memories and your notifications (signed in only);
-- the date, time and page you are on;
-- web search for outside or current information; and
-- public websites and GitHub pages that you give her or that a search found.
+She refuses addresses on private networks, with a password in them, or on unusual ports.
 
-Large results come in pages, and she keeps reading before she says that something is missing or the only match. Web search returns top results only, so she may search again, up to three times in one reply. Answers that use the web link to their sources. Pages that point to private networks, carry passwords or use unusual ports are refused.
+Once she has read outside text in a reply (a web page, a file, a photo, a profile), she opens none of your chats, memories or notifications for the rest of that reply.
 
-After she reads text from outside (a website, an attachment, a profile, or your chat history, notifications or memory list), she does not open new kinds of private information for the rest of that reply, and she can only open pages that you or a search offered. Her next reply starts fresh with your memories and instructions. You can ask her to save, change or forget a memory. She may also save on her own before reading outside text in that reply, using facts grounded in what you wrote in this chat.
+She cannot open pages in your browser, change your account, send messages or submit forms.
 
-Aurora cannot open pages in your browser, change accounts, send messages or submit forms.
+## What leaves the site
 
-## Privacy
+Ollama Cloud writes her replies, mainly in the United States. Each reply sends it the conversation, her instructions and yours, your names when you are signed in, the memories that fit, attachment text and photos, and what her tools found. Your network address is not sent.
 
-To write a reply, the site sends Ollama Cloud the conversation (older parts as a summary), Aurora's instructions, your custom instructions and memories, attachment text, the date and time, your page, and what her tools found. Ollama works mainly in the United States. A web search sends a short search query; she is told to leave private details out of it.
+Keep passwords, health details and ID numbers out of the chat.
 
-Do not share sensitive details with Aurora, such as health information, passwords or ID numbers.
-
-See [privacy.md](privacy.md) for what is kept, how long, and Ollama.
+The full list and how long things are kept: [privacy](privacy.md).

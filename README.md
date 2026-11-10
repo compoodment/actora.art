@@ -2,37 +2,36 @@
 
 # actora.art
 
-**public notes for the site and its social spaces**
+**the public docs for actora.art**
 
-[site](https://actora.art/) · [guide](docs/site.md) · [Aurora](docs/aurora.md) · [terminal](docs/terminal.md) · [social](docs/social.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
+[site](https://actora.art/) · [guide](docs/site.md) · [terminal](docs/terminal.md) · [accounts](docs/accounts.md) · [profiles](docs/profiles.md) · [Aurora](docs/aurora.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
 
 ![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
 
 </div>
 
-## Site
+## The site
 
-- **terminal** — the homepage. Type commands to open pages and manage your account
-- **account and profiles** — sign in with a passkey, and optionally share a public profile
-- **social** — find people by username, make friends, see notifications
-- **Aurora** — an AI assistant you can chat with. She can search the web and read public actora.art pages
-- **Space** — a 3D orbital sandbox, now at [space.actora.art](https://space.actora.art/)
-- **The Wall** — a shared ASCII graffiti wall
-- **crawlers** — daily counts of visits by automated programs
-- **docs** — these guides on the site, with the privacy statement, every change, links, contact and credits
+- terminal: the home page. Commands open pages and run your account
+- accounts: passkeys, no passwords, no email
+- profiles: a page of your own, with a guestbook, friends and blocks
+- Aurora: the site's AI. She can search the web and read public actora.art pages
+- The Wall: one shared ASCII drawing
+- crawlers: which bots visited lately
+- Space: a 3D orbital sandbox, now at [space.actora.art](https://space.actora.art/)
 
-## Read First
+## Guides
 
-- [docs/terminal.md](docs/terminal.md) — the homepage commands
-- [docs/site.md](docs/site.md) — a guide to each page
-- [docs/aurora.md](docs/aurora.md) — chats, settings and what she can do
-- [docs/accounts.md](docs/accounts.md) — passkeys, recovery, archive and deletion
-- [docs/social.md](docs/social.md) — profiles, badges and friends
+- [docs/terminal.md](docs/terminal.md) — every command
+- [docs/accounts.md](docs/accounts.md) — passkeys, recovery, sign-ins, archive and delete
+- [docs/profiles.md](docs/profiles.md) — profiles, guestbooks, friends, blocks and the bell
+- [docs/aurora.md](docs/aurora.md) — limits, memory, what she can reach and what leaves the site
+- [docs/site.md](docs/site.md) — the Wall, crawlers and removed pages
 - [docs/privacy.md](docs/privacy.md) — the privacy statement: what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes
 
-These notes describe what visitors can do and see, and are also on the site at [actora.art/docs](https://actora.art/docs/). The site's code and its private workings are not published here. Removed pages are listed in the [guide](docs/site.md#removed-pages).
+The same guides are on the site at [actora.art/docs](https://actora.art/docs/). The site's code is not published here. To edit a guide, read [docs/writing/STYLE.md](docs/writing/STYLE.md) first.
 
 ## Privacy
 

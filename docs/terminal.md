@@ -1,64 +1,48 @@
 # Terminal
 
-The homepage terminal is the front door of actora.art. Type a short command and press Enter. It answers right there, or opens a page. Type `help` for the list, or `what?` for a short tour.
-
-## Flow
-
-- As you type, the rest of a matching command shows in dim text. Press Tab to accept it. If several commands match, a short list with descriptions appears. Use the arrow keys to choose, Tab to accept, and Esc to dismiss.
-- With no list open, the up and down arrows bring back earlier commands.
-- Guests see `register`, `login` and `recover`. Signed-in visitors see `profile`, `account`, `find` and `logout`.
-- Some commands ask a follow-up question, such as `register` and `find`. Press Ctrl+C twice to cancel one.
-- Links from Account, profiles and Social can open the terminal with a command already typed. Nothing runs, and no passkey prompt starts, until you press Enter.
-- Output stays until you reload the page. `clear` wipes it.
-- Scrolling up to read older output does not pull you back down.
-
-## Pages
-
-Type `page` for a list of pages: `docs`, `aurora`, `wall` and `crawlers`. Pick one with the arrow keys and Enter, or type to filter. `page <name>` opens one directly, such as `page wall`. [Account](accounts.md) has its own command.
+The [home page](https://actora.art/) is a terminal. `help` lists the everyday commands, `help --all` lists every one, and `what?` is a short tour.
 
 ## Commands
 
 For everyone:
 
-- `what?` — a short tour.
-- `help` — the command list.
-- `page` — choose a page.
-- `page <name>` — open a page.
-- `space` — explore Space at [space.actora.art](https://space.actora.art/).
-- `clear` — clear the screen.
-- `aurora` — chat with [Aurora](aurora.md) inside the terminal.
+- `what?`: a short tour.
+- `help`, `help --all`: the command list.
+- `page`: pick a page. `page <name>` opens one: `docs`, `aurora`, `wall` or `crawlers`.
+- `aurora`: talk to [Aurora](aurora.md) without leaving the terminal. Esc or `/exit` brings you back.
+- `space`: opens [space.actora.art](https://space.actora.art/).
+- `clear`: clear the screen.
 
 Guests:
 
-- `register` — create an account with a passkey.
-- `login` — sign in with a passkey.
-- `recover` — add a new passkey with your saved recovery key.
+- `register`: create an account with a passkey.
+- `login`: sign in with a passkey.
+- `recover`: add a new passkey with your recovery key.
 
 Signed in:
 
-- `profile` — open your profile.
-- `account` — open your account page.
-- `find <username>` — open someone's profile. `@` is optional. Without a name, it asks for one.
-- `logout` — sign out.
+- `profile`: open your profile.
+- `account`: open your account page.
+- `find @name`: open someone's profile. It needs the exact username.
+- `friends`: your friends and open requests.
+- `friend add @name`, `friend accept @name`, `friend decline @name`, `friend cancel @name`: send, answer or withdraw a friend request.
+- `unfriend @name`: remove a friend.
+- `block @name`, `unblock @name`, `blocks`: block, unblock, and list who you blocked.
+- `sessions`: where you are signed in, numbered. `sessions --sign-out <n>` signs one of the others out.
+- `logout`: sign out of this browser. `logout --others` signs out every other browser, `logout --everywhere` all of them.
 
-`find` needs the exact username. It opens public and private profile pages alike, and shows no private details itself.
+The `@` is optional. `<command> --help` shows a command's options. `unfriend`, `block` and `logout --everywhere` ask y/n first.
 
-## Accounts
+What these commands do to your account, friends and blocks is in [accounts](accounts.md) and [profiles](profiles.md).
 
-`register` asks for a username and display name, then asks your browser or device to create a passkey. You are signed in straight away.
+## Keys
 
-`login` asks for your passkey. After `login`, `register` or `recover`, the terminal can take you back to the Account or profile page you came from. Cancelling a passkey prompt changes nothing, and you can try again.
+- Tab accepts the suggestion. With several suggestions, the arrow keys choose and Esc closes the list.
+- Otherwise the up and down arrows bring back earlier commands.
+- Ctrl+C twice cancels a question the terminal asked.
 
-If the account is archived, `login` does not sign you in. The terminal asks you to type `restore` or `cancel`.
+## Good to know
 
-`recover` asks for your username, then for your recovery key in a hidden field that is not kept in the terminal history. A valid key starts the creation of a new passkey. Your other passkeys stay. If you already have the most allowed, the terminal tells you which passkey, the one used least recently, would be replaced and asks you to type `replace`. Then you get a new recovery key, shown once. Save it before you carry on. For an archived account, you then choose `restore` or `cancel`.
-
-You create or replace recovery keys on Account, under Security, with one of your passkeys. Each key is shown once, and a new key replaces the old one.
-
-`logout` signs you out. On Account, the signed-in sessions section sends you back here with `logout` typed, and you press Enter.
-
-Archiving and deleting start on Account, never in the terminal. Archive needs your exact username and a passkey, and signs out every browser. You come back to the terminal with a one-time note, and `restore` is how you return later. Deleting needs you to type `delete @username forever` and use a passkey. You land on the homepage as a guest with a note that the username is reserved for 90 days. If the connection drops during a delete, the terminal does not claim it finished. Try signing in once, and do not delete again while unsure. See [accounts.md](accounts.md).
-
-## Boundaries
-
-The terminal is for finding pages and managing your account. It does not show the site's code, admin tools, private workings or secrets.
+- Buttons elsewhere on the site can open the terminal with a command already typed. Nothing runs until you press Enter.
+- Output and command history stay in the tab until you reload or close it.
+- A recovery key is typed into a hidden field and never appears in the output or the history.

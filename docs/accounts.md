@@ -1,26 +1,44 @@
 # Accounts
 
-actora.art accounts use passkeys, not passwords. A passkey is a sign-in saved on your phone, computer or security key. You use it with your fingerprint, face or device PIN.
+An account is a username and a passkey. There are no passwords and no email, so nothing can be reset by mail.
 
-The [homepage terminal](terminal.md) is where you register, sign in, recover, restore and sign out. The [Account](https://actora.art/account/) page manages the rest.
+You register, sign in, recover and sign out in the [terminal](terminal.md). Everything else is on [Account](https://actora.art/account/).
 
-## Your identity and passkeys
+## Names
 
-- Your username names your account and sets your profile address.
-- Your display name is the name the site shows, for example to Aurora.
-- You can add several passkeys and give each a name. You can remove any of them except the last one.
-- Changing your username changes your profile address. Old links do not forward.
-- Account lists the browsers you are signed in on and marks the current one. It shows when each signed in and was last used, with no location. You can sign out one browser or all the others.
-- A sign-in lasts 30 days after you last used it, or until you sign out.
+- A username is 3 to 24 characters: a to z, 0 to 9, `_` and `-`. It is your profile address, `/u/username`.
+- If you change it, old links stop working and anyone can take the old name.
+- A display name is up to 40 characters.
 
-## Recovery
+## Passkeys and recovery
 
-If you lose every passkey, a recovery key lets you add a new one. You create the key on Account and save it somewhere else, because it is shown only once. Using it gives you a new key, which you must save before you carry on.
+- You cannot remove your last passkey. Add a second one on another device.
+- If you lose every passkey, only a recovery key gets you back in. Create one on Account. It is shown once, so save it somewhere else.
+- `recover` in the terminal takes the key and adds a new passkey. Your other passkeys stay.
+- If the account is at its passkey limit, `recover` replaces the passkey you used longest ago. It names it and asks first.
+- Using a recovery key replaces it. The new key is also shown once.
 
-## Archive and deletion
+## Sign-ins
 
-Archive is reversible. It signs out every browser and hides your profile, and the terminal can no longer find you. Pending friend requests are cancelled. To come back, sign in or recover, then choose `restore` in the terminal.
+- A sign-in lasts 30 days after you last used it.
+- `sessions` and Account list your sign-ins: when each started and was last active. No location or browser name is kept.
+- `logout` signs out this browser, `logout --others` every other one, `logout --everywhere` all of them. `sessions --sign-out <n>` ends one.
 
-Deleting removes your account for good: profile, Aurora chats and memories, friendships, Wall data, and the guestbook comments you wrote on other profiles. Copies other people hold stay with them. Reports about you keep the copy made when they were filed. A deleted username is reserved for 90 days.
+## Archive
 
-Both are started from Account and need your passkey. Details: [terminal](terminal.md) and [privacy](privacy.md).
+Archiving hides your account until you come back. It has no time limit. Start it on Account, with your username and a passkey.
+
+- Every browser is signed out, and your profile shows as not found.
+- Pending friend requests are cancelled. Friends, blocks, chats and Wall marks are kept.
+- Comments you left in other guestbooks show as "Deleted account".
+- To come back, `login` or `recover`, then type `restore`.
+
+## Delete
+
+Deleting is for good. On Account, type `delete @username forever` and use a passkey.
+
+- Gone at once: your account, passkeys, recovery key, profile and uploads, your guestbook, comments you wrote elsewhere, badges, friendships, blocks, Aurora chats and memories, and Wall data.
+- The username is reserved for 90 days.
+- Reports by you or about you stay, without your name, until 180 days after they are closed.
+- Backups keep a copy until they expire. See [privacy](privacy.md).
+- If the connection drops while deleting, try to sign in once before you delete again.

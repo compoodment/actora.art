@@ -1,26 +1,26 @@
-# Site Guide
+# Site guide
 
-The pages of actora.art:
-
-- [Home](https://actora.art/) — the terminal. Type `help` to see what it can do. See [terminal.md](terminal.md).
-- [Aurora](https://actora.art/aurora/) — chat with Aurora, an AI assistant. See [aurora.md](aurora.md).
-- [The Wall](https://actora.art/wall/) — a shared ASCII graffiti wall.
-- Space moved to its own site, [space.actora.art](https://space.actora.art/): a 3D sandbox of orbiting planets and stars, with no account and nothing saved. Its old address here shows a short removed page.
-- [Crawlers](https://actora.art/crawlers/) — daily counts of visits by automated programs, such as search engines.
-- [Account](https://actora.art/account/) — your name, passkeys, sessions, archive and deletion. See [accounts.md](accounts.md).
-- [Docs](https://actora.art/docs/) — these guides, the privacy statement and every change, with links, contact and credits.
-- [Privacy](https://actora.art/docs/privacy/) — the privacy statement. See [privacy.md](privacy.md).
-
-Profiles live at `/u/username` and are private until their owner publishes them. See [social.md](social.md).
-
-## Footer
-
-The footer has back and forward buttons, the site version, who you are signed in as, and a bell. The bell shows friend requests and notices from the site.
+The pages without a guide of their own. The rest: [terminal](terminal.md), [accounts](accounts.md), [profiles](profiles.md), [Aurora](aurora.md).
 
 ## The Wall
 
-Anyone can look at the Wall; drawing needs an account. Pick a character and a colour, then draw. You can erase your own marks while they are under 24 hours old, which can show an older mark underneath. Undo and redo work on your recent marks and erasures. You get a daily allowance of marks, shown on the Wall, and erasing gives some back. Marks fade and are gone after three days at the latest. On a touch screen, tap to draw and drag to move around.
+[The Wall](https://actora.art/wall/) is one shared drawing, 80 by 24 characters.
+
+- Anyone can look. Drawing needs an account.
+- You get a daily allowance of characters, shown on the Wall. It resets 24 hours after your first mark, and each erase gives 1 back.
+- You can erase your own marks for 24 hours. Whatever was underneath shows again.
+- Undo and redo cover your last 20 actions.
+- Marks fade and are gone after 3 days. When the Wall is over three quarters full, the oldest go sooner.
+- Other visitors never see who drew what. The site stores your account with each mark, for at most 3 days.
+
+## Crawlers
+
+[Crawlers](https://actora.art/crawlers/) counts the bots that visited in the last 30 days, by the name they give. Only the counts are kept: no network addresses and no page addresses.
+
+## Space
+
+Space moved to [space.actora.art](https://space.actora.art/) on 5 November 2026. It needs no account and saves nothing.
 
 ## Removed pages
 
-Lab, Music and Messages were removed on 2026-11-01, and Space on 2026-11-05 when it moved to space.actora.art. Their old addresses show a short page saying "This has been removed from actora.art."
+Lab, Music and Messages were removed on 1 November 2026. Their old addresses, and Space's, show a page that says so.
