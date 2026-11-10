@@ -6,7 +6,7 @@ You create an account, sign in and sign out in the [terminal](terminal.md) on th
 
 ## Names
 
-- A username is 3 to 24 characters: a to z, 0 to 9, `_` and `-`. It is your profile address, `/u/username`.
+- A username is 3 to 24 characters: a to z, 0 to 9, `_` and `-`. It is your profile address, `/u/<username>`.
 - If you change it, old links stop working and anyone can take the old name.
 - A display name is up to 40 characters.
 
@@ -35,7 +35,7 @@ Archiving hides your account until you come back. It has no time limit. Start it
 
 ## Delete
 
-Deleting is for good. On Account, type `delete @username forever` and use a passkey.
+Deleting is for good. On Account, type `delete @<username> forever` and use a passkey.
 
 - Gone at once: your account, passkeys, recovery key, profile and uploads, your guestbook, comments you wrote elsewhere, badges, friendships, blocks, Aurora chats and memories, and Wall data.
 - The username is reserved for 90 days.

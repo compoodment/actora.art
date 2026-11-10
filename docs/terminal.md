@@ -23,15 +23,15 @@ Signed in:
 
 - `profile`: open your profile.
 - `account`: open Account, the page with your names, passkeys and sign-ins.
-- `find @name`: open someone's profile. It needs the exact username.
+- `find <name>`: open someone's profile. It needs the exact username.
 - `friends`: your friends and open friend requests.
-- `friend add @name`, `friend accept @name`, `friend decline @name`, `friend cancel @name`: send, answer or withdraw a friend request.
-- `unfriend @name`: remove a friend.
-- `block @name`, `unblock @name`, `blocks`: block, unblock, and list who you blocked.
+- `friend add <name>`, `friend accept <name>`, `friend decline <name>`, `friend cancel <name>`: send, answer or withdraw a friend request.
+- `unfriend <name>`: remove a friend.
+- `block <name>`, `unblock <name>`, `blocks`: block, unblock, and list who you blocked.
 - `sessions`: the browsers you are signed in on, numbered. `sessions --sign-out <n>` signs one of the others out.
 - `logout`: sign out of this browser. `logout --others` signs out every other browser, `logout --everywhere` all of them.
 
-The `@` is optional. `<command> --help` shows a command's options. `unfriend`, `block` and `logout --everywhere` ask y/n first.
+A name can be typed with or without `@`. `<command> --help` shows a command's options. `unfriend`, `block` and `logout --everywhere` ask y/n first.
 
 What these commands do to your account, friends and blocks is in [accounts](accounts.md) and [profiles](profiles.md).
 

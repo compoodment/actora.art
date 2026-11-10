@@ -11,7 +11,7 @@ work out by using it.
 - `docs/terminal.md`: the command list. Reference: one line per command.
 - `docs/accounts.md`: passkeys, recovery, sign-ins, archive, delete. The how-tos live here, because these are hard to undo.
 - `docs/profiles.md`: profiles, guestbooks, friends, blocks, the bell, reports.
-- `docs/aurora.md`: her limits, what is kept, what she can reach, what leaves the site.
+- `docs/aurora.md`: Aurora's limits, what is kept, what it can reach, what leaves the site.
 - `docs/privacy.md`: the formal statement. computment's wording; propose changes, don't edit.
 - `CHANGELOG.md`: what changed for visitors, per version.
 
@@ -20,7 +20,7 @@ A guide links to the privacy statement for the legal detail and doesn't repeat i
 ## How a guide opens
 
 One or two plain sentences: what the thing is, where to find it (page address and terminal command), and what it's
-for. "Aurora is the AI assistant of actora.art. You chat with her at actora.art/aurora, or by typing `aurora` in the
+for. "Aurora is the AI assistant of actora.art. You chat with it at actora.art/aurora, or by typing `aurora` in the
 terminal on the home page." No tour after that.
 
 The same goes inside a guide: the first time a page or feature comes up, say what it is and where ("the bell sits in
@@ -51,6 +51,8 @@ the footer of every page and opens your notifications"). Never name something be
 - No "not X, but Y" unless someone would really assume X.
 - Don't pad a list to three. Don't list features to look complete.
 - Same word for the same thing every time: sign-in (not session), the bell, notifications, guestbook, the Wall. There is no "social".
+- Aurora is "it", never she or her. Where "it" is unclear, say "Aurora" again.
+- Command placeholders are always `<...>`: `find <name>`, `page <name>`. Never `[...]`; for an optional flag, list both forms (`help`, `help --all`).
 - Commands and exact words to type go in `code`. Page names are capitalised: Account, the Wall, Aurora.
 - Headings in sentence case, named after the thing. Bullets for parallel facts, sentences for the rest. No bold lead-ins, no em dashes.
 - Only headings, paragraphs, lists, `code`, **bold** and links render on the site. No tables, no HTML.
@@ -59,7 +61,7 @@ the footer of every page and opens your notifications"). Never name something be
 
 The site talks in lowercase and keeps it short: `sign in first (type login).`, `cancelled. nothing changed.`,
 `a wall. draw on it.` The guides use normal capitals so they read easily, but keep that tone: dry, friendly, no
-exclamation marks, no jokes that need explaining. Aurora is "she". The site is "the site", computment is "computment".
+exclamation marks, no jokes that need explaining. The site is "the site", computment is "computment".
 
 ## Before you commit
 

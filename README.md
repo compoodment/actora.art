@@ -16,7 +16,7 @@
 - terminal: the home page. You type commands to open pages and manage your account
 - accounts: sign in with a passkey. No passwords, no email
 - profiles: a page of your own, with a guestbook, friends and blocks
-- Aurora: an AI assistant to chat with. She can search the web and read files
+- Aurora: an AI assistant to chat with. It can search the web and read files
 - The Wall: one drawing in text characters that every visitor shares
 - crawlers: counts of the bots, such as search engines, that visited lately
 - Space: a 3D orbital sandbox, now at [space.actora.art](https://space.actora.art/)
@@ -26,7 +26,7 @@
 - [docs/terminal.md](docs/terminal.md) — the home page and every command
 - [docs/accounts.md](docs/accounts.md) — passkeys, recovery, sign-ins, archive and delete
 - [docs/profiles.md](docs/profiles.md) — profiles, guestbooks, friends, blocks and notifications
-- [docs/aurora.md](docs/aurora.md) — the AI assistant: limits, memory, what she can reach and what leaves the site
+- [docs/aurora.md](docs/aurora.md) — the AI assistant: limits, memory, what it can reach and what leaves the site
 - [docs/site.md](docs/site.md) — the site in short, the Wall, crawlers and removed pages
 - [docs/privacy.md](docs/privacy.md) — the privacy statement: what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes

@@ -1,6 +1,6 @@
 # Profiles
 
-Every [account](accounts.md) on [actora.art](https://actora.art/) can have a profile: a page of your own at `actora.art/u/username` that you fill and design yourself. Around it are a guestbook for visitors' comments, friends, blocks and reports. Open yours with `profile` in the [terminal](terminal.md) on the home page, or someone else's with `find @name`.
+Every [account](accounts.md) on [actora.art](https://actora.art/) can have a profile: a page of your own at `actora.art/u/<username>` that you fill and design yourself. Around it are a guestbook for visitors' comments, friends, blocks and reports. Open yours with `profile` in the [terminal](terminal.md) on the home page, or someone else's with `find <name>`.
 
 ## Your profile
 
@@ -26,8 +26,8 @@ A guestbook is a list of comments that visitors leave on your profile.
 
 ## Friends
 
-- `find @name` needs the exact username. There is no search by name.
-- A friend request has to be accepted. Send one from a profile or with `friend add @name` in the terminal. Answer it on the profile, in the bell or in the terminal.
+- `find <name>` needs the exact username. There is no search by name.
+- A friend request has to be accepted. Send one from a profile or with `friend add <name>` in the terminal. Answer it on the profile, in the bell or in the terminal.
 - Friends get no extra access. A private profile stays private to them.
 - Nobody is told when you decline a request or unfriend them.
 - There are no friend counts, no online or last-seen status and no read receipts.
@@ -38,7 +38,7 @@ A guestbook is a list of comments that visitors leave on your profile.
 - While signed in, neither of you sees the other's profile, guestbook or pictures, and neither can send a request or comment. They see "unavailable" and are not told why.
 - Signed out, anyone can still read a public profile.
 - Comments they left in your guestbook earlier stay, and they can still remove them.
-- `blocks` in the terminal lists who you blocked, `unblock @name` undoes one.
+- `blocks` in the terminal lists who you blocked, `unblock <name>` undoes one.
 
 ## The bell
 
