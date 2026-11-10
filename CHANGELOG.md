@@ -4,6 +4,19 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.71 - 2026-11-10
+
+- Coming back to the site from another window no longer swallows your first click or makes the page blink.
+- Changes you make are tied to the account the page was opened with. If you signed in as someone else in another tab, the page reloads instead of acting as the other account.
+- Pop-ups are centred and styled everywhere, and the site's own confirmation replaces the browser's boxes, including before you block someone.
+- Addresses that don't exist get a proper "page not found" page.
+- Dates are written the same way everywhere, and failed loads show one "couldn't load, try again" line.
+- Faint text is easier to read, and on phones the footer takes one row.
+- The bell confirms when you accept a friend request, and only marks notices you've seen as read.
+- Sign-in errors are plain sentences instead of codes, and the profile badge fits its box.
+- Aurora links to profiles at their real address.
+- actoraOS is now `0.3.71`.
+
 ## 0.3.70 - 2026-11-10
 
 - Fixed a fault that could switch off Aurora's saved memories after a restart. It happened when a memory she saved herself was later marked as coming from a chat that read a file or page.
