@@ -20,7 +20,7 @@
 - **Space** — a 3D orbital sandbox, now at [space.actora.art](https://space.actora.art/)
 - **The Wall** — a shared ASCII graffiti wall
 - **crawlers** — daily counts of visits by automated programs
-- **info** — links, contact and credits
+- **docs** — these guides on the site, with the privacy statement, every change, links, contact and credits
 
 ## Read First
 
@@ -29,10 +29,10 @@
 - [docs/aurora.md](docs/aurora.md) — chats, settings and what she can do
 - [docs/accounts.md](docs/accounts.md) — passkeys, recovery, archive and deletion
 - [docs/social.md](docs/social.md) — profiles, badges and friends
-- [docs/privacy.md](docs/privacy.md) — what the site keeps, for how long, and who receives it
+- [docs/privacy.md](docs/privacy.md) — the privacy statement: what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes
 
-These notes describe what visitors can do and see. The site's code and its private workings are not published here. Removed pages are listed in the [guide](docs/site.md#removed-pages).
+These notes describe what visitors can do and see, and are also on the site at [actora.art/docs](https://actora.art/docs/). The site's code and its private workings are not published here. Removed pages are listed in the [guide](docs/site.md#removed-pages).
 
 ## Privacy
 

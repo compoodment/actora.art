@@ -8,8 +8,8 @@ The pages of actora.art:
 - Space moved to its own site, [space.actora.art](https://space.actora.art/): a 3D sandbox of orbiting planets and stars, with no account and nothing saved. Its old address here shows a short removed page.
 - [Crawlers](https://actora.art/crawlers/) — daily counts of visits by automated programs, such as search engines.
 - [Account](https://actora.art/account/) — your name, passkeys, sessions, archive and deletion. See [accounts.md](accounts.md).
-- [Info](https://actora.art/info/) — links, contact and credits.
-- [Privacy](https://actora.art/privacy/) — the full privacy statement. See [privacy.md](privacy.md).
+- [Docs](https://actora.art/docs/) — these guides, the privacy statement and every change, with links, contact and credits.
+- [Privacy](https://actora.art/docs/privacy/) — the privacy statement. See [privacy.md](privacy.md).
 
 Profiles live at `/u/username` and are private until their owner publishes them. See [social.md](social.md).
 
