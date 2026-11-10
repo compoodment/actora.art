@@ -4,6 +4,21 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.72 - 2026-11-10
+
+- When you block someone, they no longer see your profile, guestbook or photos, and you no longer see theirs. The page refreshes right after you block or unblock.
+- Someone you blocked can still find and remove notes they left in your guestbook earlier, and nothing else of yours.
+- Featured friends hide across a block, and Aurora won't describe a profile across one either.
+- Your block list shows usernames only.
+- Aurora's help card opens only when you ask for it: the help button or `?`.
+- The bell's panel is called "notifications", fits its content, and your own sent friend request no longer counts as new.
+- Recent changes on the info page show two lines each with a "more" button, as a list of points.
+- The account page says "edit profile" and opens the editor, shows your passkey count once, and "open terminal to sign out" takes you to the terminal.
+- Terminal help fits on phones, and touch screens no longer show keyboard hints.
+- The page for a removed account has the normal frame and a way back home.
+- Crawler table headers are in normal case, and the close button on Aurora's help card is easier to tap.
+- actoraOS is now `0.3.72`.
+
 ## 0.3.71 - 2026-11-10
 
 - Coming back to the site from another window no longer swallows your first click or makes the page blink.
