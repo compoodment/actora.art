@@ -14,7 +14,8 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 - Faint text is easier to read, and on phones the footer takes one row.
 - The bell confirms when you accept a friend request, and only marks notices you've seen as read.
 - Sign-in errors are plain sentences instead of codes, and the profile badge fits its box.
-- Aurora links to profiles at their real address.
+- Aurora links to profiles at their real address and can read the bio of profiles made with the current editor.
+- Messages to Aurora and paint on the Wall are tied to the account the page was opened with too.
 - actoraOS is now `0.3.71`.
 
 ## 0.3.70 - 2026-11-10
