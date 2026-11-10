@@ -4,6 +4,19 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.75 - 2026-11-10
+
+- New terminal commands: `logout` signs out this browser, `logout --others` every other one, and `logout --everywhere` all of them. `sessions` lists where you're signed in.
+- Friends and blocks in the terminal: `friends`, `friend add`, `accept`, `decline` and `cancel <name>`, `unfriend`, `block`, `unblock` and `blocks`. Unfriending, blocking and signing out everywhere ask first.
+- `help` lists the everyday commands and `help --all` every one. Commands with options explain them with `--help`.
+- Sign-out buttons on the account page and the accept and decline buttons in notifications now open the terminal with the command typed. Nothing happens until you press Enter.
+- A new logo: the terminal's cat. The tab icon is its ears.
+- The 404 page has the cat in a box.
+- Each page has its own link preview.
+- The docs moved onto the site at actora.art/docs, with every release's changes. The info page and the privacy statement live there now; their old addresses still work.
+- The docs are rewritten to be shorter and clearer.
+- actoraOS is now `0.3.75`.
+
 ## 0.3.74 - 2026-11-10
 
 - Saves that change several things at once now finish completely or not at all, even if the server stops halfway.
