@@ -12,7 +12,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 - Your block list shows usernames only.
 - Aurora's help card opens only when you ask for it: the help button or `?`.
 - The bell's panel is called "notifications", fits its content, and your own sent friend request no longer counts as new.
-- Recent changes on the info page show two lines each with a "more" button, as a list of points.
+- The info page is laid out again: each card is only as big as its text, and each recent change shows its first point with a "more" button that opens the rest as a list.
 - The account page says "edit profile" and opens the editor, shows your passkey count once, and "open terminal to sign out" takes you to the terminal.
 - Terminal help fits on phones, and touch screens no longer show keyboard hints.
 - The page for a removed account has the normal frame and a way back home.
