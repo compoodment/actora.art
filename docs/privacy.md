@@ -12,6 +12,7 @@ actora.art is a personal, non-commercial site run by computment. It has no ads, 
 - **Profiles and friends.** What you put on your profile, guestbook comments, friendships, requests, blocks and notifications. Location and camera details are removed from pictures and videos you upload to your profile.
 - **The Wall.** Who made each Wall mark, and your tool settings if signed in. Wall marks last at most three days.
 - **Reports.** When someone reports a profile, the site keeps who reported, who was reported, the reason, and a copy of what the profile showed. Closed reports are deleted after 180 days.
+- **Error reports.** When the site's code fails in your browser, it can send a small anonymous report: a general error description, places in the site's own code, the type of page, the site version and browser family. Never what you type, conversations, full page addresses or who you are. Reports are kept for up to seven days and never go into backups. You can switch them off on your account page or, without an account, for your browser on the privacy page.
 - **Email.** If you write to the site address, your email is kept for up to a year after your question is answered.
 - **Cookies.** Only two, both needed to work: `guestId` for guests (7 days) and `authSession` for signed-in visitors (30 days after last use, or until you sign out). Your browser also keeps a few small settings, such as your Wall tool. The site shows no cookie banner because it uses nothing beyond these.
 
@@ -41,7 +42,7 @@ The site loads nothing from other websites, fonts included.
 
 ## Backups
 
-Backups are nightly on the same computer (7 days), the latest 10 copies made before site updates (each removed once it is a year old), and at Hetzner (daily for 14 days, weekly for 8 weeks, monthly for 12 months, yearly for 3 years). They are used only to restore the site after a failure.
+Backups are nightly on the same computer (7 days), the latest 10 copies made before site updates (each removed once it is a year old), and at Hetzner (daily for 14 days, weekly for 8 weeks, monthly for 12 months, yearly for 3 years). They are used only to restore the site after a failure. Error reports are never in backups.
 
 ## Removed features
 
