@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.74 - 2026-11-10
+
+- Saves that change several things at once now finish completely or not at all, even if the server stops halfway.
+- actoraOS is now `0.3.74`.
+
 ## 0.3.73 - 2026-11-10
 
 - When a page breaks, the site can send a small anonymous error report so problems get found. It never includes what you type, conversations, full page addresses or who you are, is kept for seven days and never goes into backups.
