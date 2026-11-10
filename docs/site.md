@@ -1,10 +1,10 @@
 # Site guide
 
-The pages without a guide of their own. The rest: [terminal](terminal.md), [accounts](accounts.md), [profiles](profiles.md), [Aurora](aurora.md).
+[actora.art](https://actora.art/) is computment's personal website. Its home page is a [terminal](terminal.md), and from there you reach [accounts](accounts.md), [profiles](profiles.md) and [Aurora](aurora.md), the AI assistant. This guide covers the pages that have no guide of their own.
 
 ## The Wall
 
-[The Wall](https://actora.art/wall/) is one shared drawing, 80 by 24 characters.
+The Wall, at [actora.art/wall](https://actora.art/wall/) or `page wall` in the terminal, is one drawing that every visitor shares. You draw on it with coloured text characters, on a grid of 80 by 24.
 
 - Anyone can look. Drawing needs an account.
 - You get a daily allowance of characters, shown on the Wall. It resets 24 hours after your first mark, and each erase gives 1 back.
@@ -15,12 +15,12 @@ The pages without a guide of their own. The rest: [terminal](terminal.md), [acco
 
 ## Crawlers
 
-[Crawlers](https://actora.art/crawlers/) counts the bots that visited in the last 30 days, by the name they give. Only the counts are kept: no network addresses and no page addresses.
+Crawlers, at [actora.art/crawlers](https://actora.art/crawlers/) or `page crawlers`, counts the bots, such as search engines, that visited in the last 30 days, by the name they give. Only the counts are kept: no network addresses and no page addresses.
 
 ## Space
 
-Space moved to [space.actora.art](https://space.actora.art/) on 5 November 2026. It needs no account and saves nothing.
+Space, a 3D sandbox of orbiting planets and stars, moved to [space.actora.art](https://space.actora.art/) on 5 November 2026. It needs no account and saves nothing.
 
 ## Removed pages
 
-Lab, Music and Messages were removed on 1 November 2026. Their old addresses, and Space's, show a page that says so.
+Three older pages, Lab, Music and Messages, were removed on 1 November 2026. Their old addresses, and Space's, show a page that says so.

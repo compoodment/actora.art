@@ -1,8 +1,8 @@
 # Accounts
 
-An account is a username and a passkey. There are no passwords and no email, so nothing can be reset by mail.
+An account on [actora.art](https://actora.art/) is a username and a passkey: a sign-in saved on your phone, computer or security key. There are no passwords and no email, so nothing can be reset by mail. An account gives you a [profile](profiles.md), your own [Aurora](aurora.md) chats and a place on the Wall, the site's shared drawing.
 
-You register, sign in, recover and sign out in the [terminal](terminal.md). Everything else is on [Account](https://actora.art/account/).
+You create an account, sign in and sign out in the [terminal](terminal.md) on the home page, with `register`, `login` and `logout`. Your names, passkeys and sign-ins are on the Account page, [actora.art/account](https://actora.art/account/), or `account` in the terminal.
 
 ## Names
 
@@ -13,7 +13,7 @@ You register, sign in, recover and sign out in the [terminal](terminal.md). Ever
 ## Passkeys and recovery
 
 - You cannot remove your last passkey. Add a second one on another device.
-- If you lose every passkey, only a recovery key gets you back in. Create one on Account. It is shown once, so save it somewhere else.
+- A recovery key is a code that gets you back in when every passkey is lost. Nothing else does. Create one on Account. It is shown once, so save it somewhere else.
 - `recover` in the terminal takes the key and adds a new passkey. Your other passkeys stay.
 - If the account is at its passkey limit, `recover` replaces the passkey you used longest ago. It names it and asks first.
 - Using a recovery key replaces it. The new key is also shown once.
@@ -21,7 +21,7 @@ You register, sign in, recover and sign out in the [terminal](terminal.md). Ever
 ## Sign-ins
 
 - A sign-in lasts 30 days after you last used it.
-- `sessions` and Account list your sign-ins: when each started and was last active. No location or browser name is kept.
+- `sessions` in the terminal and the Account page list your sign-ins: when each started and was last active. No location or browser name is kept.
 - `logout` signs out this browser, `logout --others` every other one, `logout --everywhere` all of them. `sessions --sign-out <n>` ends one.
 
 ## Archive
@@ -30,7 +30,7 @@ Archiving hides your account until you come back. It has no time limit. Start it
 
 - Every browser is signed out, and your profile shows as not found.
 - Pending friend requests are cancelled. Friends, blocks, chats and Wall marks are kept.
-- Comments you left in other guestbooks show as "Deleted account".
+- Comments you left in other people's guestbooks show as "Deleted account".
 - To come back, `login` or `recover`, then type `restore`.
 
 ## Delete

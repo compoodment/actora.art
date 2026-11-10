@@ -1,7 +1,8 @@
 # Writing the actora.art docs
 
-For anyone editing these guides, people and AI alike. One rule above the rest: write what a visitor can't see on the
-page, and nothing they can.
+For anyone editing these guides, people and AI alike. Write for someone who has never seen actora.art: they came from
+GitHub or a search and don't have the page open. Say what the thing is and where it is, then only what they couldn't
+work out by using it.
 
 ## What each page is for
 
@@ -16,6 +17,15 @@ page, and nothing they can.
 
 A guide links to the privacy statement for the legal detail and doesn't repeat it. Every `.md` directly in `docs/` becomes a page on the site, which is why this file sits in `docs/writing/`.
 
+## How a guide opens
+
+One or two plain sentences: what the thing is, where to find it (page address and terminal command), and what it's
+for. "Aurora is the AI assistant of actora.art. You chat with her at actora.art/aurora, or by typing `aurora` in the
+terminal on the home page." No tour after that.
+
+The same goes inside a guide: the first time a page or feature comes up, say what it is and where ("the bell sits in
+the footer of every page and opens your notifications"). Never name something before it's introduced.
+
 ## What goes in
 
 - Limits and numbers: how many, how long, how big.
@@ -26,8 +36,8 @@ A guide links to the privacy statement for the legal detail and doesn't repeat i
 
 ## What stays out
 
-- What the screen already shows or says: buttons, menus, labels, the obvious next step.
-- What a thing is, when its name says it. No "Aurora is an AI assistant on actora.art".
+- A walk through the interface: every button, menu and label, the obvious next step. Name where a thing is; don't narrate using it.
+- What the page itself tells you once you're there. "The chat says so when you send your first message."
 - How it works inside, unless it changes what the visitor should do.
 - The same fact twice. Say it in the guide that owns it; link from the others.
 - Reassurance, selling, and anything you'd say "yeah, no shit" to.
@@ -54,6 +64,7 @@ exclamation marks, no jokes that need explaining. Aurora is "she". The site is "
 ## Before you commit
 
 - Check each fact against the code. Facts beat style.
-- Cut test: would a visitor miss this sentence? If not, delete it.
+- Stranger test: could someone who has never opened the site follow this page?
+- Cut test: would they miss this sentence? If not, delete it.
 - `node scripts/validate-public-docs.mjs` passes.
 - A new, renamed or removed guide needs the README list and the site's own list of public files updated.

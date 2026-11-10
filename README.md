@@ -2,7 +2,7 @@
 
 # actora.art
 
-**the public docs for actora.art**
+**the public docs for [actora.art](https://actora.art/), computment's personal website**
 
 [site](https://actora.art/) · [guide](docs/site.md) · [terminal](docs/terminal.md) · [accounts](docs/accounts.md) · [profiles](docs/profiles.md) · [Aurora](docs/aurora.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
 
@@ -13,21 +13,21 @@
 
 ## The site
 
-- terminal: the home page. Commands open pages and run your account
-- accounts: passkeys, no passwords, no email
+- terminal: the home page. You type commands to open pages and manage your account
+- accounts: sign in with a passkey. No passwords, no email
 - profiles: a page of your own, with a guestbook, friends and blocks
-- Aurora: the site's AI. She can search the web and read public actora.art pages
-- The Wall: one shared ASCII drawing
-- crawlers: which bots visited lately
+- Aurora: an AI assistant to chat with. She can search the web and read files
+- The Wall: one drawing in text characters that every visitor shares
+- crawlers: counts of the bots, such as search engines, that visited lately
 - Space: a 3D orbital sandbox, now at [space.actora.art](https://space.actora.art/)
 
 ## Guides
 
-- [docs/terminal.md](docs/terminal.md) — every command
+- [docs/terminal.md](docs/terminal.md) — the home page and every command
 - [docs/accounts.md](docs/accounts.md) — passkeys, recovery, sign-ins, archive and delete
-- [docs/profiles.md](docs/profiles.md) — profiles, guestbooks, friends, blocks and the bell
-- [docs/aurora.md](docs/aurora.md) — limits, memory, what she can reach and what leaves the site
-- [docs/site.md](docs/site.md) — the Wall, crawlers and removed pages
+- [docs/profiles.md](docs/profiles.md) — profiles, guestbooks, friends, blocks and notifications
+- [docs/aurora.md](docs/aurora.md) — the AI assistant: limits, memory, what she can reach and what leaves the site
+- [docs/site.md](docs/site.md) — the site in short, the Wall, crawlers and removed pages
 - [docs/privacy.md](docs/privacy.md) — the privacy statement: what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes
 

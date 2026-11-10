@@ -1,17 +1,17 @@
 # Aurora
 
-[Aurora](https://actora.art/aurora/) is the site's AI. She is in the [terminal](terminal.md) too: type `aurora`, then `/help`.
+Aurora is the AI assistant of [actora.art](https://actora.art/). You chat with her at [actora.art/aurora](https://actora.art/aurora/), or by typing `aurora` in the [terminal](terminal.md) on the home page. She answers questions, searches the web and reads files you attach. No account is needed.
 
 ## Chats
 
-- Guests get one chat. The site stores it, a cookie ties your browser to it, and it is deleted 3 days after its last message.
+- Without an account you are a guest, and guests get one chat. The site stores it, a cookie ties your browser to it, and it is deleted 3 days after its last message.
 - All guests share one daily allowance of messages. When it runs out, sign in or come back tomorrow. Signed in, you have your own, and the page shows what is left.
 - Signed in, your chats are kept until you delete them. A chat with no messages is deleted after 6 hours.
 - Deleting a chat deletes the memories saved from it. Starting over keeps them.
 - An archived chat is read-only until you unarchive it.
 - A message holds up to 10,000 characters.
 - Retrying a reply keeps the earlier answers, up to 10 versions. Only your latest message can be edited.
-- When the context meter fills up, Aurora works from a summary of the older messages. The newest stay as they were.
+- The context meter on her page shows how much of a chat she can hold. When it fills up, she works from a summary of the older messages. The newest stay as they were.
 - Her thinking shows while she works and is not saved. The short notes on her steps are saved with the reply, without her search words.
 
 ## Attachments
@@ -24,23 +24,23 @@
 
 ## Memory
 
-Memory needs an account.
+Aurora can remember short facts about you between chats. This needs an account.
 
 - She saves a fact when you ask. She can also save one on her own from what you wrote, and keeps short notes of her own. Each save shows under her reply, with undo.
 - Up to 100 memories of 300 characters each, and 50 notes. A new note replaces the oldest unpinned one.
 - At most 6 memories go into one reply.
 - Once she has read a page, file or photo in a reply, she saves nothing on her own in that reply. A memory saved in such a chat is labelled.
 - Once a chat has read outside text, she writes no more notes in it until you start over.
-- Under `memory` you can edit, pin or forget each one, set it to expire after 30 or 90 days, forget everything, or switch memory off. Off covers her notes too.
+- Under `memory` on her page you can edit, pin or forget each one, set it to expire after 30 or 90 days, forget everything, or switch memory off. Off covers her notes too.
 
 ## Custom instructions
 
-Up to 2,000 characters on tone, format or style, used in every reply. Signed in, they follow your account. A guest's last until the tab closes. They do not override her safety and privacy rules or give her tools.
+Under `instructions` on her page you can tell her how to answer: up to 2,000 characters on tone, format or style, used in every reply. Signed in, they follow your account. A guest's last until the tab closes. They do not override her safety and privacy rules or give her tools.
 
 ## What she can reach
 
 - public actora.art pages and these docs;
-- a public profile, by exact username;
+- a member's public [profile](profiles.md), by exact username;
 - your saved chats, memories and notifications, when you are signed in;
 - the date, the time and the page you are on;
 - the web: up to 3 searches and 3 pages a reply. She opens only pages that you gave her or a search found, and links her sources.
@@ -53,7 +53,7 @@ She cannot open pages in your browser, change your account, send messages or sub
 
 ## What leaves the site
 
-Ollama Cloud writes her replies, mainly in the United States. Each reply sends it the conversation, her instructions and yours, your names when you are signed in, the memories that fit, attachment text and photos, and what her tools found. Your network address is not sent.
+Her replies are written by an AI model at Ollama Cloud, a separate company, mainly in the United States. Each reply sends it the conversation, her instructions and yours, your names when you are signed in, the memories that fit, attachment text and photos, and what her tools found. Your network address is not sent.
 
 Keep passwords, health details and ID numbers out of the chat.
 
