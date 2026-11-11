@@ -2,7 +2,7 @@
 
 Last updated: 11 November 2026
 
-actora.art is a personal, non-commercial website. This statement explains which personal data the site processes, why it does so, how long the data is kept, who receives it, and what rights you have.
+actora.art is a personal, non-commercial website. This statement says which personal data the site processes, why, for how long, who receives it and what your rights are.
 
 ## 1. Who is responsible
 
@@ -56,7 +56,7 @@ Aurora is the site's assistant. It is an AI system: its replies are generated au
 
 We store your conversations: each message with the time it was sent, Aurora's replies with a short list of the steps it took (including its own short note on each step), and the name, type and size of any file you attach. When you retry a reply, we keep up to ten versions with their memory changes as part of the chat. The text of an attached file is used for that reply only and is not stored; a keyed fingerprint is kept to recognise the same attachment if you retry.
 
-If you are signed in, we also store your custom instructions and, if memory is switched on, the short facts you asked Aurora to remember, facts it saves on its own and short notes it keeps about you. Aurora can save things it learns about you on its own when that seems useful. You see every save under Aurora's reply and can undo it, and you can see and delete all memories in memory. After reading a file, page or search result in a reply, Aurora will not save on its own in that reply. On its own, Aurora refuses passwords, keys, certain ID numbers, links and sensitive personal data such as health or religion. These checks use word lists and cannot catch every way of expressing sensitive information. You can ask Aurora to remember a health fact about yourself, but requests containing certain credentials or identifiers are refused. Memory can be switched off. You can view, change or delete memories in Aurora settings.
+If you are signed in, we also store your custom instructions and, if memory is switched on, the short facts you asked Aurora to remember, facts it saves on its own and short notes it keeps about you. Aurora can save things it learns about you on its own when that seems useful. You see every save under Aurora's reply and can undo it, and you can see and delete all memories in memory. After reading a file, page or search result in a reply, Aurora will not save on its own in that reply. On its own, Aurora refuses passwords, keys, certain ID numbers, links and sensitive personal data such as health or religion. These checks use word lists and cannot catch every way of expressing sensitive information. You can ask Aurora to remember a health fact about yourself, but requests containing certain credentials or identifiers are refused. Memory can be switched off. You can view, change or delete memories on Aurora's memory page.
 
 A guest's custom instructions are stored in the browser and sent to the site and Ollama Cloud when used for a reply.
 
@@ -76,7 +76,7 @@ The Wall is a shared drawing. Anyone can look; drawing needs an account. For eac
 
 ### 3.7 Reports and moderation
 
-Signed-in members can report a profile. A report stores who reported it, the account reported, the reason, an optional note, and a copy of what the profile showed at that moment (without the uploaded files themselves). We use reports to deal with abuse, which can lead to an account being restricted or a profile being hidden. Reports about messages, made before Messages was removed on 1 November 2026, keep the reported message and its attachments under the same rules.
+Signed-in visitors can report a profile. A report stores who reported it, the account reported, the reason, an optional note, and a copy of what the profile showed at that moment (without the uploaded files themselves). We use reports to deal with abuse, which can lead to an account being restricted or a profile being hidden. Reports about messages, made before Messages was removed on 1 November 2026, keep the reported message and its attachments under the same rules.
 
 **Legal basis:** our legitimate interest in keeping the site safe for its visitors (article 6(1)(f) GDPR).
 
@@ -96,7 +96,7 @@ If you email actora@putment.com, we use your email address and your message to a
 
 ### 3.10 Error reports
 
-To help us find problems, the site normally sends a small error report when its code fails. It contains a general error description, locations in our own site code, the type of page, the site version and browser family. It does not include what you type, conversations, full page addresses or account identifiers. We keep these reports for up to seven days, never in backups, and only use them to diagnose problems. You can switch error reporting off in account settings; if you are visiting without an account, you can switch it off in this browser on the privacy page.
+To help us find problems, the site normally sends a small error report when its code fails. It contains a general error description, locations in our own site code, the type of page, the site version and browser family. It does not include what you type, conversations, full page addresses or account identifiers. We keep these reports for up to seven days, never in backups, and only use them to diagnose problems. You can switch error reporting off in account settings; if you are visiting without an account, you can switch it off in this browser with the switch below this statement.
 
 **Legal basis:** our legitimate interest in keeping the site working (article 6(1)(f) GDPR).
 
@@ -138,7 +138,7 @@ To recover from failures, we keep backups:
 - copies made before each update of the site: the latest 10, each removed once it is a year old;
 - encrypted copies at Hetzner in Germany, made daily and kept as daily copies for 14 days, weekly copies for 8 weeks, monthly copies for 12 months and yearly copies for 3 years. Emails are kept in these backups as yearly copies for up to 5 years.
 
-When you delete something, it disappears from the site at once, but it can remain in a backup until that backup expires: up to a year in the copies made before site updates, plus up to 3 years in yearly copies at Hetzner, so about 4 years at most; emails up to 5 years. Error reports (section 3.10) are never included in backups. Backups are used only to restore the site after a failure.
+When you delete something, it disappears from the site at once, but it can remain in a backup until that backup expires: for at most about 4 years (emails: 5). Error reports (section 3.10) are never included in backups. Backups are used only to restore the site after a failure.
 
 ## 7. Who receives your data
 
