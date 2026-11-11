@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.79 - 2026-11-11
+
+- A new look across the site: pages sit on one frame with the cat in the corner and their own side menu, and every dialog, button and notice is shared.
+- The docs have a search, and their front page holds the credits, how to reach computment and the recent changes.
+- The account page, the Wall's tools, the admin page and the Aurora page are redesigned. Aurora's memory and instructions are pages of their own.
+- On phones, the cat's ears in the footer take you home.
+- The privacy statement is shorter in four places and points to Aurora's memory page.
+- actoraOS is now `0.3.79`.
+
 ## 0.3.78 - 2026-11-11
 
 - Buttons, fields, switches and tags are the same on every page: 32 px tall (44 px on phones), dashed when they can't be used, and no amber.
