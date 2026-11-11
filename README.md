@@ -4,7 +4,7 @@
 
 **the public docs for [actora.art](https://actora.art/), computment's personal website**
 
-[site](https://actora.art/) · [guide](docs/site.md) · [terminal](docs/terminal.md) · [accounts](docs/accounts.md) · [profiles](docs/profiles.md) · [Aurora](docs/aurora.md) · [privacy](docs/privacy.md) · [changelog](CHANGELOG.md)
+[site](https://actora.art/) · [guide](docs/site.md) · [terminal](docs/terminal.md) · [accounts](docs/accounts.md) · [profiles](docs/profiles.md) · [Aurora](docs/aurora.md) · [privacy](docs/privacy.md) · [credits](docs/credits.md) · [changelog](CHANGELOG.md)
 
 ![repo](https://img.shields.io/badge/repo-public%20docs%20surface-0a0a0a?style=flat-square)
 ![license](https://img.shields.io/badge/license-rights%20reserved-0a0a0a?style=flat-square)
@@ -28,6 +28,7 @@
 - [docs/profiles.md](docs/profiles.md) — profiles, guestbooks, friends, blocks and notifications
 - [docs/aurora.md](docs/aurora.md) — the AI assistant: limits, memory, what it can reach and what leaves the site
 - [docs/site.md](docs/site.md) — the site in short, the Wall, crawlers and Space
+- [docs/credits.md](docs/credits.md) — who made the site and how to reach them
 - [docs/privacy.md](docs/privacy.md) — the privacy statement: what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes
 

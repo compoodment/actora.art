@@ -12,6 +12,7 @@ work out by using it.
 - `docs/accounts.md`: passkeys, recovery, sign-ins, archive, delete. The how-tos live here, because these are hard to undo.
 - `docs/profiles.md`: profiles, guestbooks, friends, blocks, the bell, reports.
 - `docs/aurora.md`: Aurora's limits, what is kept, what it can reach, what leaves the site.
+- `docs/credits.md`: who made the site, the public repository, and how to reach computment.
 - `docs/privacy.md`: the formal statement. computment's wording; propose changes, don't edit.
 - `CHANGELOG.md`: what changed for visitors, per version.
 
