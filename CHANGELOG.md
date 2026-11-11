@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.78 - 2026-11-11
+
+- Buttons, fields, switches and tags are the same on every page: 32 px tall (44 px on phones), dashed when they can't be used, and no amber.
+- The site no longer counts page views, no longer asks every open page which page it's on, and no longer keeps a badge history. What it had stored of these is deleted.
+- actoraOS is now `0.3.78`.
+
 ## 0.3.77 - 2026-11-11
 
 - One set of colours and text sizes on every page: nothing is smaller than 12 px, corners are square, greys and reds are fewer and match, and keyboard focus shows the same white ring everywhere.
