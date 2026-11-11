@@ -7,7 +7,7 @@ work out by using it.
 ## What each page is for
 
 - `README.md`: what the site is and where the guides are. Its list gives each guide's order and one-line description on actora.art/docs.
-- `docs/site.md`: the pages that have no guide of their own (the Wall, crawlers, Space), and what was removed.
+- `docs/site.md`: the pages that have no guide of their own (the Wall, crawlers, Space).
 - `docs/terminal.md`: the command list. Reference: one line per command.
 - `docs/accounts.md`: passkeys, recovery, sign-ins, archive, delete. The how-tos live here, because these are hard to undo.
 - `docs/profiles.md`: profiles, guestbooks, friends, blocks, the bell, reports.
@@ -40,6 +40,7 @@ the footer of every page and opens your notifications"). Never name something be
 - What the page itself tells you once you're there. "The chat says so when you send your first message."
 - How it works inside, unless it changes what the visitor should do.
 - The same fact twice. Say it in the guide that owns it; link from the others.
+- Removed features and history. No Lab, Music, Messages, mutes or old saves, and no "moved on" dates: the docs describe the site as it is now, and the changelog keeps the history (computment: "legacy stuff should just not be mentioned anywhere in docs"). The privacy statement names the past only where personal data from it is still held and nothing else in the statement covers it, such as old reports.
 - Reassurance, selling, and anything you'd say "yeah, no shit" to.
 
 ## Sentences

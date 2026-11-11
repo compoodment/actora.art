@@ -19,7 +19,7 @@
 - Aurora: an AI assistant to chat with. It can search the web and read files
 - The Wall: one drawing in text characters that every visitor shares
 - crawlers: counts of the bots, such as search engines, that visited lately
-- Space: a 3D orbital sandbox, now at [space.actora.art](https://space.actora.art/)
+- Space: a 3D orbital sandbox at [space.actora.art](https://space.actora.art/)
 
 ## Guides
 
@@ -27,7 +27,7 @@
 - [docs/accounts.md](docs/accounts.md) — passkeys, recovery, sign-ins, archive and delete
 - [docs/profiles.md](docs/profiles.md) — profiles, guestbooks, friends, blocks and notifications
 - [docs/aurora.md](docs/aurora.md) — the AI assistant: limits, memory, what it can reach and what leaves the site
-- [docs/site.md](docs/site.md) — the site in short, the Wall, crawlers and removed pages
+- [docs/site.md](docs/site.md) — the site in short, the Wall, crawlers and Space
 - [docs/privacy.md](docs/privacy.md) — the privacy statement: what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes
 

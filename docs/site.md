@@ -19,8 +19,4 @@ Crawlers, at [actora.art/crawlers](https://actora.art/crawlers/) or `page crawle
 
 ## Space
 
-Space, a 3D sandbox of orbiting planets and stars, moved to [space.actora.art](https://space.actora.art/) on 5 November 2026. It needs no account and saves nothing.
-
-## Removed pages
-
-Three older pages, Lab, Music and Messages, were removed on 1 November 2026. Their old addresses, and Space's, show a page that says so.
+Space, a 3D sandbox of orbiting planets and stars, is at [space.actora.art](https://space.actora.art/). It needs no account and saves nothing.

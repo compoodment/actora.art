@@ -28,7 +28,7 @@ Signed in:
 - `friend add <name>`, `friend accept <name>`, `friend decline <name>`, `friend cancel <name>`: send, answer or withdraw a friend request.
 - `unfriend <name>`: remove a friend.
 - `block <name>`, `unblock <name>`, `blocks`: block, unblock, and list who you blocked.
-- `sessions`: the browsers you are signed in on, numbered. `sessions --sign-out <n>` signs one of the others out.
+- `sessions`: your sign-ins, numbered, one per browser. `sessions --sign-out <n>` signs one of the others out.
 - `logout`: sign out of this browser. `logout --others` signs out every other browser, `logout --everywhere` all of them.
 
 A name can be typed with or without `@`. `<command> --help` shows a command's options. `unfriend`, `block` and `logout --everywhere` ask y/n first.
