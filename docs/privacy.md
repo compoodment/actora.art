@@ -24,8 +24,6 @@ For questions about this statement or to exercise your rights, email [actora@put
 
 When you open a page, your browser sends your network address and ordinary technical details, such as the page requested and the type of browser. The site uses these to deliver the page. Your network address is converted into a code as described in section 3.8 and is not stored.
 
-To understand how the site is used, it keeps daily totals of page views per page. While a page is open, your browser tells the site every 45 seconds which page you are on, so the site can show how many people are on it at that moment. This is held in memory for 90 seconds and is not stored.
-
 The site counts requests whose user agent is bot-like, missing or empty. Other requests are not written to an access log. The public /crawlers/ page uses the name that automated programs such as search engines send in their user agent. For each day, it keeps whole-number totals per crawler name and kind of request. These counts contain no network addresses, page addresses, cookies or full user agents. If the counting service is not running, a reduced record of such a visit can end up in the computer's system log instead. It contains the request kind and user agent. The usual address, cookie and page-address fields are removed, but other request headers can remain. The record is removed by the log's normal rotation.
 
 The site's own web server writes error records without the network address, page address or request headers. Error messages are omitted.
@@ -48,7 +46,7 @@ A username and a passkey are needed to create an account. Without them you can s
 
 ### 3.4 Profiles, guestbooks and friends
 
-If you create a profile, we store its content: the text, images and other files you upload, its design and custom style, and the friends you feature. We remove common location and camera details from pictures and videos you upload to your profile. A profile is private until you publish it. Guestbook comments are stored with their author and the time they were written. We also store friendships, friend requests, the people you block, and your notifications. When a badge is removed, its label and account links can remain in a removed record. Records older than 30 days are removed when badges are maintained or the site starts. A separate badge history keeps labels, people involved, reasons and times; administrators can see it, and older entries are removed as the history fills.
+If you create a profile, we store its content: the text, images and other files you upload, its design and custom style, and the friends you feature. We remove common location and camera details from pictures and videos you upload to your profile. A profile is private until you publish it. Guestbook comments are stored with their author and the time they were written. We also store friendships, friend requests, the people you block, and your notifications. When a badge is removed, its label and account links can remain in a removed record. Records older than 30 days are removed when badges are maintained or the site starts.
 
 **Legal basis:** providing these features (article 6(1)(b) GDPR).
 
@@ -121,7 +119,6 @@ The site's administration tools show account and usage overviews, not the text o
 - **Network codes on Aurora conversations and account Wall allowances:** removed after 14 days without use. Guest Wall allowance records are removed when the site starts.
 - **Network code on your account's daily limit:** replaced each time you use Aurora and removed after 14 days without use.
 - **Network codes in blocks:** at most 90 days, unless an administrator renews the block.
-- **Visit statistics:** 90 days.
 - **Crawler counts:** daily totals for 30 days.
 - **Reports:** until a decision is made; closed reports are deleted 180 days after they are closed.
 - **Deleted usernames:** reserved for 90 days so nobody else can take them over at once, without any link to the former account.
