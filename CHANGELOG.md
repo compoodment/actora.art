@@ -11,6 +11,9 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 - Back and forward in the footer lose their dotted underline when there's nowhere to go.
 - Signing in or out in one tab updates the site's other open tabs, except profile pages, which follow with the new profile pages.
 - Stricter rules in the browser about what scripts may change on the page, a first step towards encrypting your data.
+- Error messages are short fixed sentences.
+- Your account details stay hidden while the site checks who's signed in.
+- Guest chats are deleted 3 days after their last message.
 - actoraOS is now `0.3.76`.
 
 ## 0.3.75 - 2026-11-10
