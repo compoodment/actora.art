@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.76 - 2026-11-11
+
+- Clearer, shorter wording across the site. Everything is in lowercase, and Aurora is "it".
+- The privacy statement is clearer: featured friends, signing out in the terminal, how many notifications are kept, and shorter paragraphs.
+- Back and forward in the footer lose their dotted underline when there's nowhere to go.
+- Signing in or out in one tab updates every other open tab in the same way.
+- Stricter rules in the browser about what scripts may change on the page, a first step towards encrypting your data.
+- actoraOS is now `0.3.76`.
+
 ## 0.3.75 - 2026-11-10
 
 - New terminal commands: `logout` signs out this browser, `logout --others` every other one, and `logout --everywhere` all of them. `sessions` lists where you're signed in.
