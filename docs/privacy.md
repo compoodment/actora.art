@@ -1,6 +1,6 @@
 # Privacy statement
 
-Last updated: 10 November 2026
+Last updated: 11 November 2026
 
 actora.art is a personal, non-commercial website. This statement explains which personal data the site processes, why it does so, how long the data is kept, who receives it, and what rights you have.
 
@@ -14,7 +14,7 @@ For questions about this statement or to exercise your rights, email [actora@put
 
 - The site shows no advertising, uses no analytics or tracking services, and does not sell personal data or share it for advertising.
 - Your network (IP) address is not stored. The site keeps only a code made from it with a secret key, which cannot be turned back into the address.
-- Aurora is an AI. What you send her is passed to Ollama Cloud, mainly in the United States, to write a reply.
+- Aurora is an AI. What you send Aurora is passed to Ollama Cloud, mainly in the United States, to write a reply.
 - The site runs on a computer that computment owns and operates himself. Visitors reach it through a relay server at Contabo in the European Union. Encrypted backups are stored at Hetzner in Germany.
 - You can delete your chats, your memories, your profile and your account yourself at any time, and ask us for anything else by email.
 
@@ -48,19 +48,23 @@ A username and a passkey are needed to create an account. Without them you can s
 
 ### 3.4 Profiles, guestbooks and friends
 
-If you create a profile, we store its content: the text, images and other files you upload, its design and custom style, and the friends you feature. We remove common location and camera details from pictures and videos you upload to your profile. A profile is private until you publish it. Guestbook comments are stored with their author and the time they were written. We also store friendships, friend requests, the people you block or mute, and your notifications. When a badge is removed, its label and account links can remain in a removed record. Records older than 30 days are removed when badges are maintained or the site starts. A separate badge history keeps labels, people involved, reasons and times; administrators can see it, and older entries are removed as the history fills.
+If you create a profile, we store its content: the text, images and other files you upload, its design and custom style, and the friends you feature. We remove common location and camera details from pictures and videos you upload to your profile. A profile is private until you publish it. Guestbook comments are stored with their author and the time they were written. We also store friendships, friend requests, the people you block, and your notifications. When a badge is removed, its label and account links can remain in a removed record. Records older than 30 days are removed when badges are maintained or the site starts. A separate badge history keeps labels, people involved, reasons and times; administrators can see it, and older entries are removed as the history fills.
 
 **Legal basis:** providing these features (article 6(1)(b) GDPR).
 
 ### 3.5 Aurora
 
-Aurora is the site's assistant. She is an AI system: her replies are generated automatically and can be wrong. The chat says so when you send your first message.
+Aurora is the site's assistant. It is an AI system: its replies are generated automatically and can be wrong.
 
-We store your conversations: each message with the time it was sent, Aurora's replies with a short list of the steps she took (including her own short note on each step), and the name, type and size of any file you attach. When you retry a reply, we keep up to ten versions with their memory changes as part of the chat. The text of an attached file is used for that reply only and is not stored; a keyed fingerprint is kept to recognise the same attachment if you retry. If you are signed in, we also store your custom instructions and, if memory is switched on, the short facts you asked Aurora to remember, facts she saves on her own and short notes she keeps about you. Aurora can save things she learns about you on her own when it seems useful. You see every save under her reply and can undo it, and you can see and delete all memories in memory. After reading a file, page or search result in a reply, she will not save on her own in that reply. On her own, she refuses passwords, keys, certain ID numbers, links and sensitive personal data such as health or religion. These checks use word lists and cannot catch every way of expressing sensitive information. You can ask her to remember a health fact about yourself, but requests containing certain credentials or identifiers are refused. Memory can be switched off. You can view, change or delete memories in Aurora settings. A guest's custom instructions are stored in the browser and sent to the site and Ollama Cloud when used for a reply.
+We store your conversations: each message with the time it was sent, Aurora's replies with a short list of the steps it took (including its own short note on each step), and the name, type and size of any file you attach. When you retry a reply, we keep up to ten versions with their memory changes as part of the chat. The text of an attached file is used for that reply only and is not stored; a keyed fingerprint is kept to recognise the same attachment if you retry.
+
+If you are signed in, we also store your custom instructions and, if memory is switched on, the short facts you asked Aurora to remember, facts it saves on its own and short notes it keeps about you. Aurora can save things it learns about you on its own when that seems useful. You see every save under Aurora's reply and can undo it, and you can see and delete all memories in memory. After reading a file, page or search result in a reply, Aurora will not save on its own in that reply. On its own, Aurora refuses passwords, keys, certain ID numbers, links and sensitive personal data such as health or religion. These checks use word lists and cannot catch every way of expressing sensitive information. You can ask Aurora to remember a health fact about yourself, but requests containing certain credentials or identifiers are refused. Memory can be switched off. You can view, change or delete memories in Aurora settings.
+
+A guest's custom instructions are stored in the browser and sent to the site and Ollama Cloud when used for a reply.
 
 Photos and scanned pages are sent to Ollama Cloud for that reply; the site does not keep the images or their separate descriptions, though Aurora's saved reply may describe them.
 
-To write a reply, the site sends Ollama Cloud the conversation (older parts as a summary), Aurora's own instructions, your custom instructions, your display name, username and access role when signed in, up to six automatically selected relevant memories, the date and time in your time zone, the page you are on, the text of attached files, and the results of tools Aurora uses. Those results can also include more of your saved memories when Aurora uses the memory list. Those results can include your username and whether you are signed in, matching parts of your earlier chats, and your notifications. When Aurora searches the web, a short search query is sent to Ollama's web search service, and pages she reads are fetched by Ollama. Your network address is not sent to Ollama.
+To write a reply, the site sends Ollama Cloud the conversation (older parts as a summary), Aurora's own instructions, your custom instructions, your display name, username and access role when signed in, up to six automatically selected relevant memories, the date and time in your time zone, the page you are on, the text of attached files, and the results of tools Aurora uses. Those results can also include more of your saved memories when Aurora uses the memory list. Those results can include your username and whether you are signed in, matching parts of your earlier chats, and your notifications. When Aurora searches the web, a short search query is sent to Ollama's web search service, and pages Aurora reads are fetched by Ollama. Your network address is not sent to Ollama.
 
 Please do not share sensitive information with Aurora, about yourself or about others, such as health details, passwords or identification numbers.
 
@@ -68,7 +72,7 @@ Please do not share sensitive information with Aurora, about yourself or about o
 
 ### 3.6 The Wall and Space
 
-The Wall is a shared drawing. Anyone can look; drawing needs an account. For each mark we store the account that made it and the network code of the connection it was drawn from. We also store your tool settings and saved colours with your account. Space moved to space.actora.art, keeps no saves and needs no account. Earlier saves are deleted; backup copies expire normally.
+The Wall is a shared drawing. Anyone can look; drawing needs an account. For each mark we store the account that made it and the network code of the connection it was drawn from. We also store your tool settings and saved colours with your account. Space is at space.actora.art, keeps no saves and needs no account.
 
 **Legal basis:** providing these features (article 6(1)(b) GDPR).
 
@@ -100,7 +104,7 @@ To help us find problems, the site normally sends a small error report when its 
 
 ## 4. What is public and who can see it
 
-Published profiles, guestbook comments and visible Wall marks can be seen by anyone. Everything else is private, including Aurora conversations, memories, friendships and blocks. If someone writes about you on a profile or in a guestbook, you can ask us to remove it at actora@putment.com.
+Published profiles, guestbook comments and visible Wall marks can be seen by anyone. Everything else is private, including Aurora conversations, memories, friendships and blocks. The friends you feature on a published profile are shown there. If someone writes about you on a profile or in a guestbook, you can ask us to remove it at actora@putment.com.
 
 The site's administration tools show account and usage overviews, not the text of Aurora conversations. Reports and their contents are seen only by computment. As the operator of the server, computment has technical access to all stored data and uses it only to run, secure and repair the site.
 
@@ -108,9 +112,10 @@ The site's administration tools show account and usage overviews, not the text o
 
 - **Signed-in sessions:** 30 days after last use, or until you sign out or the session is revoked.
 - **Your account, passkeys, profile and Wall settings:** until you change or delete them, or delete your account.
+- **Notifications:** the site keeps the latest 500 in all and drops older ones; notifications about a friend request are removed when either person blocks the other or archives their account.
 - **Aurora conversations and custom instructions (signed in):** until you delete them or your account. An empty active conversation is deleted after 6 hours.
 - **Aurora conversation (guest):** deleted 3 days after its last message.
-- **Aurora memories:** until they expire, you remove them, you delete the conversation they came from, or you delete your account. When Aurora has 50 notes, she removes the oldest unpinned note to make room for a new one.
+- **Aurora memories:** until they expire, you remove them, you delete the conversation they came from, or you delete your account. When Aurora has 50 notes, it removes the oldest unpinned note to make room for a new one.
 - **Wall marks and their network codes:** at most 3 days.
 - **Network codes on guest usage limits:** until the daily limit resets.
 - **Network codes on Aurora conversations and account Wall allowances:** removed after 14 days without use. Guest Wall allowance records are removed when the site starts.
@@ -127,8 +132,6 @@ The site's administration tools show account and usage overviews, not the text o
 - **Emails:** up to one year after your question has been answered.
 
 When you delete your account, the site removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora conversations and memories, friendships, and Wall data at once. Reports keep the copy made when the report was filed, without the link to your account, until the report's own period ends. If you archive your account instead, it is hidden and its data is kept until you restore or delete it, except that pending friend requests and their notifications are removed.
-
-Music and Messages were removed from the site on 1 November 2026, and their data was deleted from the server on the same day. Remaining copies are in backups until those expire (section 6).
 
 ## 6. Backups
 
@@ -173,9 +176,8 @@ Browser storage, kept until you close the tab:
 
 Browser storage, kept until you clear it:
 
-- **actora.wall.toolRail.v1:** your Wall panel width. Older browsers may also have a wall-tool-preference entry from when guests could draw; it is no longer updated.
+- **actora.wall.toolRail.v1:** your Wall panel width. Older browsers may also have a wall-tool-preference entry; it is no longer updated.
 - **wall-info-seen, actora-aurora-hint-seen:** whether you have seen the Wall and Aurora tips.
-- **actora.space.textureQualityMode:** an old Space picture quality setting, no longer updated by this site.
 - **actora-social-leader-v1, actora-social-signal-v1:** lets open tabs share one connection for notifications.
 - **actora:error-reports:** whether you switched error reports off in this browser (section 3.10).
 
@@ -192,7 +194,7 @@ Under the General Data Protection Regulation (GDPR) you have the right to:
 - receive your data in a common, machine-readable format;
 - object to processing based on our legitimate interest (sections 3.1, 3.7, 3.8 and 3.10).
 
-You can do much of this yourself. In Account you can sign out sessions and archive or delete your account. In Aurora you can delete conversations and view, change or clear your memories. You can edit or remove your profile at any time.
+You can do much of this yourself. In the terminal you can sign out sessions, and in Account you can archive or delete your account. In Aurora you can delete conversations and view, change or clear your memories. You can edit or remove your profile at any time.
 
 For anything else, email [actora@putment.com](mailto:actora@putment.com). We answer within one month. If a request is complex, we may need up to two more months; we will tell you so within the first month. To confirm that a request about an account comes from its owner, we may ask you to confirm it from that account while signed in. We do not ask for a copy of an identity document.
 
