@@ -1,6 +1,11 @@
 # Credits
 
-[actora.art](https://actora.art/) is computment's personal website. These are the people who made it and how to reach them.
+[actora.art](https://actora.art/) is computment's personal website. This is how to reach computment and who made the site.
+
+## Contact
+
+- Discord: `computment`
+- Email: [actora@putment.com](mailto:actora@putment.com), for questions and security reports.
 
 ## People
 
@@ -10,8 +15,3 @@
 ## GitHub
 
 These guides and the [changelog](../CHANGELOG.md) are public at [github.com/compoodment/actora.art](https://github.com/compoodment/actora.art). The site's code is not published.
-
-## Contact
-
-- Discord: `computment`
-- Email: [actora@putment.com](mailto:actora@putment.com), for questions and security reports.

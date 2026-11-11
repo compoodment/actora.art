@@ -28,7 +28,7 @@
 - [docs/profiles.md](docs/profiles.md) — profiles, guestbooks, friends, blocks and notifications
 - [docs/aurora.md](docs/aurora.md) — the AI assistant: limits, memory, what it can reach and what leaves the site
 - [docs/site.md](docs/site.md) — the site in short, the Wall, crawlers and Space
-- [docs/credits.md](docs/credits.md) — who made the site and how to reach them
+- [docs/credits.md](docs/credits.md) — how to reach computment and who made the site
 - [docs/privacy.md](docs/privacy.md) — the privacy statement: what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes
 

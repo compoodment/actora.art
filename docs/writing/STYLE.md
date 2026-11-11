@@ -12,11 +12,11 @@ work out by using it.
 - `docs/accounts.md`: passkeys, recovery, sign-ins, archive, delete. The how-tos live here, because these are hard to undo.
 - `docs/profiles.md`: profiles, guestbooks, friends, blocks, the bell, reports.
 - `docs/aurora.md`: Aurora's limits, what is kept, what it can reach, what leaves the site.
-- `docs/credits.md`: who made the site, the public repository, and how to reach computment.
+- `docs/credits.md`: how to reach computment, who made the site, and the public repository. It is the front page of actora.art/docs, above the recent changes.
 - `docs/privacy.md`: the formal statement. computment's wording; propose changes, don't edit.
 - `CHANGELOG.md`: what changed for visitors, per version.
 
-A guide links to the privacy statement for the legal detail and doesn't repeat it. Every `.md` directly in `docs/` becomes a page on the site, which is why this file sits in `docs/writing/`.
+A guide links to the privacy statement for the legal detail and doesn't repeat it. Every `.md` directly in `docs/` becomes a page on the site (`credits.md` its front page), which is why this file sits in `docs/writing/`.
 
 ## How a guide opens
 
