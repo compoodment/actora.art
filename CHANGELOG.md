@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.77 - 2026-11-11
+
+- One set of colours and text sizes on every page: nothing is smaller than 12 px, corners are square, greys and reds are fewer and match, and keyboard focus shows the same white ring everywhere.
+- actoraOS is now `0.3.77`.
+
 ## 0.3.76 - 2026-11-11
 
 - Clearer, shorter wording across the site. Everything is in lowercase, and Aurora is "it".
