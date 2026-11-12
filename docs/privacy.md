@@ -46,7 +46,7 @@ A username and a passkey are needed to create an account. Without them you can s
 
 ### 3.4 Profiles, guestbooks and friends
 
-If you create a profile, we store its content: the text, images and other files you upload, its design and custom style, and the friends you feature. We remove common location and camera details from pictures and videos you upload to your profile. A profile is private until you publish it. Guestbook comments are stored with their author and the time they were written. We also store friendships, friend requests, the people you block, and your notifications. When a badge is removed, its label and account links can remain in a removed record. Records older than 30 days are removed when badges are maintained or the site starts.
+We store your account picture and status line, and your profile page's draft and published content: its text, uploaded pictures and other files, look, layout and featured friends. We remove common location and camera details from pictures and videos you upload to your profile. A profile is private until you publish it. Guestbook comments are stored with their author and the time they were written. We also store friendships, friend requests, the people you block, and your notifications. When a badge is removed, its label and account links can remain in a removed record. Records older than 30 days are removed when badges are maintained or the site starts.
 
 **Legal basis:** providing these features (article 6(1)(b) GDPR).
 
@@ -62,7 +62,7 @@ A guest's custom instructions are stored in the browser and sent to the site and
 
 Photos and scanned pages are sent to Ollama Cloud for that reply; the site does not keep the images or their separate descriptions, though Aurora's saved reply may describe them.
 
-To write a reply, the site sends Ollama Cloud the conversation (older parts as a summary), Aurora's own instructions, your custom instructions, your display name, username and access role when signed in, up to six automatically selected relevant memories, the date and time in your time zone, the page you are on, the text of attached files, and the results of tools Aurora uses. Those results can also include more of your saved memories when Aurora uses the memory list. Those results can include your username and whether you are signed in, matching parts of your earlier chats, and your notifications. When Aurora searches the web, a short search query is sent to Ollama's web search service, and pages Aurora reads are fetched by Ollama. Your network address is not sent to Ollama.
+To write a reply, the site sends Ollama Cloud the conversation (older parts as a summary), Aurora's own instructions, your custom instructions, your display name, username and access role when signed in, up to six automatically selected relevant memories, the date and time in your time zone, the page you are on, the text of attached files, and the results of tools Aurora uses. Those results can also include more of your saved memories when Aurora uses the memory list. Those results can include your username and whether you are signed in, matching parts of your earlier chats, and your notifications. When Aurora searches the web, it sends Ollama's web search service up to three queries per reply, each no longer than 120 characters. Queries use your current message's words, including private details you explicitly ask to search; "search that" or "look it up" can use the immediately preceding turn's topic. Aurora does not add details from saved memories, custom instructions, older chat messages, attachments or fetched pages. Pages Aurora reads are fetched by Ollama. Your network address is not sent to Ollama.
 
 Please do not share sensitive information with Aurora, about yourself or about others, such as health details, passwords or identification numbers.
 
@@ -128,7 +128,7 @@ The site's administration tools show account and usage overviews, not the text o
 - **Error reports:** up to seven days.
 - **Emails:** up to one year after your question has been answered.
 
-When you delete your account, the site removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora conversations and memories, friendships, and Wall data at once. Reports keep the copy made when the report was filed, without the link to your account, until the report's own period ends. If you archive your account instead, it is hidden and its data is kept until you restore or delete it, except that pending friend requests and their notifications are removed.
+When you delete your account, the site removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora conversations and memories, friendships, and Wall data at once. Reports keep the copy made when the report was filed, without the link to your account, until the report's own period ends. If you archive your account instead, it is hidden and its data is kept until you restore or delete it, except that pending friend requests and their notifications are removed. Your friends, and anyone who blocked you, still see your username in the list on their own account page, marked as unavailable, and can still end the friendship or remove their block.
 
 ## 6. Backups
 
@@ -175,7 +175,6 @@ Browser storage, kept until you clear it:
 
 - **actora.wall.toolRail.v1:** your Wall panel width. Older browsers may also have a wall-tool-preference entry; it is no longer updated.
 - **wall-info-seen, actora-aurora-hint-seen:** whether you have seen the Wall and Aurora tips.
-- **actora-social-leader-v1, actora-social-signal-v1:** lets open tabs share one connection for notifications.
 - **actora:error-reports:** whether you switched error reports off in this browser (section 3.10).
 
 Browser storage stays on your device, except that guest custom instructions are sent for Aurora replies when enabled. You can remove it, and the cookies, in your browser's settings.

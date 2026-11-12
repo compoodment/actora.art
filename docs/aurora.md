@@ -17,7 +17,7 @@ Aurora is the AI assistant of [actora.art](https://actora.art/). You chat with i
 ## Attachments
 
 - Up to 5 files a message: PDFs, photos (JPEG, PNG, WebP, and HEIC if your browser can open it), text, Markdown, data files and code.
-- A PDF or photo can be 25 MB, other files 2 MB. Aurora reads the first 40,000 characters of a file, and 120,000 in one message.
+- A PDF or photo can be 25 MB, other files 2 MB. Aurora reads the first 40,000 characters of a file, and 120,000 in one message. For a longer PDF she reads its first pages and a note beside the message box says which.
 - A file is read for that reply only. The site keeps its name, type, size and a fingerprint that recognises it on a retry. It does not keep the text or the pictures.
 - Photos are shrunk in your browser and lose their metadata, location included, before they are sent.
 - PDF pages that are mostly picture are read as pictures.
