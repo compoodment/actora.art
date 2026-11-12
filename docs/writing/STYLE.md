@@ -1,8 +1,9 @@
 # Writing the actora.art docs
 
-For anyone editing these guides, people and AI alike. Write for someone who has never seen actora.art: they came from
-GitHub or a search and don't have the page open. Say what the thing is and where it is, then only what they couldn't
-work out by using it.
+These guides are published from the actora.art site's source repository. Issues are welcome
+[here](https://github.com/compoodment/actora.art/issues). If you edit them in the source repository, write for someone
+who has never seen actora.art: they came from GitHub or a search and don't have the page open. Say what the thing is
+and where it is, then only what they couldn't work out by using it.
 
 ## What each page is for
 

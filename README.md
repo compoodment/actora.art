@@ -32,7 +32,7 @@
 - [docs/privacy.md](docs/privacy.md) — the privacy statement: what the site keeps, for how long, and who receives it
 - [CHANGELOG.md](CHANGELOG.md) — release notes
 
-The same guides are on the site at [actora.art/docs](https://actora.art/docs/). The site's code is not published here. To edit a guide, read [docs/writing/STYLE.md](docs/writing/STYLE.md) first.
+The same guides are on the site at [actora.art/docs](https://actora.art/docs/). The site's code is not published here. These files are published from the actora.art site's source repository. Issues are welcome [here](https://github.com/compoodment/actora.art/issues). For edits in the source repository, read [docs/writing/STYLE.md](docs/writing/STYLE.md) first.
 
 ## Privacy
 
