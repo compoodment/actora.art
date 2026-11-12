@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.82 - 2026-11-12
+
+- Behind the scenes: repeated code is shared, with nothing changed on the pages. Returning to a tab checks your sign-in straight away.
+- actoraOS is now `0.3.82`.
+
 ## 0.3.81 - 2026-11-12
 
 - Account has a relationships list: your friends, including accounts that are no longer available, and the people you blocked, with unfriend, block and unblock.
