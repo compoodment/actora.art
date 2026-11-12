@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.80 - 2026-11-12
+
+- Profiles have a new page. Owners edit it in place, change their picture and status line, make their own badges and choose whether the actoraOS badge shows. Visitors can send a friend request, block or report from the page.
+- Old profile addresses no longer show old profile content, and Aurora, reports and account pictures follow the same rules as the page: nothing from a private profile, and nothing across a block.
+- The tab icon's ear twitches once when a new notification arrives.
+- Aurora's page and terminal share one engine. The PDF reader loads only when you attach a PDF.
+- Fixes across the site: the footer bar is solid, the Wall's tools sit above it on phones, the bell's panel is one box, and Aurora's chat list and scroll arrow fit on phones.
+- actoraOS is now `0.3.80`.
+
 ## 0.3.79 - 2026-11-11
 
 - A new look across the site: pages sit on one frame with the cat in the corner and their own side menu, and every dialog, button and notice is shared.
