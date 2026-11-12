@@ -5,6 +5,7 @@ Every [account](accounts.md) on [actora.art](https://actora.art/) can have a pro
 ## Your profile
 
 - It is private until you publish it. Others then see only that it is private. Making it private again works at once.
+- You can delete your profile from the editor. Its page, pictures and guestbook go at once; your account, picture, status line, badges and friends stay.
 - A public profile shows the date you joined.
 - The site's administrators can open any profile, private ones too.
 - Up to 24 blocks, with 3,200 characters in a text block. A status is 28 characters.
