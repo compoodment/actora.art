@@ -7,7 +7,7 @@ Every [account](accounts.md) on [actora.art](https://actora.art/) can have a pro
 - It is private until you publish it. Others then see only that it is private. Making it private again works at once.
 - You can delete your profile from the editor. Its page, pictures and guestbook go at once; your account, picture, status line, badges and friends stay.
 - A public profile shows the date you joined.
-- The site's administrators can open any profile, private ones too.
+- The site's administrators can open any profile, private ones too. A block hides a profile from an administrator too, except from the site owner's account.
 - Up to 24 blocks, with 3,200 characters in a text block. A status is 28 characters.
 - Avatar: a square PNG, JPEG or WebP up to 64 KB.
 - Pictures and GIFs up to 8 MB, videos (MP4 or WebM) up to 40 MB. 12 files and 64 MB in all.
@@ -40,6 +40,7 @@ A guestbook is a list of comments that visitors leave on your profile.
 - Signed out, anyone can still read a public profile.
 - Comments they left in your guestbook earlier stay, and they can still remove them.
 - `blocks` in the terminal lists who you blocked, `unblock <name>` undoes one.
+- The site owner's account can't be blocked.
 
 ## The bell
 
