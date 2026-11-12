@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.87 - 2026-11-12
+
+- Behind the scenes: the last part of the admin code is split up. Nothing changes on the pages.
+- actoraOS is now `0.3.87`.
+
 ## 0.3.86 - 2026-11-12
 
 - Behind the scenes: the admin code is split into smaller parts. Nothing changes on the pages.
