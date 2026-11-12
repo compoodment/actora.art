@@ -26,11 +26,12 @@ Aurora is the AI assistant of [actora.art](https://actora.art/). You chat with i
 
 Aurora can remember short facts about you between chats. This needs an account.
 
-- Aurora saves a fact when you ask. It can also save one unasked, from what you wrote, and keeps short notes of its own. Each save shows under the reply, with undo.
+- Aurora saves a fact when you ask, including your own health facts and links; it refuses actual passwords, keys, codes and ID numbers, but a mention like "I use a password manager" is fine. Ordinary yeses such as "yes thanks", "sure" or "ja, zeker" confirm its offers; a reply with "no" or "don't" cancels. It can also save one unasked, from what you wrote, and keeps short notes of its own. Each save shows under the reply, with undo.
 - Up to 100 memories of 300 characters each, and 50 notes. A new note replaces the oldest unpinned one.
 - At most 6 memories go into one reply.
 - Once Aurora has read a page, file or photo in a reply, it saves nothing unasked in that reply. A memory saved in such a chat is labelled.
 - Once a chat has read outside text, Aurora writes no more notes in that chat until you start over.
+- You can ask Aurora to reword a memory; if several match, she asks which one.
 - Under `memory` on the Aurora page you can edit, pin or forget each one, set it to expire after 30 or 90 days, forget everything, or switch memory off. Off covers Aurora's notes too.
 
 ## Custom instructions

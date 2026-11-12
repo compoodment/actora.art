@@ -8,13 +8,15 @@ Every [account](accounts.md) on [actora.art](https://actora.art/) can have a pro
 - You can delete your profile from the editor. Its page, pictures and guestbook go at once; your account, picture, status line, badges and friends stay.
 - A public profile shows the date you joined.
 - The site's administrators can open any profile, private ones too. A block hides a profile from an administrator too, except from the site owner's account.
-- Up to 24 blocks, with 3,200 characters in a text block. A status is 28 characters.
+- Up to 24 blocks, with 3,200 characters in a text block. A status can be 100 characters and wraps under your name.
 - Avatar: a square PNG, JPEG or WebP up to 64 KB.
 - Pictures and GIFs up to 8 MB, videos (MP4 or WebM) up to 40 MB. 12 files and 64 MB in all.
 - Location and camera details are removed from what you upload. SVG, HTML and scripts are not accepted.
 - Your own CSS can be 20,000 characters. It stays inside your page and cannot load scripts, fonts or images from elsewhere. Visitors can switch to a plain view.
 - You can feature up to 12 friends. They show only while their own profile is public.
 - Badges are decoration and give no access. You can make 12 of your own. A deleted badge cannot be brought back.
+- You can hide any badge on your page, including one an administrator gave you, without deleting it.
+- Link blocks take web addresses and plain email links (mailto: with one address).
 
 ## Guestbook
 

@@ -7,8 +7,8 @@
 The Wall, at [actora.art/wall](https://actora.art/wall/) or `page wall` in the terminal, is one drawing that every visitor shares. You draw on it with coloured text characters, on a grid of 80 by 24.
 
 - Anyone can look. Drawing needs an account.
-- You get a daily allowance of characters, shown on the Wall. It resets 24 hours after your first mark, and each erase gives 1 back.
-- You can erase your own marks for 24 hours. Whatever was underneath shows again.
+- You get a daily allowance of characters, shown on the Wall. It resets 24 hours after your first mark.
+- You can erase your own visible marks at any time. Within 24 hours an erase gives 1 character back while your refunds last; after that it just removes the mark. Whatever was underneath shows again.
 - Undo and redo cover your last 20 actions.
 - Marks fade and are gone after 3 days. When the Wall is over three quarters full, the oldest go sooner.
 - Other visitors never see who drew what. The site stores your account with each mark, for at most 3 days.

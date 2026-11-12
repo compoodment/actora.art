@@ -8,7 +8,7 @@ You create an account, sign in and sign out in the [terminal](terminal.md) on th
 
 - A username is 3 to 24 characters: a to z, 0 to 9, `_` and `-`. It is your profile address, `/u/<username>`.
 - If you change it, old links stop working and anyone can take the old name.
-- A display name is up to 40 characters.
+- A display name is up to 40 characters. Joined emoji such as 👩‍💻 work.
 
 ## Passkeys and recovery
 
@@ -39,6 +39,7 @@ Deleting is for good. On Account, type `delete @<username> forever` and use a pa
 
 - Gone at once: your account, passkeys, recovery key, profile and uploads, your guestbook, comments you wrote elsewhere, badges, friendships, blocks, Aurora chats and memories, and Wall data.
 - The username is reserved for 90 days.
+- Administrators can delete or archive their own account the same way, except the site owner's account.
 - Reports by you or about you stay, without your name, until 180 days after they are closed.
 - Backups keep a copy until they expire. See [privacy](privacy.md).
 - If the connection drops while deleting, try to sign in once before you delete again.

@@ -44,5 +44,6 @@ What these commands do to your account, friends and blocks is in [accounts](acco
 ## Good to know
 
 - Buttons elsewhere on the site can open the terminal with a command already typed. Nothing runs until you press Enter.
+- Aurora's questions in the terminal accept ordinary yeses ("yes", "sure", "ok", "ja"); a yes that names a different action doesn't count.
 - Output and command history stay in the tab until you reload or close it.
 - `recover` takes your recovery key in a hidden field, and the key never appears in the output or the history.
