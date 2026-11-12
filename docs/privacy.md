@@ -128,7 +128,7 @@ The site's administration tools show account and usage overviews, not the text o
 - **Error reports:** up to seven days.
 - **Emails:** up to one year after your question has been answered.
 
-When you delete your account, the site removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora conversations and memories, friendships, and Wall data at once. Reports keep the copy made when the report was filed, without the link to your account, until the report's own period ends. If you archive your account instead, it is hidden and its data is kept until you restore or delete it, except that pending friend requests and their notifications are removed. Your friends, and anyone who blocked you, still see your username in the list on their own account page, marked as unavailable, and can still end the friendship or remove their block.
+When you delete your account, the site removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora conversations and memories, friendships, and Wall data at once. Reports keep the copy made when the report was filed, without the link to your account, until the report's own period ends. If you archive your account instead, it is hidden and its data is kept until you restore or delete it, except that pending friend requests and their notifications are removed. Your friends still see your username in their friends list on their own account page, marked as unavailable, and can end the friendship; anyone who blocked you still sees your username in their list of blocks and can remove the block.
 
 ## 6. Backups
 
