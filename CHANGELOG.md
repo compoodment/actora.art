@@ -9,7 +9,7 @@ This changelog is visitor-facing. Private implementation, operations, and remedi
 - Account has a relationships list: your friends, including accounts that are no longer available, and the people you blocked, with unfriend, block and unblock.
 - The old profiles' stored content and uploads are deleted. Account pictures and status lines stay.
 - Pages load as normal pages; the footer redraws on each one.
-- Aurora searches what you ask, your own details included, and never adds things from your memories or older messages. She understands more ways of saying yes, can save harmless facts that mention passwords or payments, and can reword a memory.
+- Aurora searches what you ask, your own details included; "search that" can search what she just said. She never adds things from your memories or older messages on her own, and never searches a password, key or code. She understands more ways of saying yes, can save harmless facts that mention passwords or payments, and can reword a memory.
 - Long PDFs: Aurora reads the first pages and says which.
 - You can erase your own Wall marks at any time; status lines can be 100 characters; display names can have joined emoji; profiles can link an email address; any badge can be hidden.
 - actoraOS is now `0.3.81`.
