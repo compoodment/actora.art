@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.89 - 2026-11-13
+
+- Behind the scenes: the friends and blocks code is split into smaller parts. Nothing changes on the pages.
+- actoraOS is now `0.3.89`.
+
 ## 0.3.88 - 2026-11-13
 
 - Aurora no longer talks about error codes when a memory she tried to save on her own is refused; she lets it go and answers you.
