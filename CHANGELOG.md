@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.94 - 2026-11-14
+
+- Behind the scenes: the site's page code is tidied, and each page now loads the shared styles once instead of twice. Nothing changes on the pages.
+- actoraOS is now `0.3.94`.
+
 ## 0.3.93 - 2026-11-14
 
 - Behind the scenes: unused code removed, repeated code shared, and a few tests made stricter. Nothing changes on the pages.
