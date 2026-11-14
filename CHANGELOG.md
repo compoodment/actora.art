@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.98 - 2026-11-14
+
+- When you ask Aurora to try again on a picture, she knows it's the same picture and reads it again carefully instead of guessing.
+- The "memories used" list stays on screen and scrolls when it's long.
+- actoraOS is now `0.3.98`.
+
 ## 0.3.97 - 2026-11-14
 
 - Aurora is told the truth when something didn't work: when a picture or file can't be read whole, when an earlier attachment is no longer available, when the guests' daily searches are used up, or when a search request is too long. She says what she couldn't do instead of guessing.
