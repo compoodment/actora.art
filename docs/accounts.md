@@ -30,14 +30,14 @@ Archiving hides your account until you come back. It has no time limit. Start it
 
 - Every browser is signed out, and your profile shows as not found.
 - Pending friend requests are cancelled. Friends, blocks, chats and Wall marks are kept.
-- Comments you left in other people's guestbooks show as "Deleted account".
+- Notes you left in other people's guestbooks show as "Deleted account".
 - To come back, `login` or `recover`, then type `restore`.
 
 ## Delete
 
 Deleting is for good. On Account, type `delete @<username> forever` and use a passkey.
 
-- Gone at once: your account, passkeys, recovery key, profile and uploads, your guestbook, comments you wrote elsewhere, badges, friendships, blocks, Aurora chats and memories, and Wall data.
+- Gone at once: your account, passkeys, recovery key, profile and uploads, your guestbook, notes you left in other guestbooks, badges, friendships, blocks, Aurora chats and memories, and Wall data.
 - The username is reserved for 90 days.
 - Administrators can delete or archive their own account the same way, except the site owner's account.
 - Reports by you or about you stay, without your name, until 180 days after they are closed.

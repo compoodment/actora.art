@@ -1,6 +1,6 @@
 # Profiles
 
-Every [account](accounts.md) on [actora.art](https://actora.art/) can have a profile: a page of your own at `actora.art/u/<username>` that you fill and design yourself. Around it are a guestbook for visitors' comments, friends, blocks and reports. Open yours with `profile` in the [terminal](terminal.md) on the home page, or someone else's with `find <name>`.
+Every [account](accounts.md) on [actora.art](https://actora.art/) can have a profile: a page of your own at `actora.art/u/<username>` that you fill and design yourself. Around it are a guestbook for visitors' notes, friends, blocks and reports. Open yours with `profile` in the [terminal](terminal.md) on the home page, or someone else's with `find <name>`.
 
 ## Your profile
 
@@ -20,12 +20,12 @@ Every [account](accounts.md) on [actora.art](https://actora.art/) can have a pro
 
 ## Guestbook
 
-A guestbook is a list of comments that visitors leave on your profile.
+A guestbook is a list of notes that visitors leave on your profile.
 
-- It is off until you turn it on. Turning it off again hides the comments and keeps them.
-- Anyone can read it. Any signed-in account can comment.
-- A comment is up to 1,000 characters, and a guestbook holds 100.
-- You can remove any comment on yours, and authors can remove their own. A removed comment is gone.
+- It is off until you turn it on. Turning it off again hides the notes and keeps them.
+- Anyone can read it. Any signed-in account can leave a note.
+- A note is up to 1,000 characters, and a guestbook holds 100.
+- You can remove any note on yours, and authors can remove their own. A removed note is gone.
 
 ## Friends
 
@@ -38,9 +38,9 @@ A guestbook is a list of comments that visitors leave on your profile.
 ## Blocks
 
 - Blocking ends the friendship or the pending request. Unblocking does not bring it back.
-- While signed in, neither of you sees the other's profile, guestbook or pictures, and neither can send a request or comment. They see "unavailable" and are not told why.
+- While signed in, neither of you sees the other's profile, guestbook or pictures, and neither can send a request or leave a note. They see "unavailable" and are not told why.
 - Signed out, anyone can still read a public profile.
-- Comments they left in your guestbook earlier stay, and they can still remove them.
+- Notes they left in your guestbook earlier stay, and they can still remove them.
 - `blocks` in the terminal lists who you blocked, `unblock <name>` undoes one.
 - The site owner's account can't be blocked.
 

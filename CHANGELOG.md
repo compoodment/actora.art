@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.95 - 2026-11-14
+
+- Small fixes so things match across the site: the terminal's chat list shows times and days the way Aurora's page does, and a downloaded chat is dated like the rest of the site.
+- The guestbook calls entries "notes" everywhere (it said "comment" in a few places).
+- Typing `logout` while the terminal is busy now says to try again in a moment; after an unknown command the cat looks puzzled instead of happy.
+- Keyboard focus rings are the same width everywhere, and a few line spacings now match the rest of the site.
+- The Wall no longer briefly shows an old guest tool choice to a signed-in visitor.
+- actoraOS is now `0.3.95`.
+
 ## 0.3.94 - 2026-11-14
 
 - Behind the scenes: the site's page code is tidied, and each page now loads the shared styles once instead of twice. Nothing changes on the pages.

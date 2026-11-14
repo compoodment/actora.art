@@ -1,6 +1,6 @@
 # Privacy statement
 
-Last updated: 11 November 2026
+Last updated: 14 November 2026
 
 actora.art is a personal, non-commercial website. This statement says which personal data the site processes, why, for how long, who receives it and what your rights are.
 
@@ -46,7 +46,7 @@ A username and a passkey are needed to create an account. Without them you can s
 
 ### 3.4 Profiles, guestbooks and friends
 
-We store your account picture and status line, and your profile page's draft and published content: its text, uploaded pictures and other files, look, layout and featured friends. We remove common location and camera details from pictures and videos you upload to your profile. A profile is private until you publish it. Guestbook comments are stored with their author and the time they were written. We also store friendships, friend requests, the people you block, and your notifications. When a badge is removed, its label and account links can remain in a removed record. Records older than 30 days are removed when badges are maintained or the site starts.
+We store your account picture and status line, and your profile page's draft and published content: its text, uploaded pictures and other files, look, layout and featured friends. We remove common location and camera details from pictures and videos you upload to your profile. A profile is private until you publish it. Guestbook notes are stored with their author and the time they were written. We also store friendships, friend requests, the people you block, and your notifications. When a badge is removed, its label and account links can remain in a removed record. Records older than 30 days are removed when badges are maintained or the site starts.
 
 **Legal basis:** providing these features (article 6(1)(b) GDPR).
 
@@ -102,7 +102,7 @@ To help us find problems, the site normally sends a small error report when its 
 
 ## 4. What is public and who can see it
 
-Published profiles, guestbook comments and visible Wall marks can be seen by anyone. Everything else is private, including Aurora conversations, memories, friendships and blocks. The friends you feature on a published profile are shown there. If someone writes about you on a profile or in a guestbook, you can ask us to remove it at actora@putment.com.
+Published profiles, guestbook notes and visible Wall marks can be seen by anyone. Everything else is private, including Aurora conversations, memories, friendships and blocks. The friends you feature on a published profile are shown there. If someone writes about you on a profile or in a guestbook, you can ask us to remove it at actora@putment.com.
 
 The site's administration tools show account and usage overviews, not the text of Aurora conversations. Reports and their contents are seen only by computment. As the operator of the server, computment has technical access to all stored data and uses it only to run, secure and repair the site.
 
@@ -128,7 +128,7 @@ The site's administration tools show account and usage overviews, not the text o
 - **Error reports:** up to seven days.
 - **Emails:** up to one year after your question has been answered.
 
-When you delete your account, the site removes your account, passkeys, sessions, profile, guestbook, comments you wrote elsewhere, Aurora conversations and memories, friendships, and Wall data at once. Reports keep the copy made when the report was filed, without the link to your account, until the report's own period ends. If you archive your account instead, it is hidden and its data is kept until you restore or delete it, except that pending friend requests and their notifications are removed. Your friends still see your username in their friends list on their own account page, marked as unavailable, and can end the friendship; anyone who blocked you still sees your username in their list of blocks and can remove the block.
+When you delete your account, the site removes your account, passkeys, sessions, profile, guestbook, notes you left in other guestbooks, Aurora conversations and memories, friendships, and Wall data at once. Reports keep the copy made when the report was filed, without the link to your account, until the report's own period ends. If you archive your account instead, it is hidden and its data is kept until you restore or delete it, except that pending friend requests and their notifications are removed. Your friends still see your username in their friends list on their own account page, marked as unavailable, and can end the friendship; anyone who blocked you still sees your username in their list of blocks and can remove the block.
 
 ## 6. Backups
 
