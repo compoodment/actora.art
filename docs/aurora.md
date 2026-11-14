@@ -18,7 +18,7 @@ Aurora is the AI assistant of [actora.art](https://actora.art/). You chat with i
 
 - Up to 5 files a message: PDFs, photos (JPEG, PNG, WebP, and HEIC if your browser can open it), text, Markdown, data files and code.
 - A PDF or photo can be 25 MB, other files 2 MB. Aurora reads the first 40,000 characters of a file, and 120,000 in one message. For a longer PDF she reads its first pages and a note beside the message box says which.
-- A file is read for that reply only. The site keeps its name, type, size and a fingerprint that recognises it on a retry. It does not keep the text or the pictures.
+- File text is read for that reply only. While a chat is open, your browser keeps its pictures in memory and sends them again with later messages, up to five pictures and 2 MiB in a message. New pictures come first, followed by the most recent earlier pictures that fit. Switching or clearing the chat, signing in or out, or reloading the page drops them. The site keeps the file's name, type, size and a fingerprint that recognises it on a retry, but not the text or pictures.
 - Photos are shrunk in your browser and lose their metadata, location included, before they are sent.
 - PDF pages that are mostly picture are read as pictures.
 
@@ -28,7 +28,7 @@ Aurora can remember short facts about you between chats. This needs an account.
 
 - Aurora saves a fact when you ask, including your own health facts and links; it refuses actual passwords, keys, codes and ID numbers, but a mention like "I use a password manager" is fine. Ordinary yeses such as "yes thanks", "sure" or "ja, zeker" confirm its offers; a reply with "no" or "don't" cancels. It can also save one unasked, from what you wrote, and keeps short notes of its own. Each save shows under the reply, with undo.
 - Up to 100 memories of 300 characters each, and 50 notes. A new note replaces the oldest unpinned one.
-- At most 6 memories go into one reply.
+- Preferences, interaction memories and pinned memories go into every reply, plus up to 6 others that fit. At most 100 memories and 30,000 characters of memory text go into one reply.
 - Once Aurora has read a page, file or photo in a reply, it saves nothing unasked in that reply. A memory saved in such a chat is labelled.
 - Once a chat has read outside text, Aurora writes no more notes in that chat until you start over.
 - You can ask Aurora to reword a memory; if several match, she asks which one.

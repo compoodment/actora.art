@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.97 - 2026-11-14
+
+- Aurora is told the truth when something didn't work: when a picture or file can't be read whole, when an earlier attachment is no longer available, when the guests' daily searches are used up, or when a search request is too long. She says what she couldn't do instead of guessing.
+- Aurora looks at your pictures herself, and while a chat is open she can look at them again when you ask a follow-up ("try again", "what does the second line say"). The site still doesn't keep your pictures.
+- Aurora always keeps your saved preferences (like what to call you) in mind, not only when you mention them, and asks which memory you mean when several match.
+- Aurora can read further into long pages on this site, and retries once when her AI provider is briefly busy.
+- actoraOS is now `0.3.97`.
+
 ## 0.3.96 - 2026-11-14
 
 - The block question now says you won't see each other's profiles or guestbook notes (it said "comments").
