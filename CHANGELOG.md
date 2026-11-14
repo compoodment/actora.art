@@ -4,6 +4,14 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.96 - 2026-11-14
+
+- The block question now says you won't see each other's profiles or guestbook notes (it said "comments").
+- In the terminal's Aurora chat, the keyboard focus ring around a reply's steps is no longer cut off on the left.
+- On the Wall, the keyboard cursor's ring has a thin dark edge so it stays clear next to a white cell, also in erase mode, and it no longer gets cut off when the Wall scrolls.
+- Aurora reads the text in a picture first, word for word, and tells you when a picture has more text than she could read instead of guessing.
+- actoraOS is now `0.3.96`.
+
 ## 0.3.95 - 2026-11-14
 
 - Small fixes so things match across the site: the terminal's chat list shows times and days the way Aurora's page does, and a downloaded chat is dated like the rest of the site.
