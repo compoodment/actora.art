@@ -1,6 +1,6 @@
 # Privacy statement
 
-Last updated: 14 November 2026
+Last updated: 15 November 2026
 
 actora.art is a personal, non-commercial website. This statement says which personal data the site processes, why, for how long, who receives it and what your rights are.
 
@@ -112,7 +112,7 @@ The site's administration tools show account and usage overviews, not the text o
 - **Your account, passkeys, profile and Wall settings:** until you change or delete them, or delete your account.
 - **Notifications:** the site keeps the latest 500 in all and drops older ones; notifications about a friend request are removed when either person blocks the other or archives their account.
 - **Aurora conversations and custom instructions (signed in):** until you delete them or your account. An empty active conversation is deleted after 6 hours.
-- **Aurora conversation (guest):** deleted 3 days after its last message.
+- **Aurora conversation (guest):** deleted 3 days after its last message. If you sign in or create an account in that browser before then, it moves into your account, when the account has room for another conversation, and is then kept like your other conversations.
 - **Aurora memories:** until they expire, you remove them, you delete the conversation they came from, or you delete your account. When Aurora has 50 notes, it removes the oldest unpinned note to make room for a new one.
 - **Wall marks and their network codes:** at most 3 days.
 - **Network codes on guest usage limits:** until the daily limit resets.

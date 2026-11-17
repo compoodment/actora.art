@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.99 - 2026-11-15
+
+- Guests see how many messages all guests have left today, and a clear message when they're used up.
+- When a text file is too long, you're told only the first 40,000 characters were read.
+- When you sign in or out in another tab, Aurora's chat says why it closed.
+- A dropped connection now says so, instead of "cut off".
+- Aurora's own memory notes that didn't save no longer show an error line.
+- actoraOS is now `0.3.99`.
+
 ## 0.3.98 - 2026-11-14
 
 - When you ask Aurora to try again on a picture, she knows it's the same picture and reads it again carefully instead of guessing.
