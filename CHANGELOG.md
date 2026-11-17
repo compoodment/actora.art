@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.100 - 2026-11-16
+
+- Behind the scenes: the site's old unencrypted entrance is closed; everything goes over HTTPS. Nothing changes on the pages.
+- actoraOS is now `0.3.100`.
+
 ## 0.3.99 - 2026-11-15
 
 - Guests see how many messages all guests have left today, and a clear message when they're used up.
