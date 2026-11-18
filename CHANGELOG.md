@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.101 - 2026-11-18
+
+- Behind the scenes: clearer notes for Aurora about pictures from earlier in a chat, and better error logging. Nothing changes on the pages.
+- actoraOS is now `0.3.101`.
+
 ## 0.3.100 - 2026-11-16
 
 - Behind the scenes: the site's old unencrypted entrance is closed; everything goes over HTTPS. Nothing changes on the pages.
