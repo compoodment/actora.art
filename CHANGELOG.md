@@ -4,6 +4,15 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.102 - 2026-11-18
+
+- New recovery keys are made in your own browser; the site keeps only what it needs to check them, never the key itself.
+- If you still have an older recovery key, Account and sign-in remind you to make a new one before the old one stops working.
+- You get a notification when your recovery key changes.
+- When you recover an account in the terminal, you're signed in after you've saved the new key.
+- If you paste a recovery key into the terminal by mistake, it isn't shown or saved.
+- actoraOS is now `0.3.102`.
+
 ## 0.3.101 - 2026-11-18
 
 - Behind the scenes: clearer notes for Aurora about pictures from earlier in a chat, and better error logging. Nothing changes on the pages.
