@@ -17,6 +17,8 @@ The Wall, at [actora.art/wall](https://actora.art/wall/) or `page wall` in the t
 
 Crawlers, at [actora.art/crawlers](https://actora.art/crawlers/) or `page crawlers`, counts the bots, such as search engines, that visited in the last 30 days, by the name they give. Only the counts are kept: no network addresses and no page addresses.
 
+AI training isn't allowed on this site: crawlers that collect pages to train AI models are refused, and robots.txt and /.well-known/tdmrep.json say so. Search engines and AI search and answer tools are welcome.
+
 ## Space
 
 Space, a 3D sandbox of orbiting planets and stars, is at [space.actora.art](https://space.actora.art/). It needs no account and saves nothing.

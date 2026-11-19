@@ -4,6 +4,12 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.103 - 2026-11-19
+
+- AI training isn't allowed on this site: crawlers that collect pages to train AI models are refused. Search engines and AI search tools are still welcome.
+- Signing out in one tab no longer makes another tab's next action fail with a server error.
+- actoraOS is now `0.3.103`.
+
 ## 0.3.102 - 2026-11-18
 
 - New recovery keys are made in your own browser; the site keeps only what it needs to check them, never the key itself.
