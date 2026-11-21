@@ -40,6 +40,6 @@ Deleting is for good. On Account, type `delete @<username> forever` and use a pa
 - Gone at once: your account, passkeys, recovery key, profile and uploads, your guestbook, notes you left in other guestbooks, badges, friendships, blocks, Aurora chats and memories, and Wall data.
 - The username is reserved for 90 days.
 - Administrators can delete or archive their own account the same way, except the site owner's account.
-- Reports by you or about you stay, without your name, until 180 days after they are closed.
+- Reports by you or about you stay, without your name, until 180 days after they are closed, and never longer than 183 days after the report was made.
 - Backups keep a copy until they expire. See [privacy](privacy.md).
 - If the connection drops while deleting, try to sign in once before you delete again.

@@ -4,6 +4,11 @@ Public release notes for actora.art.
 
 This changelog is visitor-facing. Private implementation, operations, and remediation details are not documented in the public repo.
 
+## 0.3.104 - 2026-11-21
+
+- Everything the site keeps about you behind the scenes, backups included, is now gone within six months. Logs no longer keep error text or request details. The privacy statement says what stays public on purpose, how long each thing is kept, and that emails are kept only as long as needed to answer them.
+- actoraOS is now `0.3.104`.
+
 ## 0.3.103 - 2026-11-19
 
 - AI training isn't allowed on this site: crawlers that collect pages to train AI models are refused. Search engines and AI search tools are still welcome.

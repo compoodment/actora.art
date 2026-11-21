@@ -52,4 +52,4 @@ The bell sits in the footer of every page and opens your notifications. It shows
 
 Signed in, you can report someone's profile from that profile, with a reason and a note of up to 600 characters. Reports are private, and you are not told the outcome.
 
-A report keeps a copy of what the profile showed, without the uploaded files, until 180 days after it is closed. It can lead to a profile being hidden, or to friends and the guestbook being paused for that account. More in [privacy](privacy.md).
+A report keeps a copy of what the profile showed, without the uploaded files, until 180 days after it is closed, and never longer than 183 days after the report was made. It can lead to a profile being hidden, or to friends and the guestbook being paused for that account. More in [privacy](privacy.md).

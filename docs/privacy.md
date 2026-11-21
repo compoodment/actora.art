@@ -1,6 +1,6 @@
 # Privacy statement
 
-Last updated: 15 November 2026
+Last updated: 21 November 2026
 
 actora.art is a personal, non-commercial website. This statement says which personal data the site processes, why, for how long, who receives it and what your rights are.
 
@@ -14,6 +14,7 @@ For questions about this statement or to exercise your rights, email [actora@put
 
 - The site shows no advertising, uses no analytics or tracking services, and does not sell personal data or share it for advertising.
 - Your network (IP) address is not stored. The site keeps only a code made from it with a secret key, which cannot be turned back into the address.
+- What you post for others to see stays online until you remove it. Everything the site keeps about you behind the scenes is gone within six months, from backups too.
 - Aurora is an AI. What you send Aurora is passed to Ollama Cloud, mainly in the United States, to write a reply.
 - The site runs on a computer that computment owns and operates himself. Visitors reach it through a relay server at Contabo in the European Union. Encrypted backups are stored at Hetzner in Germany.
 - You can delete your chats, your memories, your profile and your account yourself at any time, and ask us for anything else by email.
@@ -24,9 +25,9 @@ For questions about this statement or to exercise your rights, email [actora@put
 
 When you open a page, your browser sends your network address and ordinary technical details, such as the page requested and the type of browser. The site uses these to deliver the page. Your network address is converted into a code as described in section 3.8 and is not stored.
 
-The site counts requests whose user agent is bot-like, missing or empty. Other requests are not written to an access log. The public /crawlers/ page uses the name that automated programs such as search engines send in their user agent. For each day, it keeps whole-number totals per crawler name and kind of request. These counts contain no network addresses, page addresses, cookies or full user agents. If the counting service is not running, a reduced record of such a visit can end up in the computer's system log instead. It contains the request kind and user agent. The usual address, cookie and page-address fields are removed, but other request headers can remain. The record is removed by the log's normal rotation.
+The site counts requests whose user agent is bot-like, missing or empty. Other requests are not written to an access log. The public /crawlers/ page uses the name that automated programs such as search engines send in their user agent. For each day, it keeps whole-number totals per crawler name and kind of request. To count a request, the web server hands the counting service only the kind of request, the time, the response and the user agent, with no network address, page address, cookies or other request headers. The counting service keeps only the crawler name from the user agent and then drops it. If the counting service is not running, nothing is recorded and those requests are not counted.
 
-The site's own web server writes error records without the network address, page address or request headers. Error messages are omitted.
+The site's own web server writes error records, and a short note when a visitor leaves before a page has finished loading, without the network address, page address, site name, request headers or error details. Such notes written before this statement's last update could still contain the page address and browser details, without the network address; they are deleted by 13 April 2027. The site's own program logs only fixed error codes, never what you sent. The computer's system log keeps these records for at most 150 days.
 
 **Legal basis:** our legitimate interest in delivering the site and knowing how much it is used (article 6(1)(f) GDPR).
 
@@ -102,6 +103,8 @@ To help us find problems, the site normally sends a small error report when its 
 
 ## 4. What is public and who can see it
 
+What you post for others to see is public on purpose and stays online until you remove it or delete your account: your published profile with its pictures and files, your status line, notes you leave in guestbooks, and Wall marks, which disappear on their own after 3 days. Everything else in section 5 is kept behind the scenes and follows the limits there, six months at most.
+
 Published profiles, guestbook notes and visible Wall marks can be seen by anyone. Everything else is private, including Aurora conversations, memories, friendships and blocks. The friends you feature on a published profile are shown there. If someone writes about you on a profile or in a guestbook, you can ask us to remove it at actora@putment.com.
 
 The site's administration tools show account and usage overviews, not the text of Aurora conversations. Reports and their contents are seen only by computment. As the operator of the server, computment has technical access to all stored data and uses it only to run, secure and repair the site.
@@ -120,13 +123,12 @@ The site's administration tools show account and usage overviews, not the text o
 - **Network code on your account's daily limit:** replaced each time you use Aurora and removed after 14 days without use.
 - **Network codes in blocks:** at most 90 days, unless an administrator renews the block.
 - **Crawler counts:** daily totals for 30 days.
-- **Reports:** until a decision is made; closed reports are deleted 180 days after they are closed.
+- **Reports:** at most 183 days after the report was made, decided or not; a decided report is deleted sooner if 180 days pass after its decision first.
 - **Deleted usernames:** reserved for 90 days so nobody else can take them over at once, without any link to the former account.
-- **Administration log:** at most 1 year; once it reaches a fixed size, the oldest entries are removed sooner.
-- **Aurora instruction editing history:** the editor’s account ID, username, role, reason and time can remain after account deletion. Account administrators can see this history; older entries are removed as the history fills.
-- **Relay firewall log:** at most 30 days.
+- **Administration log:** at most 183 days, with page addresses stored without names or IDs; once it reaches a fixed size, the oldest entries are removed sooner.
+- **Aurora instruction editing history:** the editor’s account ID, username, role, reason and time, for at most 183 days. When the editor's account is deleted, the account ID and username are removed from it. Account administrators can see this history; older entries are removed sooner as the history fills.
 - **Error reports:** up to seven days.
-- **Emails:** up to one year after your question has been answered.
+- **Emails:** no longer than needed to handle your message, then deleted.
 
 When you delete your account, the site removes your account, passkeys, sessions, profile, guestbook, notes you left in other guestbooks, Aurora conversations and memories, friendships, and Wall data at once. Reports keep the copy made when the report was filed, without the link to your account, until the report's own period ends. If you archive your account instead, it is hidden and its data is kept until you restore or delete it, except that pending friend requests and their notifications are removed. Your friends still see your username in their friends list on their own account page, marked as unavailable, and can end the friendship; anyone who blocked you still sees your username in their list of blocks and can remove the block.
 
@@ -135,16 +137,16 @@ When you delete your account, the site removes your account, passkeys, sessions,
 To recover from failures, we keep backups:
 
 - nightly copies on the same computer, kept for 7 days;
-- copies made before each update of the site: the latest 10, each removed once it is a year old;
-- encrypted copies at Hetzner in Germany, made daily and kept as daily copies for 14 days, weekly copies for 8 weeks, monthly copies for 12 months and yearly copies for 3 years. Emails are kept in these backups as yearly copies for up to 5 years.
+- copies made before each update of the site: the latest 10, each removed once it is 6 months old;
+- encrypted copies of the site and of our email at Hetzner in Germany, made daily; none is kept longer than 6 months, and expired copies are removed each week.
 
-When you delete something, it disappears from the site at once, but it can remain in a backup until that backup expires: for at most about 4 years (emails: 5). Error reports (section 3.10) are never included in backups. Backups are used only to restore the site after a failure.
+When you delete something, it disappears from the site at once, but it can remain in a backup until that backup expires: for at most 6 months. Error reports (section 3.10) are never included in backups. Backups are used only to restore the site after a failure.
 
 ## 7. Who receives your data
 
 We do not sell personal data or share it for advertising or analytics. Personal data is received only by:
 
-- **Contabo GmbH** (European Union), which provides the virtual server our relay runs on. The relay passes the encrypted (HTTPS) connection through to our server unread: it sees the site name and your network address, but not your requests, and keeps no record of them. Unencrypted requests are redirected to the encrypted address there. Its firewall can record your network address for stray or blocked connection attempts; those records are deleted after at most 30 days.
+- **Contabo GmbH** (European Union), which provides the virtual server our relay runs on. The relay passes the encrypted (HTTPS) connection through to our server unread: it sees the site name and your network address, but not your requests, and keeps no record of them. To stop abuse it holds network addresses in memory for 10 minutes, never on disk. Unencrypted requests are redirected to the encrypted address there. Its firewall does not record network addresses; records from before 21 November 2026 are deleted by 19 December 2026.
 - **Hetzner Online GmbH** (Germany), which stores our encrypted backups. Hetzner cannot read them.
 - **Ollama** (mainly the United States), which receives what Aurora needs to reply, as described in section 3.5. According to Ollama's privacy policy, it processes these requests only to provide its service and does not use them to train models.
 - **Authorities**, only when we are legally required to provide data.
